@@ -102,6 +102,73 @@
       padding-bottom: 0 !important;
     }
   }
+
+  /* Full-Page Centered Search Overlay */
+  .search-modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 15px !important;
+  }
+
+  .search-modal__content {
+    width: 100% !important;
+    max-width: 80rem !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .search-modal__form {
+    width: 100% !important;
+  }
+
+  .search__input.field__input {
+    background: white !important;
+    border-radius: 5rem !important;
+    padding: 2rem 4rem !important;
+    font-size: 2rem !important;
+    height: auto !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+  }
+
+  .field__label {
+    left: 4rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  /* Close button styling */
+  .search-modal__close-button {
+    position: absolute !important;
+    top: 3rem !important;
+    right: 3rem !important;
+    width: 5rem !important;
+    height: 5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: black !important;
+    color: white !important;
+    border-radius: 50% !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .search-modal__close-button:hover {
+    transform: rotate(90deg) scale(1.1) !important;
+  }
+
+  /* Hide the default modal overlay since we are using fixed inset */
+  .modal-overlay { display: none !important; }
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
