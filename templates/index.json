@@ -129,10 +129,38 @@
         "ai_gen_block_2a26671_yRqytw"
       ],
       "settings": {}
+    },
+    "fmcg_marquee_wall_jG9bmF": {
+      "type": "fmcg-marquee-wall",
+      "name": "FMCG Marquee Wall",
+      "settings": {
+        "fs_desktop": 8,
+        "fs_mobile": 4,
+        "fw": "900",
+        "ls": -2,
+        "row_gap": 20,
+        "section_height": "100vh",
+        "bg_color": "#ffffff",
+        "use_outline": false,
+        "scroll_speed": 0.5,
+        "text_1": "Energy, Flavor, Health, Taste",
+        "color_1": "#000000",
+        "dir_1": "left",
+        "text_2": "CRUNCH, SIP, SAVOR, SNACK",
+        "color_2": "#000000",
+        "dir_2": "right",
+        "text_3": "NATURAL, ORGANIC, PURE, FRESH",
+        "color_3": "#000000",
+        "dir_3": "left",
+        "text_4": "DELICIOUS, ICONIC, REFRESHING, BOLD",
+        "color_4": "#000000",
+        "dir_4": "right"
+      }
     }
   },
   "order": [
     "asfpl_hero_8fNkUE",
-    "1775551419ea380de6"
+    "1775551419ea380de6",
+    "fmcg_marquee_wall_jG9bmF"
   ]
 }
