@@ -74,6 +74,75 @@
       padding-top: 0.5rem;
     }
   }
+
+  /* CUSTOM BRANDED HEADER STYLES */
+  {%- if section.settings.enable_transparent_header and template.name == 'index' -%}
+    .header-wrapper {
+      position: absolute;
+      width: 100%;
+      background: transparent !important;
+      border-bottom: none !important;
+      z-index: 10;
+    }
+    .header-wrapper:not(.scrolled-past-header) .header__menu-item,
+    .header-wrapper:not(.scrolled-past-header) .header__icon {
+      color: {{ section.settings.transparent_text_color }} !important;
+    }
+    .header-wrapper:not(.scrolled-past-header) .header__heading-logo {
+      filter: {% if section.settings.transparent_text_color == '#ffffff' %}brightness(0) invert(1){% else %}none{% endif %};
+    }
+  {%- endif -%}
+
+  .header {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+  }
+
+  .header__heading { grid-area: auto !important; justify-self: start !important; }
+  .header__inline-menu { grid-area: auto !important; justify-self: center !important; }
+  .header__icons { grid-area: auto !important; justify-self: end !important; }
+
+  .header__menu-item {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .header__menu-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  .header__menu-item:hover::after {
+    width: 60%;
+  }
+
+  .header__icon {
+    transition: transform 0.3s ease;
+  }
+
+  .header__icon:hover {
+    transform: scale(1.15);
+  }
+
+  .header__heading-logo {
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .header__heading-link:hover .header__heading-logo {
+    transform: scale(1.05);
+  }
+
+  .header__icon--world {
+    padding: 1.2rem;
+  }
 </style>
 
 {%- style -%}
@@ -84,6 +153,7 @@
   .section-header {
     position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+    z-index: 100;
   }
 
   @media screen and (min-width: 750px) {
@@ -247,6 +317,14 @@
           </localization-form>
         {%- endif -%}
       </div>
+
+      <!-- Custom World Icon -->
+      <a href="{{ section.settings.world_map_url | default: '#' }}" class="header__icon header__icon--world link focus-inset">
+        <span class="svg-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </span>
+      </a>
+
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
       {%- if shop.customer_accounts_enabled -%}
@@ -285,22 +363,24 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-        {% if cart == empty %}
-          <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
-        {% else %}
-          <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
-        {% endif %}
-        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-        {%- if cart != empty -%}
-          <div class="cart-count-bubble">
-            {%- if cart.item_count < 100 -%}
-              <span aria-hidden="true">{{ cart.item_count }}</span>
-            {%- endif -%}
-            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-          </div>
-        {%- endif -%}
-      </a>
+      {%- unless template.name == 'index' -%}
+        <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+          {% if cart == empty %}
+            <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
+          {% else %}
+            <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
+          {% endif %}
+          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+          {%- if cart != empty -%}
+            <div class="cart-count-bubble">
+              {%- if cart.item_count < 100 -%}
+                <span aria-hidden="true">{{ cart.item_count }}</span>
+              {%- endif -%}
+              <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+            </div>
+          {%- endif -%}
+        </a>
+      {%- endunless -%}
     </div>
   </header>
 </{{ header_tag }}>
@@ -366,8 +446,15 @@
 
     onScroll() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const headerWrapper = document.querySelector('.header-wrapper');
 
       if (this.predictiveSearch && this.predictiveSearch.isOpen) return;
+
+      if (scrollTop > 50) {
+        headerWrapper.classList.add('scrolled-past-header');
+      } else {
+        headerWrapper.classList.remove('scrolled-past-header');
+      }
 
       if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
         this.header.classList.add('scrolled-past-header');
@@ -472,6 +559,17 @@
   "class": "section-header",
   "max_blocks": 3,
   "settings": [
+    {
+      "type": "header",
+      "content": "Transparency"
+    },
+    { "type": "checkbox", "id": "enable_transparent_header", "label": "Enable Transparent Header (Home Page)", "default": true },
+    { "type": "color", "id": "transparent_text_color", "label": "Transparent Text/Icon Color", "default": "#ffffff" },
+    {
+      "type": "header",
+      "content": "Custom Icons"
+    },
+    { "type": "url", "id": "world_map_url", "label": "World Map URL" },
     {
       "type": "select",
       "id": "logo_position",
