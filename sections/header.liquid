@@ -117,7 +117,20 @@
 
   .header__heading { grid-area: auto !important; justify-self: start !important; transition: transform 0.5s ease; }
   .header__inline-menu { grid-area: auto !important; justify-self: center !important; }
-  .header__icons { grid-area: auto !important; justify-self: end !important; }
+  .header__icons { 
+    grid-area: auto !important; 
+    justify-self: end !important; 
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Bold Icons Styling */
+  .header__icon svg {
+    width: 2.8rem !important;
+    height: 2.8rem !important;
+    stroke-width: 2.5px !important;
+  }
 
   /* Shrink Logo on sticky */
   .scrolled-past-header .header__heading-logo {
