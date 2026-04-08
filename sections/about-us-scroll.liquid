@@ -30,8 +30,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 0 5%;
+    justify-content: center; /* Vertically center the whole group */
+    padding-left: 10%; /* Exact Gutter from image */
+    padding-right: 5%;
   }
 
   @media screen and (max-width: 749px) {
@@ -45,11 +46,13 @@
     .about-us-scroll__right {
       width: 100%;
       height: 60vh;
-      padding: 3rem 1.5rem;
+      padding: 4rem 2rem;
       background: {{ section.settings.bg_color_mobile | default: section.settings.bg_color }};
+      justify-content: flex-start;
     }
   }
 
+  /* Layers (Media & Content) */
   .about-us-scroll__media-layer {
     position: absolute;
     top: 0;
@@ -57,7 +60,7 @@
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1);
     z-index: 1;
   }
 
@@ -72,20 +75,24 @@
     object-fit: cover;
   }
 
+  /* Content Wrapper to maintain absolute positioning relative to shared Pills */
+  .about-us-scroll__content-stack {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Forces the 3-line stacking for Big Bold headings */
+  }
+
   .about-us-scroll__content-layer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     opacity: 0;
     visibility: hidden;
     transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transform: translateY(30px);
+    transform: translateY(20px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 0 8%;
     z-index: 1;
   }
 
@@ -96,12 +103,12 @@
     z-index: 2;
   }
 
-  /* Pills (Numbers) */
+  /* UI Elements: Pills at Top Left */
   .about-us-scroll__pills {
     display: flex;
-    gap: 1.5rem;
-    z-index: 10;
-    position: relative;
+    gap: 1.2rem;
+    margin-bottom: 5rem;
+    align-self: flex-start;
   }
 
   .about-us-scroll__pill {
@@ -109,25 +116,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 800;
+    font-weight: 900;
     transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    opacity: 0.4;
+    opacity: 0.6;
     cursor: default;
+    border: none;
   }
 
-  /* Per Block Styling */
+  /* Per Block Styling - Focused on Left Alignment and Stacking */
   {%- for block in section.blocks -%}
     {{ block.settings.heading_font | font_face: display: 'swap' }}
     
-    .about-us-scroll__content-layer[data-index="{{ forloop.index0 }}"] {
-      margin-top: {{ block.settings.layer_margin_top }}px;
-    }
-
     .about-us-scroll__pill[data-index="{{ forloop.index0 }}"] {
       width: {{ block.settings.pill_size }}rem;
       height: {{ block.settings.pill_size }}rem;
-      font-size: {{ block.settings.pill_size | divided_by: 2.5 }}rem;
-      background: {{ block.settings.pill_bg_inactive | default: 'rgba(255,255,255,0.2)' }};
+      font-size: {{ block.settings.pill_size | divided_by: 2.8 }}rem;
+      background: {{ block.settings.pill_bg_inactive | default: 'rgba(255,255,255,0.3)' }};
       color: {{ block.settings.pill_text_inactive | default: '#ffffff' }};
       margin-bottom: {{ block.settings.pill_margin_bottom }}px;
     }
@@ -136,18 +140,20 @@
       opacity: 1;
       background: {{ block.settings.pill_bg_active | default: '#000000' }};
       color: {{ block.settings.pill_text_active | default: '#ffffff' }};
-      transform: scale(1.15);
     }
 
     .about-us-scroll__heading[data-index="{{ forloop.index0 }}"] {
       font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
       font-weight: {{ block.settings.heading_weight }};
-      font-size: clamp(2.5rem, 6vw, {{ block.settings.heading_size }}rem);
+      font-size: clamp(3rem, 8vw, {{ block.settings.heading_size }}rem);
       color: {{ block.settings.heading_color }};
       margin-bottom: {{ block.settings.heading_margin_bottom }}px;
       line-height: 0.95;
       text-transform: uppercase;
       letter-spacing: -0.05em;
+      text-align: left;
+      /* Stacking override */
+      max-width: 450px;
     }
 
     .about-us-scroll__text[data-index="{{ forloop.index0 }}"] {
@@ -156,10 +162,11 @@
       margin-bottom: {{ block.settings.text_margin_bottom }}px;
       line-height: 1.6;
       max-width: 550px;
+      text-align: left;
     }
 
     .about-us-scroll__btn[data-index="{{ forloop.index0 }}"] {
-      background: {{ block.settings.btn_bg | default: '#000000' }};
+      background: {{ block.settings.btn_bg | default: '#001e4a' }};
       color: {{ block.settings.btn_text | default: '#ffffff' }};
       padding: {{ block.settings.btn_padding_y }}rem {{ block.settings.btn_padding_x }}rem;
       border-radius: {{ block.settings.btn_radius }}px;
@@ -168,14 +175,16 @@
       display: inline-flex;
       text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
       font-size: {{ block.settings.btn_font_size }}rem;
       transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      align-self: flex-start; /* Exact Left Alignment */
     }
 
     .about-us-scroll__btn[data-index="{{ forloop.index0 }}"]:hover {
       filter: brightness(1.2);
-      transform: translateY(-3px);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
   {%- endfor -%}
 
@@ -197,10 +206,10 @@
       {%- endfor -%}
     </div>
 
-    <!-- Right: Content Column -->
+    <!-- Right: Precisely Aligned Content -->
     <div class="about-us-scroll__right">
       
-      <!-- Pills (Numbers) stay at the top of the content area -->
+      <!-- Pills stay at top left of content group -->
       <div class="about-us-scroll__pills">
         {%- for block in section.blocks -%}
           <div class="about-us-scroll__pill {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
@@ -209,7 +218,6 @@
         {%- endfor -%}
       </div>
 
-      <!-- Layer Stack -->
       <div class="about-us-scroll__content-stack">
         {%- for block in section.blocks -%}
           <div class="about-us-scroll__content-layer {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
@@ -282,35 +290,35 @@
         { "type": "image_picker", "id": "image", "label": "Media Image" },
         
         { "type": "header", "content": "Pill (Number Circle)" },
-        { "type": "range", "id": "pill_size", "label": "Circle Size (rem)", "min": 2, "max": 8, "step": 0.5, "default": 3.5 },
+        { "type": "range", "id": "pill_size", "label": "Circle Size (rem)", "min": 2, "max": 8, "step": 0.5, "default": 3.2 },
         { "type": "color", "id": "pill_bg_active", "label": "Active Background", "default": "#000000" },
         { "type": "color", "id": "pill_text_active", "label": "Active Text", "default": "#ffffff" },
-        { "type": "color", "id": "pill_bg_inactive", "label": "Inactive Background", "default": "rgba(255,255,255,0.2)" },
+        { "type": "color", "id": "pill_bg_inactive", "label": "Inactive Background", "default": "rgba(255,255,255,0.3)" },
         { "type": "color", "id": "pill_text_inactive", "label": "Inactive Text", "default": "#ffffff" },
-        { "type": "range", "id": "pill_margin_bottom", "label": "Pill Bottom Margin", "min": 0, "max": 100, "step": 5, "default": 40 },
+        { "type": "range", "id": "pill_margin_bottom", "label": "Pill Bottom Margin", "min": 0, "max": 150, "step": 5, "default": 50 },
 
         { "type": "header", "content": "Heading" },
         { "type": "font_picker", "id": "heading_font", "label": "Font Family", "default": "sans-serif" },
-        { "type": "range", "id": "heading_weight", "label": "Font Weight", "min": 100, "max": 950, "step": 50, "default": 900 },
-        { "type": "range", "id": "heading_size", "label": "Font Size (rem)", "min": 2, "max": 15, "step": 0.5, "default": 7 },
+        { "type": "range", "id": "heading_weight", "label": "Font Weight", "min": 100, "max": 950, "step": 50, "default": 950 },
+        { "type": "range", "id": "heading_size", "label": "Font Size (rem)", "min": 2, "max": 15, "step": 0.5, "default": 8 },
         { "type": "color", "id": "heading_color", "label": "Color", "default": "#ffffff" },
-        { "type": "range", "id": "heading_margin_bottom", "label": "Bottom Margin", "min": 0, "max": 100, "step": 5, "default": 30 },
+        { "type": "range", "id": "heading_margin_bottom", "label": "Bottom Margin", "min": 0, "max": 150, "step": 5, "default": 40 },
 
         { "type": "header", "content": "Description Text" },
-        { "type": "textarea", "id": "text", "label": "Text", "default": "Built with high-quality ingredients, deep connections with consumers, and iconic brands." },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Built with high-quality ingredients, deep connections with consumers, and iconic brands. Step inside PepsiCo and see how we’re bringing the world more reasons to smile." },
         { "type": "range", "id": "text_size", "label": "Font Size (rem)", "min": 1, "max": 4, "step": 0.1, "default": 1.8 },
         { "type": "color", "id": "text_color", "label": "Color", "default": "#ffffff" },
-        { "type": "range", "id": "text_margin_bottom", "label": "Bottom Margin", "min": 0, "max": 100, "step": 5, "default": 40 },
+        { "type": "range", "id": "text_margin_bottom", "label": "Bottom Margin", "min": 0, "max": 150, "step": 5, "default": 50 },
 
         { "type": "header", "content": "Button" },
         { "type": "text", "id": "btn_label", "label": "Label", "default": "Explore Our Mission" },
         { "type": "url", "id": "btn_link", "label": "Link" },
-        { "type": "color", "id": "btn_bg", "label": "Background", "default": "#000000" },
+        { "type": "color", "id": "btn_bg", "label": "Background", "default": "#001e4a" },
         { "type": "color", "id": "btn_text", "label": "Text", "default": "#ffffff" },
         { "type": "range", "id": "btn_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 800 },
         { "type": "range", "id": "btn_font_size", "label": "Font Size (rem)", "min": 0.8, "max": 4, "step": 0.1, "default": 1.3 },
-        { "type": "range", "id": "btn_radius", "label": "Corner Radius", "min": 0, "max": 100, "step": 2, "default": 50 },
-        { "type": "range", "id": "btn_padding_x", "label": "Side Padding (rem)", "min": 1, "max": 10, "step": 0.5, "default": 4 },
+        { "type": "range", "id": "btn_radius", "label": "Corner Radius", "min": 0, "max": 100, "step": 2, "default": 100 },
+        { "type": "range", "id": "btn_padding_x", "label": "Side Padding (rem)", "min": 1, "max": 10, "step": 0.5, "default": 4.5 },
         { "type": "range", "id": "btn_padding_y", "label": "Top/Bottom Padding (rem)", "min": 0.5, "max": 5, "step": 0.1, "default": 1.8 },
         { "type": "range", "id": "btn_margin_top", "label": "Top Margin (px)", "min": 0, "max": 150, "step": 5, "default": 0 }
       ]
