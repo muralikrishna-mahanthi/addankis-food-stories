@@ -22,6 +22,12 @@
     margin-left: -1.2rem;
   }
 
+  @media screen and (min-width: 990px) {
+    header-drawer {
+      display: none !important;
+    }
+  }
+
   .header-wrapper {
     padding: 0 {{ section.settings.section_padding_horizontal }}px !important;
     background: transparent !important;
@@ -90,6 +96,14 @@
   .header__inline-menu { 
     grid-area: auto !important; 
     justify-self: center !important; 
+    display: block !important;
+  }
+
+  .list-menu--inline {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    flex-direction: row !important;
+    justify-content: center !important;
   }
   
   .header__icons { 
@@ -696,7 +710,7 @@
         { "value": "transparent", "label": "Transparent" },
         { "value": "glass", "label": "Glassmorphism" }
       ],
-      "default": "solid",
+      "default": "transparent",
       "label": "Background Type"
     },
     {
@@ -729,7 +743,7 @@
        "type": "color",
        "id": "header_border_color",
        "label": "Border Color",
-       "default": "#f0f0f0"
+       "default": "rgba(0,0,0,0)"
     },
     {
       "type": "header",
