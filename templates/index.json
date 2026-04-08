@@ -46,7 +46,7 @@
         "button_padding_x": 3.5,
         "button_padding_y": 1,
         "button_1_label": "Discover who we are",
-        "button_1_link": "shopify://collections",
+        "button_1_link": "shopify://pages/discover-who-we-are",
         "button_1_bg": "#81e683",
         "button_1_text": "#1f7000",
         "button_1_border": "#81e683",
