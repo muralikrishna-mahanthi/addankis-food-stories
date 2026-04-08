@@ -147,12 +147,62 @@
         "padding_top": 100,
         "padding_bottom": 100
       }
+    },
+    "about_us_scroll_CMqGAT": {
+      "type": "about-us-scroll",
+      "blocks": {
+        "story_phase_Q3UhNp": {
+          "type": "story_phase",
+          "settings": {
+            "image": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg",
+            "heading": "Chapter One",
+            "text": "Built with high-quality ingredients, deep connections with consumers, and iconic brands.",
+            "btn_label": "Explore Our Mission",
+            "btn_link": ""
+          }
+        },
+        "story_phase_Q6RRmA": {
+          "type": "story_phase",
+          "settings": {
+            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_remove_the_navigatio_-_Edited.png",
+            "heading": "Chapter Two",
+            "text": "Built with high-quality ingredients, deep connections with consumers, and iconic brands.",
+            "btn_label": "Explore Our Mission",
+            "btn_link": ""
+          }
+        },
+        "story_phase_efwdfh": {
+          "type": "story_phase",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPTImageDec23_2025_04_12_30PM.jpg",
+            "heading": "Chapter Three",
+            "text": "Built with high-quality ingredients, deep connections with consumers, and iconic brands.",
+            "btn_label": "Explore Our Mission",
+            "btn_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "story_phase_Q3UhNp",
+        "story_phase_Q6RRmA",
+        "story_phase_efwdfh"
+      ],
+      "name": "About Us Scroll",
+      "settings": {
+        "bg_color": "#008d0d",
+        "text_color": "#ffffff",
+        "active_pill_bg": "#000000",
+        "btn_bg": "#000000",
+        "btn_text": "#ffffff",
+        "fs_desktop": 7
+      }
     }
   },
   "order": [
     "main",
     "17756460369904a3fd",
     "177564547279babe52",
+    "about_us_scroll_CMqGAT",
     "asfpl_history_reveal_dM3fGm"
   ]
 }
