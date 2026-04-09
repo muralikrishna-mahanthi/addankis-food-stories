@@ -123,8 +123,9 @@
             "btn_bg": "#000000",
             "btn_text": "#ffffff",
             "btn_weight": 900,
+            "btn_font_size": 1.3,
             "btn_radius": 50,
-            "btn_padding_x": 8,
+            "btn_padding_x": 1,
             "btn_padding_y": 1.5,
             "btn_margin_top": 0
           }
@@ -153,6 +154,7 @@
             "btn_bg": "#000000",
             "btn_text": "#ffffff",
             "btn_weight": 800,
+            "btn_font_size": 1.3,
             "btn_radius": 50,
             "btn_padding_x": 4,
             "btn_padding_y": 1.5,
@@ -183,6 +185,7 @@
             "btn_bg": "#000000",
             "btn_text": "#ffffff",
             "btn_weight": 800,
+            "btn_font_size": 1.3,
             "btn_radius": 50,
             "btn_padding_x": 4,
             "btn_padding_y": 1.5,
