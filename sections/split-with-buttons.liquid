@@ -1,10 +1,12 @@
 {%- style -%}
+  {{ section.settings.heading_font | font_face: display: 'swap' }}
+  {{ section.settings.btn_font | font_face: display: 'swap' }}
+
   .split-buttons-{{ section.id }} {
     display: flex;
     width: 100%;
     min-height: auto; 
-    /* Let content dictate height, but at least visually solid */
-    align-items: stretch; /* So both sides are equal height */
+    align-items: stretch;
   }
 
   .split-buttons__left {
@@ -13,7 +15,7 @@
     background-color: {{ section.settings.left_bg_color }};
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative;
     padding: 6rem;
     overflow: hidden;
@@ -40,10 +42,12 @@
 
   .split-buttons__heading {
     margin: 0 0 2rem 0;
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
     font-size: clamp(2.5rem, 4vw, {{ section.settings.heading_size }}rem);
     font-weight: {{ section.settings.heading_weight }};
     color: {{ section.settings.heading_color }};
     line-height: 1.1;
+    {%- if section.settings.heading_uppercase -%}text-transform: uppercase;{%- endif -%}
   }
   
   .split-buttons__text {
@@ -58,7 +62,7 @@
     background-color: {{ section.settings.right_bg_color }};
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: {{ section.settings.btn_container_padding_y }}px {{ section.settings.btn_container_padding_x }}px;
   }
 
@@ -67,24 +71,36 @@
     flex-direction: column;
     gap: 1.5rem;
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
   }
 
   .split-buttons__btn {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between; /* text left, icon right */
     text-decoration: none;
-    text-align: center;
+    text-align: left;
     width: 100%;
     transition: all 0.3s ease;
     
+    font-family: {{ section.settings.btn_font.family }}, {{ section.settings.btn_font.fallback_families }};
     font-size: {{ section.settings.btn_size }}rem;
     font-weight: {{ section.settings.btn_weight }};
     color: {{ section.settings.btn_text_color }};
     background-color: {{ section.settings.btn_bg_color }};
     border: 1px solid {{ section.settings.btn_border_color }};
+    border-radius: {{ section.settings.btn_border_radius }}px;
     padding: {{ section.settings.btn_padding_y }}px {{ section.settings.btn_padding_x }}px;
+  }
+
+  .split-buttons__btn-text {
+    flex-grow: 1;
+  }
+
+  .split-buttons__btn-icon {
+    flex-shrink: 0;
+    margin-left: 2rem;
+    transition: transform 0.3s ease;
   }
 
   .split-buttons__btn:hover {
@@ -92,6 +108,10 @@
     box-shadow: 0 8px 15px rgba(0,0,0,0.05);
     background-color: {{ section.settings.btn_bg_hover_color | default: section.settings.btn_border_color }};
     color: {{ section.settings.btn_text_hover_color | default: '#ffffff' }};
+  }
+
+  .split-buttons__btn:hover .split-buttons__btn-icon {
+    transform: translateX(4px);
   }
 
   @media screen and (max-width: 768px) {
@@ -102,7 +122,7 @@
       flex: 0 0 100%;
       width: 100%;
       padding: 4rem 2rem;
-      min-height: 400px;
+      min-height: 250px;
     }
   }
 {%- endstyle -%}
@@ -114,7 +134,6 @@
       {%- if section.settings.image != blank -%}
         {{ section.settings.image | image_url: width: 1200 | image_tag: class: 'split-buttons__left-image', loading: 'lazy' }}
       {%- else -%}
-        <!-- Placeholder if image not selected -->
         <div style="background: #EFEFEF; width: 100%; height: 100%; position: absolute; display:flex; align-items:center; justify-content:center; color:#999;">Image Placeholder</div>
       {%- endif -%}
     {%- else -%}
@@ -135,25 +154,29 @@
       
       {%- if section.settings.btn_1_text != blank -%}
         <a href="{{ section.settings.btn_1_link | default: '#' }}" class="split-buttons__btn">
-          {{ section.settings.btn_1_text }}
+          <span class="split-buttons__btn-text">{{ section.settings.btn_1_text }}</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="split-buttons__btn-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       {%- endif -%}
 
       {%- if section.settings.btn_2_text != blank -%}
         <a href="{{ section.settings.btn_2_link | default: '#' }}" class="split-buttons__btn">
-          {{ section.settings.btn_2_text }}
+          <span class="split-buttons__btn-text">{{ section.settings.btn_2_text }}</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="split-buttons__btn-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       {%- endif -%}
 
       {%- if section.settings.btn_3_text != blank -%}
         <a href="{{ section.settings.btn_3_link | default: '#' }}" class="split-buttons__btn">
-          {{ section.settings.btn_3_text }}
+          <span class="split-buttons__btn-text">{{ section.settings.btn_3_text }}</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="split-buttons__btn-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       {%- endif -%}
 
       {%- if section.settings.btn_4_text != blank -%}
         <a href="{{ section.settings.btn_4_link | default: '#' }}" class="split-buttons__btn">
-          {{ section.settings.btn_4_text }}
+          <span class="split-buttons__btn-text">{{ section.settings.btn_4_text }}</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="split-buttons__btn-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       {%- endif -%}
 
@@ -169,19 +192,20 @@
   "settings": [
     {
       "type": "header",
-      "content": "Split Background Colors"
+      "content": "Split Background Colors",
+      "info": "Set both sides to the same color to create a unified continuous background effect."
     },
     {
       "type": "color",
       "id": "left_bg_color",
       "label": "Left Side Background Color",
-      "default": "#f4f4f4"
+      "default": "#125191"
     },
     {
       "type": "color",
       "id": "right_bg_color",
       "label": "Right Side Background Color",
-      "default": "#ffffff"
+      "default": "#125191"
     },
 
     {
@@ -207,8 +231,9 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Choose Your Path"
+      "default": "DISCOVER MORE\nABOUT US"
     },
+    { "type": "font_picker", "id": "heading_font", "label": "Heading Font", "default": "sans-serif" },
     {
       "type": "range",
       "id": "heading_size",
@@ -231,19 +256,25 @@
         {"value": "800", "label": "800 - Extra Bold"},
         {"value": "900", "label": "900 - Bolder"}
       ],
-      "default": "700"
+      "default": "800"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_uppercase",
+      "label": "Force Heading to Uppercase",
+      "default": true
     },
     {
       "type": "color",
       "id": "heading_color",
       "label": "Heading Text Color",
-      "default": "#1a1a1a"
+      "default": "#A0C4E7"
     },
     {
       "type": "richtext",
       "id": "text",
       "label": "Description",
-      "default": "<p>Select from the options on the right to discover more about our capabilities and focus areas.</p>"
+      "default": "<p></p>"
     },
 
     {
@@ -257,7 +288,7 @@
       "min": 0,
       "max": 150,
       "step": 5,
-      "default": 80,
+      "default": 40,
       "unit": "px"
     },
     {
@@ -275,6 +306,7 @@
       "type": "header",
       "content": "Global Button Design"
     },
+    { "type": "font_picker", "id": "btn_font", "label": "Button Font", "default": "sans-serif" },
     {
       "type": "range",
       "id": "btn_size",
@@ -298,42 +330,43 @@
       ],
       "default": "600"
     },
-    { "type": "color", "id": "btn_text_color", "label": "Button Text Color", "default": "#1a1a1a" },
-    { "type": "color", "id": "btn_bg_color", "label": "Button Background Color", "default": "#ffffff" },
-    { "type": "color", "id": "btn_border_color", "label": "Button Border Color", "default": "#E2E2E2" },
+    { "type": "color", "id": "btn_text_color", "label": "Button Text Color", "default": "#125191" },
+    { "type": "color", "id": "btn_bg_color", "label": "Button Background Color", "default": "#B7D4F0" },
+    { "type": "color", "id": "btn_border_color", "label": "Button Border Color", "default": "transparent" },
     
     { "type": "color", "id": "btn_text_hover_color", "label": "Button Hover Text Color", "default": "#ffffff" },
-    { "type": "color", "id": "btn_bg_hover_color", "label": "Button Hover Background Color", "default": "#00A859" },
+    { "type": "color", "id": "btn_bg_hover_color", "label": "Button Hover Background Color", "default": "#0F4174" },
 
-    { "type": "range", "id": "btn_padding_x", "label": "Button Inner Padding (Horizontal)", "min": 10, "max": 100, "step": 2, "default": 24, "unit": "px" },
-    { "type": "range", "id": "btn_padding_y", "label": "Button Inner Padding (Vertical)", "min": 5, "max": 50, "step": 1, "default": 20, "unit": "px" },
+    { "type": "range", "id": "btn_border_radius", "label": "Button Border Radius (Pill Shape)", "min": 0, "max": 100, "step": 1, "default": 50, "unit": "px" },
+    { "type": "range", "id": "btn_padding_x", "label": "Button Inner Padding (Horizontal)", "min": 10, "max": 100, "step": 2, "default": 30, "unit": "px" },
+    { "type": "range", "id": "btn_padding_y", "label": "Button Inner Padding (Vertical)", "min": 5, "max": 50, "step": 1, "default": 15, "unit": "px" },
 
     {
       "type": "header",
       "content": "Button 1"
     },
-    { "type": "text", "id": "btn_1_text", "label": "Button 1 Label", "default": "Our Approach" },
+    { "type": "text", "id": "btn_1_text", "label": "Button 1 Label", "default": "Careers" },
     { "type": "url", "id": "btn_1_link", "label": "Button 1 Link" },
 
     {
       "type": "header",
       "content": "Button 2"
     },
-    { "type": "text", "id": "btn_2_text", "label": "Button 2 Label", "default": "Brand Portfolio" },
+    { "type": "text", "id": "btn_2_text", "label": "Button 2 Label", "default": "Global Code of Conduct" },
     { "type": "url", "id": "btn_2_link", "label": "Button 2 Link" },
 
     {
       "type": "header",
       "content": "Button 3"
     },
-    { "type": "text", "id": "btn_3_text", "label": "Button 3 Label", "default": "Distribution Network" },
+    { "type": "text", "id": "btn_3_text", "label": "Button 3 Label", "default": "Leadership" },
     { "type": "url", "id": "btn_3_link", "label": "Button 3 Link" },
 
     {
       "type": "header",
       "content": "Button 4"
     },
-    { "type": "text", "id": "btn_4_text", "label": "Button 4 Label", "default": "Partner With Us" },
+    { "type": "text", "id": "btn_4_text", "label": "Button 4 Label", "default": "Awards" },
     { "type": "url", "id": "btn_4_link", "label": "Button 4 Link" }
   ],
   "presets": [
