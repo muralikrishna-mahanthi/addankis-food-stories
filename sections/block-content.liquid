@@ -177,7 +177,12 @@
     border-radius: 50px;
     line-height: 1.2;
     background: transparent;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+  }
+  .block-content__tag:hover {
+    background-color: var(--hover-bg) !important;
+    color: var(--hover-text) !important;
+    border-color: var(--hover-border) !important;
   }
 
   @keyframes fadeUpStagger {
@@ -240,7 +245,7 @@
             <div class="block-content__tags">
               {% assign tags = block.settings.tags_list | split: ',' %}
               {% for tag in tags %}
-                <span class="block-content__tag" style="color: {{ block.settings.tags_text_color }}; border-color: {{ block.settings.tags_border_color }}; padding: {{ block.settings.tags_padding_y }}px {{ block.settings.tags_padding_x }}px;">
+                <span class="block-content__tag" style="color: {{ block.settings.tags_text_color }}; border-color: {{ block.settings.tags_border_color }}; background-color: {{ block.settings.tags_bg_color }}; padding: {{ block.settings.tags_padding_y }}px {{ block.settings.tags_padding_x }}px; --hover-bg: {{ block.settings.tags_hover_bg_color }}; --hover-text: {{ block.settings.tags_hover_text_color }}; --hover-border: {{ block.settings.tags_hover_border_color }};">
                   {{ tag | strip }}
                 </span>
               {% endfor %}
@@ -379,11 +384,16 @@
           "default": "HAMSAA, JINAA, FRUROOT, STRATICA",
           "info": "Leave blank to hide tags."
         },
-        { "type": "header", "content": "Tag Pill Styling" },
+        { "type": "header", "content": "Tag Pill Base Styling" },
+        { "type": "color", "id": "tags_bg_color", "label": "Tag Background Color", "default": "transparent" },
         { "type": "color", "id": "tags_border_color", "label": "Tag Border Color", "default": "#CCCCCC" },
         { "type": "color", "id": "tags_text_color", "label": "Tag Text Color", "default": "#555555" },
         { "type": "range", "id": "tags_padding_x", "label": "Tag Horizontal Padding", "min": 5, "max": 30, "step": 1, "default": 14, "unit": "px" },
-        { "type": "range", "id": "tags_padding_y", "label": "Tag Vertical Padding", "min": 2, "max": 15, "step": 1, "default": 6, "unit": "px" }
+        { "type": "range", "id": "tags_padding_y", "label": "Tag Vertical Padding", "min": 2, "max": 15, "step": 1, "default": 6, "unit": "px" },
+        { "type": "header", "content": "Tag Pill Hover Styling" },
+        { "type": "color", "id": "tags_hover_bg_color", "label": "Hover Background Color", "default": "#00A859" },
+        { "type": "color", "id": "tags_hover_border_color", "label": "Hover Border Color", "default": "#00A859" },
+        { "type": "color", "id": "tags_hover_text_color", "label": "Hover Text Color", "default": "#ffffff" }
       ]
     }
   ],
@@ -401,8 +411,12 @@
             "tags_heading": "Our active brands",
             "tags_list": "HAMSAA, JINAA, FRUROOT, STRATICA",
             "accent_color": "#00A859",
+            "tags_bg_color": "transparent",
             "tags_border_color": "#BBBBBB",
-            "tags_text_color": "#555555"
+            "tags_text_color": "#555555",
+            "tags_hover_bg_color": "#00A859",
+            "tags_hover_border_color": "#00A859",
+            "tags_hover_text_color": "#FFFFFF"
           }
         },
         {
@@ -415,8 +429,12 @@
             "tags_heading": "Markets we serve",
             "tags_list": "Urban retail, Rural GT, South India, Pan India (target)",
             "accent_color": "#816BE9",
+            "tags_bg_color": "transparent",
             "tags_border_color": "#BBBBBB",
-            "tags_text_color": "#555555"
+            "tags_text_color": "#555555",
+            "tags_hover_bg_color": "#816BE9",
+            "tags_hover_border_color": "#816BE9",
+            "tags_hover_text_color": "#FFFFFF"
           }
         }
       ]
