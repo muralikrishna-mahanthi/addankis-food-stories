@@ -299,6 +299,39 @@
         "card_text_weight": "600",
         "card_text_color": "#555555"
       }
+    },
+    "split_with_buttons_RVHpRR": {
+      "type": "split-with-buttons",
+      "name": "Split With Buttons",
+      "settings": {
+        "left_bg_color": "#f4f4f4",
+        "right_bg_color": "#ffffff",
+        "left_content_type": "text",
+        "heading": "Choose Your Path",
+        "heading_size": 4.5,
+        "heading_weight": "700",
+        "heading_color": "#1a1a1a",
+        "text": "<p>Select from the options on the right to discover more about our capabilities and focus areas.</p>",
+        "btn_container_padding_x": 80,
+        "btn_container_padding_y": 60,
+        "btn_size": 1.6,
+        "btn_weight": "600",
+        "btn_text_color": "#1a1a1a",
+        "btn_bg_color": "#ffffff",
+        "btn_border_color": "#E2E2E2",
+        "btn_text_hover_color": "#ffffff",
+        "btn_bg_hover_color": "#00A859",
+        "btn_padding_x": 24,
+        "btn_padding_y": 20,
+        "btn_1_text": "Our Approach",
+        "btn_1_link": "",
+        "btn_2_text": "Brand Portfolio",
+        "btn_2_link": "",
+        "btn_3_text": "Distribution Network",
+        "btn_3_link": "",
+        "btn_4_text": "Partner With Us",
+        "btn_4_link": ""
+      }
     }
   },
   "order": [
@@ -306,6 +339,7 @@
     "17756460369904a3fd",
     "177564547279babe52",
     "about_us_scroll_CMqGAT",
-    "block_content_eCGzk7"
+    "block_content_eCGzk7",
+    "split_with_buttons_RVHpRR"
   ]
 }
