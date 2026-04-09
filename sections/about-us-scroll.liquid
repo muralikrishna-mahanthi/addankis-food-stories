@@ -1,8 +1,9 @@
 {%- style -%}
   .about-us-split-{{ section.id }} {
     display: block;
-    height: {{ section.blocks.size | times: 100 }}vh; /* maps the height to the amount of blocks/slides */
-    background-color: {{ section.settings.bg_color }};
+    height: {{ section.blocks.size | times: 100 }}vh;
+    background-color: {{ section.blocks.first.settings.bg_color | default: '#3A81F4' }};
+    transition: background-color 0.8s ease;
   }
 
   .about-us-split__sticky {
@@ -12,7 +13,8 @@
     min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
-    background-color: {{ section.settings.bg_color }};
+    background-color: {{ section.blocks.first.settings.bg_color | default: '#3A81F4' }};
+    transition: background-color 0.8s ease;
     overflow: hidden;
   }
 
@@ -59,7 +61,7 @@
 
   @media screen and (max-width: 749px) {
     .about-us-split-{{ section.id }} {
-      height: auto; /* Overrides the heavy Vh on mobile so it's readable statics */
+      height: auto;
     }
     .about-us-split__sticky {
       position: relative;
@@ -76,7 +78,7 @@
       min-height: unset;
     }
     .about-us-split__media-layer {
-      display: none; /* Show only active on mobile to avoid layout shifts or overlaps */
+      display: none;
     }
     .about-us-split__media-layer.active {
       display: block;
@@ -86,14 +88,12 @@
     }
   }
 
-  /* Pills Dynamic Styles */
+  /* Pills Base Style */
   .about-us-split__pills {
     display: flex;
     gap: 1rem;
     align-items: center;
-    margin-bottom: 3rem; /* Enforce spacing before content stack */
-    padding-top: {{ section.settings.pills_padding_top }}px;
-    padding-bottom: {{ section.settings.pills_padding_bottom }}px;
+    margin-bottom: 3rem; 
   }
   .about-us-split__pill {
     display: flex;
@@ -101,18 +101,10 @@
     justify-content: center;
     border-radius: 50%;
     line-height: 1;
-    width: {{ section.settings.pills_size }}rem;
-    height: {{ section.settings.pills_size }}rem;
-    font-size: {{ section.settings.pills_size | divided_by: 2.2 }}rem;
-    font-family: {{ section.settings.pills_font_family.family }}, {{ section.settings.pills_font_family.fallback_families }};
-    font-weight: {{ section.settings.pills_font_weight }};
-    background-color: {{ section.settings.pills_inactive_bg }};
-    color: {{ section.settings.pills_inactive_text }};
     transition: all 0.4s ease;
+    cursor: default;
   }
   .about-us-split__pill.active {
-    background-color: {{ section.settings.pills_active_bg }};
-    color: {{ section.settings.pills_active_text }};
     transform: scale(1.1);
   }
 
@@ -142,29 +134,17 @@
     opacity: 1;
     pointer-events: auto;
     visibility: visible;
-    transform: translateY(0); /* Animation payload */
+    transform: translateY(0);
   }
 
-  /* Typography Settings applied from block to global */
+  /* Structural base styling */
   .about-us-split__heading {
     margin: 0;
-    padding-top: {{ section.settings.heading_padding_top }}px;
-    padding-bottom: {{ section.settings.heading_padding_bottom }}px;
-    font-family: {{ section.settings.heading_font_family.family }}, {{ section.settings.heading_font_family.fallback_families }};
-    font-weight: {{ section.settings.heading_font_weight }};
-    font-size: clamp(3rem, 6vw, {{ section.settings.heading_font_size }}rem);
-    color: {{ section.settings.heading_text_color }};
     line-height: 1.05;
   }
 
   .about-us-split__text {
     margin: 0;
-    padding-top: {{ section.settings.text_padding_top }}px;
-    padding-bottom: {{ section.settings.text_padding_bottom }}px;
-    font-family: {{ section.settings.text_font_family.family }}, {{ section.settings.text_font_family.fallback_families }};
-    font-weight: {{ section.settings.text_font_weight }};
-    font-size: {{ section.settings.text_font_size }}rem;
-    color: {{ section.settings.text_color }};
     line-height: 1.5;
   }
   .about-us-split__text p {
@@ -172,11 +152,6 @@
   }
   .about-us-split__text p:last-child {
     margin: 0;
-  }
-
-  .about-us-split__btn-container {
-    padding-top: {{ section.settings.btn_padding_top }}px;
-    padding-bottom: {{ section.settings.btn_padding_bottom }}px;
   }
 
   .about-us-split__btn {
@@ -187,23 +162,11 @@
     border-radius: 50px;
     line-height: 1;
     transition: all 0.3s ease;
-    padding: {{ section.settings.btn_pad_y }}rem {{ section.settings.btn_pad_x }}rem;
-    font-family: {{ section.settings.btn_font_family.family }}, {{ section.settings.btn_font_family.fallback_families }};
-    font-weight: {{ section.settings.btn_font_weight }};
-    font-size: {{ section.settings.btn_font_size }}rem;
-    background-color: {{ section.settings.btn_bg_color }};
-    color: {{ section.settings.btn_text_color }};
   }
   .about-us-split__btn:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
   }
-
-  /* Load Global custom fonts via prefetch swap */
-  {{ section.settings.pills_font_family | font_face: display: 'swap' }}
-  {{ section.settings.heading_font_family | font_face: display: 'swap' }}
-  {{ section.settings.text_font_family | font_face: display: 'swap' }}
-  {{ section.settings.btn_font_family | font_face: display: 'swap' }}
 
 {%- endstyle -%}
 
@@ -225,7 +188,23 @@
     <div class="about-us-split__right">
       <div class="about-us-split__pills">
         {%- for block in section.blocks -%}
-          <div class="about-us-split__pill {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+          {{ block.settings.pills_font_family | font_face: display: 'swap' }}
+          <style>
+            .about-us-split__pill-{{ block.id }} {
+              width: {{ block.settings.pills_size }}rem;
+              height: {{ block.settings.pills_size }}rem;
+              font-size: {{ block.settings.pills_size | divided_by: 2.2 }}rem;
+              font-family: {{ block.settings.pills_font_family.family }}, {{ block.settings.pills_font_family.fallback_families }};
+              font-weight: {{ block.settings.pills_font_weight }};
+              background-color: {{ block.settings.pills_inactive_bg }};
+              color: {{ block.settings.pills_inactive_text }};
+            }
+            .about-us-split__pill-{{ block.id }}.active {
+              background-color: {{ block.settings.pills_active_bg }};
+              color: {{ block.settings.pills_active_text }};
+            }
+          </style>
+          <div class="about-us-split__pill about-us-split__pill-{{ block.id }} {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
             0{{ forloop.index }}
           </div>
         {%- endfor -%}
@@ -233,7 +212,45 @@
 
       <div class="about-us-split__content-stack">
         {%- for block in section.blocks -%}
-          <div class="about-us-split__content-layer {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+          {{ block.settings.heading_font_family | font_face: display: 'swap' }}
+          {{ block.settings.text_font_family | font_face: display: 'swap' }}
+          {{ block.settings.btn_font_family | font_face: display: 'swap' }}
+          
+          <style>
+            .about-us-split__content-layer-{{ block.id }} .about-us-split__heading {
+              padding-top: {{ block.settings.heading_padding_top }}px;
+              padding-bottom: {{ block.settings.heading_padding_bottom }}px;
+              font-family: {{ block.settings.heading_font_family.family }}, {{ block.settings.heading_font_family.fallback_families }};
+              font-weight: {{ block.settings.heading_font_weight }};
+              font-size: clamp(2rem, 6vw, {{ block.settings.heading_font_size }}rem);
+              color: {{ block.settings.heading_text_color }};
+            }
+            
+            .about-us-split__content-layer-{{ block.id }} .about-us-split__text {
+              padding-top: {{ block.settings.text_padding_top }}px;
+              padding-bottom: {{ block.settings.text_padding_bottom }}px;
+              font-family: {{ block.settings.text_font_family.family }}, {{ block.settings.text_font_family.fallback_families }};
+              font-weight: {{ block.settings.text_font_weight }};
+              font-size: {{ block.settings.text_font_size }}rem;
+              color: {{ block.settings.text_color }};
+            }
+            
+            .about-us-split__content-layer-{{ block.id }} .about-us-split__btn-container {
+              padding-top: {{ block.settings.btn_padding_top }}px;
+              padding-bottom: {{ block.settings.btn_padding_bottom }}px;
+            }
+            
+            .about-us-split__content-layer-{{ block.id }} .about-us-split__btn {
+              padding: {{ block.settings.btn_pad_y }}rem {{ block.settings.btn_pad_x }}rem;
+              font-family: {{ block.settings.btn_font_family.family }}, {{ block.settings.btn_font_family.fallback_families }};
+              font-weight: {{ block.settings.btn_font_weight }};
+              font-size: {{ block.settings.btn_font_size }}rem;
+              background-color: {{ block.settings.btn_bg_color }};
+              color: {{ block.settings.btn_text_color }};
+            }
+          </style>
+
+          <div class="about-us-split__content-layer about-us-split__content-layer-{{ block.id }} {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" data-bg="{{ block.settings.bg_color }}">
             {%- if block.settings.heading != blank -%}
               <h2 class="about-us-split__heading">{{ block.settings.heading | newline_to_br }}</h2>
             {%- endif -%}
@@ -262,6 +279,7 @@
     const section = document.getElementById('AboutUsSplit-{{ section.id }}');
     if (!section) return;
 
+    const stickyLayer = section.querySelector('.about-us-split__sticky');
     const mediaLayers = section.querySelectorAll('.about-us-split__media-layer');
     const contentLayers = section.querySelectorAll('.about-us-split__content-layer');
     const pills = section.querySelectorAll('.about-us-split__pill');
@@ -287,8 +305,18 @@
       pills.forEach(p => p.classList.remove('active'));
 
       if(mediaLayers[activeIndex]) mediaLayers[activeIndex].classList.add('active');
-      if(contentLayers[activeIndex]) contentLayers[activeIndex].classList.add('active');
       if(pills[activeIndex]) pills[activeIndex].classList.add('active');
+
+      if(contentLayers[activeIndex]) {
+        contentLayers[activeIndex].classList.add('active');
+        
+        // Dynamic background update
+        const bgColor = contentLayers[activeIndex].getAttribute('data-bg');
+        if (bgColor && bgColor !== 'rgba(0,0,0,0)') {
+           section.style.backgroundColor = bgColor;
+           if (stickyLayer) stickyLayer.style.backgroundColor = bgColor;
+        }
+      }
     }
 
     if (totalBlocks > 1) {
@@ -303,57 +331,54 @@
   "name": "About Us Timeline",
   "tag": "section",
   "class": "section",
-  "settings": [
-    { "type": "color", "id": "bg_color", "label": "Right Section Background Color", "default": "#3A81F4" },
-    
-    { "type": "header", "content": "Pills Styling" },
-    { "type": "range", "id": "pills_padding_top", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
-    { "type": "range", "id": "pills_padding_bottom", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 20, "unit": "px" },
-    { "type": "font_picker", "id": "pills_font_family", "label": "Font Family", "default": "sans-serif" },
-    { "type": "range", "id": "pills_font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 800 },
-    { "type": "range", "id": "pills_size", "label": "Pill Size", "min": 2, "max": 8, "step": 0.5, "default": 3.5, "unit": "rem" },
-    { "type": "color", "id": "pills_active_bg", "label": "Active Background", "default": "#003A6A" },
-    { "type": "color", "id": "pills_active_text", "label": "Active Text", "default": "#FFFFFF" },
-    { "type": "color", "id": "pills_inactive_bg", "label": "Inactive Background", "default": "#A0C4FA" },
-    { "type": "color", "id": "pills_inactive_text", "label": "Inactive Text", "default": "#FFFFFF" },
-    
-    { "type": "header", "content": "Heading Styling" },
-    { "type": "range", "id": "heading_padding_top", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
-    { "type": "range", "id": "heading_padding_bottom", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 40, "unit": "px" },
-    { "type": "font_picker", "id": "heading_font_family", "label": "Font Family", "default": "sans-serif" },
-    { "type": "range", "id": "heading_font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 900 },
-    { "type": "range", "id": "heading_font_size", "label": "Font Size", "min": 2, "max": 12, "step": 0.5, "default": 6.5, "unit": "rem" },
-    { "type": "color", "id": "heading_text_color", "label": "Text Color", "default": "#003A6A" },
-
-    { "type": "header", "content": "Text Styling" },
-    { "type": "range", "id": "text_padding_top", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
-    { "type": "range", "id": "text_padding_bottom", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 40, "unit": "px" },
-    { "type": "font_picker", "id": "text_font_family", "label": "Font Family", "default": "sans-serif" },
-    { "type": "range", "id": "text_font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 500 },
-    { "type": "range", "id": "text_font_size", "label": "Font Size", "min": 1, "max": 4, "step": 0.1, "default": 1.6, "unit": "rem" },
-    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#FFFFFF" },
-
-    { "type": "header", "content": "Button Styling" },
-    { "type": "range", "id": "btn_padding_top", "label": "Block Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
-    { "type": "range", "id": "btn_padding_bottom", "label": "Block Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
-    { "type": "range", "id": "btn_pad_x", "label": "Horizontal Padding", "min": 1, "max": 8, "step": 0.5, "default": 3.0, "unit": "rem" },
-    { "type": "range", "id": "btn_pad_y", "label": "Vertical Padding", "min": 0.5, "max": 4, "step": 0.1, "default": 1.2, "unit": "rem" },
-    { "type": "font_picker", "id": "btn_font_family", "label": "Font Family", "default": "sans-serif" },
-    { "type": "range", "id": "btn_font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 700 },
-    { "type": "range", "id": "btn_font_size", "label": "Font Size", "min": 1, "max": 3, "step": 0.1, "default": 1.4, "unit": "rem" },
-    { "type": "color", "id": "btn_bg_color", "label": "Background Color", "default": "#003A6A" },
-    { "type": "color", "id": "btn_text_color", "label": "Text Color", "default": "#FFFFFF" }
-  ],
+  "settings": [],
   "blocks": [
     {
       "type": "slide",
       "name": "Content Slide",
       "settings": [
+        { "type": "color", "id": "bg_color", "label": "Slide Background Color", "default": "#3A81F4" },
         { "type": "image_picker", "id": "image", "label": "Slide Image" },
+        
+        { "type": "header", "content": "Pill Configuration" },
+        { "type": "range", "id": "pills_size", "label": "Pill Size", "min": 2, "max": 8, "step": 0.5, "default": 3.5, "unit": "rem" },
+        { "type": "font_picker", "id": "pills_font_family", "label": "Font Family", "default": "sans-serif" },
+        { "type": "range", "id": "pills_font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 800 },
+        { "type": "color", "id": "pills_active_bg", "label": "Active Background", "default": "#003A6A" },
+        { "type": "color", "id": "pills_active_text", "label": "Active Text", "default": "#FFFFFF" },
+        { "type": "color", "id": "pills_inactive_bg", "label": "Inactive Background", "default": "#A0C4FA" },
+        { "type": "color", "id": "pills_inactive_text", "label": "Inactive Text", "default": "#FFFFFF" },
+
+        { "type": "header", "content": "Heading" },
         { "type": "textarea", "id": "heading", "label": "Heading Text", "default": "FOOD. DRINKS.\nSMILES." },
-        { "type": "richtext", "id": "text", "label": "Description Text", "default": "<p>Built with high-quality ingredients, deep connections with consumers, and iconic brands. Step inside and see how we're bringing the world more reasons to smile.</p>" },
+        { "type": "range", "id": "heading_padding_top", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
+        { "type": "range", "id": "heading_padding_bottom", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 40, "unit": "px" },
+        { "type": "font_picker", "id": "heading_font_family", "label": "Font Family", "default": "sans-serif" },
+        { "type": "range", "id": "heading_font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 900 },
+        { "type": "range", "id": "heading_font_size", "label": "Font Size", "min": 2, "max": 12, "step": 0.5, "default": 6.5, "unit": "rem" },
+        { "type": "color", "id": "heading_text_color", "label": "Text Color", "default": "#003A6A" },
+
+        { "type": "header", "content": "Text" },
+        { "type": "richtext", "id": "text", "label": "Description Text", "default": "<p>Built with high-quality ingredients, deep connections with consumers, and iconic brands.</p>" },
+        { "type": "range", "id": "text_padding_top", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
+        { "type": "range", "id": "text_padding_bottom", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 40, "unit": "px" },
+        { "type": "font_picker", "id": "text_font_family", "label": "Font Family", "default": "sans-serif" },
+        { "type": "range", "id": "text_font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 500 },
+        { "type": "range", "id": "text_font_size", "label": "Font Size", "min": 1, "max": 4, "step": 0.1, "default": 1.6, "unit": "rem" },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#FFFFFF" },
+
+        { "type": "header", "content": "Button" },
         { "type": "text", "id": "btn_text", "label": "Button Text", "default": "Explore Our Mission" },
-        { "type": "url", "id": "btn_link", "label": "Button Link" }
+        { "type": "url", "id": "btn_link", "label": "Button Link" },
+        { "type": "range", "id": "btn_padding_top", "label": "Block Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
+        { "type": "range", "id": "btn_padding_bottom", "label": "Block Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
+        { "type": "range", "id": "btn_pad_x", "label": "Horizontal Padding", "min": 1, "max": 8, "step": 0.5, "default": 3.0, "unit": "rem" },
+        { "type": "range", "id": "btn_pad_y", "label": "Vertical Padding", "min": 0.5, "max": 4, "step": 0.1, "default": 1.2, "unit": "rem" },
+        { "type": "font_picker", "id": "btn_font_family", "label": "Font Family", "default": "sans-serif" },
+        { "type": "range", "id": "btn_font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 700 },
+        { "type": "range", "id": "btn_font_size", "label": "Font Size", "min": 1, "max": 3, "step": 0.1, "default": 1.4, "unit": "rem" },
+        { "type": "color", "id": "btn_bg_color", "label": "Background Color", "default": "#003A6A" },
+        { "type": "color", "id": "btn_text_color", "label": "Text Color", "default": "#FFFFFF" }
       ]
     }
   ],
