@@ -152,7 +152,7 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  (function() {
     const section = document.getElementById('BlockContent-{{ section.id }}');
     if (!section) return;
 
@@ -176,7 +176,7 @@
 
     if (header) observer.observe(header);
     cards.forEach(card => observer.observe(card));
-  });
+  })();
 </script>
 
 {% schema %}
