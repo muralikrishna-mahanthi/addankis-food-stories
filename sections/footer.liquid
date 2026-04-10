@@ -4,46 +4,51 @@
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  /* Global reset for the footer section wrapper */
-  .footer-section, 
+  /* HEAVY-DUTY GAP ELIMINATOR */
+  /* Target the footer wrapper itself */
   #shopify-section-{{ section.id }},
-  .shopify-section-group-footer-group {
+  [id^="shopify-section-footer"],
+  .footer-section {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+    display: block !important;
   }
 
+  /* Target the main content container which usually sits above the footer */
+  #MainContent {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Force the footer background to touch the previous section */
   .footer {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+    margin-top: 0 !important; /* Force margin to 0 regardless of setting for gap testing */
     background-color: {{ section.settings.bg_color | default: '#002e50' }};
     color: {{ section.settings.text_color | default: '#ffffff' }};
-    border-top: none !important; /* Remove any Dawn default borders */
+    border-top: none !important;
+    position: relative;
+    z-index: 10;
   }
 
-  /* Override Dawn dynamic section gap */
-  .footer {
-    --spacing-sections-mobile: 0px;
-    --spacing-sections-desktop: 0px;
-  }
-
+  /* Responsive overrides */
   @media screen and (min-width: 750px) {
     .footer {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
-      margin-top: {{ section.settings.margin_top }}px;
     }
   }
 
+  /* Rest of styling... */
   .footer-logo-img {
     max-width: {{ section.settings.logo_width }}px;
     height: auto;
     display: block;
     margin-bottom: 2rem;
   }
-
   .footer__content-top {
     display: flex;
     flex-wrap: wrap;
@@ -51,32 +56,11 @@
     gap: 40px;
     margin-bottom: 60px;
   }
-
-  .footer-logo-col {
-    flex: 0 0 100%;
-  }
-
-  @media screen and (min-width: 768px) {
-    .footer-logo-col { flex: 0 0 {{ section.settings.logo_width }}px; }
-  }
-
-  .footer-menu-cols {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    flex: 1;
-    justify-content: flex-end;
-  }
-
-  .footer-col {
-    flex: 0 0 calc(50% - 20px);
-    min-width: 150px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    .footer-col { flex: 1; max-width: 250px; }
-  }
-
+  .footer-logo-col { flex: 0 0 100%; }
+  @media screen and (min-width: 768px) { .footer-logo-col { flex: 0 0 {{ section.settings.logo_width }}px; } }
+  .footer-menu-cols { display: flex; flex-wrap: wrap; gap: 40px; flex: 1; justify-content: flex-end; }
+  .footer-col { flex: 0 0 calc(50% - 20px); min-width: 150px; }
+  @media screen and (min-width: 1024px) { .footer-col { flex: 1; max-width: 250px; } }
   .footer-block__heading {
     font-family: {{ section.settings.link_font.family }}, {{ section.settings.link_font.fallback_families }};
     font-size: {{ section.settings.link_size }}px;
@@ -84,17 +68,8 @@
     margin-bottom: 1.5rem;
     color: inherit;
   }
-
-  .footer-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer-list-item {
-    margin-bottom: 10px;
-  }
-
+  .footer-list { list-style: none; padding: 0; margin: 0; }
+  .footer-list-item { margin-bottom: 10px; }
   .footer-list-link {
     font-family: {{ section.settings.link_font.family }}, {{ section.settings.link_font.fallback_families }};
     font-size: {{ section.settings.link_size }}px;
@@ -106,86 +81,19 @@
     gap: 6px;
     transition: opacity 0.2s ease;
   }
-
   .footer-list-link:hover { opacity: 0.7; }
-
-  .footer-external-icon {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-    stroke: currentColor;
-    stroke-width: 2.5;
-    fill: none;
-  }
-
-  .footer__content-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 30px;
-  }
-
-  .footer__content-bottom-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-  }
-
-  @media screen and (min-width: 990px) {
-    .footer__content-bottom-wrapper {
-      flex-direction: row;
-      justify-content: space-between;
-    }
-  }
-
-  .footer__list-social {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer__list-social .list-social__link {
-    color: inherit;
-    padding: 0;
-    transition: transform 0.2s ease;
-  }
-
-  .footer__list-social .list-social__link:hover {
-    transform: scale(1.1);
-  }
-
-  .footer__list-social svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .footer__legal {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--font-body-family);
-    font-size: 1.3rem;
-  }
-
-  .footer-copyright {
-    font-weight: 700;
-    margin-right: 10px;
-  }
-
-  .footer-legal-link {
-    color: inherit;
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  .footer-legal-link:hover {
-    text-decoration: underline;
-  }
-
-  /* Portal Icon decoration */
+  .footer-external-icon { width: 14px; height: 14px; flex-shrink: 0; stroke: currentColor; stroke-width: 2.5; fill: none; }
+  .footer__content-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
+  .footer__content-bottom-wrapper { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+  @media screen and (min-width: 990px) { .footer__content-bottom-wrapper { flex-direction: row; justify-content: space-between; } }
+  .footer__list-social { display: flex; gap: 1.5rem; list-style: none; padding: 0; margin: 0; }
+  .footer__list-social .list-social__link { color: inherit; padding: 0; transition: transform 0.2s ease; }
+  .footer__list-social .list-social__link:hover { transform: scale(1.1); }
+  .footer__list-social svg { width: 20px; height: 20px; }
+  .footer__legal { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; align-items: center; font-family: var(--font-body-family); font-size: 1.3rem; }
+  .footer-copyright { font-weight: 700; margin-right: 10px; }
+  .footer-legal-link { color: inherit; text-decoration: none; font-weight: 600; }
+  .footer-legal-link:hover { text-decoration: underline; }
   .footer-portal {
     width: 32px;
     height: 32px;
