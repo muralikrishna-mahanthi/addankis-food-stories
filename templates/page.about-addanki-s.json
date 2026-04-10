@@ -362,6 +362,42 @@
             "heading": "Led by a founding team with complementary strengths across marketing, operations, and finance — Shivaji Addanki (CMO), Sevyamana Taliyakula (CEO), Rajkumar Muppidi (COO), and Nithish Reddy (CFO) — we move fast, make decisions close to the ground, and build systems that scale without bureaucracy slowing us down",
             "link": ""
           }
+        },
+        "card_Jdq3JC": {
+          "type": "card",
+          "settings": {
+            "tab_assignment": "tab_2",
+            "badge_text": "Press Releases",
+            "heading": "Sample headline text spanning multiple lines goes here.",
+            "link": ""
+          }
+        },
+        "card_979Cgk": {
+          "type": "card",
+          "settings": {
+            "tab_assignment": "tab_2",
+            "badge_text": "Press Releases",
+            "heading": "Sample headline text spanning multiple lines goes here.",
+            "link": ""
+          }
+        },
+        "card_dhXVaT": {
+          "type": "card",
+          "settings": {
+            "tab_assignment": "tab_2",
+            "badge_text": "Press Releases",
+            "heading": "Sample headline text spanning multiple lines goes here.",
+            "link": ""
+          }
+        },
+        "card_UMCgQE": {
+          "type": "card",
+          "settings": {
+            "tab_assignment": "tab_2",
+            "badge_text": "Press Releases",
+            "heading": "Sample headline text spanning multiple lines goes here.",
+            "link": ""
+          }
         }
       },
       "block_order": [
@@ -370,7 +406,11 @@
         "card_6Wp8xA",
         "card_ppddc4",
         "card_n9rz9y",
-        "card_ag6Yr4"
+        "card_ag6Yr4",
+        "card_Jdq3JC",
+        "card_979Cgk",
+        "card_dhXVaT",
+        "card_UMCgQE"
       ],
       "name": "Split Mover Slider",
       "settings": {
