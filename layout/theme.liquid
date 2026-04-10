@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
   <head>
     <meta charset="utf-8">
@@ -296,6 +296,11 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+    <style>
+      #MainContent { margin-bottom: 0 !important; padding-bottom: 0 !important; }
+      .footer-section, [id*="footer"] { margin-top: 0 !important; }
+    </style>
+      <style>#MainContent { margin-bottom: 0 !important; padding-bottom: 0 !important; } .footer-section, [id*='footer'] { margin-top: 0 !important; }</style>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

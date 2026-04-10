@@ -1,12 +1,14 @@
-﻿{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
 {{ 'section-footer.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  /* COMPLETE MARGIN RESET */
+  /* HEAVY-DUTY GAP ELIMINATOR */
   /* Target the footer section wrapper regardless of the long dynamic ID string */
-  [id*="footer"] {
+  [id*="footer"], 
+  .footer-section, 
+  .shopify-section-group-footer-group {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     padding-top: 0 !important;
@@ -14,9 +16,10 @@
     display: block !important;
   }
 
-  /* Target any section that might be pushing the footer down */
-  .shopify-section {
+  /* Target the main content container which usually sits above the footer */
+  #MainContent {
     margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   /* Ensure the footer background starts exactly at the top of the section wrapper */
@@ -27,6 +30,14 @@
     background-color: {{ section.settings.bg_color | default: '#002e50' }};
     color: {{ section.settings.text_color | default: '#ffffff' }};
     border-top: none !important;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Override Dawn automatic section gaps */
+  .footer {
+    --spacing-sections-mobile: 0px;
+    --spacing-sections-desktop: 0px;
   }
 
   @media screen and (min-width: 750px) {
@@ -36,7 +47,6 @@
     }
   }
 
-  /* Layout Styling */
   .footer-logo-img {
     max-width: {{ section.settings.logo_width }}px;
     height: auto;
