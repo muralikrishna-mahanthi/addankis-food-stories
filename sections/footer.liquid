@@ -4,12 +4,29 @@
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  /* Global reset for the footer section wrapper */
+  .footer-section, 
+  #shopify-section-{{ section.id }},
+  .shopify-section-group-footer-group {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
   .footer {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
     background-color: {{ section.settings.bg_color | default: '#002e50' }};
     color: {{ section.settings.text_color | default: '#ffffff' }};
+    border-top: none !important; /* Remove any Dawn default borders */
+  }
+
+  /* Override Dawn dynamic section gap */
+  .footer {
+    --spacing-sections-mobile: 0px;
+    --spacing-sections-desktop: 0px;
   }
 
   @media screen and (min-width: 750px) {
@@ -256,6 +273,8 @@
 {% schema %}
 {
   "name": "t:sections.footer.name",
+  "tag": "section",
+  "class": "section footer-section",
   "blocks": [
     {
       "type": "link_list",
