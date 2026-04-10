@@ -300,6 +300,91 @@
         "card_text_color": "#555555"
       }
     },
+    "split_mover_4jDWCq": {
+      "type": "split-mover",
+      "blocks": {
+        "card_XUDbd4": {
+          "type": "card",
+          "settings": {
+            "tab_assignment": "tab_1",
+            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_remove_the_navigatio_-_Edited.png",
+            "badge_text": "Deep General Trade & rural market expertise",
+            "heading": "We have a strong, ground-level understanding of how Indian General Trade and rural markets work — the buying habits, retailer relationships, seasonal patterns, and last-mile challenges that textbook strategies miss. This knowledge is built from years of direct field experience across South India.",
+            "link": ""
+          }
+        },
+        "card_UeRgpj": {
+          "type": "card",
+          "settings": {
+            "tab_assignment": "tab_1",
+            "image": "shopify://shop_images/ripe-red-strawberries-in-a-white-bowl.jpg",
+            "badge_text": "Proven sales execution & distribution building",
+            "heading": "From building distributor networks from scratch to deploying and managing field sales teams, our leadership brings hands-on experience in turning distribution strategy into measurable shelf presence. We have helped multiple FMCG brands achieve retail penetration across channels.",
+            "link": ""
+          }
+        },
+        "card_6Wp8xA": {
+          "type": "card",
+          "settings": {
+            "tab_assignment": "tab_1",
+            "image": "shopify://shop_images/ChatGPTImageDec23_2025_04_12_30PM.jpg",
+            "badge_text": "Ability to launch & scale new consumer brands",
+            "heading": "We do not just ideate — we execute. Our team has the end-to-end capability to take a brand from concept through product development, market entry, and growth scaling. With four brands already live — HAMSAA, JINAA, FRUROOT, and STRATICA — we have demonstrated this ability in practice.",
+            "link": ""
+          }
+        },
+        "card_ppddc4": {
+          "type": "card",
+          "settings": {
+            "tab_assignment": "tab_1",
+            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_remove_the_navigatio_-_Edited.png",
+            "badge_text": "Multi-category FMCG experience",
+            "heading": "Our portfolio spans home care, wellness, traditional foods, and healthy lifestyle products — giving us cross-category insight that single-category companies simply do not have. This breadth allows us to identify white spaces, spot consumer trends early, and diversify risk across the brand portfolio.",
+            "link": ""
+          }
+        },
+        "card_n9rz9y": {
+          "type": "card",
+          "settings": {
+            "tab_assignment": "tab_1",
+            "image": "shopify://shop_images/ripe-red-strawberries-in-a-white-bowl.jpg",
+            "badge_text": "Trusted Indian brands rooted in tradition",
+            "heading": "Every brand we build is grounded in Indian consumer values — combining the trust of traditional wisdom with the relevance of modern lifestyles. We do not chase trends blindly; we build products that Indian households can rely on, generation after generation, at prices that are genuinely accessible.",
+            "link": ""
+          }
+        },
+        "card_ag6Yr4": {
+          "type": "card",
+          "settings": {
+            "tab_assignment": "tab_1",
+            "image": "shopify://shop_images/ChatGPTImageDec23_2025_04_12_30PM.jpg",
+            "badge_text": "Entrepreneurial leadership & agile operations",
+            "heading": "Led by a founding team with complementary strengths across marketing, operations, and finance — Shivaji Addanki (CMO), Sevyamana Taliyakula (CEO), Rajkumar Muppidi (COO), and Nithish Reddy (CFO) — we move fast, make decisions close to the ground, and build systems that scale without bureaucracy slowing us down",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_XUDbd4",
+        "card_UeRgpj",
+        "card_6Wp8xA",
+        "card_ppddc4",
+        "card_n9rz9y",
+        "card_ag6Yr4"
+      ],
+      "name": "Split Mover Slider",
+      "settings": {
+        "subtitle": "What's new",
+        "tab_1_title": "Our strength",
+        "tab_2_title": "Core Values",
+        "bg_color": "#8DBE27",
+        "text_color": "#11571F",
+        "controls_bg": "#11571F",
+        "controls_icon": "#a0d13b",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "split_with_buttons_RVHpRR": {
       "type": "split-with-buttons",
       "name": "Split With Buttons",
@@ -344,6 +429,7 @@
     "177564547279babe52",
     "about_us_scroll_CMqGAT",
     "block_content_eCGzk7",
+    "split_mover_4jDWCq",
     "split_with_buttons_RVHpRR"
   ]
 }
