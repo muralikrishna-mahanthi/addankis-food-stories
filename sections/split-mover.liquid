@@ -219,12 +219,12 @@
     },
     {
       "type": "header",
-      "content": "Global Colors & Spacing"
+      "content": "Section Colors"
     },
     {
       "type": "color",
       "id": "bg_color",
-      "label": "Section Background Color",
+      "label": "Section Background",
       "default": "#8DBE27"
     },
     {
@@ -240,10 +240,14 @@
       "default": "#a0d13b"
     },
     {
+      "type": "header",
+      "content": "Section Padding (Desktop)"
+    },
+    {
       "type": "range",
-      "id": "padding_top",
+      "id": "pt_desktop",
       "min": 0,
-      "max": 150,
+      "max": 200,
       "step": 5,
       "unit": "px",
       "label": "Top Padding",
@@ -251,13 +255,131 @@
     },
     {
       "type": "range",
-      "id": "padding_bottom",
+      "id": "pb_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "pl_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Left Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "pr_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Right Padding",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Section Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "pt_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "pb_mobile",
       "min": 0,
       "max": 150,
       "step": 5,
       "unit": "px",
       "label": "Bottom Padding",
-      "default": 80
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "pl_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Left Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "pr_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Right Padding",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Component Spacing & Gaps"
+    },
+    {
+      "type": "range",
+      "id": "tab_gap",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Tab Button Gap",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Slider Card Gap",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "subtitle_mb",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Subtitle Bottom Margin",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "header_mb",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Header Area Bottom Margin",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "img_mb",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Image Bottom Margin",
+      "default": 16
     }
   ],
   "blocks": [
@@ -329,50 +451,42 @@
   {{ card_badge_font | font_face: display: 'swap' }}
 
   .split-mover-{{ section.id }} {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding: {{ section.settings.pt_mobile }}px {{ section.settings.pr_mobile }}px {{ section.settings.pb_mobile }}px {{ section.settings.pl_mobile }}px;
     background-color: {{ section.settings.bg_color }};
     overflow: hidden; 
   }
 
   @media screen and (min-width: 768px) {
     .split-mover-{{ section.id }} {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding: {{ section.settings.pt_desktop }}px {{ section.settings.pr_desktop }}px {{ section.settings.pb_desktop }}px {{ section.settings.pl_desktop }}px;
     }
   }
 
   .sms-container {
     max-width: var(--page-width, 1440px);
     margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  
-  @media screen and (min-width: 768px) {
-    .sms-container { padding-left: 40px; padding-right: 40px; }
-  }
-  
-  @media screen and (min-width: 1440px) {
-    .sms-container { padding-left: 0; padding-right: 0; }
+    width: 100%;
   }
 
-  /* Subtitle Typography */
+  /* Subtitle Typography & Spacing */
   .sms-subtitle {
     font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
     font-size: {{ section.settings.subtitle_size }}px;
     font-weight: {{ section.settings.subtitle_weight }};
     color: {{ section.settings.subtitle_color }};
-    margin-bottom: 1rem;
+    margin-bottom: {{ section.settings.subtitle_mb }}px;
   }
 
-  /* Tabs Typography */
+  /* Header Area & Tabs Spacing */
+  .sms-header {
+    margin-bottom: {{ section.settings.header_mb }}px;
+  }
+
   .sms-tabs {
     display: flex;
     align-items: baseline;
-    gap: 1.5rem;
+    gap: {{ section.settings.tab_gap }}px;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
   }
 
   .sms-tab-btn {
@@ -411,17 +525,18 @@
     .sms-tab-btn:not(.active) { font-size: calc({{ section.settings.tabs_size_inactive }}px * 0.7); }
   }
 
-  /* Slider & Card Sizing */
+  /* Slider & Card Gaps */
   .sms-slider-wrapper {
     position: relative;
-    margin-right: -20px;
+    /* Calculated bleed based on specific side padding */
+    margin-right: -{{ section.settings.pr_mobile }}px;
   }
-  @media screen and (min-width: 768px) { .sms-slider-wrapper { margin-right: -40px; } }
-  @media screen and (min-width: 1440px) { .sms-slider-wrapper { margin-right: calc((100vw - 1440px) / -2); } }
+  @media screen and (min-width: 768px) { .sms-slider-wrapper { margin-right: -{{ section.settings.pr_desktop }}px; } }
+  @media screen and (min-width: 1440px) { .sms-slider-wrapper { margin-right: calc((100vw - 1440px) / -2 - {{ section.settings.pr_desktop }}px); } }
 
   .sms-slider {
     display: flex;
-    gap: 20px;
+    gap: {{ section.settings.card_gap }}px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none; 
@@ -450,7 +565,7 @@
     padding-top: calc(100% / {{ section.settings.image_ratio }});
     border-radius: 12px;
     overflow: hidden;
-    margin-bottom: 1rem;
+    margin-bottom: {{ section.settings.img_mb }}px;
     background-color: rgba(0,0,0,0.05); 
   }
 
@@ -500,9 +615,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 2rem;
-    padding-right: 20px;
   }
-  @media screen and (min-width: 1440px) { .sms-controls { padding-right: 0; } }
 
   .sms-dots { display: flex; gap: 8px; align-items: center; }
   .sms-dot {
