@@ -71,10 +71,35 @@
       ],
       "name": "Rich text",
       "settings": {}
+    },
+    "split_image_ckUfCR": {
+      "type": "split-image",
+      "name": "Split Image (3 Items)",
+      "settings": {
+        "image_1": "shopify://shop_images/download.jpg",
+        "image_2": "shopify://shop_images/ripe-red-strawberries-in-a-white-bowl.jpg",
+        "image_3": "shopify://shop_images/VSH8288.webp",
+        "width_1": 26,
+        "width_2": 46,
+        "width_3": 26,
+        "height_desktop": 500,
+        "height_mobile": 300,
+        "border_radius": 12,
+        "gap": 10,
+        "bg_color": "transparent",
+        "container_width": 1400,
+        "side_padding": 1,
+        "stack_on_mobile": true,
+        "pt_desktop": 50,
+        "pb_desktop": 50,
+        "pt_mobile": 30,
+        "pb_mobile": 30
+      }
     }
   },
   "order": [
     "main",
-    "blocks_WTVjJc"
+    "blocks_WTVjJc",
+    "split_image_ckUfCR"
   ]
 }
