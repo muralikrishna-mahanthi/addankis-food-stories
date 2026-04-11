@@ -86,7 +86,7 @@
   }
 
   .sliding-products__slide {
-    flex: 0 0 100%; /* Single slide for mobile */
+    flex: 0 0 85%; /* Reduced width to clear arrows and center perfectly */
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -303,7 +303,7 @@
         if (i === currentIndex) {
           yOffset = 0;
           rotation = 0;
-          scale = isMobile ? 1.15 : 1.4; // Slightly less scale on mobile for better fit
+          scale = isMobile ? 1.1 : 1.4; // Controlled scale on mobile for arrow clearance
           opacity = 1;
 
           // Update Info Bar Title
