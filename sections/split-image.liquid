@@ -1,0 +1,152 @@
+{%- style -%}
+  #SplitImage-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.pt_desktop }}px 0 {{ section.settings.pb_desktop }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    #SplitImage-{{ section.id }} {
+      padding: {{ section.settings.pt_mobile }}px 0 {{ section.settings.pb_mobile }}px;
+    }
+  }
+
+  .split-image__container {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 {{ section.settings.side_padding }}rem;
+  }
+
+  .split-image__wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: {{ section.settings.gap }}px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .split-image__wrapper {
+      flex-direction: {% if section.settings.stack_on_mobile %}column{% else %}row{% endif %};
+    }
+  }
+
+  .split-image__item {
+    position: relative;
+    overflow: hidden;
+    height: {{ section.settings.height_desktop }}px;
+    border-radius: {{ section.settings.border_radius }}px;
+    transition: transform 0.3s ease;
+  }
+
+  @media screen and (max-width: 749px) {
+    .split-image__item {
+       height: {{ section.settings.height_mobile }}px;
+       {% unless section.settings.stack_on_mobile %}
+         /* Maintain proportions if horizontal on mobile */
+       {% endunless %}
+    }
+  }
+
+  .split-image__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Split Logic - using flex grow for precise control */
+  .split-image__item--1 { flex: {{ section.settings.width_1 }} 1 0%; }
+  .split-image__item--2 { flex: {{ section.settings.width_2 }} 1 0%; }
+  .split-image__item--3 { flex: {{ section.settings.width_3 }} 1 0%; }
+
+  @media screen and (max-width: 749px) {
+    {% if section.settings.stack_on_mobile %}
+      .split-image__item { flex: 1 1 auto; width: 100%; }
+    {% endif %}
+  }
+{%- endstyle -%}
+
+<div id="SplitImage-{{ section.id }}" class="split-image">
+  <div class="split-image__container">
+    <div class="split-image__wrapper">
+      
+      <div class="split-image__item split-image__item--1">
+        {%- if section.settings.image_1 != blank -%}
+          {{ section.settings.image_1 | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      <div class="split-image__item split-image__item--2">
+        {%- if section.settings.image_2 != blank -%}
+          {{ section.settings.image_2 | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+        {%- else -%}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      <div class="split-image__item split-image__item--3">
+        {%- if section.settings.image_3 != blank -%}
+          {{ section.settings.image_3 | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Split Image (3 Items)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image Selection"
+    },
+    { "type": "image_picker", "id": "image_1", "label": "Image 1" },
+    { "type": "image_picker", "id": "image_2", "label": "Image 2" },
+    { "type": "image_picker", "id": "image_3", "label": "Image 3" },
+    {
+      "type": "header",
+      "content": "Split Percentages"
+    },
+    { "type": "paragraph", "content": "Set the relative width of each image. For example: 25, 50, 25." },
+    { "type": "range", "id": "width_1", "label": "Image 1 Width %", "min": 5, "max": 90, "step": 1, "default": 25 },
+    { "type": "range", "id": "width_2", "label": "Image 2 Width %", "min": 5, "max": 90, "step": 1, "default": 50 },
+    { "type": "range", "id": "width_3", "label": "Image 3 Width %", "min": 5, "max": 90, "step": 1, "default": 25 },
+    {
+      "type": "header",
+      "content": "Layout & Design"
+    },
+    { "type": "range", "id": "height_desktop", "label": "Section Height (Desktop)", "min": 200, "max": 1000, "step": 10, "unit": "px", "default": 500 },
+    { "type": "range", "id": "height_mobile", "label": "Section Height (Mobile)", "min": 100, "max": 800, "step": 10, "unit": "px", "default": 300 },
+    { "type": "range", "id": "border_radius", "label": "Corner Radius", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "gap", "label": "Gap between images", "min": 0, "max": 50, "step": 1, "unit": "px", "default": 0 },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "transparent" },
+    { "type": "range", "id": "container_width", "label": "Container Width", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
+    { "type": "range", "id": "side_padding", "label": "Container Side Padding", "min": 0, "max": 10, "step": 0.5, "unit": "rem", "default": 2 },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    { "type": "checkbox", "id": "stack_on_mobile", "label": "Stack images vertically on mobile", "default": true },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    { "type": "range", "id": "pt_desktop", "label": "Top Padding (Desktop)", "min": 0, "max": 100, "step": 5, "default": 50 },
+    { "type": "range", "id": "pb_desktop", "label": "Bottom Padding (Desktop)", "min": 0, "max": 100, "step": 5, "default": 50 },
+    { "type": "range", "id": "pt_mobile", "label": "Top Padding (Mobile)", "min": 0, "max": 100, "step": 5, "default": 30 },
+    { "type": "range", "id": "pb_mobile", "label": "Bottom Padding (Mobile)", "min": 0, "max": 100, "step": 5, "default": 30 }
+  ],
+  "presets": [
+    {
+      "name": "Split Image (3 Items)"
+    }
+  ]
+}
+{% endschema %}
