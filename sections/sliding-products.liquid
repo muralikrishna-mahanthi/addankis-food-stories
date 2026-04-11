@@ -161,11 +161,11 @@
   /* Side Buttons */
   .sliding-products__nav {
     position: absolute;
-    top: 42%; /* Precisely targets the middle of the large active product */
+    top: 50%; /* Absolute middle of the screen/section for desktop */
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 2rem; /* Move closer to the edges */
+    padding: 0 2rem;
     pointer-events: none;
     z-index: 50;
     transform: translateY(-50%);
@@ -173,12 +173,8 @@
 
   @media screen and (max-width: 749px) {
     .sliding-products__nav {
-      top: 42%; /* Center on mobile too */
+      top: 42%; /* Targeted product-center for mobile */
       padding: 0 1rem;
-    }
-    .sliding-products__btn {
-      width: 44px;
-      height: 44px;
     }
   }
 
