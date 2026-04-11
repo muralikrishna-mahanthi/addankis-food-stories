@@ -5,12 +5,13 @@
     padding: {{ section.settings.pt_desktop }}px 0 {{ section.settings.pb_desktop }}px;
     position: relative;
     /* Massive runway for stationary storytelling */
-    min-height: 350vh; 
+    height: {{ section.settings.runway_height }}vh; 
   }
 
   @media screen and (max-width: 749px) {
     #UsBrandsAbout-{{ section.id }} {
       padding: {{ section.settings.pt_mobile }}px 0 {{ section.settings.pb_mobile }}px;
+      height: auto;
       min-height: auto;
     }
   }
@@ -22,15 +23,17 @@
     display: flex;
     flex-direction: row;
     position: relative;
+    height: 100%; /* Important: spans the entire runway */
     align-items: flex-start;
   }
 
-  /* Split Logic - Absolute Fixed Position Feel */
+  /* Split Logic - Sticky Focus Zones */
   .us-brands-about__left,
   .us-brands-about__right {
     position: sticky;
-    top: 30vh; /* Locked in viewport focus zone */
+    top: 20vh; /* Centered in viewport focus zone */
     height: auto;
+    max-height: 80vh; /* Ensure they are shorter than parent for sticky to work */
   }
 
   .us-brands-about__left {
@@ -48,6 +51,7 @@
     .us-brands-about__container {
       flex-direction: column;
       padding: 0 2rem;
+      height: auto;
     }
     .us-brands-about__left,
     .us-brands-about__right {
@@ -56,6 +60,7 @@
       flex: 0 0 100%;
       padding: 0;
       border: none;
+      max-height: none;
     }
     .us-brands-about__right {
       padding-top: 4rem;
@@ -66,7 +71,7 @@
   .us-brands-about__point-list {
     display: flex;
     flex-direction: column;
-    gap: 8rem;
+    gap: 6rem;
   }
 
   .us-brands-about__point {
@@ -118,7 +123,7 @@
 <section id="UsBrandsAbout-{{ section.id }}" class="us-brands-about">
   <div class="us-brands-about__container">
     
-    <!-- Left Side: Stationary Heading -->
+    <!-- Left Side: Sticky Visuals -->
     <div class="us-brands-about__left">
       {%- for block in section.blocks -%}
         {%- if block.type == 'left_heading' -%}
@@ -139,7 +144,7 @@
       {%- endfor -%}
     </div>
 
-    <!-- Right Side: Stationary Point List -->
+    <!-- Right Side: Sticky Point List -->
     <div class="us-brands-about__right">
       <div class="us-brands-about__progress-line" id="ProgressLine-{{ section.id }}"></div>
       
@@ -167,7 +172,6 @@
 
     const progressLine = section.querySelector('#ProgressLine-{{ section.id }}');
     const points = section.querySelectorAll('.js-about-point');
-    const container = section.querySelector('.us-brands-about__container');
 
     const updateScrollytelling = () => {
       // Mobile - Standard reveal
@@ -187,7 +191,7 @@
       const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       
-      // Calculate global scroll %
+      // Calculate global scroll % through the section height
       const totalScroll = section.offsetHeight - viewportHeight;
       const currentScroll = -rect.top;
       let progress = currentScroll / totalScroll;
@@ -199,12 +203,13 @@
       // Fractional Revelation Logic
       const pointCount = points.length;
       points.forEach((point, i) => {
+        // Points reveal one by one in sequence
         const start = i / pointCount;
         const end = (i + 1) / pointCount;
 
-        // Persistence check: If we've passed the threshold, stay locked.
+        // Persistence check: If we've passed the start, stay locked
         if (progress >= start) {
-          // Subtle reveal window
+          // Sharp reveal transition
           const pointProgress = (progress - start) / ( (end - start) * 0.4 ); 
           const targetOpacity = Math.max(parseFloat(point.style.opacity) || 0, Math.min(1, pointProgress));
           
@@ -231,6 +236,7 @@
   "class": "section",
   "settings": [
     { "type": "range", "id": "split_ratio", "label": "Split Ratio (Left Side %)", "min": 30, "max": 70, "step": 5, "default": 40 },
+    { "type": "range", "id": "runway_height", "label": "Scroll Depth Intensity", "min": 100, "max": 500, "step": 50, "unit": "vh", "default": 300 },
     { "type": "header", "content": "Visuals" },
     { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
     { "type": "color", "id": "text_color", "label": "Text Color", "default": "#1a1a1a" },
@@ -243,9 +249,7 @@
     { "type": "header", "content": "Layout Spacing" },
     { "type": "range", "id": "container_width", "label": "Container Width", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
     { "type": "range", "id": "pt_desktop", "label": "Top Padding (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 },
-    { "type": "range", "id": "pb_desktop", "label": "Bottom Padding (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 },
-    { "type": "range", "id": "pt_mobile", "label": "Top Padding (Mobile)", "min": 0, "max": 100, "step": 5, "default": 50 },
-    { "type": "range", "id": "pb_mobile", "label": "Bottom Padding (Mobile)", "min": 0, "max": 100, "step": 5, "default": 50 }
+    { "type": "range", "id": "pb_desktop", "label": "Bottom Padding (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 }
   ],
   "blocks": [
     {
