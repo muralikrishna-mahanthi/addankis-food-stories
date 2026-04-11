@@ -46,7 +46,8 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    padding: 4rem 0;
+    padding: 10rem 0; /* Extra space for the U curve */
+    perspective: 1200px;
   }
 
   .sliding-products__track {
@@ -54,20 +55,22 @@
     transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
     will-change: transform;
     align-items: center;
+    transform-style: preserve-3d;
   }
 
   .sliding-products__slide {
     flex: 0 0 70%;  /* Default mobile */
-    max-width: 400px;
+    max-width: 380px;
     margin: 0 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
     opacity: 0.4;
-    transform: scale(0.8);
+    transform: scale(0.85);
     position: relative;
     z-index: 1;
+    backface-visibility: hidden;
   }
 
   @media screen and (min-width: 750px) {
@@ -212,14 +215,30 @@
     const totalSlides = slides.length;
 
     function updateSlider() {
-      // Calculate offset to center the currentIndex slide
       const slideWidth = slides[0].offsetWidth;
       const containerWidth = section.querySelector('.sliding-products__track-wrap').offsetWidth;
+      const intensity = {{ section.settings.u_curve_intensity | default: 50 }};
       
-      // Calculate individual margins/gaps if needed, but flex-basis + margin is handled by offset
       slides.forEach((slide, i) => {
+        const distance = Math.abs(i - currentIndex);
         slide.classList.remove('is-active');
-        if(i === currentIndex) slide.classList.add('is-active');
+        
+        let yOffset = distance * -intensity; // Creates the U-shape (center is 0, sides go up)
+        let rotation = (i - currentIndex) * 15; // Inward rotation
+        let scale = 1 - (distance * 0.1);
+        let opacity = 1 - (distance * 0.3);
+        
+        if(i === currentIndex) {
+          slide.classList.add('is-active');
+          yOffset = 0;
+          rotation = 0;
+          scale = 1.15;
+          opacity = 1;
+        }
+
+        slide.style.transform = `translateY(${yOffset}px) rotateY(${rotation}deg) scale(${scale})`;
+        slide.style.opacity = opacity;
+        slide.style.zIndex = 10 - distance;
       });
 
       const activeSlide = slides[currentIndex];
@@ -266,6 +285,7 @@
     { "type": "font_picker", "id": "slide_font", "label": "Slide Title Font", "default": "assistant_n4" },
     { "type": "range", "id": "image_radius", "label": "Image Border Radius", "min": 0, "max": 100, "step": 5, "default": 20 },
     { "type": "color", "id": "accent_color", "label": "Button Hover Color", "default": "#c5a47e" },
+    { "type": "range", "id": "u_curve_intensity", "label": "U-Curve Intensity", "min": 0, "max": 150, "step": 5, "default": 60 },
     { "type": "header", "content": "Layout Spacing" },
     { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
     { "type": "range", "id": "container_width", "label": "Container Width", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
