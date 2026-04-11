@@ -27,7 +27,7 @@
             "text": "<p>Purity, grace, and positive energy. Inspired by the symbolism of the <strong>swan</strong>, which<br/>represents wisdom and clarity in Indian philosophy</p>",
             "heading_font": "archivo_black_n4",
             "heading_weight": "bolder",
-            "heading_size": 90,
+            "heading_size": 84,
             "heading_size_mobile": 22,
             "heading_color": "#efbf04",
             "heading_spacing": 0,
@@ -160,7 +160,7 @@
       "settings": {
         "heading": "SHOP PRODUCTS",
         "heading_font": "archivo_black_n4",
-        "heading_size_desktop": 4.5,
+        "heading_size_desktop": 7,
         "heading_size_mobile": 2.5,
         "heading_weight": "700",
         "heading_color": "#f1c641",
