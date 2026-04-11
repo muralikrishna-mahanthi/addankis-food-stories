@@ -322,13 +322,21 @@
       });
 
       const activeSlide = slides[currentIndex];
+      if (!activeSlide) return;
+
       const offset = (containerWidth / 2) - (activeSlide.offsetLeft + activeSlide.offsetWidth / 2);
       track.style.transform = `translateX(${offset}px)`;
+
+      // Handle Info Bar Sync (Immediate for start)
+      if (titleEl && activeSlide.dataset.title) {
+        titleEl.textContent = activeSlide.dataset.title;
+        titleEl.style.opacity = '1';
+      }
 
       if (!animate) {
         // Force reflow
         track.offsetHeight;
-        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+        track.style.transition = 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)';
       }
     }
 
@@ -359,11 +367,21 @@
     });
     
     // Initial Setup
-    setTimeout(() => updateSlider(false), 200);
+    const initSlider = () => {
+      updateSlider(false);
+      // Double check after a frame to handle late layout shifts
+      requestAnimationFrame(() => updateSlider(false));
+    };
+
+    if (document.readyState === 'complete') {
+        initSlider();
+    } else {
+        window.addEventListener('load', initSlider);
+    }
 
     // Theme Editor Sync
     document.addEventListener('shopify:section:load', () => {
-      location.reload(); // Re-initialize clones
+      location.reload(); 
     });
   })();
 </script>
