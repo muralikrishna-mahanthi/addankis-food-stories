@@ -102,6 +102,7 @@
         "product_RfExQK": {
           "type": "product",
           "settings": {
+            "image": "shopify://shop_images/02dd8f58-136c-4dde-a399-167ae0e60406.png",
             "title": "Luxury Essential Oil",
             "link": ""
           }
@@ -109,6 +110,7 @@
         "product_tW3Wqg": {
           "type": "product",
           "settings": {
+            "image": "shopify://shop_images/02dd8f58-136c-4dde-a399-167ae0e60406.png",
             "title": "Luxury Essential Oil",
             "link": ""
           }
@@ -158,6 +160,12 @@
         "heading_size_mobile": 2.5,
         "heading_weight": "700",
         "heading_color": "#1a1a1a",
+        "btn_label": "Shop All Collection",
+        "btn_link": "",
+        "btn_bg_color": "#1a1a1a",
+        "btn_text_color": "#ffffff",
+        "btn_hover_color": "#c5a47e",
+        "btn_radius": 50,
         "slide_font": "assistant_n4",
         "image_radius": 20,
         "accent_color": "#c5a47e",
