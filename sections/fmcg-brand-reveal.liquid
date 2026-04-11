@@ -18,21 +18,24 @@
     justify-content: center;
   }
 
+  /* Shared Layer Styles */
   .fmcg-brand-reveal__layer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    transition: opacity 0.1s linear;
+    transition: opacity 0.1s linear; /* Small lag for smoothness */
     will-change: opacity, transform;
   }
 
+  /* Part 1: Split Content Layer */
   .fmcg-brand-reveal__content-layer {
     z-index: 2;
     display: flex;
     flex-direction: column;
-    opacity: calc(1 - (var(--progress) * 2));
+    opacity: calc(1 - (var(--progress) * 2)); /* Fades out by 50% scroll */
+    pointer-events: {% if section.settings.progress > 0.5 %}none{% else %}auto{% endif %};
   }
 
   @media screen and (min-width: 750px) {
@@ -67,21 +70,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: {{ section.settings.padding_p1_mobile }}px;
+    padding: 3rem;
     background: {{ section.settings.content_bg }};
     text-align: {{ section.settings.text_alignment }};
   }
 
   @media screen and (min-width: 750px) {
     .fmcg-brand-reveal__text-part {
-      padding: {{ section.settings.padding_p1_desktop }}px;
+      padding: 6rem;
     }
   }
 
   .fmcg-brand-reveal__heading {
     font-size: {{ section.settings.heading_size_mobile }}rem;
-    font-weight: {{ section.settings.heading_weight }};
-    font-style: {{ section.settings.heading_style }};
+    font-weight: 900;
     color: {{ section.settings.heading_color }};
     margin-bottom: 2rem;
     line-height: 1.1;
@@ -95,9 +97,7 @@
   }
 
   .fmcg-brand-reveal__description {
-    font-size: {{ section.settings.desc_size_mobile }}px;
-    font-weight: {{ section.settings.desc_weight }};
-    font-style: {{ section.settings.desc_style }};
+    font-size: 1.1rem;
     line-height: 1.6;
     color: {{ section.settings.text_color }};
     margin-bottom: 3rem;
@@ -105,45 +105,29 @@
     {% if section.settings.text_alignment == 'center' %}margin-left: auto; margin-right: auto;{% endif %}
   }
 
-  @media screen and (min-width: 750px) {
-    .fmcg-brand-reveal__description {
-      font-size: {{ section.settings.desc_size_desktop }}px;
-    }
-  }
-
   .fmcg-brand-reveal__btn {
     display: inline-flex;
-    padding: {{ section.settings.btn_pv_mobile }}px {{ section.settings.btn_ph_mobile }}px;
+    padding: 1.5rem 3rem;
     background: {{ section.settings.btn_bg }};
     color: {{ section.settings.btn_text }};
     text-decoration: none;
-    font-size: {{ section.settings.btn_size_mobile }}px;
-    font-weight: {{ section.settings.btn_weight }};
-    font-style: {{ section.settings.btn_style }};
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-radius: {{ section.settings.btn_radius }}px;
+    border-radius: 50px;
     transition: all 0.3s ease;
     align-self: {% if section.settings.text_alignment == 'center' %}center{% elsif section.settings.text_alignment == 'right' %}flex-end{% else %}flex-start{% endif %};
-  }
-
-  @media screen and (min-width: 750px) {
-    .fmcg-brand-reveal__btn {
-      padding: {{ section.settings.btn_pv_desktop }}px {{ section.settings.btn_ph_desktop }}px;
-      font-size: {{ section.settings.btn_size_desktop }}px;
-    }
   }
 
   .fmcg-brand-reveal__btn:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    background: {{ section.settings.btn_bg_hover | default: section.settings.btn_bg }};
   }
 
   /* Part 2: Video Layer */
   .fmcg-brand-reveal__video-layer {
     z-index: 1;
-    opacity: calc((var(--progress) - 0.2) * 2);
+    opacity: calc((var(--progress) - 0.2) * 2); /* Starts fading in after 20% scroll */
     background: #000;
   }
 
@@ -168,19 +152,12 @@
   }
 
   .fmcg-brand-reveal__video-text {
-    font-size: {{ section.settings.vt_size_mobile }}px;
-    font-weight: {{ section.settings.vt_weight }};
-    font-style: {{ section.settings.vt_style }};
+    font-size: 3rem;
+    font-weight: 900;
     color: #fff;
     text-transform: uppercase;
     transform: translateY(calc(30px * (1 - var(--progress))));
     opacity: var(--progress);
-  }
-
-  @media screen and (min-width: 750px) {
-    .fmcg-brand-reveal__video-text {
-      font-size: {{ section.settings.vt_size_desktop }}px;
-    }
   }
 
 {%- endstyle -%}
@@ -188,6 +165,7 @@
 <div class="fmcg-brand-reveal-{{ section.id }}" id="FmcgBrandReveal-{{ section.id }}">
   <div class="fmcg-brand-reveal__sticky">
     
+    <!-- Layer 1: Split Content -->
     <div class="fmcg-brand-reveal__layer fmcg-brand-reveal__content-layer">
       <div class="fmcg-brand-reveal__image-part">
         {%- if section.settings.image != blank -%}
@@ -211,11 +189,12 @@
       </div>
     </div>
 
+    <!-- Layer 2: Video Reveal -->
     <div class="fmcg-brand-reveal__layer fmcg-brand-reveal__video-layer">
       {%- if section.settings.video != blank -%}
         {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: '2000x' }}
       {%- else -%}
-         <div style="width:100%; height:100%; background:#111; display:flex; align-items:center; justify-content:center; color:#fff;">Video Placeholder</div>
+         <div style="width:100%; height:100%; background:#111; display:flex; align-items:center; justify:center; color:#fff;">Video Placeholder</div>
       {%- endif -%}
 
       {%- if section.settings.video_text != blank -%}
@@ -237,14 +216,24 @@
       const rect = section.getBoundingClientRect();
       const sectionHeight = section.offsetHeight;
       const viewportHeight = window.innerHeight;
+      
+      // Calculate progress (0 to 1) based on sticky container path
+      // rect.top will go from 0 (at start) to -(sectionHeight - viewportHeight) (at end)
       let progress = -rect.top / (sectionHeight - viewportHeight);
+      
+      // Clamp between 0 and 1
       progress = Math.max(0, Math.min(1, progress));
+      
       section.style.setProperty('--progress', progress.toFixed(4));
     }
 
     window.addEventListener('scroll', upgradeReveal, { passive: true });
     window.addEventListener('resize', upgradeReveal);
+    
+    // Initial sync
     upgradeReveal();
+
+    // Re-patching on Shopify Theme Editor events
     document.addEventListener('shopify:section:load', upgradeReveal);
   })();
 </script>
@@ -257,67 +246,48 @@
   "settings": [
     {
       "type": "header",
-      "content": "Layout"
-    },
-    { "type": "select", "id": "layout", "label": "Image Position (Desktop)", "options": [{"value":"image_first","label":"Left side"},{"value":"text_first","label":"Right side"}], "default": "image_first" },
-    { "type": "range", "id": "image_width", "label": "Image Width (Desktop)", "min": 30, "max": 70, "step": 5, "unit": "%", "default": 50 },
-    { "type": "select", "id": "text_alignment", "label": "Text Alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}], "default": "left" },
-    { "type": "range", "id": "padding_p1_desktop", "label": "Content Padding (Desktop)", "min": 20, "max": 150, "step": 5, "unit": "px", "default": 80 },
-    { "type": "range", "id": "padding_p1_mobile", "label": "Content Padding (Mobile)", "min": 10, "max": 80, "step": 5, "unit": "px", "default": 40 },
-    {
-      "type": "header",
-      "content": "Intro Branding"
+      "content": "Part 1: Intro Content"
     },
     { "type": "image_picker", "id": "image", "label": "Intro Image" },
-    { "type": "color", "id": "content_bg", "label": "Content Area Background", "default": "#ffffff" },
-    {
-      "type": "header",
-      "content": "Heading Typography"
-    },
+    { "type": "select", "id": "layout", "label": "Image Position (Desktop)", "options": [{"value":"image_first","label":"Left side"},{"value":"text_first","label":"Right side"}], "default": "image_first" },
+    { "type": "range", "id": "image_width", "label": "Image Width (Desktop)", "min": 30, "max": 70, "step": 5, "unit": "%", "default": 50 },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Experience the Unseen" },
-    { "type": "range", "id": "heading_size_desktop", "label": "Font Size (Desktop)", "min": 2, "max": 12, "step": 0.5, "unit": "rem", "default": 5 },
-    { "type": "range", "id": "heading_size_mobile", "label": "Font Size (Mobile)", "min": 2, "max": 8, "step": 0.5, "unit": "rem", "default": 3 },
-    { "type": "select", "id": "heading_weight", "label": "Font Weight", "options": [{"value":"400","label":"Regular"},{"value":"600","label":"Semi-Bold"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "900" },
-    { "type": "select", "id": "heading_style", "label": "Font Style", "options": [{"value":"normal","label":"Normal"},{"value":"italic","label":"Italic"}], "default": "normal" },
-    { "type": "color", "id": "heading_color", "label": "Font Color", "default": "#000000" },
-    {
-      "type": "header",
-      "content": "Description Typography"
-    },
     { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Discover the secrets of our premium FMCG brand builder platform, where quality meets innovation.</p>" },
-    { "type": "range", "id": "desc_size_desktop", "label": "Font Size (Desktop)", "min": 10, "max": 60, "step": 1, "unit": "px", "default": 18 },
-    { "type": "range", "id": "desc_size_mobile", "label": "Font Size (Mobile)", "min": 10, "max": 40, "step": 1, "unit": "px", "default": 16 },
-    { "type": "select", "id": "desc_weight", "label": "Font Weight", "options": [{"value":"400","label":"Regular"},{"value":"600","label":"Semi-Bold"},{"value":"700","label":"Bold"}], "default": "400" },
-    { "type": "select", "id": "desc_style", "label": "Font Style", "options": [{"value":"normal","label":"Normal"},{"value":"italic","label":"Italic"}], "default": "normal" },
-    { "type": "color", "id": "text_color", "label": "Font Color", "default": "#333333" },
+    { "type": "select", "id": "text_alignment", "label": "Text Alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}], "default": "left" },
     {
       "type": "header",
-      "content": "Button Design"
+      "content": "Heading - Desktop"
+    },
+    { "type": "range", "id": "heading_size", "min": 2, "max": 15, "step": 0.5, "unit": "rem", "label": "Desktop Size", "default": 5.5 },
+    { "type": "select", "id": "heading_weight_desktop", "label": "Desktop Weight", "options": [{"value":"400","label":"Normal"},{"value":"700","label":"Bold"},{"value":"900","label":"Black 900"},{"value":"950","label":"Extra Black 950"}], "default": "900" },
+    { "type": "range", "id": "heading_line_height", "min": 0.8, "max": 1.5, "step": 0.1, "label": "Desktop Line Height", "default": 1.1 },
+    { "type": "range", "id": "heading_letter_spacing", "min": -5, "max": 20, "step": 0.5, "unit": "px", "label": "Desktop Letter Spacing", "default": -1 },
+    {
+      "type": "header",
+      "content": "Heading - Mobile"
+    },
+    { "type": "range", "id": "heading_size_mobile", "min": 1, "max": 10, "step": 0.5, "unit": "rem", "label": "Mobile Size", "default": 2.5 },
+    { "type": "select", "id": "heading_weight_mobile", "label": "Mobile Weight", "options": [{"value":"400","label":"Normal"},{"value":"700","label":"Bold"},{"value":"900","label":"Black 900"},{"value":"950","label":"Extra Black 950"}], "default": "900" },
+    { "type": "range", "id": "heading_line_height_mobile", "min": 0.8, "max": 1.5, "step": 0.1, "label": "Mobile Line Height", "default": 1.1 },
+    { "type": "range", "id": "heading_letter_spacing_mobile", "min": -5, "max": 10, "step": 0.5, "unit": "px", "label": "Mobile Letter Spacing", "default": -1 },
+
+    
+    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#333333" },
+    { "type": "color", "id": "content_bg", "label": "Content Background", "default": "#ffffff" },
+    {
+      "type": "header",
+      "content": "Call to Action"
     },
     { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Our Story" },
     { "type": "url", "id": "btn_link", "label": "Button Link" },
-    { "type": "range", "id": "btn_size_desktop", "label": "Font Size (Desktop)", "min": 10, "max": 40, "step": 1, "unit": "px", "default": 14 },
-    { "type": "range", "id": "btn_size_mobile", "label": "Font Size (Mobile)", "min": 10, "max": 30, "step": 1, "unit": "px", "default": 14 },
-    { "type": "select", "id": "btn_weight", "label": "Font Weight", "options": [{"value":"400","label":"Regular"},{"value":"600","label":"Semi-Bold"},{"value":"700","label":"Bold"},{"value":"800","label":"Extra-Bold"}], "default": "800" },
-    { "type": "select", "id": "btn_style", "label": "Font Style", "options": [{"value":"normal","label":"Normal"},{"value":"italic","label":"Italic"}], "default": "normal" },
-    { "type": "range", "id": "btn_radius", "label": "Corner Radius", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 50 },
-    { "type": "range", "id": "btn_pv_desktop", "label": "Vertical Padding (Desktop)", "min": 5, "max": 50, "step": 1, "unit": "px", "default": 15 },
-    { "type": "range", "id": "btn_ph_desktop", "label": "Horizontal Padding (Desktop)", "min": 10, "max": 80, "step": 2, "unit": "px", "default": 30 },
-    { "type": "range", "id": "btn_pv_mobile", "label": "Vertical Padding (Mobile)", "min": 5, "max": 40, "step": 1, "unit": "px", "default": 12 },
-    { "type": "range", "id": "btn_ph_mobile", "label": "Horizontal Padding (Mobile)", "min": 10, "max": 60, "step": 2, "unit": "px", "default": 24 },
-    { "type": "color", "id": "btn_bg", "label": "Background Color", "default": "#000000" },
-    { "type": "color", "id": "btn_bg_hover", "label": "Background Color (Hover)", "default": "#333333" },
-    { "type": "color", "id": "btn_text", "label": "Text Color", "default": "#ffffff" },
+    { "type": "color", "id": "btn_bg", "label": "Button Background", "default": "#000000" },
+    { "type": "color", "id": "btn_text", "label": "Button Text", "default": "#ffffff" },
     {
       "type": "header",
       "content": "Part 2: Video Reveal"
     },
     { "type": "video", "id": "video", "label": "Reveal Video" },
     { "type": "text", "id": "video_text", "label": "Overlay Text (Scroll Reveal)", "default": "ADDANKI'S VISION" },
-    { "type": "range", "id": "vt_size_desktop", "label": "Video Text Size (Desktop)", "min": 20, "max": 150, "step": 5, "unit": "px", "default": 48 },
-    { "type": "range", "id": "vt_size_mobile", "label": "Video Text Size (Mobile)", "min": 15, "max": 80, "step": 2, "unit": "px", "default": 32 },
-    { "type": "select", "id": "vt_weight", "label": "Video Text Weight", "options": [{"value":"400","label":"Regular"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "900" },
-    { "type": "select", "id": "vt_style", "label": "Video Text Style", "options": [{"value":"normal","label":"Normal"},{"value":"italic","label":"Italic"}], "default": "normal" },
     { "type": "color", "id": "video_overlay_bg", "label": "Video Overlay Color", "default": "#000000" },
     { "type": "range", "id": "video_overlay_opacity", "label": "Video Overlay Opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 30 },
     {
