@@ -170,10 +170,7 @@
     },
     "fmcg_brand_reveal_KKRFzy": {
       "type": "fmcg-brand-reveal",
-      "custom_css": [
-        "h2 {font-weight: bolder;}",
-        "p {font-size: 15px; letter-spacing: 1px;}"
-      ],
+      "custom_css": [],
       "name": "FMCG Brand Reveal",
       "settings": {
         "image": "shopify://shop_images/VSH8288.webp",
@@ -182,8 +179,8 @@
         "heading": "Growing Positive  Energy",
         "description": "<p>Discover the secrets of our premium FMCG brand builder platform, where quality meets innovation.</p>",
         "text_alignment": "center",
-        "heading_size": 8,
-        "heading_weight_desktop": "950",
+        "heading_size": 10,
+        "heading_weight_desktop": "400",
         "heading_line_height": 1.1,
         "heading_letter_spacing": -1,
         "heading_size_mobile": 3,
