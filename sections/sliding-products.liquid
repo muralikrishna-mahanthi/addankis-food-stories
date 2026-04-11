@@ -46,57 +46,42 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    padding: 10rem 0; /* Extra space for the U curve */
-    perspective: 1200px;
+    padding: 12rem 0 6rem; /* Extra space for the arch */
+    perspective: 1500px;
   }
 
   .sliding-products__track {
     display: flex;
-    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     will-change: transform;
     align-items: center;
     transform-style: preserve-3d;
   }
 
   .sliding-products__slide {
-    flex: 0 0 70%;  /* Default mobile */
-    max-width: 380px;
-    margin: 0 5%;
+    flex: 0 0 60%;
+    margin: 0 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
-    opacity: 0.4;
-    transform: scale(0.85);
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     position: relative;
-    z-index: 1;
     backface-visibility: hidden;
   }
 
   @media screen and (min-width: 750px) {
     .sliding-products__slide {
-      flex: 0 0 25%;
-      margin: 0 2%;
+      flex: 0 0 18%; /* Fits 5 items comfortably */
+      margin: 0 1%;
     }
-  }
-
-  .sliding-products__slide.is-active {
-    opacity: 1;
-    transform: scale(1.15);
-    z-index: 10;
   }
 
   .sliding-products__img-wrap {
     width: 100%;
     border-radius: {{ section.settings.image_radius }}px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    transition: transform 0.4s ease;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
     cursor: pointer;
-  }
-
-  .sliding-products__slide.is-active .sliding-products__img-wrap:hover {
-    transform: scale(1.03);
   }
 
   .sliding-products__img-wrap img {
@@ -106,48 +91,41 @@
     object-fit: cover;
   }
 
-  /* Title & Button Only in Middle */
-  .sliding-products__slide-content {
-    margin-top: 3rem;
+  /* Detached Info Below */
+  .sliding-products__info-bar {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 0 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
-    text-align: center;
-    width: 100%;
+    min-height: 120px;
   }
 
-  .sliding-products__slide.is-active .sliding-products__slide-content {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .sliding-products__slide-title {
-    margin: 0 0 2rem;
+  .sliding-products__active-title {
     font-family: {{ section.settings.slide_font.family }}, {{ section.settings.slide_font.fallback_families }} !important;
-    font-size: 2.2rem;
-    font-weight: 700;
+    font-size: 2.8rem;
+    font-weight: 800;
     color: {{ section.settings.heading_color }};
+    margin: 0 0 2rem;
+    transition: opacity 0.4s ease, transform 0.4s ease;
   }
 
-  .sliding-products__slide-btn {
+  .sliding-products__active-btn {
     display: inline-flex;
-    padding: 1.2rem 3rem;
+    padding: 1.5rem 4rem;
     background: {{ section.settings.heading_color }};
     color: {{ section.settings.bg_color }};
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 700;
     border-radius: 50px;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    white-space: nowrap;
+    letter-spacing: 2px;
   }
 
-  .sliding-products__slide-btn:hover {
+  .sliding-products__active-btn:hover {
     transform: scale(1.05);
     background: {{ section.settings.accent_color | default: section.settings.heading_color }};
   }
@@ -155,19 +133,19 @@
   /* Side Buttons */
   .sliding-products__nav {
     position: absolute;
-    top: 50%;
+    top: 40%;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 2rem;
+    padding: 0 4rem;
     pointer-events: none;
-    z-index: 20;
+    z-index: 50;
     transform: translateY(-50%);
   }
 
   .sliding-products__btn {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background: {{ section.settings.heading_color }};
     color: {{ section.settings.bg_color }};
     border-radius: 50%;
@@ -176,19 +154,15 @@
     justify-content: center;
     cursor: pointer;
     pointer-events: auto;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.3s ease;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   }
 
   .sliding-products__btn:hover {
-    transform: scale(1.1) rotate(5deg);
-    background: {{ section.settings.accent_color | default: section.settings.heading_color }};
+    transform: scale(1.1);
   }
 
-  .sliding-products__btn svg {
-    width: 24px;
-    height: 24px;
-  }
+  .sliding-products__btn svg { width: 24px; height: 24px; }
 {%- endstyle -%}
 
 <section id="SlidingProducts-{{ section.id }}" class="sliding-products">
@@ -203,7 +177,11 @@
     <div class="sliding-products__track-wrap">
       <div class="sliding-products__track">
         {%- for block in section.blocks -%}
-          <div class="sliding-products__slide" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <div class="sliding-products__slide hamsaa-original" 
+               data-title="{{ block.settings.title | escape }}" 
+               data-link="{{ block.settings.link | default: '#' }}"
+               data-btn="{{ block.settings.btn_label | escape }}"
+               {{ block.shopify_attributes }}>
             <a href="{{ block.settings.link | default: '#' }}" class="sliding-products__img-wrap">
               {%- if block.settings.image != blank -%}
                  {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
@@ -211,26 +189,24 @@
                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
               {%- endif -%}
             </a>
-            <div class="sliding-products__slide-content">
-              <h3 class="sliding-products__slide-title">{{ block.settings.title | default: 'Premium Selection' }}</h3>
-              {%- if block.settings.btn_label != blank -%}
-                <a href="{{ block.settings.link | default: '#' }}" class="sliding-products__slide-btn">
-                  {{ block.settings.btn_label }}
-                </a>
-              {%- endif -%}
-            </div>
           </div>
         {%- endfor -%}
       </div>
 
       <div class="sliding-products__nav">
-        <div class="sliding-products__btn hamsaa-prev" aria-label="Previous">
+        <div class="sliding-products__btn hamsaa-prev">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg>
         </div>
-        <div class="sliding-products__btn hamsaa-next" aria-label="Next">
+        <div class="sliding-products__btn hamsaa-next">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
         </div>
       </div>
+    </div>
+
+    <!-- Detached Smart Button -->
+    <div class="sliding-products__info-bar">
+      <h3 class="sliding-products__active-title">Product Name</h3>
+      <a href="#" class="sliding-products__active-btn">Shop Now</a>
     </div>
 
   </div>
@@ -242,65 +218,111 @@
     if (!section) return;
 
     const track = section.querySelector('.sliding-products__track');
-    const slides = section.querySelectorAll('.sliding-products__slide');
+    let slides = Array.from(section.querySelectorAll('.sliding-products__slide'));
     const nextBtn = section.querySelector('.hamsaa-next');
     const prevBtn = section.querySelector('.hamsaa-prev');
+    const titleEl = section.querySelector('.sliding-products__active-title');
+    const btnEl = section.querySelector('.sliding-products__active-btn');
     
-    let currentIndex = 0;
-    const totalSlides = slides.length;
+    const originalCount = slides.length;
+    if (originalCount === 0) return;
 
-    function updateSlider() {
-      const slideWidth = slides[0].offsetWidth;
+    // Cloning for Infinite Loop (clone at both ends)
+    const clonesToCreate = Math.max(3, originalCount);
+    for(let i=0; i<clonesToCreate; i++) {
+        const firstClone = slides[i % originalCount].cloneNode(true);
+        const lastClone = slides[(originalCount - 1 - (i % originalCount)) % originalCount].cloneNode(true);
+        firstClone.classList.add('is-clone');
+        lastClone.classList.add('is-clone');
+        track.appendChild(firstClone);
+        track.insertBefore(lastClone, track.firstChild);
+    }
+
+    // Refresh slides array after cloning
+    slides = Array.from(section.querySelectorAll('.sliding-products__slide'));
+    let currentIndex = clonesToCreate; // Start at the first original slide
+    const intensity = {{ section.settings.u_curve_intensity | default: 80 }};
+
+    function updateSlider(animate = true) {
+      if (!animate) track.style.transition = 'none';
+      else track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+
       const containerWidth = section.querySelector('.sliding-products__track-wrap').offsetWidth;
-      const intensity = {{ section.settings.u_curve_intensity | default: 50 }};
       
       slides.forEach((slide, i) => {
         const distance = Math.abs(i - currentIndex);
-        slide.classList.remove('is-active');
-        
-        // Positive intensity pushes sides DOWN relative to the center 0 (creating an Arch)
-        let yOffset = distance * intensity; 
-        let rotation = (i - currentIndex) * -12; // Adjusted inward rotation
-        let scale = 1 - (distance * 0.15); // More aggressive scale
-        let opacity = 1 - (distance * 0.3);
-        
-        if(i === currentIndex) {
-          slide.classList.add('is-active');
+        let yOffset = distance * intensity; // Mountain Arc (0 at center, positive goes DOWN)
+        let rotation = (i - currentIndex) * -10;
+        let scale = 1 - (distance * 0.15);
+        let opacity = 1 - (distance * 0.35);
+
+        if (i === currentIndex) {
           yOffset = 0;
           rotation = 0;
-          scale = 1.25; // Large center focus
+          scale = 1.35;
           opacity = 1;
+          
+          // Update Detached Button
+          titleEl.style.opacity = '0';
+          btnEl.style.opacity = '0';
+          setTimeout(() => {
+            titleEl.textContent = slide.dataset.title;
+            btnEl.textContent = slide.dataset.btn || 'Shop Now';
+            btnEl.href = slide.dataset.link;
+            titleEl.style.opacity = '1';
+            btnEl.style.opacity = '1';
+          }, 200);
         }
 
         slide.style.transform = `translateY(${yOffset}px) rotateY(${rotation}deg) scale(${scale})`;
-        slide.style.opacity = opacity;
-        slide.style.zIndex = 10 - distance;
+        slide.style.opacity = Math.max(0, opacity);
+        slide.style.zIndex = 100 - distance;
       });
 
       const activeSlide = slides[currentIndex];
       const offset = (containerWidth / 2) - (activeSlide.offsetLeft + activeSlide.offsetWidth / 2);
-      
       track.style.transform = `translateX(${offset}px)`;
+
+      if (!animate) {
+        // Force reflow
+        track.offsetHeight;
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+      }
+    }
+
+    function checkLoop() {
+        if (currentIndex >= originalCount + clonesToCreate) {
+            currentIndex = clonesToCreate;
+            updateSlider(false);
+        } else if (currentIndex < clonesToCreate) {
+            currentIndex = originalCount + clonesToCreate - 1;
+            updateSlider(false);
+        }
     }
 
     nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % totalSlides;
+      currentIndex++;
       updateSlider();
+      setTimeout(checkLoop, 600);
     });
 
     prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      currentIndex--;
       updateSlider();
+      setTimeout(checkLoop, 600);
     });
 
-    // Handle Resize
-    window.addEventListener('resize', updateSlider);
+    window.addEventListener('resize', () => {
+      updateSlider(false);
+    });
     
     // Initial Setup
-    setTimeout(updateSlider, 100);
+    setTimeout(() => updateSlider(false), 200);
 
     // Theme Editor Sync
-    document.addEventListener('shopify:section:load', updateSlider);
+    document.addEventListener('shopify:section:load', () => {
+      location.reload(); // Re-initialize clones
+    });
   })();
 </script>
 
@@ -321,7 +343,7 @@
     { "type": "font_picker", "id": "slide_font", "label": "Slide Title Font", "default": "assistant_n4" },
     { "type": "range", "id": "image_radius", "label": "Image Border Radius", "min": 0, "max": 100, "step": 5, "default": 20 },
     { "type": "color", "id": "accent_color", "label": "Button Hover Color", "default": "#c5a47e" },
-    { "type": "range", "id": "u_curve_intensity", "label": "U-Curve Intensity", "min": 0, "max": 150, "step": 5, "default": 60 },
+    { "type": "range", "id": "u_curve_intensity", "label": "Arch Depth Intensity", "min": 0, "max": 150, "step": 5, "default": 80 },
     { "type": "header", "content": "Layout Spacing" },
     { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
     { "type": "range", "id": "container_width", "label": "Container Width", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
@@ -346,10 +368,11 @@
     {
       "name": "Sliding Products",
       "blocks": [
-        { "type": "product" },
-        { "type": "product" },
-        { "type": "product" },
-        { "type": "product" }
+        { "type": "product", "settings": { "title": "Camphor Oil" } },
+        { "type": "product", "settings": { "title": "Wellness Balm" } },
+        { "type": "product", "settings": { "title": "Pure Camphor" } },
+        { "type": "product", "settings": { "title": "Aroma Diffuser" } },
+        { "type": "product", "settings": { "title": "Essential Mist" } }
       ]
     }
   ]
