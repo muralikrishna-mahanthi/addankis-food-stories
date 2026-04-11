@@ -106,22 +106,50 @@
     object-fit: cover;
   }
 
-  /* Title Only in Middle */
+  /* Title & Button Only in Middle */
+  .sliding-products__slide-content {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+    text-align: center;
+    width: 100%;
+  }
+
+  .sliding-products__slide.is-active .sliding-products__slide-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .sliding-products__slide-title {
-    margin-top: 2.5rem;
+    margin: 0 0 2rem;
     font-family: {{ section.settings.slide_font.family }}, {{ section.settings.slide_font.fallback_families }} !important;
     font-size: 2.2rem;
     font-weight: 700;
     color: {{ section.settings.heading_color }};
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
-    text-align: center;
   }
 
-  .sliding-products__slide.is-active .sliding-products__slide-title {
-    opacity: 1;
-    transform: translateY(0);
+  .sliding-products__slide-btn {
+    display: inline-flex;
+    padding: 1.2rem 3rem;
+    background: {{ section.settings.heading_color }};
+    color: {{ section.settings.bg_color }};
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .sliding-products__slide-btn:hover {
+    transform: scale(1.05);
+    background: {{ section.settings.accent_color | default: section.settings.heading_color }};
   }
 
   /* Side Buttons */
@@ -183,7 +211,14 @@
                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
               {%- endif -%}
             </a>
-            <h3 class="sliding-products__slide-title">{{ block.settings.title | default: 'Premium Selection' }}</h3>
+            <div class="sliding-products__slide-content">
+              <h3 class="sliding-products__slide-title">{{ block.settings.title | default: 'Premium Selection' }}</h3>
+              {%- if block.settings.btn_label != blank -%}
+                <a href="{{ block.settings.link | default: '#' }}" class="sliding-products__slide-btn">
+                  {{ block.settings.btn_label }}
+                </a>
+              {%- endif -%}
+            </div>
           </div>
         {%- endfor -%}
       </div>
@@ -223,16 +258,17 @@
         const distance = Math.abs(i - currentIndex);
         slide.classList.remove('is-active');
         
-        let yOffset = distance * -intensity; // Creates the U-shape (center is 0, sides go up)
-        let rotation = (i - currentIndex) * 15; // Inward rotation
-        let scale = 1 - (distance * 0.1);
+        // Positive intensity pushes sides DOWN relative to the center 0 (creating an Arch)
+        let yOffset = distance * intensity; 
+        let rotation = (i - currentIndex) * -12; // Adjusted inward rotation
+        let scale = 1 - (distance * 0.15); // More aggressive scale
         let opacity = 1 - (distance * 0.3);
         
         if(i === currentIndex) {
           slide.classList.add('is-active');
           yOffset = 0;
           rotation = 0;
-          scale = 1.15;
+          scale = 1.25; // Large center focus
           opacity = 1;
         }
 
@@ -301,6 +337,7 @@
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Product Image" },
         { "type": "text", "id": "title", "label": "Product Title", "default": "Luxury Essential Oil" },
+        { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Shop Now" },
         { "type": "url", "id": "link", "label": "Link Location" }
       ]
     }
