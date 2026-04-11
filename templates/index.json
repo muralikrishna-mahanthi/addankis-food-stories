@@ -12,7 +12,7 @@
     "asfpl_hero_8fNkUE": {
       "type": "asfpl-hero",
       "custom_css": [
-        "h1{padding-bottom: 30px}"
+        "h1 {padding-bottom: 30px;}"
       ],
       "name": "ASFPL Hero",
       "settings": {
@@ -95,7 +95,7 @@
             "subtitle_color": "#666666",
             "header_spacing": 85,
             "brand_1_icon": "shopify://shop_images/Gemini_Generated_Image_rfbfeorfbfeorfbf.png",
-            "brand_1_link": "shopify://collections/hamsa",
+            "brand_1_link": "shopify://pages/hamsaa",
             "brand_2_icon": "shopify://shop_images/Jinaa_Final_1.png",
             "brand_2_link": "shopify://collections/jiina",
             "brand_3_icon": "shopify://shop_images/Untitled_design_12.png",
