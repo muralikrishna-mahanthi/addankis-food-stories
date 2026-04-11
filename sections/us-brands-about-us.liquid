@@ -4,14 +4,14 @@
     background: {{ section.settings.bg_color }};
     padding: {{ section.settings.pt_desktop }}px 0 {{ section.settings.pb_desktop }}px;
     position: relative;
-    /* Large min-height to provide scroll "runway" */
-    min-height: 250vh; 
+    /* Massive runway for stationary storytelling */
+    min-height: 350vh; 
   }
 
   @media screen and (max-width: 749px) {
     #UsBrandsAbout-{{ section.id }} {
       padding: {{ section.settings.pt_mobile }}px 0 {{ section.settings.pb_mobile }}px;
-      min-height: auto; /* Standard scroll for mobile */
+      min-height: auto;
     }
   }
 
@@ -25,22 +25,22 @@
     align-items: flex-start;
   }
 
-  /* Split Logic - Both are Sticky for 'Stationary' feel */
+  /* Split Logic - Absolute Fixed Position Feel */
   .us-brands-about__left,
   .us-brands-about__right {
     position: sticky;
-    top: 25rem; /* Centered in viewport */
+    top: 30vh; /* Locked in viewport focus zone */
     height: auto;
   }
 
   .us-brands-about__left {
     flex: 0 0 {{ section.settings.split_ratio }}%;
-    padding-right: 6rem;
+    padding-right: 8rem;
   }
 
   .us-brands-about__right {
     flex: 1;
-    padding-left: 6rem;
+    padding-left: 8rem;
     border-left: 2px solid {{ section.settings.line_light_color }};
   }
 
@@ -62,30 +62,24 @@
     }
   }
 
-  /* Point Styling - Stacked Vertically */
+  /* Point Styling - Perfect Vertical Alignment */
   .us-brands-about__point-list {
     display: flex;
     flex-direction: column;
-    gap: 8rem; /* Regular spacing on desktop */
-  }
-
-  @media screen and (max-width: 749px) {
-    .us-brands-about__point-list {
-      gap: 3rem;
-    }
+    gap: 8rem;
   }
 
   .us-brands-about__point {
     position: relative;
-    opacity: 0.2; /* Ghosted initial state */
-    transform: translateY(10px);
-    transition: transform 0.6s ease, opacity 0.4s ease;
+    opacity: 0; /* Pure reveal */
+    transform: translateY(15px);
+    transition: transform 0.6s ease, opacity 0.5s ease;
   }
 
-  /* Dot Style - Anchored to Static Line */
+  /* Dot Style - Swan Blue Focus */
   .us-brands-about__dot {
     position: absolute;
-    left: -6.1rem;
+    left: -8.1rem; /* Precise line tracking */
     top: 0.5rem;
     transform: translateX(-50%);
     width: {{ section.settings.dot_size }}px;
@@ -103,11 +97,10 @@
 
   .us-brands-about__point-text {
     font-size: {{ section.settings.point_size }}rem;
-    font-weight: 600;
-    line-height: 1.3;
+    font-weight: 700;
+    line-height: 1.25;
     color: {{ section.settings.text_color }};
     max-width: 600px;
-    transition: color 0.4s ease;
   }
 
   /* Progress Line Mask */
@@ -119,14 +112,13 @@
     height: 0;
     background: {{ section.settings.line_active_color }};
     z-index: 2;
-    transition: height 0.1s linear;
   }
 {%- endstyle -%}
 
 <section id="UsBrandsAbout-{{ section.id }}" class="us-brands-about">
   <div class="us-brands-about__container">
     
-    <!-- Left Side: Sticky Visuals -->
+    <!-- Left Side: Stationary Heading -->
     <div class="us-brands-about__left">
       {%- for block in section.blocks -%}
         {%- if block.type == 'left_heading' -%}
@@ -147,16 +139,14 @@
       {%- endfor -%}
     </div>
 
-    <!-- Right Side: Sticky Container with Point List -->
+    <!-- Right Side: Stationary Point List -->
     <div class="us-brands-about__right">
       <div class="us-brands-about__progress-line" id="ProgressLine-{{ section.id }}"></div>
       
       <div class="us-brands-about__point-list">
         {%- for block in section.blocks -%}
           {%- if block.type == 'right_point' -%}
-            <div class="us-brands-about__point js-about-point" 
-                 data-index="{{ forloop.index0 }}"
-                 {{ block.shopify_attributes }}>
+            <div class="us-brands-about__point js-about-point" {{ block.shopify_attributes }}>
               <div class="us-brands-about__dot"></div>
               <div class="us-brands-about__point-text">
                 {{ block.settings.text }}
@@ -179,45 +169,44 @@
     const points = section.querySelectorAll('.js-about-point');
     const container = section.querySelector('.us-brands-about__container');
 
-    const updateStickyStack = () => {
-      // For mobile, we use standard visibility
+    const updateScrollytelling = () => {
+      // Mobile - Standard reveal
       if (window.innerWidth < 750) {
         points.forEach(point => {
           const rect = point.getBoundingClientRect();
           if (rect.top < window.innerHeight * 0.8) {
             point.style.opacity = '1';
+            point.style.transform = 'translateY(0)';
             point.classList.add('is-active');
           }
         });
         return;
       }
 
-      // Desktop Sticky Logic
-      const sectionRect = section.getBoundingClientRect();
+      // Desktop - Absolute Fixed Stack
+      const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       
-      // Calculate Scroll Progress through the section (0 to 1)
-      const scrollStart = sectionRect.top;
-      const totalScrollArea = section.offsetHeight - viewportHeight;
-      let progress = (-scrollStart) / totalScrollArea;
+      // Calculate global scroll %
+      const totalScroll = section.offsetHeight - viewportHeight;
+      const currentScroll = -rect.top;
+      let progress = currentScroll / totalScroll;
       progress = Math.max(0, Math.min(1, progress));
 
-      // 1. Update Global Progress Line
+      // Global Line Update
       progressLine.style.height = (progress * 100) + '%';
 
-      // 2. Map Progress to Individual Points
+      // Fractional Revelation Logic
       const pointCount = points.length;
       points.forEach((point, i) => {
-        // Each point gets a 'stage' of the progress (e.g. 0-0.33, 0.33-0.66, etc)
-        const step = 1 / pointCount;
-        const start = i * step;
-        const end = (i + 1) * step;
+        const start = i / pointCount;
+        const end = (i + 1) / pointCount;
 
-        // One-Way Persistence: If we've passed the start, stay visible
+        // Persistence check: If we've passed the threshold, stay locked.
         if (progress >= start) {
-          // Inner progress for that specific point's fade (short window for snap feel)
-          const pointProgress = (progress - start) / (step * 0.5); 
-          const targetOpacity = Math.max(parseFloat(point.style.opacity) || 0.2, Math.min(1, pointProgress));
+          // Subtle reveal window
+          const pointProgress = (progress - start) / ( (end - start) * 0.4 ); 
+          const targetOpacity = Math.max(parseFloat(point.style.opacity) || 0, Math.min(1, pointProgress));
           
           point.style.opacity = targetOpacity;
           
@@ -229,9 +218,9 @@
       });
     };
 
-    window.addEventListener('scroll', updateStickyStack);
-    window.addEventListener('resize', updateStickyStack);
-    updateStickyStack(); // Init
+    window.addEventListener('scroll', updateScrollytelling);
+    window.addEventListener('resize', updateScrollytelling);
+    updateScrollytelling();
   })();
 </script>
 
@@ -249,8 +238,8 @@
     { "type": "header", "content": "Timeline Animation" },
     { "type": "color", "id": "line_light_color", "label": "Line/Dot Inactive Color", "default": "#e5e5e5" },
     { "type": "color", "id": "line_active_color", "label": "Line/Dot Active Color", "default": "#6394FF" },
-    { "type": "range", "id": "dot_size", "label": "Timeline Dot size", "min": 6, "max": 30, "step": 2, "unit": "px", "default": 16 },
-    { "type": "range", "id": "point_size", "label": "Point Text Size", "min": 1, "max": 4, "step": 0.1, "unit": "rem", "default": 1.8 },
+    { "type": "range", "id": "dot_size", "label": "Timeline Dot size", "min": 6, "max": 40, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "point_size", "label": "Point Text Size", "min": 1, "max": 4, "step": 0.1, "unit": "rem", "default": 2.2 },
     { "type": "header", "content": "Layout Spacing" },
     { "type": "range", "id": "container_width", "label": "Container Width", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
     { "type": "range", "id": "pt_desktop", "label": "Top Padding (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 },
