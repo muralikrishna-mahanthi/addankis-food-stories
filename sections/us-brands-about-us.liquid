@@ -41,9 +41,12 @@
   /* ── Left sticky panel ── */
   .uba-left-{{ section.id }} {
     flex: 0 0 {{ section.settings.split_ratio }}%;
+    max-width: {{ section.settings.split_ratio }}%;
     position: sticky;
     top: 20vh;
     padding-right: 6rem;
+    overflow: hidden;
+    box-sizing: border-box;
   }
 
   /* ── Right sticky panel: flex-row with timeline + content ── */
@@ -196,7 +199,7 @@
           -%}
           <div {{ block.shopify_attributes }} style="text-align:{{ img_align }};padding:{{ img_pt }}px {{ img_pr }}px {{ img_pb }}px {{ img_pl }}px;">
             {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', style: 'width:' | append: img_width | append: '%;max-height:' | append: img_maxh | append: 'px;object-fit:' | append: img_fit | append: ';height:auto;display:inline-block;' }}
+              {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', style: 'width:' | append: img_width | append: '%;max-width:100%;max-height:' | append: img_maxh | append: 'px;object-fit:' | append: img_fit | append: ';height:auto;display:inline-block;' }}
             {%- else -%}
               {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
