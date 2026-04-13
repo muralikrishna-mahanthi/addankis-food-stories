@@ -195,7 +195,7 @@
           "type": "left_image",
           "settings": {
             "image": "shopify://shop_images/download.jpg",
-            "img_width": 100,
+            "img_width": 30,
             "img_max_height": 500,
             "img_object_fit": "fill",
             "img_align": "left",
