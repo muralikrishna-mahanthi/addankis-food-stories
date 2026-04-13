@@ -1,3 +1,118 @@
+{% schema %}
+{
+  "name": "US Brands About Us V2",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "range", "id": "split_ratio", "label": "Split Ratio (Left Side %)", "min": 30, "max": 70, "step": 5, "default": 40 },
+    { "type": "range", "id": "runway_height", "label": "Scroll Depth Intensity", "min": 100, "max": 500, "step": 50, "unit": "vh", "default": 300 },
+    { "type": "header", "content": "Visuals" },
+    { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#1a1a1a" },
+    { "type": "header", "content": "Timeline Animation" },
+    { "type": "color", "id": "line_light_color", "label": "Line/Dot Inactive Color", "default": "#e5e5e5" },
+    { "type": "color", "id": "line_active_color", "label": "Line/Dot Active Color", "default": "#6394FF" },
+    { "type": "range", "id": "dot_size", "label": "Timeline Dot size", "min": 6, "max": 40, "step": 2, "unit": "px", "default": 16 },
+    { "type": "header", "content": "Layout Spacing" },
+    { "type": "range", "id": "container_width", "label": "Container Width", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
+    { "type": "range", "id": "pt_desktop", "label": "Top Padding (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 },
+    { "type": "range", "id": "pb_desktop", "label": "Bottom Padding (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 }
+  ],
+  "blocks": [
+    {
+      "type": "left_heading",
+      "name": "Left Heading",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Heading Text", "default": "Meaning behind the brand" },
+        { "type": "header", "content": "Typography" },
+        { "type": "font_picker", "id": "heading_font", "label": "Font Family", "default": "assistant_n4" },
+        { "type": "range", "id": "heading_size", "label": "Font Size", "min": 1, "max": 10, "step": 0.1, "unit": "rem", "default": 4.5 },
+        { "type": "color", "id": "heading_color", "label": "Font Color", "default": "#1a1a1a" },
+        { "type": "select", "id": "heading_weight", "label": "Font Weight", "options": [
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "500", "label": "Medium" },
+          { "value": "600", "label": "Semi-Bold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "800", "label": "Extra-Bold" },
+          { "value": "900", "label": "Black" }
+        ], "default": "700" },
+        { "type": "select", "id": "heading_style", "label": "Font Style", "options": [
+          { "value": "normal", "label": "Normal" },
+          { "value": "italic", "label": "Italic" }
+        ], "default": "normal" },
+        { "type": "range", "id": "heading_line_height", "label": "Line Height", "min": 0.8, "max": 2, "step": 0.1, "default": 1.1 },
+        { "type": "range", "id": "heading_letter_spacing", "label": "Letter Spacing", "min": -5, "max": 10, "step": 0.2, "unit": "px", "default": 0 },
+        { "type": "header", "content": "Alignment & Spacing" },
+        { "type": "select", "id": "heading_alignment", "label": "Text Alignment", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ], "default": "left" },
+        { "type": "range", "id": "heading_pt", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "heading_pb", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "heading_pl", "label": "Padding Left", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "heading_pr", "label": "Padding Right", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 }
+      ]
+    },
+    {
+      "type": "left_image",
+      "name": "Left Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" }
+      ]
+    },
+    {
+      "type": "story_item",
+      "name": "Story Item (Right Side)",
+      "settings": [
+        { "type": "text", "id": "sj_text", "label": "Point Text", "default": "Inspired by the symbolism of the swan" },
+        { "type": "header", "content": "Typography" },
+        { "type": "font_picker", "id": "sj_font", "label": "Font Family", "default": "assistant_n4" },
+        { "type": "range", "id": "sj_size", "label": "Font Size", "min": 1, "max": 4, "step": 0.1, "unit": "rem", "default": 2.2 },
+        { "type": "color", "id": "sj_color", "label": "Font Color", "default": "#1a1a1a" },
+        { "type": "select", "id": "sj_weight", "label": "Font Weight", "options": [
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "500", "label": "Medium" },
+          { "value": "600", "label": "Semi-Bold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "800", "label": "Extra-Bold" },
+          { "value": "900", "label": "Black" }
+        ], "default": "700" },
+        { "type": "select", "id": "sj_style", "label": "Font Style", "options": [
+          { "value": "normal", "label": "Normal" },
+          { "value": "italic", "label": "Italic" }
+        ], "default": "normal" },
+        { "type": "range", "id": "sj_lh", "label": "Line Height", "min": 0.8, "max": 2, "step": 0.1, "default": 1.25 },
+        { "type": "range", "id": "sj_ls", "label": "Letter Spacing", "min": -5, "max": 10, "step": 0.2, "unit": "px", "default": 0 },
+        { "type": "header", "content": "Alignment & Spacing" },
+        { "type": "select", "id": "sj_align", "label": "Text Alignment", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ], "default": "left" },
+        { "type": "range", "id": "sj_pt", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "sj_pb", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "sj_pl", "label": "Padding Left", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "sj_pr", "label": "Padding Right", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "US Brands About Us V2",
+      "blocks": [
+        { "type": "left_heading", "settings": { "title": "Meaning behind the brand" } },
+        { "type": "story_item", "settings": { "sj_text": "Inspired by the symbolism of the swan" } },
+        { "type": "story_item", "settings": { "sj_text": "A commitment to crystalline purity." } },
+        { "type": "story_item", "settings": { "sj_text": "Luxury clinical wellness at its peak." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
 {%- style -%}
   {%- for block in section.blocks -%}
     {%- if block.type == 'left_heading' -%}
@@ -5,10 +120,10 @@
       {%- if heading_font != blank -%}
         {{ heading_font | font_face: font_display: 'swap' }}
       {%- endif -%}
-    {%- elsif block.type == 'right_point' -%}
-      {%- assign st_font = block.settings.st_font -%}
-      {%- if st_font != blank -%}
-        {{ st_font | font_face: font_display: 'swap' }}
+    {%- elsif block.type == 'story_item' -%}
+      {%- assign sj_font = block.settings.sj_font -%}
+      {%- if sj_font != blank -%}
+        {{ sj_font | font_face: font_display: 'swap' }}
       {%- endif -%}
     {%- endif -%}
   {%- endfor -%}
@@ -187,21 +302,21 @@
       
       <div class="us-brands-about__point-list">
         {%- for block in section.blocks -%}
-          {%- if block.type == 'right_point' -%}
+          {%- if block.type == 'story_item' -%}
             <div class="us-brands-about__point js-about-point" {{ block.shopify_attributes }}>
               <div class="us-brands-about__dot"></div>
               <div class="us-brands-about__point-text" style="
-                {%- if block.settings.st_font != blank -%}font-family: {{ block.settings.st_font.family }}, {{ block.settings.st_font.fallback_families }};{%- endif -%}
-                font-size: {{ block.settings.st_size | default: 2.2 }}rem;
-                color: {{ block.settings.st_color | default: '#1a1a1a' }};
-                font-weight: {{ block.settings.st_weight | default: '700' }};
-                font-style: {{ block.settings.st_style | default: 'normal' }};
-                text-align: {{ block.settings.st_alignment | default: 'left' }};
-                line-height: {{ block.settings.st_line_height | default: 1.25 }};
-                letter-spacing: {{ block.settings.st_letter_spacing | default: 0 }}px;
-                padding: {{ block.settings.st_pt | default: 0 }}px {{ block.settings.st_pr | default: 0 }}px {{ block.settings.st_pb | default: 0 }}px {{ block.settings.st_pl | default: 0 }}px;
+                {%- if block.settings.sj_font != blank -%}font-family: {{ block.settings.sj_font.family }}, {{ block.settings.sj_font.fallback_families }};{%- endif -%}
+                font-size: {{ block.settings.sj_size | default: 2.2 }}rem;
+                color: {{ block.settings.sj_color | default: '#1a1a1a' }};
+                font-weight: {{ block.settings.sj_weight | default: '700' }};
+                font-style: {{ block.settings.sj_style | default: 'normal' }};
+                text-align: {{ block.settings.sj_align | default: 'left' }};
+                line-height: {{ block.settings.sj_lh | default: 1.25 }};
+                letter-spacing: {{ block.settings.sj_ls | default: 0 }}px;
+                padding: {{ block.settings.sj_pt | default: 0 }}px {{ block.settings.sj_pr | default: 0 }}px {{ block.settings.sj_pb | default: 0 }}px {{ block.settings.sj_pl | default: 0 }}px;
               ">
-                {{ block.settings.st_text }}
+                {{ block.settings.sj_text }}
               </div>
             </div>
           {%- endif -%}
@@ -283,118 +398,3 @@
     updateScrollytelling();
   })();
 </script>
-
-{% schema %}
-{
-  "name": "US Brands About Us",
-  "tag": "section",
-  "class": "section",
-  "settings": [
-    { "type": "range", "id": "split_ratio", "label": "Split Ratio (Left Side %)", "min": 30, "max": 70, "step": 5, "default": 40 },
-    { "type": "range", "id": "runway_height", "label": "Scroll Depth Intensity", "min": 100, "max": 500, "step": 50, "unit": "vh", "default": 300 },
-    { "type": "header", "content": "Visuals" },
-    { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
-    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#1a1a1a" },
-    { "type": "header", "content": "Timeline Animation" },
-    { "type": "color", "id": "line_light_color", "label": "Line/Dot Inactive Color", "default": "#e5e5e5" },
-    { "type": "color", "id": "line_active_color", "label": "Line/Dot Active Color", "default": "#6394FF" },
-    { "type": "range", "id": "dot_size", "label": "Timeline Dot size", "min": 6, "max": 40, "step": 2, "unit": "px", "default": 16 },
-    { "type": "header", "content": "Layout Spacing" },
-    { "type": "range", "id": "container_width", "label": "Container Width", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
-    { "type": "range", "id": "pt_desktop", "label": "Top Padding (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 },
-    { "type": "range", "id": "pb_desktop", "label": "Bottom Padding (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 }
-  ],
-  "blocks": [
-    {
-      "type": "left_heading",
-      "name": "Left Heading",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Heading Text", "default": "Meaning behind the brand" },
-        { "type": "header", "content": "Typography" },
-        { "type": "font_picker", "id": "heading_font", "label": "Font Family", "default": "assistant_n4" },
-        { "type": "range", "id": "heading_size", "label": "Font Size", "min": 1, "max": 10, "step": 0.1, "unit": "rem", "default": 4.5 },
-        { "type": "color", "id": "heading_color", "label": "Font Color", "default": "#1a1a1a" },
-        { "type": "select", "id": "heading_weight", "label": "Font Weight", "options": [
-          { "value": "300", "label": "Light" },
-          { "value": "400", "label": "Regular" },
-          { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "Semi-Bold" },
-          { "value": "700", "label": "Bold" },
-          { "value": "800", "label": "Extra-Bold" },
-          { "value": "900", "label": "Black" }
-        ], "default": "700" },
-        { "type": "select", "id": "heading_style", "label": "Font Style", "options": [
-          { "value": "normal", "label": "Normal" },
-          { "value": "italic", "label": "Italic" }
-        ], "default": "normal" },
-        { "type": "range", "id": "heading_line_height", "label": "Line Height", "min": 0.8, "max": 2, "step": 0.1, "default": 1.1 },
-        { "type": "range", "id": "heading_letter_spacing", "label": "Letter Spacing", "min": -5, "max": 10, "step": 0.2, "unit": "px", "default": 0 },
-        { "type": "header", "content": "Alignment & Spacing" },
-        { "type": "select", "id": "heading_alignment", "label": "Text Alignment", "options": [
-          { "value": "left", "label": "Left" },
-          { "value": "center", "label": "Center" },
-          { "value": "right", "label": "Right" }
-        ], "default": "left" },
-        { "type": "range", "id": "heading_pt", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "heading_pb", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "heading_pl", "label": "Padding Left", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "heading_pr", "label": "Padding Right", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 }
-      ]
-    },
-    {
-      "type": "left_image",
-      "name": "Left Image",
-      "settings": [
-        { "type": "image_picker", "id": "image", "label": "Image" }
-      ]
-    },
-    {
-      "type": "right_point",
-      "name": ">>> STORY POINT (SETTINGS) <<<",
-      "settings": [
-        { "type": "text", "id": "st_text", "label": "Point Text", "default": "Inspired by the symbolism of the swan" },
-        { "type": "header", "content": "Typography" },
-        { "type": "font_picker", "id": "st_font", "label": "Font Family", "default": "assistant_n4" },
-        { "type": "range", "id": "st_size", "label": "Font Size", "min": 1, "max": 4, "step": 0.1, "unit": "rem", "default": 2.2 },
-        { "type": "color", "id": "st_color", "label": "Font Color", "default": "#1a1a1a" },
-        { "type": "select", "id": "st_weight", "label": "Font Weight", "options": [
-          { "value": "300", "label": "Light" },
-          { "value": "400", "label": "Regular" },
-          { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "Semi-Bold" },
-          { "value": "700", "label": "Bold" },
-          { "value": "800", "label": "Extra-Bold" },
-          { "value": "900", "label": "Black" }
-        ], "default": "700" },
-        { "type": "select", "id": "st_style", "label": "Font Style", "options": [
-          { "value": "normal", "label": "Normal" },
-          { "value": "italic", "label": "Italic" }
-        ], "default": "normal" },
-        { "type": "range", "id": "st_line_height", "label": "Line Height", "min": 0.8, "max": 2, "step": 0.1, "default": 1.25 },
-        { "type": "range", "id": "st_letter_spacing", "label": "Letter Spacing", "min": -5, "max": 10, "step": 0.2, "unit": "px", "default": 0 },
-        { "type": "header", "content": "Alignment & Spacing" },
-        { "type": "select", "id": "st_alignment", "label": "Text Alignment", "options": [
-          { "value": "left", "label": "Left" },
-          { "value": "center", "label": "Center" },
-          { "value": "right", "label": "Right" }
-        ], "default": "left" },
-        { "type": "range", "id": "st_pt", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "st_pb", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "st_pl", "label": "Padding Left", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "st_pr", "label": "Padding Right", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "US Brands About Us",
-      "blocks": [
-        { "type": "left_heading", "settings": { "title": "Meaning behind the brand" } },
-        { "type": "right_point", "settings": { "st_text": "Inspired by the symbolism of the swan" } },
-        { "type": "right_point", "settings": { "st_text": "A commitment to crystalline purity." } },
-        { "type": "right_point", "settings": { "st_text": "Luxury clinical wellness at its peak." } }
-      ]
-    }
-  ]
-}
-{% endschema %}
