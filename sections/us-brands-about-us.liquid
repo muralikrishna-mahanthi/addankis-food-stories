@@ -119,18 +119,9 @@
     top: 0;
     width: 2px;
     height: 0;
-    background: linear-gradient(
-      to bottom,
-      {{ section.settings.line_active_color }} calc(100% - 48px),
-      transparent 100%
-    );
-    z-index: 2;
-    transition: height 0.12s ease-out;
-  }
-
-  .us-brands-about__progress-line-{{ section.id }}.is-complete {
     background: {{ section.settings.line_active_color }};
-    transition: background 0.5s ease, height 0.12s ease-out;
+    z-index: 2;
+    will-change: height;
   }
 {%- endstyle -%}
 
@@ -217,18 +208,10 @@
     var totalScroll = sectionEl.offsetHeight - window.innerHeight;
     var progress = Math.max(0, Math.min(1, -rect.top / totalScroll));
 
-    var firstDot = points[0].querySelector('.us-brands-about__dot-{{ section.id }}');
-    var lastDot = points[points.length - 1].querySelector('.us-brands-about__dot-{{ section.id }}');
     var rightPanel = sectionEl.querySelector('.us-brands-about__right-{{ section.id }}');
+    var fullHeight = rightPanel ? rightPanel.offsetHeight : 600;
 
-    var startPos = firstDot.offsetTop + firstDot.offsetHeight / 2;
-    var endPos = lastDot.offsetTop + lastDot.offsetHeight / 2;
-    var totalLineRange = endPos - startPos;
-
-    /* Determine if last point is fully active */
-    var lastPointProgress = (progress - ((points.length - 1) / points.length - 0.1)) / 0.2;
-    var isComplete = lastPointProgress >= 1;
-
+    /* Story points reveal staggered by scroll progress */
     points.forEach(function(p, i) {
       var pStart = i / points.length;
       var opacity = Math.min(1, Math.max(0, (progress - (pStart - 0.1)) / 0.2));
@@ -242,17 +225,9 @@
       }
     });
 
+    /* Line fills proportionally: 0% at section start → 100% at section end */
     if (progressLine) {
-      if (isComplete) {
-        /* Fill entire line when last point is fully revealed */
-        progressLine.style.height = (rightPanel ? rightPanel.offsetHeight : endPos + 60) + 'px';
-        progressLine.classList.add('is-complete');
-      } else {
-        progressLine.classList.remove('is-complete');
-        /* Grow line from first dot to current scroll depth */
-        var currentDepth = startPos + (progress * totalLineRange * (points.length / (points.length - 0.01)));
-        progressLine.style.height = Math.min(currentDepth, endPos + 48) + 'px';
-      }
+      progressLine.style.height = Math.round(progress * fullHeight) + 'px';
     }
   }
 
