@@ -197,6 +197,12 @@
             "title": "Wellness Redefined"
           }
         },
+        "right_point_aaG4wF": {
+          "type": "right_point",
+          "settings": {
+            "text": "Inspired by the symbolism of the swan"
+          }
+        },
         "right_point_DFJf8V": {
           "type": "right_point",
           "settings": {
@@ -218,6 +224,7 @@
       },
       "block_order": [
         "left_heading_9cFDDX",
+        "right_point_aaG4wF",
         "right_point_DFJf8V",
         "right_point_FrGKtN",
         "right_point_PV9AUq"
