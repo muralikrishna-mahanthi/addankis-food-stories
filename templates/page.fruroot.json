@@ -15,9 +15,95 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "us_brands_about_us_fruroot": {
+      "type": "us-brands-about-us",
+      "blocks": {
+        "left_heading_1": {
+          "type": "left_heading",
+          "settings": {
+            "title": "Meaning behind the brand",
+            "heading_font": "assistant_n4",
+            "heading_size": 4.5,
+            "heading_color": "#1a1a1a",
+            "heading_weight": "700",
+            "heading_style": "normal",
+            "heading_line_height": 1.1,
+            "heading_letter_spacing": 0,
+            "heading_alignment": "left",
+            "heading_pt": 0,
+            "heading_pb": 0,
+            "heading_pl": 0,
+            "heading_pr": 0
+          }
+        },
+        "right_point_1": {
+          "type": "right_point",
+          "settings": {
+            "text": "Fresh ingredients sourced from the finest farms.",
+            "rp_size": 2.2,
+            "rp_color": "#1a1a1a",
+            "rp_weight": "700",
+            "rp_style": "normal",
+            "rp_lh": 1.25,
+            "rp_ls": 0,
+            "rp_align": "left",
+            "rp_pt": 0,
+            "rp_pb": 0,
+            "rp_pl": 0,
+            "rp_pr": 0
+          }
+        },
+        "right_point_2": {
+          "type": "right_point",
+          "settings": {
+            "text": "A commitment to natural flavors and zero additives.",
+            "rp_size": 2.2,
+            "rp_color": "#1a1a1a",
+            "rp_weight": "700",
+            "rp_style": "normal",
+            "rp_lh": 1.25,
+            "rp_ls": 0,
+            "rp_align": "left",
+            "rp_pt": 0,
+            "rp_pb": 0,
+            "rp_pl": 0,
+            "rp_pr": 0
+          }
+        },
+        "right_point_3": {
+          "type": "right_point",
+          "settings": {
+            "text": "Bringing nature's goodness to your everyday table.",
+            "rp_size": 2.2,
+            "rp_color": "#1a1a1a",
+            "rp_weight": "700",
+            "rp_style": "normal",
+            "rp_lh": 1.25,
+            "rp_ls": 0,
+            "rp_align": "left",
+            "rp_pt": 0,
+            "rp_pb": 0,
+            "rp_pl": 0,
+            "rp_pr": 0
+          }
+        }
+      },
+      "block_order": ["left_heading_1", "right_point_1", "right_point_2", "right_point_3"],
+      "name": "US Brands About Us",
+      "settings": {
+        "split_ratio": 40,
+        "runway_height": 300,
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "line_light_color": "#e5e5e5",
+        "line_active_color": "#6394FF",
+        "dot_size": 16,
+        "container_width": 1400,
+        "pt_desktop": 100,
+        "pb_desktop": 100
+      }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main", "us_brands_about_us_fruroot"]
 }

@@ -1,6 +1,6 @@
 {% schema %}
 {
-  "name": "US Brands About Us V2",
+  "name": "US Brands About Us",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -63,15 +63,15 @@
       ]
     },
     {
-      "type": "story_item",
-      "name": "Story Item (Right Side)",
+      "type": "right_point",
+      "name": "Right Story Point",
       "settings": [
-        { "type": "text", "id": "sj_text", "label": "Point Text", "default": "Inspired by the symbolism of the swan" },
+        { "type": "text", "id": "text", "label": "Point Text", "default": "Inspired by the symbolism of the swan" },
         { "type": "header", "content": "Typography" },
-        { "type": "font_picker", "id": "sj_font", "label": "Font Family", "default": "assistant_n4" },
-        { "type": "range", "id": "sj_size", "label": "Font Size", "min": 1, "max": 4, "step": 0.1, "unit": "rem", "default": 2.2 },
-        { "type": "color", "id": "sj_color", "label": "Font Color", "default": "#1a1a1a" },
-        { "type": "select", "id": "sj_weight", "label": "Font Weight", "options": [
+        { "type": "font_picker", "id": "rp_font", "label": "Font Family", "default": "assistant_n4" },
+        { "type": "range", "id": "rp_size", "label": "Font Size", "min": 1, "max": 4, "step": 0.1, "unit": "rem", "default": 2.2 },
+        { "type": "color", "id": "rp_color", "label": "Font Color", "default": "#1a1a1a" },
+        { "type": "select", "id": "rp_weight", "label": "Font Weight", "options": [
           { "value": "300", "label": "Light" },
           { "value": "400", "label": "Regular" },
           { "value": "500", "label": "Medium" },
@@ -80,33 +80,33 @@
           { "value": "800", "label": "Extra-Bold" },
           { "value": "900", "label": "Black" }
         ], "default": "700" },
-        { "type": "select", "id": "sj_style", "label": "Font Style", "options": [
+        { "type": "select", "id": "rp_style", "label": "Font Style", "options": [
           { "value": "normal", "label": "Normal" },
           { "value": "italic", "label": "Italic" }
         ], "default": "normal" },
-        { "type": "range", "id": "sj_lh", "label": "Line Height", "min": 0.8, "max": 2, "step": 0.1, "default": 1.25 },
-        { "type": "range", "id": "sj_ls", "label": "Letter Spacing", "min": -5, "max": 10, "step": 0.2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "rp_lh", "label": "Line Height", "min": 0.8, "max": 2, "step": 0.1, "default": 1.25 },
+        { "type": "range", "id": "rp_ls", "label": "Letter Spacing", "min": -5, "max": 10, "step": 0.2, "unit": "px", "default": 0 },
         { "type": "header", "content": "Alignment & Spacing" },
-        { "type": "select", "id": "sj_align", "label": "Text Alignment", "options": [
+        { "type": "select", "id": "rp_align", "label": "Text Alignment", "options": [
           { "value": "left", "label": "Left" },
           { "value": "center", "label": "Center" },
           { "value": "right", "label": "Right" }
         ], "default": "left" },
-        { "type": "range", "id": "sj_pt", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "sj_pb", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "sj_pl", "label": "Padding Left", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "sj_pr", "label": "Padding Right", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 }
+        { "type": "range", "id": "rp_pt", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "rp_pb", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "rp_pl", "label": "Padding Left", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "rp_pr", "label": "Padding Right", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 }
       ]
     }
   ],
   "presets": [
     {
-      "name": "US Brands About Us V2",
+      "name": "US Brands About Us",
       "blocks": [
         { "type": "left_heading", "settings": { "title": "Meaning behind the brand" } },
-        { "type": "story_item", "settings": { "sj_text": "Inspired by the symbolism of the swan" } },
-        { "type": "story_item", "settings": { "sj_text": "A commitment to crystalline purity." } },
-        { "type": "story_item", "settings": { "sj_text": "Luxury clinical wellness at its peak." } }
+        { "type": "right_point", "settings": { "text": "Inspired by the symbolism of the swan" } },
+        { "type": "right_point", "settings": { "text": "A commitment to crystalline purity." } },
+        { "type": "right_point", "settings": { "text": "Luxury clinical wellness at its peak." } }
       ]
     }
   ]
@@ -120,10 +120,10 @@
       {%- if heading_font != blank -%}
         {{ heading_font | font_face: font_display: 'swap' }}
       {%- endif -%}
-    {%- elsif block.type == 'story_item' -%}
-      {%- assign sj_font = block.settings.sj_font -%}
-      {%- if sj_font != blank -%}
-        {{ sj_font | font_face: font_display: 'swap' }}
+    {%- elsif block.type == 'right_point' -%}
+      {%- assign rp_font = block.settings.rp_font -%}
+      {%- if rp_font != blank -%}
+        {{ rp_font | font_face: font_display: 'swap' }}
       {%- endif -%}
     {%- endif -%}
   {%- endfor -%}
@@ -133,15 +133,14 @@
     background: {{ section.settings.bg_color }};
     padding: {{ section.settings.pt_desktop }}px 0 {{ section.settings.pb_desktop }}px;
     position: relative;
-    /* Massive runway for stationary storytelling */
-    height: {{ section.settings.runway_height }}vh; 
+    height: {{ section.settings.runway_height }}vh;
   }
 
   @media screen and (max-width: 749px) {
     #UsBrandsAbout-{{ section.id }} {
-      padding: {{ section.settings.pt_mobile }}px 0 {{ section.settings.pb_mobile }}px;
       height: auto;
       min-height: auto;
+      padding: 60px 0;
     }
   }
 
@@ -152,17 +151,16 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    height: 100%; /* Important: spans the entire runway */
+    height: 100%;
     align-items: flex-start;
   }
 
-  /* Split Logic - Sticky Focus Zones */
   .us-brands-about__left,
   .us-brands-about__right {
     position: sticky;
-    top: 20vh; /* Centered in viewport focus zone */
+    top: 20vh;
     height: auto;
-    max-height: 80vh; /* Ensure they are shorter than parent for sticky to work */
+    max-height: 80vh;
   }
 
   .us-brands-about__left {
@@ -196,7 +194,6 @@
     }
   }
 
-  /* Point Styling - Perfect Vertical Alignment */
   .us-brands-about__point-list {
     display: flex;
     flex-direction: column;
@@ -205,15 +202,14 @@
 
   .us-brands-about__point {
     position: relative;
-    opacity: 0; /* Pure reveal */
+    opacity: 0;
     transform: translateY(15px);
     transition: transform 0.6s ease, opacity 0.5s ease;
   }
 
-  /* Dot Style - Swan Blue Focus */
   .us-brands-about__dot {
     position: absolute;
-    left: -8.1rem; /* Precise line tracking */
+    left: -8.1rem;
     top: 0.5rem;
     transform: translateX(-50%);
     width: {{ section.settings.dot_size }}px;
@@ -233,7 +229,6 @@
     max-width: 600px;
   }
 
-  /* Progress Line Mask */
   .us-brands-about__progress-line {
     position: absolute;
     left: -2px;
@@ -247,7 +242,7 @@
 
 <section id="UsBrandsAbout-{{ section.id }}" class="us-brands-about">
   <div class="us-brands-about__container">
-    
+
     <!-- Left Side: Sticky Visuals -->
     <div class="us-brands-about__left">
       {%- for block in section.blocks -%}
@@ -299,24 +294,24 @@
     <!-- Right Side: Sticky Point List -->
     <div class="us-brands-about__right">
       <div class="us-brands-about__progress-line" id="ProgressLine-{{ section.id }}"></div>
-      
+
       <div class="us-brands-about__point-list">
         {%- for block in section.blocks -%}
-          {%- if block.type == 'story_item' -%}
+          {%- if block.type == 'right_point' -%}
             <div class="us-brands-about__point js-about-point" {{ block.shopify_attributes }}>
               <div class="us-brands-about__dot"></div>
               <div class="us-brands-about__point-text" style="
-                {%- if block.settings.sj_font != blank -%}font-family: {{ block.settings.sj_font.family }}, {{ block.settings.sj_font.fallback_families }};{%- endif -%}
-                font-size: {{ block.settings.sj_size | default: 2.2 }}rem;
-                color: {{ block.settings.sj_color | default: '#1a1a1a' }};
-                font-weight: {{ block.settings.sj_weight | default: '700' }};
-                font-style: {{ block.settings.sj_style | default: 'normal' }};
-                text-align: {{ block.settings.sj_align | default: 'left' }};
-                line-height: {{ block.settings.sj_lh | default: 1.25 }};
-                letter-spacing: {{ block.settings.sj_ls | default: 0 }}px;
-                padding: {{ block.settings.sj_pt | default: 0 }}px {{ block.settings.sj_pr | default: 0 }}px {{ block.settings.sj_pb | default: 0 }}px {{ block.settings.sj_pl | default: 0 }}px;
+                {%- if block.settings.rp_font != blank -%}font-family: {{ block.settings.rp_font.family }}, {{ block.settings.rp_font.fallback_families }};{%- endif -%}
+                font-size: {{ block.settings.rp_size | default: 2.2 }}rem;
+                color: {{ block.settings.rp_color | default: '#1a1a1a' }};
+                font-weight: {{ block.settings.rp_weight | default: '700' }};
+                font-style: {{ block.settings.rp_style | default: 'normal' }};
+                text-align: {{ block.settings.rp_align | default: 'left' }};
+                line-height: {{ block.settings.rp_lh | default: 1.25 }};
+                letter-spacing: {{ block.settings.rp_ls | default: 0 }}px;
+                padding: {{ block.settings.rp_pt | default: 0 }}px {{ block.settings.rp_pr | default: 0 }}px {{ block.settings.rp_pb | default: 0 }}px {{ block.settings.rp_pl | default: 0 }}px;
               ">
-                {{ block.settings.sj_text }}
+                {{ block.settings.text }}
               </div>
             </div>
           {%- endif -%}
@@ -334,9 +329,9 @@
 
     const progressLine = section.querySelector('#ProgressLine-{{ section.id }}');
     const points = section.querySelectorAll('.js-about-point');
+    if (!points.length) return;
 
     const updateScrollytelling = () => {
-      // Mobile - Standard reveal
       if (window.innerWidth < 750) {
         points.forEach(point => {
           const rect = point.getBoundingClientRect();
@@ -349,36 +344,25 @@
         return;
       }
 
-      // Desktop - Absolute Fixed Stack
       const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      
-      // Calculate global scroll % through the section height
       const totalScroll = section.offsetHeight - viewportHeight;
       const currentScroll = -rect.top;
       let progress = currentScroll / totalScroll;
       progress = Math.max(0, Math.min(1, progress));
 
-      // Global Line Logic (Continuous Dynamic Flow)
       const pointCount = points.length;
       const firstDot = points[0].querySelector('.us-brands-about__dot');
       const lastDot = points[pointCount - 1].querySelector('.us-brands-about__dot');
-      
       const startLinePos = firstDot.offsetTop + (firstDot.offsetHeight / 2);
       const endLinePos = lastDot.offsetTop + (lastDot.offsetHeight / 2);
       const totalLineRange = endLinePos - startLinePos;
 
       points.forEach((point, i) => {
-        // Continuous Progress Mapping (0 to 1)
         const pointStart = i / pointCount;
-        const pointEnd = (i + 1) / pointCount;
-
-        // Calculate opacity based on a smoother, overlapping curve
         let pointProgress = (progress - (pointStart - 0.1)) / 0.2;
         let targetOpacity = Math.min(1, Math.max(0, pointProgress));
-        
         point.style.opacity = targetOpacity;
-        
         if (targetOpacity >= 0.8) {
           point.classList.add('is-active');
           point.style.transform = 'translateY(0)';
@@ -388,7 +372,6 @@
         }
       });
 
-      // The Line grows perfectly across the entire range
       const currentLineDepth = startLinePos + (progress * totalLineRange);
       progressLine.style.height = currentLineDepth + 'px';
     };
