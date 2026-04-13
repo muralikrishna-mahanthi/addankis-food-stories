@@ -184,9 +184,19 @@
             </h2>
           </div>
         {%- elsif block.type == 'left_image' -%}
-          <div {{ block.shopify_attributes }}>
+          {%- liquid
+            assign img_align = block.settings.img_align | default: 'left'
+            assign img_width = block.settings.img_width | default: 100
+            assign img_maxh = block.settings.img_max_height | default: 500
+            assign img_fit = block.settings.img_object_fit | default: 'cover'
+            assign img_pt = block.settings.img_pt | default: 0
+            assign img_pb = block.settings.img_pb | default: 0
+            assign img_pl = block.settings.img_pl | default: 0
+            assign img_pr = block.settings.img_pr | default: 0
+          -%}
+          <div {{ block.shopify_attributes }} style="text-align:{{ img_align }};padding:{{ img_pt }}px {{ img_pr }}px {{ img_pb }}px {{ img_pl }}px;">
             {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+              {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', style: 'width:' | append: img_width | append: '%;max-height:' | append: img_maxh | append: 'px;object-fit:' | append: img_fit | append: ';height:auto;display:inline-block;' }}
             {%- else -%}
               {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
@@ -336,7 +346,26 @@
       "type": "left_image",
       "name": "Left Image",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Image" }
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "header", "content": "Size" },
+        { "type": "range", "id": "img_width", "label": "Width (%)", "min": 20, "max": 100, "step": 5, "unit": "%", "default": 100 },
+        { "type": "range", "id": "img_max_height", "label": "Max Height (px)", "min": 100, "max": 800, "step": 50, "unit": "px", "default": 500 },
+        { "type": "select", "id": "img_object_fit", "label": "Image Fit", "default": "cover", "options": [
+          { "value": "cover", "label": "Cover (crop to fill)" },
+          { "value": "contain", "label": "Contain (show full image)" },
+          { "value": "fill", "label": "Fill (stretch)" }
+        ]},
+        { "type": "header", "content": "Alignment" },
+        { "type": "select", "id": "img_align", "label": "Horizontal Alignment", "default": "left", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ]},
+        { "type": "header", "content": "Padding" },
+        { "type": "range", "id": "img_pt", "label": "Padding Top", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "img_pb", "label": "Padding Bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "img_pl", "label": "Padding Left", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "img_pr", "label": "Padding Right", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 }
       ]
     },
     {
