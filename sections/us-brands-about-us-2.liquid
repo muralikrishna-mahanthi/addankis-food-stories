@@ -1,0 +1,429 @@
+{%- style -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'right_heading' -%}
+      {%- assign h_font_obj = block.settings.heading_font -%}
+      {%- if h_font_obj != blank -%}
+        {{ h_font_obj | font_face: font_display: 'swap' }}
+      {%- endif -%}
+    {%- elsif block.type == 'left_point' -%}
+      {%- assign rp_font_obj = block.settings.rp_font -%}
+      {%- if rp_font_obj != blank -%}
+        {{ rp_font_obj | font_face: font_display: 'swap' }}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  /* ── Section wrapper ── */
+  #UsBrandsAbout2-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.pt_desktop }}px 0 {{ section.settings.pb_desktop }}px;
+    position: relative;
+    height: {{ section.settings.runway_height }}vh;
+  }
+  @media screen and (max-width: 749px) {
+    #UsBrandsAbout2-{{ section.id }} {
+      height: auto;
+      padding: 60px 0;
+    }
+  }
+
+  /* ── Outer container ── */
+  .uba2-container-{{ section.id }} {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    height: 100%;
+  }
+
+  /*
+   * LEFT PANEL in v2 = Story Points + Timeline Line
+   * (This is the right panel in v1, mirrored)
+   */
+  .uba2-left-{{ section.id }} {
+    flex: 1;
+    position: sticky;
+    top: 20vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  /* Story points content column */
+  .uba2-content-{{ section.id }} {
+    flex: 1;
+    padding-right: 4rem;
+  }
+
+  .uba2-points-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+  }
+
+  .uba2-point-{{ section.id }} {
+    position: relative;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease, transform 0.6s ease;
+  }
+
+  /* Dot sits in the 4rem gap on the RIGHT side of the text */
+  .uba2-dot-{{ section.id }} {
+    position: absolute;
+    right: -4.1rem;
+    left: auto;
+    top: 0.5rem;
+    transform: translateX(50%);
+    width: {{ section.settings.dot_size }}px;
+    height: {{ section.settings.dot_size }}px;
+    background: {{ section.settings.line_light_color }};
+    border-radius: 50%;
+    z-index: 3;
+    transition: background 0.4s ease, transform 0.4s ease;
+  }
+  .uba2-point-{{ section.id }}.is-active .uba2-dot-{{ section.id }} {
+    background: {{ section.settings.line_active_color }};
+    transform: translateX(50%) scale(1.3);
+  }
+
+  /*
+   * THE TIMELINE LINE (on the right of story points)
+   * align-self: stretch = grows to content height
+   * position: relative = proper containing block for the fill
+   * background = grey base line
+   */
+  .uba2-line-{{ section.id }} {
+    width: 2px;
+    flex-shrink: 0;
+    align-self: stretch;
+    position: relative;
+    background: {{ section.settings.line_light_color }};
+    border-radius: 2px;
+  }
+
+  /* THE DARK FILL — grows from 0 → 100% via JS */
+  .uba2-fill-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: {{ section.settings.line_active_color }};
+    border-radius: 2px;
+    will-change: height;
+  }
+
+  /*
+   * RIGHT PANEL in v2 = Heading / Image
+   * (This is the left panel in v1, mirrored)
+   */
+  .uba2-right-{{ section.id }} {
+    flex: 0 0 {{ section.settings.split_ratio }}%;
+    max-width: {{ section.settings.split_ratio }}%;
+    position: sticky;
+    top: 20vh;
+    padding-left: 6rem;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  /* ── Mobile ── */
+  @media screen and (max-width: 749px) {
+    .uba2-container-{{ section.id }} {
+      flex-direction: column-reverse;
+      padding: 0 2rem;
+      height: auto;
+    }
+    .uba2-left-{{ section.id }},
+    .uba2-right-{{ section.id }} {
+      position: relative;
+      top: 0;
+      width: 100%;
+      max-width: 100%;
+      padding: 0;
+      flex: none;
+    }
+    .uba2-right-{{ section.id }} {
+      padding-bottom: 3rem;
+    }
+    .uba2-line-{{ section.id }} {
+      display: none;
+    }
+    .uba2-content-{{ section.id }} {
+      padding-right: 0;
+    }
+    .uba2-dot-{{ section.id }} {
+      display: none;
+    }
+    .uba2-point-{{ section.id }} {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+{%- endstyle -%}
+
+<section id="UsBrandsAbout2-{{ section.id }}" class="us-brands-about-2">
+  <div class="uba2-container-{{ section.id }}">
+
+    <!-- ── LEFT PANEL: Story Points + Timeline ── -->
+    <div class="uba2-left-{{ section.id }}">
+
+      <!-- STORY POINTS -->
+      <div class="uba2-content-{{ section.id }}">
+        <div class="uba2-points-{{ section.id }}">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'left_point' -%}
+              <div class="uba2-point-{{ section.id }} js-uba2-point-{{ section.id }}" {{ block.shopify_attributes }}>
+                <div class="uba2-dot-{{ section.id }}"></div>
+                <div style="{% if block.settings.rp_font != blank %}font-family:{{ block.settings.rp_font.family }},{{ block.settings.rp_font.fallback_families }};{% endif %}font-size:{{ block.settings.rp_size | default: 2.2 }}rem;color:{{ block.settings.rp_color | default: '#1a1a1a' }};font-weight:{{ block.settings.rp_weight | default: '700' }};font-style:{{ block.settings.rp_style | default: 'normal' }};text-align:{{ block.settings.rp_align | default: 'left' }};line-height:{{ block.settings.rp_lh | default: 1.3 }};letter-spacing:{{ block.settings.rp_ls | default: 0 }}px;padding:{{ block.settings.rp_pt | default: 0 }}px {{ block.settings.rp_pr | default: 0 }}px {{ block.settings.rp_pb | default: 0 }}px {{ block.settings.rp_pl | default: 0 }}px;">
+                  {{ block.settings.text }}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <!-- THE LINE (grey base + growing dark fill) — RIGHT side of points -->
+      <div class="uba2-line-{{ section.id }}">
+        <div class="uba2-fill-{{ section.id }}" id="Uba2Fill-{{ section.id }}"></div>
+      </div>
+
+    </div>
+
+    <!-- ── RIGHT PANEL: Heading / Image ── -->
+    <div class="uba2-right-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'right_heading' -%}
+          <div {{ block.shopify_attributes }}>
+            {%- liquid
+              assign h_font = block.settings.heading_font
+              assign h_size = block.settings.heading_size | default: 4.5
+              assign h_color = block.settings.heading_color | default: '#1a1a1a'
+              assign h_weight = block.settings.heading_weight | default: '700'
+              assign h_style = block.settings.heading_style | default: 'normal'
+              assign h_align = block.settings.heading_alignment | default: 'left'
+              assign h_lh = block.settings.heading_line_height | default: 1.1
+              assign h_ls = block.settings.heading_letter_spacing | default: 0
+              assign h_pt = block.settings.heading_pt | default: 0
+              assign h_pb = block.settings.heading_pb | default: 0
+              assign h_pl = block.settings.heading_pl | default: 0
+              assign h_pr = block.settings.heading_pr | default: 0
+            -%}
+            <h2 style="{% if h_font != blank %}font-family:{{ h_font.family }},{{ h_font.fallback_families }};{% endif %}font-size:{{ h_size }}rem;color:{{ h_color }};font-weight:{{ h_weight }};font-style:{{ h_style }};text-align:{{ h_align }};line-height:{{ h_lh }};letter-spacing:{{ h_ls }}px;padding:{{ h_pt }}px {{ h_pr }}px {{ h_pb }}px {{ h_pl }}px;margin:0;">
+              {{ block.settings.title }}
+            </h2>
+          </div>
+        {%- elsif block.type == 'right_image' -%}
+          {%- liquid
+            assign img_align = block.settings.img_align | default: 'left'
+            assign img_width = block.settings.img_width | default: 100
+            assign img_maxh = block.settings.img_max_height | default: 500
+            assign img_fit = block.settings.img_object_fit | default: 'cover'
+            assign img_pt = block.settings.img_pt | default: 0
+            assign img_pb = block.settings.img_pb | default: 0
+            assign img_pl = block.settings.img_pl | default: 0
+            assign img_pr = block.settings.img_pr | default: 0
+          -%}
+          <div {{ block.shopify_attributes }} style="text-align:{{ img_align }};padding:{{ img_pt }}px {{ img_pr }}px {{ img_pb }}px {{ img_pl }}px;">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', style: 'width:' | append: img_width | append: '%;max-width:100%;max-height:' | append: img_maxh | append: 'px;object-fit:' | append: img_fit | append: ';height:auto;display:inline-block;' }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  var sectionEl = document.getElementById('UsBrandsAbout2-{{ section.id }}');
+  if (!sectionEl) return;
+  var fillEl = document.getElementById('Uba2Fill-{{ section.id }}');
+  var lineEl = sectionEl.querySelector('.uba2-line-{{ section.id }}');
+  var points = sectionEl.querySelectorAll('.js-uba2-point-{{ section.id }}');
+  if (!points.length) return;
+
+  function onScroll() {
+    /* Mobile: simple fade-in on viewport entry */
+    if (window.innerWidth < 750) {
+      points.forEach(function(p) {
+        if (p.getBoundingClientRect().top < window.innerHeight * 0.85) {
+          p.style.opacity = '1';
+          p.style.transform = 'translateY(0)';
+          p.classList.add('is-active');
+        }
+      });
+      return;
+    }
+
+    var rect = sectionEl.getBoundingClientRect();
+    var totalScroll = sectionEl.offsetHeight - window.innerHeight;
+    if (totalScroll <= 0) return;
+    var progress = Math.max(0, Math.min(1, -rect.top / totalScroll));
+
+    /* Story points: staggered fade-in tied to scroll progress */
+    points.forEach(function(p, i) {
+      var start = i / points.length;
+      var t = Math.min(1, Math.max(0, (progress - (start - 0.1)) / 0.2));
+      p.style.opacity = t;
+      if (t >= 0.8) {
+        p.classList.add('is-active');
+        p.style.transform = 'translateY(0)';
+      } else {
+        p.classList.remove('is-active');
+        p.style.transform = 'translateY(' + ((1 - t) * 15) + 'px)';
+      }
+    });
+
+    /* Timeline fill: progress × line height */
+    if (fillEl && lineEl) {
+      fillEl.style.height = Math.round(progress * lineEl.offsetHeight) + 'px';
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "US Brand About Us 2",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "range", "id": "split_ratio", "label": "Right Column Width (%)", "min": 20, "max": 60, "step": 5, "default": 40 },
+    { "type": "range", "id": "runway_height", "label": "Scroll Runway Height", "min": 100, "max": 500, "step": 50, "unit": "vh", "default": 300 },
+    { "type": "range", "id": "container_width", "label": "Container Width", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Default Text Color", "default": "#1a1a1a" },
+    { "type": "color", "id": "line_light_color", "label": "Line Inactive Color", "default": "#e5e5e5" },
+    { "type": "color", "id": "line_active_color", "label": "Line Active Color", "default": "#1a1a1a" },
+    { "type": "range", "id": "dot_size", "label": "Dot Size", "min": 6, "max": 40, "step": 2, "unit": "px", "default": 16 },
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "pt_desktop", "label": "Padding Top (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 },
+    { "type": "range", "id": "pb_desktop", "label": "Padding Bottom (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 }
+  ],
+  "blocks": [
+    {
+      "type": "left_point",
+      "name": "Left Story Point",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Point Text", "default": "Inspired by the symbolism of the swan" },
+        { "type": "header", "content": "Text Style" },
+        { "type": "font_picker", "id": "rp_font", "label": "Font Family", "default": "assistant_n4" },
+        { "type": "range", "id": "rp_size", "label": "Font Size (rem)", "min": 1, "max": 4, "step": 0.1, "unit": "rem", "default": 2.2 },
+        { "type": "color", "id": "rp_color", "label": "Font Color", "default": "#1a1a1a" },
+        { "type": "select", "id": "rp_weight", "label": "Font Weight", "default": "700", "options": [
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "500", "label": "Medium" },
+          { "value": "600", "label": "Semi Bold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "800", "label": "Extra Bold" },
+          { "value": "900", "label": "Black" }
+        ]},
+        { "type": "select", "id": "rp_style", "label": "Font Style", "default": "normal", "options": [
+          { "value": "normal", "label": "Normal" },
+          { "value": "italic", "label": "Italic" }
+        ]},
+        { "type": "range", "id": "rp_lh", "label": "Line Height", "min": 0.8, "max": 2.5, "step": 0.1, "default": 1.3 },
+        { "type": "range", "id": "rp_ls", "label": "Letter Spacing (px)", "min": -5, "max": 10, "step": 1, "unit": "px", "default": 0 },
+        { "type": "header", "content": "Alignment & Padding" },
+        { "type": "select", "id": "rp_align", "label": "Alignment", "default": "left", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ]},
+        { "type": "range", "id": "rp_pt", "label": "Padding Top", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "rp_pb", "label": "Padding Bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "rp_pl", "label": "Padding Left", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "rp_pr", "label": "Padding Right", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 0 }
+      ]
+    },
+    {
+      "type": "right_heading",
+      "name": "Right Heading",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Heading Text", "default": "Meaning behind the brand" },
+        { "type": "header", "content": "Typography" },
+        { "type": "font_picker", "id": "heading_font", "label": "Font Family", "default": "assistant_n4" },
+        { "type": "range", "id": "heading_size", "label": "Font Size (rem)", "min": 1, "max": 10, "step": 0.1, "unit": "rem", "default": 4.5 },
+        { "type": "color", "id": "heading_color", "label": "Color", "default": "#1a1a1a" },
+        { "type": "select", "id": "heading_weight", "label": "Weight", "default": "700", "options": [
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "500", "label": "Medium" },
+          { "value": "600", "label": "Semi Bold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "800", "label": "Extra Bold" },
+          { "value": "900", "label": "Black" }
+        ]},
+        { "type": "select", "id": "heading_style", "label": "Style", "default": "normal", "options": [
+          { "value": "normal", "label": "Normal" },
+          { "value": "italic", "label": "Italic" }
+        ]},
+        { "type": "range", "id": "heading_line_height", "label": "Line Height", "min": 0.8, "max": 2.5, "step": 0.1, "default": 1.1 },
+        { "type": "range", "id": "heading_letter_spacing", "label": "Letter Spacing (px)", "min": -5, "max": 10, "step": 1, "unit": "px", "default": 0 },
+        { "type": "header", "content": "Alignment & Padding" },
+        { "type": "select", "id": "heading_alignment", "label": "Alignment", "default": "left", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ]},
+        { "type": "range", "id": "heading_pt", "label": "Padding Top", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "heading_pb", "label": "Padding Bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "heading_pl", "label": "Padding Left", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "heading_pr", "label": "Padding Right", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 0 }
+      ]
+    },
+    {
+      "type": "right_image",
+      "name": "Right Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "header", "content": "Size" },
+        { "type": "range", "id": "img_width", "label": "Width (%)", "min": 20, "max": 100, "step": 5, "unit": "%", "default": 100 },
+        { "type": "range", "id": "img_max_height", "label": "Max Height (px)", "min": 100, "max": 800, "step": 50, "unit": "px", "default": 500 },
+        { "type": "select", "id": "img_object_fit", "label": "Image Fit", "default": "cover", "options": [
+          { "value": "cover", "label": "Cover (crop to fill)" },
+          { "value": "contain", "label": "Contain (show full image)" },
+          { "value": "fill", "label": "Fill (stretch)" }
+        ]},
+        { "type": "header", "content": "Alignment" },
+        { "type": "select", "id": "img_align", "label": "Horizontal Alignment", "default": "left", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ]},
+        { "type": "header", "content": "Padding" },
+        { "type": "range", "id": "img_pt", "label": "Padding Top", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "img_pb", "label": "Padding Bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "img_pl", "label": "Padding Left", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "img_pr", "label": "Padding Right", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "US Brand About Us 2",
+      "blocks": [
+        { "type": "left_point" },
+        { "type": "left_point" },
+        { "type": "left_point" },
+        { "type": "right_heading" }
+      ]
+    }
+  ]
+}
+{% endschema %}
