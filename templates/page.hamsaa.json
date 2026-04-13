@@ -194,11 +194,29 @@
         "left_heading_9cFDDX": {
           "type": "left_heading",
           "settings": {
-            "title": "HAMSAA is inspired by the swan — a symbol of wisdom, grace, and clarity in Indian philosophy.",
+            "title": "HAMSAA",
             "heading_font": "assistant_n4",
             "heading_size": 4.5,
             "heading_color": "#1a1a1a",
             "heading_weight": "800",
+            "heading_style": "normal",
+            "heading_line_height": 1.1,
+            "heading_letter_spacing": 0,
+            "heading_alignment": "center",
+            "heading_pt": 0,
+            "heading_pb": 0,
+            "heading_pl": 0,
+            "heading_pr": 0
+          }
+        },
+        "left_heading_CFhtJ4": {
+          "type": "left_heading",
+          "settings": {
+            "title": "Meaning behind the brand",
+            "heading_font": "assistant_n4",
+            "heading_size": 4.5,
+            "heading_color": "#5d5d5d",
+            "heading_weight": "700",
             "heading_style": "normal",
             "heading_line_height": 1.1,
             "heading_letter_spacing": 0,
@@ -236,6 +254,7 @@
       },
       "block_order": [
         "left_heading_9cFDDX",
+        "left_heading_CFhtJ4",
         "right_point_aaG4wF",
         "right_point_DFJf8V",
         "right_point_FrGKtN",
