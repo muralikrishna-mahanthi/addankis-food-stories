@@ -191,18 +191,22 @@
     "us_brands_about_us_6kR9cT": {
       "type": "us-brands-about-us",
       "blocks": {
-        "left_image_DHF69h": {
-          "type": "left_image",
+        "left_heading_qM8AAw": {
+          "type": "left_heading",
           "settings": {
-            "image": "shopify://shop_images/download.jpg",
-            "img_width": 30,
-            "img_max_height": 200,
-            "img_object_fit": "cover",
-            "img_align": "left",
-            "img_pt": 0,
-            "img_pb": 0,
-            "img_pl": 0,
-            "img_pr": 0
+            "title": "Meaning behind the brand",
+            "heading_font": "assistant_n4",
+            "heading_size": 4.5,
+            "heading_color": "#1a1a1a",
+            "heading_weight": "700",
+            "heading_style": "normal",
+            "heading_line_height": 1.1,
+            "heading_letter_spacing": 0,
+            "heading_alignment": "left",
+            "heading_pt": 0,
+            "heading_pb": 0,
+            "heading_pl": 0,
+            "heading_pr": 0
           }
         },
         "right_point_aaG4wF": {
@@ -279,7 +283,7 @@
         }
       },
       "block_order": [
-        "left_image_DHF69h",
+        "left_heading_qM8AAw",
         "right_point_aaG4wF",
         "right_point_DFJf8V",
         "right_point_FrGKtN",
