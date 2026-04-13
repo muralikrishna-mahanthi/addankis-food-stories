@@ -1,23 +1,11 @@
-{%- liquid
-  assign vid_native  = section.settings.video
-  assign vid_url     = section.settings.video_url
-  assign autoplay    = section.settings.autoplay
-  assign loop_video  = section.settings.loop_video
-  assign muted       = section.settings.muted
-  assign show_ctrl   = section.settings.show_controls
-  assign max_w       = section.settings.video_max_width
-  assign radius      = section.settings.video_border_radius
-  assign aspect      = section.settings.aspect_ratio
-  assign object_fit  = section.settings.video_object_fit
--%}
-
 {%- style -%}
+  /* ── DESKTOP ── */
   #VideoFirst-{{ section.id }} {
     background: {{ section.settings.bg_color }};
-    min-height: {{ section.settings.section_height }}vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: {{ section.settings.section_height }}vh;
     padding: {{ section.settings.pt }}px {{ section.settings.ph }}px {{ section.settings.pb }}px;
     box-sizing: border-box;
     overflow: hidden;
@@ -25,31 +13,31 @@
 
   .vf-wrap-{{ section.id }} {
     width: 100%;
-    max-width: {{ max_w }}%;
-    border-radius: {{ radius }}px;
+    max-width: {{ section.settings.video_max_width }}%;
+    border-radius: {{ section.settings.video_border_radius }}px;
     overflow: hidden;
     flex-shrink: 0;
     {%- if section.settings.shadow_size > 0 -%}
-      box-shadow: 0 {{ section.settings.shadow_size | times: 2 }}px {{ section.settings.shadow_size | times: 4 }}px rgba(0,0,0,{{ section.settings.shadow_opacity | times: 0.01 }});
+      box-shadow: 0 {{ section.settings.shadow_size | times: 2 }}px {{ section.settings.shadow_size | times: 4 }}px rgba(0,0,0,{{ section.settings.shadow_opacity | divided_by: 100.0 }});
     {%- endif -%}
   }
 
-  /* Aspect-ratio wrapper */
+  /* ── Aspect ratio container ── */
   .vf-ratio-{{ section.id }} {
     position: relative;
     width: 100%;
-    {%- case aspect -%}
-      {%- when '16/9' -%}  padding-top: 56.25%;
-      {%- when '4/3' -%}   padding-top: 75%;
-      {%- when '1/1' -%}   padding-top: 100%;
-      {%- when '9/16' -%}  padding-top: 177.78%;
-      {%- when 'auto' -%}  padding-top: 0;
+    {%- case section.settings.aspect_ratio -%}
+      {%- when '16/9' -%} padding-top: 56.25%;
+      {%- when '4/3' -%}  padding-top: 75%;
+      {%- when '1/1' -%}  padding-top: 100%;
+      {%- when '9/16' -%} padding-top: 177.78%;
+      {%- when 'auto' -%} padding-top: 0;
     {%- endcase -%}
   }
 
-  .vf-ratio-{{ section.id }} video,
-  .vf-ratio-{{ section.id }} iframe {
-    {%- if aspect == 'auto' -%}
+  .vf-ratio-{{ section.id }} > video,
+  .vf-ratio-{{ section.id }} > iframe {
+    {%- if section.settings.aspect_ratio == 'auto' -%}
       position: static;
       width: 100%;
       height: auto;
@@ -61,8 +49,53 @@
       height: 100%;
       display: block;
     {%- endif -%}
-    object-fit: {{ object_fit }};
+    object-fit: {{ section.settings.video_object_fit }};
     border: none;
+  }
+
+  /* ── MOBILE ── */
+  @media screen and (max-width: 749px) {
+    #VideoFirst-{{ section.id }} {
+      min-height: {{ section.settings.section_height_mobile }}vh;
+      padding: {{ section.settings.pt_mobile }}px {{ section.settings.ph_mobile }}px {{ section.settings.pb_mobile }}px;
+      background: {{ section.settings.bg_color_mobile }};
+    }
+
+    .vf-wrap-{{ section.id }} {
+      max-width: {{ section.settings.video_max_width_mobile }}%;
+      border-radius: {{ section.settings.video_border_radius_mobile }}px;
+    }
+
+    .vf-ratio-{{ section.id }} {
+      {%- case section.settings.aspect_ratio_mobile -%}
+        {%- when '16/9' -%} padding-top: 56.25%;
+        {%- when '4/3' -%}  padding-top: 75%;
+        {%- when '1/1' -%}  padding-top: 100%;
+        {%- when '9/16' -%} padding-top: 177.78%;
+        {%- when 'auto' -%} padding-top: 0;
+      {%- endcase -%}
+    }
+
+    .vf-ratio-{{ section.id }} > video,
+    .vf-ratio-{{ section.id }} > iframe {
+      {%- if section.settings.aspect_ratio_mobile == 'auto' -%}
+        position: static;
+        height: auto;
+      {%- else -%}
+        position: absolute;
+        height: 100%;
+      {%- endif -%}
+      object-fit: {{ section.settings.video_object_fit_mobile }};
+    }
+
+    /* Show/hide desktop vs mobile videos */
+    .vf-desktop-{{ section.id }} { display: none !important; }
+    .vf-mobile-{{ section.id }}  { display: block !important; }
+  }
+
+  @media screen and (min-width: 750px) {
+    .vf-desktop-{{ section.id }} { display: block !important; }
+    .vf-mobile-{{ section.id }}  { display: none !important; }
   }
 {%- endstyle -%}
 
@@ -70,44 +103,72 @@
   <div class="vf-wrap-{{ section.id }}">
     <div class="vf-ratio-{{ section.id }}">
 
-      {%- if vid_native != blank -%}
-        {{- vid_native | video_tag:
-            autoplay: autoplay,
-            loop: loop_video,
-            muted: muted,
-            controls: show_ctrl,
-            playsinline: true,
-            preload: 'metadata'
-        -}}
+      {%- comment -%} ── DESKTOP VIDEO ── {%- endcomment -%}
+      <div class="vf-desktop-{{ section.id }}">
+        {%- if section.settings.video != blank -%}
+          {{- section.settings.video | video_tag:
+              autoplay: section.settings.autoplay,
+              loop: section.settings.loop_video,
+              muted: section.settings.muted,
+              controls: section.settings.show_controls,
+              playsinline: true,
+              preload: 'metadata',
+              style: 'width:100%;height:100%;object-fit:' | append: section.settings.video_object_fit
+          -}}
+        {%- elsif section.settings.video_url != blank -%}
+          {{- section.settings.video_url | external_video_tag:
+              loading: 'lazy',
+              allow: 'autoplay; fullscreen',
+              title: 'Video'
+          -}}
+        {%- else -%}
+          <div style="width:100%;min-height:300px;display:flex;align-items:center;justify-content:center;background:#111;color:#666;font-family:sans-serif;font-size:1rem;">
+            Add a desktop video in the Theme Editor
+          </div>
+        {%- endif -%}
+      </div>
 
-      {%- elsif vid_url != blank -%}
-        {%- liquid
-          assign url_params = ''
-          if autoplay
-            assign url_params = url_params | append: 'autoplay=1&'
-          endif
-          if loop_video
-            assign url_params = url_params | append: 'loop=1&playlist=' | append: vid_url
-          endif
-          if muted
-            assign url_params = url_params | append: '&mute=1'
-          endif
-          unless show_ctrl
-            assign url_params = url_params | append: '&controls=0'
-          endunless
-        -%}
-        {{- vid_url | external_video_tag:
-            loading: 'lazy',
-            allow: 'autoplay; fullscreen',
-            title: 'Video'
-        -}}
-
-      {%- else -%}
-        <!-- No video selected — add a video in the Theme Editor -->
-        <div style="width:100%;height:100%;min-height:300px;display:flex;align-items:center;justify-content:center;background:#111;color:#666;font-family:sans-serif;font-size:1.2rem;">
-          Select a video in the Theme Editor
-        </div>
-      {%- endif -%}
+      {%- comment -%} ── MOBILE VIDEO ── {%- endcomment -%}
+      <div class="vf-mobile-{{ section.id }}">
+        {%- if section.settings.video_mobile != blank -%}
+          {{- section.settings.video_mobile | video_tag:
+              autoplay: section.settings.autoplay_mobile,
+              loop: section.settings.loop_video_mobile,
+              muted: section.settings.muted_mobile,
+              controls: section.settings.show_controls_mobile,
+              playsinline: true,
+              preload: 'metadata',
+              style: 'width:100%;height:100%;object-fit:' | append: section.settings.video_object_fit_mobile
+          -}}
+        {%- elsif section.settings.video_url_mobile != blank -%}
+          {{- section.settings.video_url_mobile | external_video_tag:
+              loading: 'lazy',
+              allow: 'autoplay; fullscreen',
+              title: 'Video Mobile'
+          -}}
+        {%- elsif section.settings.video != blank -%}
+          {%- comment -%}Fall back to desktop video with mobile styles{%- endcomment -%}
+          {{- section.settings.video | video_tag:
+              autoplay: section.settings.autoplay_mobile,
+              loop: section.settings.loop_video_mobile,
+              muted: section.settings.muted_mobile,
+              controls: section.settings.show_controls_mobile,
+              playsinline: true,
+              preload: 'metadata',
+              style: 'width:100%;height:100%;object-fit:' | append: section.settings.video_object_fit_mobile
+          -}}
+        {%- elsif section.settings.video_url != blank -%}
+          {{- section.settings.video_url | external_video_tag:
+              loading: 'lazy',
+              allow: 'autoplay; fullscreen',
+              title: 'Video'
+          -}}
+        {%- else -%}
+          <div style="width:100%;min-height:200px;display:flex;align-items:center;justify-content:center;background:#111;color:#666;font-family:sans-serif;font-size:0.9rem;">
+            Add a mobile video in the Theme Editor (or desktop video will be used)
+          </div>
+        {%- endif -%}
+      </div>
 
     </div>
   </div>
@@ -121,23 +182,27 @@
   "settings": [
     {
       "type": "header",
-      "content": "Video Source"
+      "content": "── DESKTOP ──────────────────────"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Video Source"
     },
     {
       "type": "video",
       "id": "video",
-      "label": "Video (upload from Shopify)"
+      "label": "Desktop Video (upload)"
     },
     {
       "type": "video_url",
       "id": "video_url",
-      "label": "Video URL (YouTube or Vimeo)",
+      "label": "Desktop Video URL (YouTube / Vimeo)",
       "accept": ["youtube", "vimeo"],
       "info": "Used if no uploaded video is selected above."
     },
     {
       "type": "header",
-      "content": "Playback"
+      "content": "Desktop Playback"
     },
     {
       "type": "checkbox",
@@ -166,7 +231,7 @@
     },
     {
       "type": "header",
-      "content": "Video Display"
+      "content": "Desktop Video Display"
     },
     {
       "type": "select",
@@ -174,11 +239,11 @@
       "label": "Aspect Ratio",
       "default": "16/9",
       "options": [
-        { "value": "16/9",  "label": "16:9  (Landscape — YouTube default)" },
-        { "value": "4/3",   "label": "4:3   (Classic)" },
-        { "value": "1/1",   "label": "1:1   (Square)" },
-        { "value": "9/16",  "label": "9:16  (Portrait / Vertical)" },
-        { "value": "auto",  "label": "Auto  (native video dimensions)" }
+        { "value": "16/9",  "label": "16:9  — Landscape (default)" },
+        { "value": "4/3",   "label": "4:3   — Classic" },
+        { "value": "1/1",   "label": "1:1   — Square" },
+        { "value": "9/16",  "label": "9:16  — Portrait / Vertical" },
+        { "value": "auto",  "label": "Auto  — native size" }
       ]
     },
     {
@@ -233,7 +298,7 @@
     },
     {
       "type": "header",
-      "content": "Section Layout"
+      "content": "Desktop Section Layout"
     },
     {
       "type": "color",
@@ -275,6 +340,153 @@
       "type": "range",
       "id": "ph",
       "label": "Padding Sides",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "── MOBILE ───────────────────────"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Video Source"
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Mobile Video (upload)",
+      "info": "If blank, the desktop video will be used with mobile settings."
+    },
+    {
+      "type": "video_url",
+      "id": "video_url_mobile",
+      "label": "Mobile Video URL (YouTube / Vimeo)",
+      "accept": ["youtube", "vimeo"],
+      "info": "Used if no uploaded mobile video is selected above."
+    },
+    {
+      "type": "header",
+      "content": "Mobile Playback"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay_mobile",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "loop_video_mobile",
+      "label": "Loop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "muted_mobile",
+      "label": "Muted",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_controls_mobile",
+      "label": "Show Controls",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Mobile Video Display"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio_mobile",
+      "label": "Aspect Ratio (Mobile)",
+      "default": "9/16",
+      "options": [
+        { "value": "16/9",  "label": "16:9  — Landscape" },
+        { "value": "4/3",   "label": "4:3   — Classic" },
+        { "value": "1/1",   "label": "1:1   — Square" },
+        { "value": "9/16",  "label": "9:16  — Portrait / Vertical" },
+        { "value": "auto",  "label": "Auto  — native size" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "video_object_fit_mobile",
+      "label": "Video Fit (Mobile)",
+      "default": "cover",
+      "options": [
+        { "value": "cover",   "label": "Cover (fill, may crop)" },
+        { "value": "contain", "label": "Contain (show full video)" },
+        { "value": "fill",    "label": "Fill (stretch)" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "video_max_width_mobile",
+      "label": "Max Width (Mobile %)",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "video_border_radius_mobile",
+      "label": "Border Radius (Mobile)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile Section Layout"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_mobile",
+      "label": "Background Color (Mobile)",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "section_height_mobile",
+      "label": "Section Height (Mobile vh)",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "pt_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "pb_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "ph_mobile",
+      "label": "Padding Sides (Mobile)",
       "min": 0,
       "max": 120,
       "step": 4,
