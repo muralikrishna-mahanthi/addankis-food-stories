@@ -98,6 +98,9 @@
     },
     "video_heX83j": {
       "type": "video",
+      "custom_css": [
+        ".video-section {height: 100px}"
+      ],
       "name": "t:sections.video.presets.name",
       "settings": {
         "heading": "Video",
