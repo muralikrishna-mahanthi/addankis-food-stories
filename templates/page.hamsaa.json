@@ -543,7 +543,7 @@
         "video_object_fit_mobile": "cover",
         "video_max_width_mobile": 100,
         "video_border_radius_mobile": 0,
-        "bg_color_mobile": "#000000",
+        "bg_color_mobile": "#ffffff",
         "section_height_mobile": 70,
         "pt_mobile": 0,
         "pb_mobile": 0,
