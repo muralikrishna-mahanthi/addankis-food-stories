@@ -519,6 +519,7 @@
       "type": "video-first",
       "name": "Video First",
       "settings": {
+        "video": "shopify://files/videos/download.mp4",
         "autoplay": true,
         "loop_video": true,
         "muted": true,
