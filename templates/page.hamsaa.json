@@ -437,84 +437,6 @@
         "pb_desktop": 100
       }
     },
-    "17760793919685163c": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_a32dc21_XPBFNh": {
-          "type": "ai_gen_block_a32dc21",
-          "settings": {
-            "layout": "video_left",
-            "vertical_alignment": "center",
-            "video_column_width": 50,
-            "gap_between_columns": 40,
-            "video": "shopify://files/videos/download.mp4",
-            "video_autoplay": true,
-            "video_loop": true,
-            "video_muted": true,
-            "video_controls": false,
-            "video_border_radius": 0,
-            "heading": "Find Your Inner Peace Through Hamsaa",
-            "subheading": "More you discover about us, More you love us.",
-            "description": "",
-            "text_alignment": "left",
-            "heading_font_size": 42,
-            "mobile_heading_font_size": 28,
-            "heading_font_weight": "700",
-            "heading_line_height": 1.2,
-            "heading_color": "#efbf04",
-            "heading_margin_bottom": 20,
-            "subheading_font_size": 18,
-            "mobile_subheading_font_size": 16,
-            "subheading_font_weight": "600",
-            "subheading_line_height": 1.5,
-            "subheading_color": "#666666",
-            "subheading_margin_bottom": 15,
-            "description_font_size": 16,
-            "mobile_description_font_size": 14,
-            "description_line_height": 1.6,
-            "description_color": "#121212",
-            "description_margin_bottom": 25,
-            "button_text": "Discover about hamsaa",
-            "button_link": "",
-            "button_background_color": "#efbf04",
-            "button_text_color": "#ffffff",
-            "button_border_color": "#efbf04",
-            "button_hover_background_color": "#000000",
-            "button_hover_text_color": "#ffffff",
-            "button_hover_border_color": "#000000",
-            "button_secondary_text": "",
-            "button_secondary_link": "",
-            "button_secondary_background_color": "#ffffff",
-            "button_secondary_text_color": "#121212",
-            "button_secondary_border_color": "#121212",
-            "button_secondary_hover_background_color": "#f3f3f3",
-            "button_secondary_hover_text_color": "#121212",
-            "button_secondary_hover_border_color": "#121212",
-            "button_font_size": 16,
-            "button_font_weight": "600",
-            "button_padding_vertical": 14,
-            "button_padding_horizontal": 32,
-            "button_border_radius": 0,
-            "button_border_width": 1,
-            "text_padding_top": 0,
-            "text_padding_bottom": 45,
-            "text_padding_horizontal": 20,
-            "section_background_color": "#ffffff",
-            "section_padding_top": 50,
-            "section_padding_bottom": 50,
-            "container_width": 1200,
-            "container_padding_horizontal": 20,
-            "mobile_gap": 30,
-            "mobile_text_padding": 20
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_a32dc21_XPBFNh"
-      ],
-      "settings": {}
-    },
     "video_with_text_nj8TBq": {
       "type": "video-with-text",
       "name": "Video with Text",
@@ -544,7 +466,6 @@
     "sliding_products_7WRryd",
     "us_brands_about_us_6kR9cT",
     "us_brands_about_us_2_Ad9VDy",
-    "17760793919685163c",
     "video_with_text_nj8TBq"
   ]
 }
