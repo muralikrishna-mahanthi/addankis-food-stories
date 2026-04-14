@@ -87,14 +87,13 @@
   }
 
   .fmcg-marquee-wall__img {
-    height: var(--image-scale);
-    width: auto;
+    height: var(--image-scale) !important;
+    width: auto !important;
+    max-width: none !important;
     margin: 0;
     object-fit: cover;
     border-radius: var(--image-radius);
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
+    display: block !important;
   }
 
   .fmcg-marquee-wall__svg svg {
