@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-bottom: 6vh; /* Pushes content away from the bottom of the screen */
+    padding-bottom: {{ section.settings.track_pb }}vh; /* Pushes content away from the bottom of the screen */
   }
 
   .strategy-scroller__header {
@@ -217,7 +217,8 @@
     },
     { "type": "range", "id": "card_gap", "label": "Gap between Cards", "min": 0, "max": 20, "step": 0.5, "default": 4.0, "unit": "rem" },
     { "type": "range", "id": "track_pl", "label": "Initial Left Offset", "min": 0, "max": 20, "step": 0.5, "default": 4.0, "unit": "rem" },
-    { "type": "range", "id": "track_pr", "label": "Final Right Offset", "min": 0, "max": 20, "step": 0.5, "default": 4.0, "unit": "rem" }
+    { "type": "range", "id": "track_pr", "label": "Final Right Offset", "min": 0, "max": 20, "step": 0.5, "default": 4.0, "unit": "rem" },
+    { "type": "range", "id": "track_pb", "label": "Bottom Space (Lift)", "min": 0, "max": 20, "step": 1, "default": 6, "unit": "vh" }
   ],
   "blocks": [
     {
