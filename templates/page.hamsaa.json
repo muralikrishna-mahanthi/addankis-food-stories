@@ -472,6 +472,7 @@
           "type": "pillar",
           "settings": {
             "image": "shopify://shop_images/ADDANKI_S_FOOD_STORIES_PVT_LTD.png",
+            "step_text": "General trade retail stores",
             "title": "General trade retail stores",
             "text": "HAMSAA products are stocked in kirana stores, supermarkets, and neighborhood retail outlets across urban and semi-urban India, ensuring everyday accessibility for the mass consumer"
           }
@@ -479,6 +480,7 @@
         "pillar_qYwgtW": {
           "type": "pillar",
           "settings": {
+            "step_text": "",
             "title": "Circular Economy",
             "text": "Building a positive value chain for every sip and every bite."
           }
@@ -486,6 +488,7 @@
         "pillar_BjqLr3": {
           "type": "pillar",
           "settings": {
+            "step_text": "",
             "title": "Community Joy",
             "text": "Building a positive value chain for every sip and every bite."
           }
@@ -510,7 +513,13 @@
         "track_pl": 4,
         "track_pr": 4,
         "track_pb_desktop": 30,
-        "track_pb_mobile": 5
+        "track_pb_mobile": 5,
+        "heading_size_desktop": 8,
+        "heading_size_mobile": 5,
+        "card_heading_size_desktop": 5,
+        "card_heading_size_mobile": 2.4,
+        "card_text_size_desktop": 1.6,
+        "card_text_size_mobile": 1.6
       }
     }
   },
