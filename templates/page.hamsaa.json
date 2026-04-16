@@ -478,22 +478,38 @@
         "pillar_qYwgtW": {
           "type": "pillar",
           "settings": {
-            "title": "Circular Economy",
-            "text": "Building a positive value chain for every sip and every bite."
+            "title": "Super stockists and distributors",
+            "text": "A tiered distribution network of super stockists and regional distributors handles bulk movement of goods, ensuring timely replenishment across geographies and reducing supply chain gaps."
           }
         },
         "pillar_BjqLr3": {
           "type": "pillar",
           "settings": {
-            "title": "Community Joy",
-            "text": "Building a positive value chain for every sip and every bite."
+            "title": "Wellness and lifestyle outlets",
+            "text": "Targeting health-conscious consumers, HAMSAA products are available in pharmacies, organic stores, ayurvedic shops, and lifestyle retail chains that align with the brand's wellness positioning."
+          }
+        },
+        "pillar_GkVwWj": {
+          "type": "pillar",
+          "settings": {
+            "title": "Online marketplaces",
+            "text": "Products are listed on major e-commerce platforms like Amazon, Flipkart, and Blinkit, enabling nationwide reach, quick delivery, and access to digital-first consumers."
+          }
+        },
+        "pillar_NL8zpj": {
+          "type": "pillar",
+          "settings": {
+            "title": "Institutional buyers",
+            "text": "HAMSAA supplies to and bulk buyers through B2B channels — an important revenue stream for FMCG brands scaling volume."
           }
         }
       },
       "block_order": [
         "pillar_thfaex",
         "pillar_qYwgtW",
-        "pillar_BjqLr3"
+        "pillar_BjqLr3",
+        "pillar_GkVwWj",
+        "pillar_NL8zpj"
       ],
       "custom_css": [],
       "name": "ASFPL Strategy Scroller",
