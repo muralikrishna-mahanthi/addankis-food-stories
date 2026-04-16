@@ -9,20 +9,6 @@
  */
 {
   "sections": {
-    "custom_follow_us": {
-      "type": "custom-follow-us",
-      "blocks": {
-        "soc_1": { "type": "social_icon", "settings": { "platform": "instagram" } },
-        "soc_2": { "type": "social_icon", "settings": { "platform": "facebook" } },
-        "soc_3": { "type": "social_icon", "settings": { "platform": "tiktok" } },
-        "soc_4": { "type": "social_icon", "settings": { "platform": "x" } },
-        "soc_5": { "type": "social_icon", "settings": { "platform": "youtube" } }
-      },
-      "block_order": ["soc_1", "soc_2", "soc_3", "soc_4", "soc_5"],
-      "settings": {
-        "bg_color": "#f9f8f6"
-      }
-    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -664,7 +650,6 @@
     "us_brands_about_us_2_Ad9VDy",
     "video_with_text_nj8TBq",
     "asfpl_strategy_scroller_WdjFae",
-    "177632081915f62c41",
-    "custom_follow_us"
+    "177632081915f62c41"
   ]
 }
