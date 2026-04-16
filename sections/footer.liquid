@@ -124,6 +124,18 @@
   }
   @media screen and (min-width: 1200px) { .footer-portal { display: block; } }
 
+  .footer-brand-name {
+    {% if section.settings.brand_font != blank %}
+      font-family: {{ section.settings.brand_font.family }}, {{ section.settings.brand_font.fallback_families }};
+    {% endif %}
+    font-size: {{ section.settings.brand_size }}px;
+    font-weight: {{ section.settings.brand_weight }};
+    color: {{ section.settings.brand_color | default: 'inherit' }};
+    margin-bottom: {{ section.settings.brand_mb }}px;
+    margin-top: 0;
+    line-height: 1.2;
+    display: block;
+  }
 {%- endstyle -%}
 
 <footer class="footer">
@@ -136,7 +148,13 @@
                alt="{{ shop.name }}" 
                class="footer-logo-img"
                loading="lazy">
-        {%- else -%}
+        {%- endif -%}
+
+        {%- if section.settings.brand_name != blank -%}
+          <div class="footer-brand-name">
+            {{ section.settings.brand_name }}
+          </div>
+        {%- elsif section.settings.logo == blank -%}
           <h2 style="color:inherit; margin:0;">{{ shop.name }}</h2>
         {%- endif -%}
       </div>
@@ -254,6 +272,58 @@
       "unit": "px",
       "label": "Logo Width",
       "default": 180
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "Addankis Food Stories"
+    },
+    {
+      "type": "font_picker",
+      "id": "brand_font",
+      "label": "Brand Name Font",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "brand_size",
+      "label": "Brand Name Size",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "brand_weight",
+      "label": "Brand Name Weight",
+      "default": "700",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "brand_color",
+      "label": "Brand Name Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "brand_mb",
+      "label": "Brand Name Margin Bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 20,
+      "unit": "px"
     },
     {
       "type": "header",
