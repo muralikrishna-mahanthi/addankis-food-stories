@@ -72,110 +72,34 @@
       "name": "Rich text",
       "settings": {}
     },
-    "split_image_bKREzK": {
+    "split_image_PpWeH8": {
       "type": "split-image",
       "name": "Split Image (3 Items)",
       "settings": {
-        "width_1": 25,
-        "width_2": 50,
-        "width_3": 25,
+        "image_1": "shopify://shop_images/download.jpg",
+        "image_2": "shopify://shop_images/Screenshot_2026-04-16_190303.png",
+        "image_3": "shopify://shop_images/VSH8288.webp",
+        "width_1": 26,
+        "width_2": 46,
+        "width_3": 26,
         "height_desktop": 500,
         "height_mobile": 300,
-        "border_radius": 0,
-        "gap": 0,
-        "bg_color": "rgba(0,0,0,0)",
+        "border_radius": 12,
+        "gap": 10,
+        "bg_color": "#ffffff",
         "container_width": 1400,
-        "side_padding": 2,
+        "side_padding": 1,
         "stack_on_mobile": true,
         "pt_desktop": 50,
         "pb_desktop": 50,
         "pt_mobile": 30,
         "pb_mobile": 30
       }
-    },
-    "sliding_products_MdRbTa": {
-      "type": "sliding-products",
-      "blocks": {
-        "product_fAcqqh": {
-          "type": "product",
-          "settings": {
-            "title": "Camphor Oil",
-            "link": ""
-          }
-        },
-        "product_6L7WL4": {
-          "type": "product",
-          "settings": {
-            "title": "Wellness Balm",
-            "link": ""
-          }
-        },
-        "product_Mbftb6": {
-          "type": "product",
-          "settings": {
-            "title": "Pure Camphor",
-            "link": ""
-          }
-        },
-        "product_tLwXyh": {
-          "type": "product",
-          "settings": {
-            "title": "Aroma Diffuser",
-            "link": ""
-          }
-        },
-        "product_cxnPig": {
-          "type": "product",
-          "settings": {
-            "title": "Essential Mist",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_fAcqqh",
-        "product_6L7WL4",
-        "product_Mbftb6",
-        "product_tLwXyh",
-        "product_cxnPig"
-      ],
-      "name": "Sliding Products",
-      "settings": {
-        "heading": "Featured Catalog",
-        "heading_font": "assistant_n4",
-        "heading_size_desktop": 4.5,
-        "heading_size_mobile": 2.5,
-        "heading_weight": "700",
-        "heading_color": "#1a1a1a",
-        "description": "<p>Discover our range of pure, crystalline wellness products.</p>",
-        "desc_font": "assistant_n4",
-        "desc_size_desktop": 18,
-        "desc_size_mobile": 16,
-        "desc_weight": "400",
-        "desc_color": "#4a4a4a",
-        "btn_label": "Shop All Collection",
-        "btn_link": "",
-        "btn_bg_color": "#1a1a1a",
-        "btn_text_color": "#ffffff",
-        "btn_hover_color": "#c5a47e",
-        "btn_radius": 50,
-        "slide_font": "assistant_n4",
-        "image_radius": 20,
-        "accent_color": "#c5a47e",
-        "u_curve_intensity": 80,
-        "bg_color": "#ffffff",
-        "container_width": 1400,
-        "pt_desktop": 80,
-        "pb_desktop": 80,
-        "pt_mobile": 50,
-        "pb_mobile": 50
-      }
     }
   },
   "order": [
     "main",
     "blocks_rp3xn6",
-    "split_image_bKREzK",
-    "sliding_products_MdRbTa"
+    "split_image_PpWeH8"
   ]
 }
