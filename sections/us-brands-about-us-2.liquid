@@ -30,7 +30,6 @@
   }
   @media screen and (max-width: 749px) {
     #UsBrandsAbout2-{{ section.id }} {
-      height: auto;
       padding: 60px 0;
     }
   }
@@ -143,32 +142,40 @@
     .uba2-container-{{ section.id }} {
       flex-direction: column-reverse;
       padding: 0 2rem;
-      height: auto;
     }
-    .uba2-left-{{ section.id }},
     .uba2-right-{{ section.id }} {
+      flex: 0 0 100%;
+      max-width: 100%;
+      position: sticky;
+      top: 10vh;
+      padding-left: 0;
+      padding-bottom: 2rem;
+      z-index: 5;
+      background: {{ section.settings.bg_color }};
+    }
+    .uba2-left-{{ section.id }} {
+      flex: 0 0 100%;
+      width: 100%;
       position: relative;
       top: 0;
-      width: 100%;
-      max-width: 100%;
-      padding: 0;
-      flex: none;
-    }
-    .uba2-right-{{ section.id }} {
-      padding-bottom: 3rem;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding-top: 2rem;
     }
     .uba2-line-{{ section.id }} {
-      display: none;
+      display: block;
     }
     .uba2-content-{{ section.id }} {
-      padding-right: 0;
+      padding-right: 3rem;
     }
     .uba2-dot-{{ section.id }} {
-      display: none;
+      display: block;
+      right: -3.1rem;
     }
     .uba2-point-{{ section.id }} {
-      opacity: 1 !important;
-      transform: none !important;
+      opacity: 0;
+      transform: translateY(15px);
     }
   }
 {%- endstyle -%}
@@ -293,18 +300,6 @@
   if (!points.length) return;
 
   function onScroll() {
-    /* Mobile: simple fade-in on viewport entry */
-    if (window.innerWidth < 750) {
-      points.forEach(function(p) {
-        if (p.getBoundingClientRect().top < window.innerHeight * 0.85) {
-          p.style.opacity = '1';
-          p.style.transform = 'translateY(0)';
-          p.classList.add('is-active');
-        }
-      });
-      return;
-    }
-
     var rect = sectionEl.getBoundingClientRect();
     var totalScroll = sectionEl.offsetHeight - window.innerHeight;
     if (totalScroll <= 0) return;
