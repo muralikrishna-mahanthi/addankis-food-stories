@@ -72,8 +72,8 @@
 
   @media screen and (max-width: 749px) {
     .sliding-products__track-wrap {
-      overflow: hidden; /* Prevent horizontal scroll on mobile with padding */
-      padding: 3rem 30px; /* 30px side padding as requested */
+      overflow: hidden;
+      padding: 3rem 0; /* Removed side padding to ensure centered alignment */
     }
   }
 
@@ -86,7 +86,7 @@
   }
 
   .sliding-products__slide {
-    flex: 0 0 65%; /* Width for 1 full + side peeks visibility */
+    flex: 0 0 65%;
     margin: 0 1rem;
     display: flex;
     flex-direction: column;
@@ -94,6 +94,13 @@
     transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     position: relative;
     backface-visibility: hidden;
+  }
+
+  @media screen and (max-width: 749px) {
+    .sliding-products__slide {
+      flex: 0 0 80%; /* Targeted width for mobile centering */
+      margin: 0 10px;
+    }
   }
 
   @media screen and (min-width: 750px) {
@@ -305,7 +312,7 @@
         if (i === currentIndex) {
           yOffset = 0;
           rotation = 0;
-          scale = isMobile ? 1.1 : 1.4; // Slightly larger focused center
+          scale = isMobile ? 1.05 : 1.4; // Slightly more balanced focus for mobile
           opacity = 1;
 
           // Update Info Bar Title
