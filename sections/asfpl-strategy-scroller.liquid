@@ -1,4 +1,20 @@
 {%- style -%}
+  {%- if section.settings.heading_font != blank -%}
+    {{ section.settings.heading_font | font_face: display: 'swap' }}
+  {%- endif -%}
+  {%- if section.settings.subheading_font != blank -%}
+    {{ section.settings.subheading_font | font_face: display: 'swap' }}
+  {%- endif -%}
+  {%- if section.settings.description_font != blank -%}
+    {{ section.settings.description_font | font_face: display: 'swap' }}
+  {%- endif -%}
+  {%- if section.settings.card_heading_font != blank -%}
+    {{ section.settings.card_heading_font | font_face: display: 'swap' }}
+  {%- endif -%}
+  {%- if section.settings.card_text_font != blank -%}
+    {{ section.settings.card_text_font | font_face: display: 'swap' }}
+  {%- endif -%}
+
   .strategy-scroller-{{ section.id }} {
     position: relative;
     /* Height determines how 'long' the horizontal scroll feels */
@@ -23,15 +39,51 @@
     padding: 0 4rem;
     margin-bottom: 4rem;
     z-index: 10;
+    text-align: {{ section.settings.header_alignment }};
+  }
+
+  .strategy-scroller__subheading {
+    font-size: {{ section.settings.subheading_size_desktop }}rem;
+    {% if section.settings.subheading_font != blank %}
+    font-family: {{ section.settings.subheading_font.family }}, {{ section.settings.subheading_font.fallback_families }};
+    {% endif %}
+    font-weight: {{ section.settings.subheading_weight }};
+    color: {{ section.settings.subheading_color }};
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
   }
 
   .strategy-scroller__heading {
     font-size: {{ section.settings.heading_size_desktop }}rem;
-    font-weight: 950;
+    {% if section.settings.heading_font != blank %}
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    {% endif %}
+    font-weight: {{ section.settings.heading_weight }};
     line-height: 0.9;
     letter-spacing: -0.04em;
     text-transform: uppercase;
-    color: {{ section.settings.text_color }};
+    color: {{ section.settings.heading_color }};
+    margin: 0;
+  }
+
+  .strategy-scroller__description {
+    font-size: {{ section.settings.description_size_desktop }}rem;
+    {% if section.settings.description_font != blank %}
+    font-family: {{ section.settings.description_font.family }}, {{ section.settings.description_font.fallback_families }};
+    {% endif %}
+    font-weight: {{ section.settings.description_weight }};
+    color: {{ section.settings.description_color }};
+    margin-top: 2rem;
+    line-height: 1.5;
+    max-width: 800px;
+    {%- if section.settings.header_alignment == 'center' -%}
+      margin-left: auto;
+      margin-right: auto;
+    {%- elsif section.settings.header_alignment == 'right' -%}
+      margin-left: auto;
+    {%- endif -%}
   }
 
   .strategy-scroller__track-wrapper {
@@ -92,17 +144,25 @@
 
   .strategy-scroller__card-step {
     font-size: {{ section.settings.card_heading_size_desktop }}rem;
-    font-weight: 700;
+    {% if section.settings.card_heading_font != blank %}
+    font-family: {{ section.settings.card_heading_font.family }}, {{ section.settings.card_heading_font.fallback_families }};
+    {% endif %}
+    font-weight: {{ section.settings.card_heading_weight }};
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 1rem;
     display: block;
     line-height: 1.1;
-    color: {{ section.settings.accent_color | default: '#3b82f6' }};
+    color: {{ section.settings.card_heading_color }};
   }
 
   .strategy-scroller__card-text {
     font-size: {{ section.settings.card_text_size_desktop }}rem;
+    {% if section.settings.card_text_font != blank %}
+    font-family: {{ section.settings.card_text_font.family }}, {{ section.settings.card_text_font.fallback_families }};
+    {% endif %}
+    font-weight: {{ section.settings.card_text_weight }};
+    color: {{ section.settings.card_text_color }};
     line-height: 1.4;
     opacity: 0.8;
   }
@@ -112,8 +172,14 @@
       width: 85vw;
       height: 50vh;
     }
+    .strategy-scroller__subheading {
+      font-size: {{ section.settings.subheading_size_mobile }}rem;
+    }
     .strategy-scroller__heading {
       font-size: {{ section.settings.heading_size_mobile }}rem;
+    }
+    .strategy-scroller__description {
+      font-size: {{ section.settings.description_size_mobile }}rem;
     }
     .strategy-scroller__card-step {
       font-size: {{ section.settings.card_heading_size_mobile }}rem;
@@ -131,7 +197,15 @@
   <div class="strategy-scroller__sticky">
     
     <div class="strategy-scroller__header">
-      <h2 class="strategy-scroller__heading">{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <span class="strategy-scroller__subheading">{{ section.settings.subheading }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="strategy-scroller__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <p class="strategy-scroller__description">{{ section.settings.description }}</p>
+      {%- endif -%}
     </div>
 
     <div class="strategy-scroller__track-wrapper">
@@ -207,9 +281,59 @@
   "class": "section",
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Background", "default": "#000000" },
-    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#ffffff" },
-    { "type": "color", "id": "accent_color", "label": "Accent Color", "default": "#3b82f6" },
-    { "type": "text", "id": "heading", "label": "Section Heading", "default": "OUR STRATEGY" },
+    {
+      "type": "header",
+      "content": "Header Layout"
+    },
+    { "type": "select", "id": "header_alignment", "label": "Alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}], "default": "left" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "PHASE 01" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "OUR STRATEGY" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "A brief overview of the strategy and its pillars." },
+    {
+      "type": "header",
+      "content": "Typography: Subheading"
+    },
+    { "type": "font_picker", "id": "subheading_font", "label": "Font Family", "default": "assistant_n4" },
+    { "type": "select", "id": "subheading_weight", "label": "Font Weight", "options": [{"value":"300","label":"Light"},{"value":"400","label":"Normal"},{"value":"500","label":"Medium"},{"value":"600","label":"Semi Bold"},{"value":"700","label":"Bold"},{"value":"800","label":"Extra Bold"},{"value":"900","label":"Black"}], "default": "600" },
+    { "type": "color", "id": "subheading_color", "label": "Color", "default": "#3b82f6" },
+    { "type": "range", "id": "subheading_size_desktop", "label": "Size (Desktop)", "min": 1, "max": 10, "step": 0.2, "default": 1.6, "unit": "rem" },
+    { "type": "range", "id": "subheading_size_mobile", "label": "Size (Mobile)", "min": 1, "max": 8, "step": 0.2, "default": 1.4, "unit": "rem" },
+    {
+      "type": "header",
+      "content": "Typography: Heading"
+    },
+    { "type": "font_picker", "id": "heading_font", "label": "Font Family", "default": "assistant_n4" },
+    { "type": "select", "id": "heading_weight", "label": "Font Weight", "options": [{"value":"300","label":"Light"},{"value":"400","label":"Normal"},{"value":"500","label":"Medium"},{"value":"600","label":"Semi Bold"},{"value":"700","label":"Bold"},{"value":"800","label":"Extra Bold"},{"value":"900","label":"Black"}], "default": "900" },
+    { "type": "color", "id": "heading_color", "label": "Color", "default": "#ffffff" },
+    { "type": "range", "id": "heading_size_desktop", "label": "Size (Desktop)", "min": 2, "max": 20, "step": 0.5, "default": 8.0, "unit": "rem" },
+    { "type": "range", "id": "heading_size_mobile", "label": "Size (Mobile)", "min": 2, "max": 15, "step": 0.5, "default": 5.0, "unit": "rem" },
+    {
+      "type": "header",
+      "content": "Typography: Header Description"
+    },
+    { "type": "font_picker", "id": "description_font", "label": "Font Family", "default": "assistant_n4" },
+    { "type": "select", "id": "description_weight", "label": "Font Weight", "options": [{"value":"300","label":"Light"},{"value":"400","label":"Normal"},{"value":"500","label":"Medium"},{"value":"600","label":"Semi Bold"},{"value":"700","label":"Bold"},{"value":"800","label":"Extra Bold"},{"value":"900","label":"Black"}], "default": "400" },
+    { "type": "color", "id": "description_color", "label": "Color", "default": "#ffffff" },
+    { "type": "range", "id": "description_size_desktop", "label": "Size (Desktop)", "min": 1, "max": 5, "step": 0.1, "default": 1.6, "unit": "rem" },
+    { "type": "range", "id": "description_size_mobile", "label": "Size (Mobile)", "min": 1, "max": 4, "step": 0.1, "default": 1.4, "unit": "rem" },
+    {
+      "type": "header",
+      "content": "Typography: Card Pillar Name"
+    },
+    { "type": "font_picker", "id": "card_heading_font", "label": "Font Family", "default": "assistant_n4" },
+    { "type": "select", "id": "card_heading_weight", "label": "Font Weight", "options": [{"value":"300","label":"Light"},{"value":"400","label":"Normal"},{"value":"500","label":"Medium"},{"value":"600","label":"Semi Bold"},{"value":"700","label":"Bold"},{"value":"800","label":"Extra Bold"},{"value":"900","label":"Black"}], "default": "700" },
+    { "type": "color", "id": "card_heading_color", "label": "Color", "default": "#3b82f6" },
+    { "type": "range", "id": "card_heading_size_desktop", "label": "Size (Desktop)", "min": 1, "max": 10, "step": 0.2, "default": 1.8, "unit": "rem" },
+    { "type": "range", "id": "card_heading_size_mobile", "label": "Size (Mobile)", "min": 1, "max": 8, "step": 0.2, "default": 1.6, "unit": "rem" },
+    {
+      "type": "header",
+      "content": "Typography: Card Text"
+    },
+    { "type": "font_picker", "id": "card_text_font", "label": "Font Family", "default": "assistant_n4" },
+    { "type": "select", "id": "card_text_weight", "label": "Font Weight", "options": [{"value":"300","label":"Light"},{"value":"400","label":"Normal"},{"value":"500","label":"Medium"},{"value":"600","label":"Semi Bold"},{"value":"700","label":"Bold"},{"value":"800","label":"Extra Bold"},{"value":"900","label":"Black"}], "default": "400" },
+    { "type": "color", "id": "card_text_color", "label": "Color", "default": "#ffffff" },
+    { "type": "range", "id": "card_text_size_desktop", "label": "Size (Desktop)", "min": 1, "max": 5, "step": 0.1, "default": 1.6, "unit": "rem" },
+    { "type": "range", "id": "card_text_size_mobile", "label": "Size (Mobile)", "min": 1, "max": 4, "step": 0.1, "default": 1.6, "unit": "rem" },
     {
       "type": "header",
       "content": "Card Inner Padding"
@@ -225,17 +349,7 @@
     { "type": "range", "id": "track_pl", "label": "Initial Left Offset", "min": 0, "max": 20, "step": 0.5, "default": 4.0, "unit": "rem" },
     { "type": "range", "id": "track_pr", "label": "Final Right Offset", "min": 0, "max": 20, "step": 0.5, "default": 4.0, "unit": "rem" },
     { "type": "range", "id": "track_pb_desktop", "label": "Desktop Bottom Space Lift", "min": 0, "max": 30, "step": 1, "default": 6, "unit": "vh" },
-    { "type": "range", "id": "track_pb_mobile", "label": "Mobile Bottom Space Lift", "min": 0, "max": 30, "step": 1, "default": 12, "unit": "vh" },
-    {
-      "type": "header",
-      "content": "Typography Settings"
-    },
-    { "type": "range", "id": "heading_size_desktop", "label": "Section Heading Size (Desktop)", "min": 2, "max": 20, "step": 0.5, "default": 8.0, "unit": "rem" },
-    { "type": "range", "id": "heading_size_mobile", "label": "Section Heading Size (Mobile)", "min": 2, "max": 15, "step": 0.5, "default": 5.0, "unit": "rem" },
-    { "type": "range", "id": "card_heading_size_desktop", "label": "Card Pillar Name Size (Desktop)", "min": 1, "max": 10, "step": 0.2, "default": 1.8, "unit": "rem" },
-    { "type": "range", "id": "card_heading_size_mobile", "label": "Card Pillar Name Size (Mobile)", "min": 1, "max": 8, "step": 0.2, "default": 1.6, "unit": "rem" },
-    { "type": "range", "id": "card_text_size_desktop", "label": "Card Text Size (Desktop)", "min": 1, "max": 5, "step": 0.1, "default": 1.6, "unit": "rem" },
-    { "type": "range", "id": "card_text_size_mobile", "label": "Card Text Size (Mobile)", "min": 1, "max": 4, "step": 0.1, "default": 1.6, "unit": "rem" }
+    { "type": "range", "id": "track_pb_mobile", "label": "Mobile Bottom Space Lift", "min": 0, "max": 30, "step": 1, "default": 12, "unit": "vh" }
   ],
   "blocks": [
     {
