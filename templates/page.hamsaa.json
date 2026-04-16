@@ -471,8 +471,7 @@
         "pillar_thfaex": {
           "type": "pillar",
           "settings": {
-            "image": "shopify://shop_images/ADDANKI_S_FOOD_STORIES_PVT_LTD.png",
-            "step_text": "General trade retail stores",
+            "step_text": "",
             "title": "General trade retail stores",
             "text": "HAMSAA products are stocked in kirana stores, supermarkets, and neighborhood retail outlets across urban and semi-urban India, ensuring everyday accessibility for the mass consumer"
           }
