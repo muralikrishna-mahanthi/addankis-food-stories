@@ -11,6 +11,20 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "custom_follow_us": {
+      "type": "custom-follow-us",
+      "blocks": {
+        "soc_1": { "type": "social_icon", "settings": { "platform": "instagram" } },
+        "soc_2": { "type": "social_icon", "settings": { "platform": "facebook" } },
+        "soc_3": { "type": "social_icon", "settings": { "platform": "tiktok" } },
+        "soc_4": { "type": "social_icon", "settings": { "platform": "x" } },
+        "soc_5": { "type": "social_icon", "settings": { "platform": "youtube" } }
+      },
+      "block_order": ["soc_1", "soc_2", "soc_3", "soc_4", "soc_5"],
+      "settings": {
+        "bg_color": "#f9f8f6"
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -42,6 +56,7 @@
     }
   },
   "order": [
+    "custom_follow_us",
     "footer"
   ]
 }
