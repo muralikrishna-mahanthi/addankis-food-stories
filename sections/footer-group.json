@@ -17,8 +17,9 @@
         "link_list_yQkqKU": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
-            "menu": "main-menu"
+            "heading": "",
+            "menu": "main-menu",
+            "show_external_icon": false
           }
         }
       },
@@ -26,16 +27,15 @@
         "link_list_yQkqKU"
       ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
+        "bg_color": "#002e50",
+        "text_color": "#ffffff",
+        "logo_width": 180,
+        "link_font": "sans_serif_n4",
+        "link_size": 16,
+        "link_weight": "700",
         "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
-        "margin_top": 0,
+        "copyright_text": "©AFSPL 2026",
+        "sub_menu": "",
         "padding_top": 35,
         "padding_bottom": 35
       }
