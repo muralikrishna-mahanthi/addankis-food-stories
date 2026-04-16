@@ -471,7 +471,6 @@
         "pillar_thfaex": {
           "type": "pillar",
           "settings": {
-            "step_text": "",
             "title": "General trade retail stores",
             "text": "HAMSAA products are stocked in kirana stores, supermarkets, and neighborhood retail outlets across urban and semi-urban India, ensuring everyday accessibility for the mass consumer"
           }
@@ -479,7 +478,6 @@
         "pillar_qYwgtW": {
           "type": "pillar",
           "settings": {
-            "step_text": "",
             "title": "Circular Economy",
             "text": "Building a positive value chain for every sip and every bite."
           }
@@ -487,7 +485,6 @@
         "pillar_BjqLr3": {
           "type": "pillar",
           "settings": {
-            "step_text": "",
             "title": "Community Joy",
             "text": "Building a positive value chain for every sip and every bite."
           }
@@ -506,7 +503,7 @@
         "accent_color": "#3b82f6",
         "heading": "OUR STRATEGY",
         "card_pt": 0,
-        "card_pb": 5.5,
+        "card_pb": 0,
         "card_px": 3,
         "card_gap": 4,
         "track_pl": 4,
