@@ -41,19 +41,29 @@
     height: 100%;
     opacity: 0;
     visibility: hidden;
-    transition: opacity {{ section.settings.fade_speed }}ms cubic-bezier(0.4, 0, 0.2, 1), 
-                transform {{ section.settings.fade_speed }}ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all {{ section.settings.fade_speed }}ms cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     gap: {{ section.settings.column_gap }}px;
     z-index: 1;
-    transform: scale(1.02);
   }
+
+  /* Fade & Scale (Zoom) */
+  {%- if section.settings.transition_type == 'zoom' -%}
+    .split-image-slide__slide { transform: scale(1.05); }
+    .split-image-slide__slide.is-active { transform: scale(1); }
+  {%- endif -%}
+
+  /* Slide Animation */
+  {%- if section.settings.transition_type == 'slide' -%}
+    .split-image-slide__slide { transform: translateX(100%); }
+    .split-image-slide__slide.is-active { transform: translateX(0); }
+    .split-image-slide__slide.is-prev { transform: translateX(-100%); }
+  {%- endif -%}
 
   .split-image-slide__slide.is-active {
     opacity: 1;
     visibility: visible;
     z-index: 2;
-    transform: scale(1);
   }
 
   .split-image-slide__column {
@@ -293,11 +303,16 @@
     let interval = null;
     const autoplaySpeed = parseInt(container.dataset.autoplay) * 1000;
 
-    function updateUI(index) {
+    function updateUI(index, direction = 'next') {
       // Update Desktop Classes
       if (window.innerWidth >= 750) {
         slides.forEach((slide, i) => {
-          slide.classList.toggle('is-active', i === index);
+          slide.classList.remove('is-active', 'is-prev');
+          if (i === index) {
+            slide.classList.add('is-active');
+          } else if (i === currentIndex) {
+            slide.classList.add('is-prev');
+          }
         });
       } else {
         // Smoothly scroll on mobile
@@ -318,12 +333,12 @@
 
     function goToNext() {
       const nextIndex = (currentIndex + 1) % slides.length;
-      updateUI(nextIndex);
+      updateUI(nextIndex, 'next');
     }
 
     function goToPrev() {
       const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
-      updateUI(prevIndex);
+      updateUI(prevIndex, 'prev');
     }
 
     if (nextBtn) nextBtn.addEventListener('click', () => { goToNext(); resetAutoplay(); });
@@ -498,6 +513,17 @@
       "label": "Autoplay Speed (0 to disable)"
     },
     {
+      "type": "select",
+      "id": "transition_type",
+      "label": "Animation Style",
+      "options": [
+        { "value": "fade", "label": "Classic Fade" },
+        { "value": "zoom", "label": "Fade & Scale" },
+        { "value": "slide", "label": "Horizontal Slide" }
+      ],
+      "default": "zoom"
+    },
+    {
       "type": "range",
       "id": "fade_speed",
       "min": 400,
@@ -505,7 +531,7 @@
       "step": 100,
       "default": 800,
       "unit": "ms",
-      "label": "Fade Transition Duration"
+      "label": "Transition Duration"
     },
     {
       "type": "color",
