@@ -131,13 +131,13 @@
         "tab_iR6JRB": {
           "type": "tab",
           "settings": {
-            "title": "PHILIPS"
+            "title": "Philips"
           }
         },
         "product_TrBxBN": {
           "type": "product",
           "settings": {
-            "tab_name": "PHILIPS",
+            "tab_name": "Philips",
             "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_make_the_image_clear.png",
             "title": "Luxury Essential Oil",
             "link": ""
@@ -146,7 +146,7 @@
         "product_UBgXfe": {
           "type": "product",
           "settings": {
-            "tab_name": "PHILIPS",
+            "tab_name": "Philips",
             "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_make_the_image_clear.png",
             "title": "Luxury Essential Oil",
             "link": ""
@@ -155,7 +155,7 @@
         "product_eMVVxn": {
           "type": "product",
           "settings": {
-            "tab_name": "PHILIPS",
+            "tab_name": "Philips",
             "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_make_the_image_clear.png",
             "title": "Luxury Essential Oil",
             "link": ""
@@ -164,13 +164,19 @@
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
-            "title": "Food"
+            "title": "Flower organics"
           }
         },
         "tab_CMtdWj": {
           "type": "tab",
           "settings": {
-            "title": "Drinks"
+            "title": "Ripple purple"
+          }
+        },
+        "tab_hF6nxB": {
+          "type": "tab",
+          "settings": {
+            "title": "Mangalam"
           }
         }
       },
@@ -180,7 +186,8 @@
         "product_UBgXfe",
         "product_eMVVxn",
         "tab_bMUeVX",
-        "tab_CMtdWj"
+        "tab_CMtdWj",
+        "tab_hF6nxB"
       ],
       "name": "Heading Sliding Products",
       "settings": {
@@ -194,7 +201,7 @@
         "inactive_tab_text": "#444444",
         "tab_pv": 18,
         "tab_ph": 30,
-        "btn_label": "Shop HAMSAA",
+        "btn_label": "Shop brands",
         "btn_link": "",
         "btn_bg_color": "#e8c15a",
         "btn_text_color": "#ffffff",
