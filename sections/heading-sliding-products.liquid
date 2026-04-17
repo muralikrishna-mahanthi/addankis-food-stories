@@ -35,7 +35,7 @@
 
   .heading-sliding-products__tabs {
     display: inline-flex;
-    background: #f4f4f4; /* Light grey pill background */
+    background: {{ section.settings.tabs_container_bg | default: '#f2f2f2' }}; 
     padding: 6px;
     border-radius: 60px;
     gap: 4px;
@@ -43,7 +43,7 @@
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    position: relative; /* For indicator */
+    position: relative;
   }
 
   .heading-sliding-products__tabs::-webkit-scrollbar {
@@ -55,10 +55,10 @@
     top: 5px;
     left: 0;
     height: calc(100% - 10px);
-    background-color: {{ section.settings.active_tab_bg | default: '#badb7e' }};
+    background-color: {{ section.settings.active_tab_bg | default: '#c0df8a' }};
     border-radius: 50px;
     transition: width 0.3s ease, transform 0.3s ease, opacity 0.2s ease;
-    z-index: 10; /* High enough to be sure */
+    z-index: 10;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     display: block;
     pointer-events: none;
@@ -71,7 +71,7 @@
     padding: {{ section.settings.tab_pv }}px {{ section.settings.tab_ph }}px;
     border-radius: 50px;
     background: transparent;
-    color: #333;
+    color: {{ section.settings.inactive_tab_text | default: '#444' }};
     font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
@@ -79,14 +79,14 @@
     border: none;
     white-space: nowrap;
     position: relative;
-    z-index: 20; /* Content above everything */
+    z-index: 20;
     font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
     line-height: 1;
   }
 
   /* Fallback highlight if JS hasn't run yet */
   .heading-sliding-products__tab.is-active:not(.js-initialized) {
-    background: {{ section.settings.active_tab_bg | default: '#badb7e' }};
+    background: {{ section.settings.active_tab_bg | default: '#c0df8a' }};
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
 
@@ -479,7 +479,7 @@
         indicator.style.width = width + 'px';
         indicator.style.transform = `translateX(${left}px)`;
         indicator.style.opacity = '1';
-        indicator.style.backgroundColor = '{{ section.settings.active_tab_bg | default: '#badb7e' }}';
+        indicator.style.backgroundColor = '{{ section.settings.active_tab_bg | default: '#c0df8a' }}';
       }
 
       // Ensure active tab is visible when scrolling on mobile
@@ -547,10 +547,11 @@
     { "type": "font_picker", "id": "slide_font", "label": "Slide Title Font", "default": "assistant_n4" },
     { "type": "range", "id": "slide_title_size", "label": "Slide Title Size", "min": 1, "max": 5, "step": 0.1, "unit": "rem", "default": 2.8 },
     { "type": "color", "id": "heading_color", "label": "Primary Color", "default": "#e8c15a" },
-    { "type": "header", "content": "Tab Colors & Spacing" },
-    { "type": "color", "id": "active_tab_bg", "label": "Active Tab Background", "default": "#bada55" },
+    { "type": "header", "content": "Tab Menu Styling" },
+    { "type": "color", "id": "tabs_container_bg", "label": "Full Tab Container Background", "default": "#f2f2f2" },
+    { "type": "color", "id": "active_tab_bg", "label": "Active Tab Background", "default": "#c0df8a" },
     { "type": "color", "id": "active_tab_text", "label": "Active Tab Text", "default": "#000000" },
-    { "type": "color", "id": "inactive_tab_bg", "label": "Inactive Tab Background", "default": "#f4f4f4" },
+    { "type": "color", "id": "inactive_tab_text", "label": "Inactive Tab Text", "default": "#444444" },
     { "type": "range", "id": "tab_pv", "label": "Tab Vertical Padding", "min": 5, "max": 30, "step": 1, "default": 12 },
     { "type": "range", "id": "tab_ph", "label": "Tab Horizontal Padding", "min": 10, "max": 60, "step": 2, "default": 28 },
     { "type": "header", "content": "Constant Button" },
