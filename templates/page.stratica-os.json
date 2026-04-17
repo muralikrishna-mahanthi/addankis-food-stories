@@ -150,6 +150,7 @@
           "type": "product",
           "settings": {
             "tab_name": "Featured",
+            "image": "shopify://shop_images/Screenshot_2026-04-16_190303.png",
             "title": "Product 1",
             "link": ""
           }
@@ -158,6 +159,7 @@
           "type": "product",
           "settings": {
             "tab_name": "Food",
+            "image": "shopify://shop_images/download.jpg",
             "title": "Product 2",
             "link": ""
           }
@@ -166,6 +168,7 @@
           "type": "product",
           "settings": {
             "tab_name": "Drinks",
+            "image": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg",
             "title": "Product 3",
             "link": ""
           }
