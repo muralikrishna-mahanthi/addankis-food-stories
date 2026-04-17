@@ -26,35 +26,67 @@
   }
 
   /* Tabs Bar */
-  .heading-sliding-products__tabs {
+  .heading-sliding-products__tabs-wrap {
     display: flex;
     justify-content: center;
-    gap: 15px;
     margin-bottom: 40px;
     padding: 0 20px;
-    flex-wrap: wrap;
+  }
+
+  .heading-sliding-products__tabs {
+    display: inline-flex;
+    background: #f4f4f4; /* Light grey pill background */
+    padding: 6px;
+    border-radius: 60px;
+    gap: 4px;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none; /* Hide scrollbar Hide scrollbar for clean look */
+    -ms-overflow-style: none;
+  }
+
+  .heading-sliding-products__tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .heading-sliding-products__tab {
-    padding: 12px 28px;
+    padding: 10px 24px;
     border-radius: 50px;
-    background: #f0f0f0;
-    color: #333;
-    font-size: 1.6rem;
+    background: transparent;
+    color: #4a4a4a;
+    font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     border: none;
+    white-space: nowrap;
     font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
   }
 
   .heading-sliding-products__tab:hover {
-    background: #e5e5e5;
+    color: #000;
   }
 
   .heading-sliding-products__tab.is-active {
     background: {{ section.settings.active_tab_bg | default: '#bada55' }};
     color: {{ section.settings.active_tab_text | default: '#000' }};
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  @media screen and (max-width: 749px) {
+    .heading-sliding-products__tabs-wrap {
+      justify-content: flex-start;
+      margin-bottom: 30px;
+    }
+    
+    .heading-sliding-products__tabs {
+      padding: 5px;
+    }
+
+    .heading-sliding-products__tab {
+      padding: 8px 18px;
+      font-size: 1.4rem;
+    }
   }
 
   /* Slider Track */
@@ -207,16 +239,18 @@
   <div class="heading-sliding-products__container">
     
     <!-- Tab Filter -->
-    <div class="heading-sliding-products__tabs">
-      {%- assign tab_names = "" -%}
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'tab' -%}
-          <button class="heading-sliding-products__tab {% if forloop.first %}is-active{% endif %}" data-tab="{{ block.settings.title | handle }}">
-            {{ block.settings.title }}
-          </button>
-          {%- capture tab_names -%}{{ tab_names }}{% if tab_names != "" %},{% endif %}{{ block.settings.title | handle }}{%- endcapture -%}
-        {%- endif -%}
-      {%- endfor -%}
+    <div class="heading-sliding-products__tabs-wrap">
+      <div class="heading-sliding-products__tabs">
+        {%- assign tab_names = "" -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tab' -%}
+            <button class="heading-sliding-products__tab {% if forloop.first %}is-active{% endif %}" data-tab="{{ block.settings.title | handle }}">
+              {{ block.settings.title }}
+            </button>
+            {%- capture tab_names -%}{{ tab_names }}{% if tab_names != "" %},{% endif %}{{ block.settings.title | handle }}{%- endcapture -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
     </div>
 
     <div class="heading-sliding-products__track-wrap">
