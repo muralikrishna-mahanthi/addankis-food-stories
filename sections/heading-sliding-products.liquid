@@ -137,16 +137,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 140px;
-  }
-
-  .heading-sliding-products__active-title {
-    font-family: {{ section.settings.slide_font.family }}, {{ section.settings.slide_font.fallback_families }} !important;
-    font-size: {{ section.settings.slide_title_size | default: '2.8' }}rem;
-    font-weight: 800;
-    color: {{ section.settings.heading_color }};
-    margin: 0 0 1rem;
-    transition: opacity 0.3s ease;
+    min-height: 100px;
   }
 
   .heading-sliding-products__constant-btn {
@@ -260,7 +251,6 @@
     </div>
 
     <div class="heading-sliding-products__info-bar">
-      <h3 class="heading-sliding-products__active-title"></h3>
       {%- if section.settings.btn_label != blank -%}
         <a href="{{ section.settings.btn_link | default: '#' }}" class="heading-sliding-products__constant-btn">
           {{ section.settings.btn_label }}
@@ -361,14 +351,6 @@
           rotation = 0;
           scale = isMobile ? 1.1 : 1.4;
           opacity = 1;
-
-          if (titleEl) {
-            titleEl.style.opacity = '0';
-            setTimeout(() => {
-              titleEl.textContent = slide.dataset.title;
-              titleEl.style.opacity = '1';
-            }, 150);
-          }
         }
 
         slide.style.transform = `translateY(${yOffset}px) rotateY(${rotation}deg) scale(${scale})`;
