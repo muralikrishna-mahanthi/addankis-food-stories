@@ -57,13 +57,14 @@
     height: calc(100% - 12px);
     background-color: {{ section.settings.active_tab_bg | default: '#bada55' }};
     border-radius: 50px;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1), transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease;
     z-index: 1;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     display: block;
     pointer-events: none;
-    opacity: 0; /* Hidden until JS positions it */
+    opacity: 0;
     width: 0;
+    will-change: transform, width;
   }
 
   .heading-sliding-products__tab {
@@ -453,26 +454,29 @@
 
     function moveIndicator(tab) {
       const indicator = section.querySelector('.heading-sliding-products__tab-indicator');
-      if (!indicator || !tab) return;
+      const tabsContainer = section.querySelector('.heading-sliding-products__tabs');
+      if (!indicator || !tab || !tabsContainer) return;
       
-      const tabWidth = tab.offsetWidth;
-      const tabLeft = tab.offsetLeft;
+      const containerRect = tabsContainer.getBoundingClientRect();
+      const tabRect = tab.getBoundingClientRect();
       
-      if (tabWidth > 0) {
-        indicator.style.width = tabWidth + 'px';
-        indicator.style.left = tabLeft + 'px';
+      const width = tabRect.width;
+      const left = tabRect.left - containerRect.left + tabsContainer.scrollLeft;
+
+      if (width > 0) {
+        indicator.style.width = width + 'px';
+        indicator.style.transform = `translateX(${left}px)`;
         indicator.style.opacity = '1';
+        // Force the color from settings in case of CSS conflicts
+        indicator.style.backgroundColor = '{{ section.settings.active_tab_bg | default: '#bada55' }}';
       }
 
-      // Ensure active tab is visible when scrolling
+      // Ensure active tab is visible when scrolling on mobile
       if (window.innerWidth < 750) {
-        const tabsWrap = section.querySelector('.heading-sliding-products__tabs');
-        if (tabsWrap) {
-          tabsWrap.scrollTo({
-            left: tabLeft - (tabsWrap.offsetWidth / 2) + (tabWidth / 2),
-            behavior: 'smooth'
-          });
-        }
+        tabsContainer.scrollTo({
+          left: tab.offsetLeft - (tabsContainer.offsetWidth / 2) + (tab.offsetWidth / 2),
+          behavior: 'smooth'
+        });
       }
     }
 
