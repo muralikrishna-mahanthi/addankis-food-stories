@@ -128,18 +128,37 @@
     "heading_sliding_products_EgwnhT": {
       "type": "heading-sliding-products",
       "blocks": {
-        "product_TrBxBN": {
-          "type": "product",
-          "settings": {
-            "tab_name": "Brand Name",
-            "title": "Luxury Essential Oil",
-            "link": ""
-          }
-        },
         "tab_iR6JRB": {
           "type": "tab",
           "settings": {
             "title": "Featured"
+          }
+        },
+        "product_TrBxBN": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Featured",
+            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_make_the_image_clear.png",
+            "title": "Luxury Essential Oil",
+            "link": ""
+          }
+        },
+        "product_UBgXfe": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Featured",
+            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_make_the_image_clear.png",
+            "title": "Luxury Essential Oil",
+            "link": ""
+          }
+        },
+        "product_eMVVxn": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Featured",
+            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_make_the_image_clear.png",
+            "title": "Luxury Essential Oil",
+            "link": ""
           }
         },
         "tab_bMUeVX": {
@@ -153,43 +172,15 @@
           "settings": {
             "title": "Drinks"
           }
-        },
-        "product_gER8RH": {
-          "type": "product",
-          "settings": {
-            "tab_name": "Featured",
-            "image": "shopify://shop_images/Screenshot_2026-04-16_190303.png",
-            "title": "Product 1",
-            "link": ""
-          }
-        },
-        "product_mUXFb4": {
-          "type": "product",
-          "settings": {
-            "tab_name": "Featured",
-            "image": "shopify://shop_images/download.jpg",
-            "title": "Product 2",
-            "link": ""
-          }
-        },
-        "product_M8Rwzw": {
-          "type": "product",
-          "settings": {
-            "tab_name": "Featured",
-            "image": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg",
-            "title": "Product 3",
-            "link": ""
-          }
         }
       },
       "block_order": [
-        "product_TrBxBN",
         "tab_iR6JRB",
+        "product_TrBxBN",
+        "product_UBgXfe",
+        "product_eMVVxn",
         "tab_bMUeVX",
-        "tab_CMtdWj",
-        "product_gER8RH",
-        "product_mUXFb4",
-        "product_M8Rwzw"
+        "tab_CMtdWj"
       ],
       "name": "Heading Sliding Products",
       "settings": {
