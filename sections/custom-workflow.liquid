@@ -267,7 +267,7 @@
 
 {% schema %}
 {
-  "name": "Workflow Points",
+  "name": "Custom Workflow",
   "settings": [
     {
       "type": "text",
@@ -279,13 +279,13 @@
       "type": "font_picker",
       "id": "heading_font",
       "label": "Heading Font",
-      "default": "assistant_n7"
+      "default": "sans-serif"
     },
     {
       "type": "font_picker",
       "id": "text_font",
       "label": "Text Font",
-      "default": "assistant_n4"
+      "default": "sans-serif"
     },
     {
       "type": "range",
@@ -367,23 +367,21 @@
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Workflow Item"
+          "default": "Item Title"
         },
         {
           "type": "textarea",
           "id": "description",
           "label": "Description",
-          "default": "Sample content..."
+          "default": "Sample text content for the workflow point."
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Workflow Points",
+      "name": "Custom Workflow",
       "blocks": [
-        { "type": "point" },
-        { "type": "point" },
         { "type": "point" },
         { "type": "point" }
       ]
