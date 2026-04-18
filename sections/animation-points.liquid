@@ -248,9 +248,10 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  function initAnimationPoints() {
     const section = document.querySelector('#AnimationPoints-{{ section.id }}');
-    if (!section) return;
+    if (!section || section.dataset.initialized) return;
+    section.dataset.initialized = "true";
 
     const animateElements = section.querySelectorAll('.js-ap-animate');
     const points = section.querySelectorAll('.js-ap-point');
@@ -258,8 +259,8 @@
     
     // Intersection Observer for fade-in animations
     const observerOptions = {
-      threshold: 0.15,
-      rootMargin: "0px 0px -50px 0px"
+      threshold: 0.05, // Lower threshold for better visibility
+      rootMargin: "0px 0px -40px 0px"
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -281,13 +282,11 @@
       const sectionTop = rect.top;
       
       // Calculate line progress
-      // Start filling when the section header hits mid-viewport
-      // Finish when the last point block is scrolled past
-      const startTrigger = viewportHeight * 0.7;
+      const startTrigger = viewportHeight * 0.8; // Start earlier
       let progress = 0;
       
       if (sectionTop < startTrigger) {
-          progress = (startTrigger - sectionTop) / (sectionHeight - viewportHeight * 0.3);
+          progress = (startTrigger - sectionTop) / (sectionHeight - viewportHeight * 0.2);
       }
       
       progress = Math.max(0, Math.min(1, progress));
@@ -298,8 +297,8 @@
 
       points.forEach(point => {
         const pointRect = point.getBoundingClientRect();
-        // Activate dot when it passes the middle of the screen
-        if (pointRect.top < viewportHeight * 0.6) {
+        // Activate dot when it passes 65% of screen height
+        if (pointRect.top < viewportHeight * 0.65) {
           point.classList.add('is-active');
         } else {
           point.classList.remove('is-active');
@@ -309,8 +308,25 @@
 
     window.addEventListener('scroll', updateTimeline, { passive: true });
     updateTimeline(); // Initial check
+    
+    // Safety check: if an element is high up on the page, make it visible immediately
+    setTimeout(() => {
+        animateElements.forEach(el => {
+            const r = el.getBoundingClientRect();
+            // Using window.innerHeight here to avoid undefined variable
+            if (r.top < window.innerHeight) el.classList.add('is-visible');
+        });
+    }, 500);
+  }
+
+  document.addEventListener('DOMContentLoaded', initAnimationPoints);
+  document.addEventListener('shopify:section:load', (e) => {
+    if (e.target.id.includes('{{ section.id }}')) {
+      initAnimationPoints();
+    }
   });
 </script>
+
 
 {% schema %}
 {
