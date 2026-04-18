@@ -545,6 +545,8 @@
       ],
       "name": "More Content Points",
       "settings": {
+        "height_type": "auto",
+        "custom_height": 600,
         "container_width": 1400,
         "sidebar_width": 35,
         "min_height": 800,
