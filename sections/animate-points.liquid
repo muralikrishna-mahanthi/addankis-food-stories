@@ -104,7 +104,17 @@
     transform: translateX(0);
   }
 
-  .ap-text {
+  .ap-text-title {
+    margin: 0 0 1rem 0;
+    font-size: {{ section.settings.title_size }}px;
+    font-weight: {{ section.settings.title_weight }};
+    color: {{ section.settings.title_color }};
+    text-align: {{ section.settings.title_align }};
+    line-height: 1.2;
+    font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+  }
+
+  .ap-text-desc {
     margin: 0;
     font-size: {{ section.settings.text_size }}px;
     line-height: 1.4;
@@ -158,16 +168,22 @@
             <div class="ap-row js-ap-row">
               <!-- Left Item -->
               {%- assign left_block = blocks[index] -%}
-              <div class="ap-point ap-point-left" {{ left_block.shopify_attributes }}>
-                <p class="ap-text">{{ left_block.settings.text | escape }}</p>
-              </div>
+                <div class="ap-point ap-point-left" {{ left_block.shopify_attributes }}>
+                  {%- if left_block.settings.title != blank -%}
+                    <h3 class="ap-text-title">{{ left_block.settings.title }}</h3>
+                  {%- endif -%}
+                  <p class="ap-text-desc">{{ left_block.settings.text | escape }}</p>
+                </div>
 
               <!-- Right Item -->
               {%- assign right_index = index | plus: 1 -%}
               {%- assign right_block = blocks[right_index] -%}
               {%- if right_block != blank -%}
                 <div class="ap-point ap-point-right" {{ right_block.shopify_attributes }}>
-                  <p class="ap-text">{{ right_block.settings.text | escape }}</p>
+                  {%- if right_block.settings.title != blank -%}
+                    <h3 class="ap-text-title">{{ right_block.settings.title }}</h3>
+                  {%- endif -%}
+                  <p class="ap-text-desc">{{ right_block.settings.text | escape }}</p>
                 </div>
               {%- endif -%}
             </div>
@@ -276,7 +292,50 @@
     },
     {
       "type": "header",
-      "content": "Points Text Settings"
+      "content": "Point Title Settings"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Font Size",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "title_align",
+      "label": "Title Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Point Description Settings"
     },
     {
       "type": "font_picker",
@@ -385,10 +444,16 @@
       "name": "Point",
       "settings": [
         {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Point Title"
+        },
+        {
           "type": "textarea",
           "id": "text",
-          "label": "Text Content",
-          "default": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+          "label": "Description",
+          "default": "Add your description here..."
         }
       ]
     }
