@@ -131,13 +131,13 @@
         "tab_iR6JRB": {
           "type": "tab",
           "settings": {
-            "title": "PHILIPS"
+            "title": "Philips"
           }
         },
         "product_TrBxBN": {
           "type": "product",
           "settings": {
-            "tab_name": "PHILIPS",
+            "tab_name": "Philips",
             "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_make_the_image_clear.png",
             "title": "Luxury Essential Oil",
             "link": ""
@@ -146,7 +146,7 @@
         "product_UBgXfe": {
           "type": "product",
           "settings": {
-            "tab_name": "PHILIPS",
+            "tab_name": "Philips",
             "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_make_the_image_clear.png",
             "title": "Luxury Essential Oil",
             "link": ""
@@ -155,7 +155,7 @@
         "product_eMVVxn": {
           "type": "product",
           "settings": {
-            "tab_name": "PHILIPS",
+            "tab_name": "Philips",
             "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_make_the_image_clear.png",
             "title": "Luxury Essential Oil",
             "link": ""
@@ -164,13 +164,19 @@
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
-            "title": "Food"
+            "title": "Flower organics"
           }
         },
         "tab_CMtdWj": {
           "type": "tab",
           "settings": {
-            "title": "Drinks"
+            "title": "Ripple purple"
+          }
+        },
+        "tab_hF6nxB": {
+          "type": "tab",
+          "settings": {
+            "title": "Mangalam"
           }
         }
       },
@@ -180,26 +186,28 @@
         "product_UBgXfe",
         "product_eMVVxn",
         "tab_bMUeVX",
-        "tab_CMtdWj"
+        "tab_CMtdWj",
+        "tab_hF6nxB"
       ],
       "name": "Heading Sliding Products",
       "settings": {
         "heading_font": "sans_serif_n4",
         "slide_font": "sans_serif_n4",
-        "slide_title_size": 3,
+        "slide_title_size": 4,
         "heading_color": "#e8c15a",
-        "active_tab_bg": "#e8c15a",
-        "active_tab_text": "#ffffff",
-        "inactive_tab_bg": "#f4f4f4",
-        "tab_pv": 12,
-        "tab_ph": 28,
-        "btn_label": "Shop HAMSAA",
+        "tabs_container_bg": "#f2f2f2",
+        "active_tab_bg": "#a5caee",
+        "active_tab_text": "#121212",
+        "inactive_tab_text": "#444444",
+        "tab_pv": 25,
+        "tab_ph": 30,
+        "btn_label": "Explore our brands",
         "btn_link": "",
-        "btn_bg_color": "#e8c15a",
+        "btn_bg_color": "#1b5d9b",
         "btn_text_color": "#ffffff",
-        "btn_hover_color": "#d4ab3c",
+        "btn_hover_color": "#004d98",
         "btn_radius": 50,
-        "arrow_bg_color": "#e8c15a",
+        "arrow_bg_color": "#004d98",
         "u_curve_intensity": 80,
         "bg_color": "#ffffff",
         "container_width": 1400,
@@ -208,12 +216,165 @@
         "pt_mobile": 50,
         "pb_mobile": 50
       }
+    },
+    "us_brands_about_us_tHhafP": {
+      "type": "us-brands-about-us",
+      "blocks": {
+        "left_heading_TLWNfj": {
+          "type": "left_heading",
+          "settings": {
+            "title": "STRATICA OS",
+            "heading_font": "archivo_black_n4",
+            "heading_size": 6.5,
+            "heading_color": "#002750",
+            "heading_weight": "800",
+            "heading_font_mobile": "archivo_black_n4",
+            "heading_size_mobile": 2.5,
+            "heading_weight_mobile": "700",
+            "heading_style": "normal",
+            "heading_line_height": 1.1,
+            "heading_letter_spacing": 1,
+            "heading_alignment": "center",
+            "heading_pt": 0,
+            "heading_pb": 0,
+            "heading_pl": 0,
+            "heading_pr": 0
+          }
+        },
+        "left_heading_mbGzja": {
+          "type": "left_heading",
+          "settings": {
+            "title": "FOR",
+            "heading_font": "archivo_black_n4",
+            "heading_size": 5,
+            "heading_color": "#a5caee",
+            "heading_weight": "700",
+            "heading_font_mobile": "archivo_black_n4",
+            "heading_size_mobile": 2.5,
+            "heading_weight_mobile": "700",
+            "heading_style": "normal",
+            "heading_line_height": 1.1,
+            "heading_letter_spacing": 1,
+            "heading_alignment": "center",
+            "heading_pt": 0,
+            "heading_pb": 0,
+            "heading_pl": 0,
+            "heading_pr": 0
+          }
+        },
+        "right_point_VF8hEH": {
+          "type": "right_point",
+          "settings": {
+            "text": "Uniqueness is a black swan among many — standing apart with purpose",
+            "rp_font": "sans_serif_n4",
+            "rp_size": 2.2,
+            "rp_color": "#ffffff",
+            "rp_weight": "700",
+            "rp_font_mobile": "sans_serif_n4",
+            "rp_size_mobile": 1.4,
+            "rp_weight_mobile": "700",
+            "rp_style": "normal",
+            "rp_lh": 1.3,
+            "rp_ls": 1,
+            "rp_align": "left",
+            "rp_pt": 0,
+            "rp_pb": 0,
+            "rp_pl": 0,
+            "rp_pr": 0
+          }
+        },
+        "right_point_FdjzgP": {
+          "type": "right_point",
+          "settings": {
+            "text": "Transformation of products that uplift everyday rituals into moments of calm",
+            "rp_font": "sans_serif_n4",
+            "rp_size": 2.2,
+            "rp_color": "#ffffff",
+            "rp_weight": "700",
+            "rp_font_mobile": "sans_serif_n4",
+            "rp_size_mobile": 1.4,
+            "rp_weight_mobile": "700",
+            "rp_style": "normal",
+            "rp_lh": 1.3,
+            "rp_ls": 1,
+            "rp_align": "left",
+            "rp_pt": 0,
+            "rp_pb": 0,
+            "rp_pl": 0,
+            "rp_pr": 0
+          }
+        },
+        "right_point_zD6xCy": {
+          "type": "right_point",
+          "settings": {
+            "text": "Elevated living where fragrance and purity meet mindful daily routines",
+            "rp_font": "sans_serif_n4",
+            "rp_size": 2.2,
+            "rp_color": "#ffffff",
+            "rp_weight": "700",
+            "rp_font_mobile": "sans_serif_n4",
+            "rp_size_mobile": 1.4,
+            "rp_weight_mobile": "700",
+            "rp_style": "normal",
+            "rp_lh": 1.3,
+            "rp_ls": 1,
+            "rp_align": "left",
+            "rp_pt": 0,
+            "rp_pb": 0,
+            "rp_pl": 0,
+            "rp_pr": 0
+          }
+        },
+        "right_point_REwHEY": {
+          "type": "right_point",
+          "settings": {
+            "text": "Inner balance creating spaces that breathe harmony and stillness",
+            "rp_font": "sans_serif_n4",
+            "rp_size": 2.2,
+            "rp_color": "#ffffff",
+            "rp_weight": "700",
+            "rp_font_mobile": "sans_serif_n4",
+            "rp_size_mobile": 1.4,
+            "rp_weight_mobile": "700",
+            "rp_style": "normal",
+            "rp_lh": 1.3,
+            "rp_ls": 1,
+            "rp_align": "left",
+            "rp_pt": 0,
+            "rp_pb": 0,
+            "rp_pl": 0,
+            "rp_pr": 0
+          }
+        }
+      },
+      "block_order": [
+        "left_heading_TLWNfj",
+        "left_heading_mbGzja",
+        "right_point_VF8hEH",
+        "right_point_FdjzgP",
+        "right_point_zD6xCy",
+        "right_point_REwHEY"
+      ],
+      "name": "US Brands About Us",
+      "settings": {
+        "split_ratio": 50,
+        "runway_height": 300,
+        "container_width": 1400,
+        "bg_color": "#004d98",
+        "text_color": "#81e683",
+        "line_light_color": "#ffffff",
+        "line_active_color": "#6394ff",
+        "dot_size": 20,
+        "pt_desktop": 100,
+        "pb_desktop": 100
+      }
     }
   },
   "order": [
     "main",
     "blocks_rp3xn6",
     "split_image_slide_BydbQc",
-    "heading_sliding_products_EgwnhT"
+    "heading_sliding_products_EgwnhT",
+    "us_brands_about_us_tHhafP"
   ]
 }
