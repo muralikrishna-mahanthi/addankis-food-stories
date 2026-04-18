@@ -74,23 +74,18 @@
 
   .ap-point {
     width: 42%;
-    opacity: 0;
-    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 1.2s ease;
+    opacity: var(--anim-progress, 0);
+    transition: opacity 0.3s ease-out;
   }
 
   .ap-point-left {
     text-align: center;
-    transform: translateX(-100vw);
+    transform: translateX(calc((1 - var(--anim-progress, 0)) * -60vw));
   }
 
   .ap-point-right {
     text-align: center;
-    transform: translateX(100vw);
-  }
-
-  .ap-row.is-visible .ap-point {
-    opacity: 1;
-    transform: translateX(0);
+    transform: translateX(calc((1 - var(--anim-progress, 0)) * 60vw));
   }
 
   .ap-text {
@@ -177,15 +172,18 @@
       const vh = window.innerHeight;
       rows.forEach(row => {
         const rect = row.getBoundingClientRect();
-        const trigger = vh * 0.85; // Lower 15% of screen
-        const exitTrigger = vh * 0.1; // Top 10% of screen
+        const center = vh / 2;
         
-        // Appear if top enters the trigger from bottom OR if visible
-        if (rect.top < trigger && rect.bottom > exitTrigger) {
-          row.classList.add('is-visible');
-        } else {
-          row.classList.remove('is-visible');
-        }
+        // Calculate progress based on distance from center
+        // 0 at bottom/top of viewport, 1 at center
+        const rowCenter = rect.top + rect.height / 2;
+        const dist = Math.abs(center - rowCenter);
+        const maxDist = center * 0.8;
+        
+        let progress = 1 - (dist / maxDist);
+        progress = Math.max(0, Math.min(1, progress));
+        
+        row.style.setProperty('--anim-progress', progress.toFixed(3));
       });
     };
 
