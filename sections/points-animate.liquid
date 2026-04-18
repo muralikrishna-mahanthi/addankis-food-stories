@@ -7,7 +7,7 @@
   {{ heading_font | font_face: font_display: 'swap' }}
   {{ text_font | font_face: font_display: 'swap' }}
 
-  #FmcgBuiltFor-{{ section.id }} {
+  #PointsAnimate-{{ section.id }} {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
     background: {{ section.settings.bg_color }};
@@ -15,14 +15,14 @@
     font-family: {{ text_font.family }}, {{ text_font.fallback_families }};
   }
 
-  .fbf-container {
+  .pa-container {
     max-width: {{ section.settings.container_width }}px;
     margin: 0 auto;
     padding: 0 4rem;
     position: relative;
   }
 
-  .fbf-header {
+  .pa-header {
     text-align: center;
     margin-bottom: 12rem;
     opacity: 0;
@@ -30,12 +30,12 @@
     transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .fbf-header.is-visible {
+  .pa-header.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
 
-  .fbf-heading {
+  .pa-heading {
     margin: 0;
     font-size: {{ section.settings.heading_size }}px;
     font-weight: 800;
@@ -48,14 +48,14 @@
     margin: 0 auto;
   }
 
-  .fbf-timeline {
+  .pa-timeline {
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px 0;
   }
 
-  .fbf-line-wrapper {
+  .pa-line-wrapper {
     position: absolute;
     left: 50%;
     top: 0;
@@ -66,7 +66,7 @@
     z-index: 1;
   }
 
-  .fbf-line-active {
+  .pa-line-active {
     position: absolute;
     top: 0;
     left: 0;
@@ -76,7 +76,7 @@
     transition: height 0.1s linear;
   }
 
-  .fbf-points-list {
+  .pa-points-list {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -84,7 +84,7 @@
     z-index: 2;
   }
 
-  .fbf-row {
+  .pa-row {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -92,7 +92,7 @@
     width: 100%;
   }
 
-  .fbf-point {
+  .pa-point {
     width: 44%;
     position: relative;
     display: flex;
@@ -101,26 +101,27 @@
     transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
   }
 
-  .fbf-point-left {
+  .pa-point-left {
     text-align: center;
     transform: translateX(-100vw);
   }
 
-  .fbf-point-right {
+  .pa-point-right {
     text-align: center;
     transform: translateX(100vw);
   }
 
-  .fbf-row.is-visible .fbf-point {
+  .pa-row.is-visible .pa-point {
     opacity: 1;
     transform: translateX(0);
   }
 
-  .fbf-content {
+  .pa-block {
     padding: 2rem 0;
+    background: transparent;
   }
 
-  .fbf-title {
+  .pa-title {
     margin: 0 0 1.5rem 0;
     font-size: 2.4rem;
     font-weight: 700;
@@ -129,7 +130,7 @@
     line-height: 1.3;
   }
 
-  .fbf-desc {
+  .pa-desc {
     margin: 0;
     font-size: 2rem;
     line-height: 1.5;
@@ -139,56 +140,56 @@
   }
 
   @media screen and (max-width: 768px) {
-    .fbf-container {
+    .pa-container {
       padding: 0 2rem;
     }
-    .fbf-line-wrapper {
+    .pa-line-wrapper {
       left: 20px;
       width: 4px;
     }
-    .fbf-row {
+    .pa-row {
       flex-direction: column;
       gap: 6rem;
       padding-left: 45px;
     }
-    .fbf-point {
+    .pa-point {
       width: 100%;
       text-align: center !important;
       transform: translateX(60px) !important;
     }
-    .fbf-heading {
+    .pa-heading {
       font-size: 3rem;
     }
-    .fbf-desc {
+    .pa-desc {
         font-size: 1.8rem;
     }
   }
 {%- endstyle -%}
 
-<section id="FmcgBuiltFor-{{ section.id }}" class="fbf-section">
-  <div class="fbf-container">
-    <div class="fbf-header js-fbf-animate">
-      <h2 class="fbf-heading">{{ section.settings.heading }}</h2>
+<section id="PointsAnimate-{{ section.id }}" class="pa-section">
+  <div class="pa-container">
+    <div class="pa-header js-pa-animate">
+      <h2 class="pa-heading">{{ section.settings.heading }}</h2>
     </div>
 
-    <div class="fbf-timeline">
-      <div class="fbf-line-wrapper">
-        <div class="fbf-line-active js-fbf-line"></div>
+    <div class="pa-timeline">
+      <div class="pa-line-wrapper">
+        <div class="pa-line-active js-pa-line"></div>
       </div>
 
-      <div class="fbf-points-list">
+      <div class="pa-points-list">
         {%- for block in section.blocks -%}
           {%- if forloop.index0 % 2 == 0 -%}
-            <div class="fbf-row js-fbf-animate">
+            <div class="pa-row js-pa-animate">
               
               <!-- Left Item -->
-              <div class="fbf-point fbf-point-left" {{ block.shopify_attributes }}>
-                <div class="fbf-content">
+              <div class="pa-point pa-point-left" {{ block.shopify_attributes }}>
+                <div class="pa-block">
                   {%- if block.settings.title != blank -%}
-                    <h3 class="fbf-title">{{ block.settings.title }}</h3>
+                    <h3 class="pa-title">{{ block.settings.title }}</h3>
                   {%- endif -%}
                   {%- if block.settings.description != blank -%}
-                    <div class="fbf-desc">{{ block.settings.description }}</div>
+                    <div class="pa-desc">{{ block.settings.description }}</div>
                   {%- endif -%}
                 </div>
               </div>
@@ -197,13 +198,13 @@
               {%- assign next_idx = forloop.index0 | plus: 1 -%}
               {%- assign next_block = section.blocks[next_idx] -%}
               {%- if next_block != blank -%}
-                <div class="fbf-point fbf-point-right" {{ next_block.shopify_attributes }}>
-                  <div class="fbf-content">
+                <div class="pa-point pa-point-right" {{ next_block.shopify_attributes }}>
+                  <div class="pa-block">
                     {%- if next_block.settings.title != blank -%}
-                      <h3 class="fbf-title">{{ next_block.settings.title }}</h3>
+                      <h3 class="pa-title">{{ next_block.settings.title }}</h3>
                     {%- endif -%}
                     {%- if next_block.settings.description != blank -%}
-                      <div class="fbf-desc">{{ next_block.settings.description }}</div>
+                      <div class="pa-desc">{{ next_block.settings.description }}</div>
                     {%- endif -%}
                   </div>
                 </div>
@@ -218,13 +219,13 @@
 </section>
 
 <script>
-  function initFmcgBuiltFor() {
-    const section = document.querySelector('#FmcgBuiltFor-{{ section.id }}');
+  function initPointsAnimate() {
+    const section = document.querySelector('#PointsAnimate-{{ section.id }}');
     if (!section || section.dataset.initialized) return;
     section.dataset.initialized = "true";
 
-    const animateEls = section.querySelectorAll('.js-fbf-animate');
-    const lineActive = section.querySelector('.js-fbf-line');
+    const animateEls = section.querySelectorAll('.js-pa-animate');
+    const lineActive = section.querySelector('.js-pa-line');
     
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -236,7 +237,7 @@
 
     animateEls.forEach(el => obs.observe(el));
 
-    function updateFbfScroll() {
+    function updatePointsScroll() {
         const rect = section.getBoundingClientRect();
         const vh = window.innerHeight;
         const sh = section.offsetHeight;
@@ -248,8 +249,8 @@
         if (lineActive) lineActive.style.height = (Math.max(0, Math.min(1, p)) * 100) + '%';
     }
 
-    window.addEventListener('scroll', updateFbfScroll, { passive: true });
-    updateFbfScroll();
+    window.addEventListener('scroll', updatePointsScroll, { passive: true });
+    updatePointsScroll();
 
     setTimeout(() => {
         animateEls.forEach(el => {
@@ -258,9 +259,9 @@
     }, 500);
   }
 
-  document.addEventListener('DOMContentLoaded', initFmcgBuiltFor);
+  document.addEventListener('DOMContentLoaded', initPointsAnimate);
   document.addEventListener('shopify:section:load', (e) => {
-    if (e.target.id.includes('{{ section.id }}')) initFmcgBuiltFor();
+    if (e.target.id.includes('{{ section.id }}')) initPointsAnimate();
   });
 </script>
 
