@@ -520,6 +520,7 @@
         "pillar_BjqLr3": {
           "type": "pillar",
           "settings": {
+            "image": "shopify://shop_images/Tienda_de_comida_saludable___Imagen_Premium_generada_con_IA.jpg",
             "title": "Wellness and lifestyle outlets",
             "text": "Targeting health-conscious consumers, HAMSAA products are available in pharmacies, organic stores, ayurvedic shops, and lifestyle retail chains that align with the brand's wellness positioning."
           }
