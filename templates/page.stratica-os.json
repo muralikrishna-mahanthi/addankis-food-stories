@@ -170,12 +170,6 @@
             "link": "shopify://products/extra-zinc-chloride-aa"
           }
         },
-        "tab_bMUeVX": {
-          "type": "tab",
-          "settings": {
-            "title": "Flower organics"
-          }
-        },
         "tab_CMtdWj": {
           "type": "tab",
           "settings": {
@@ -187,6 +181,12 @@
           "settings": {
             "title": "Mangalam"
           }
+        },
+        "tab_bMUeVX": {
+          "type": "tab",
+          "settings": {
+            "title": "Flower organics"
+          }
         }
       },
       "block_order": [
@@ -195,9 +195,9 @@
         "product_UBgXfe",
         "product_eMVVxn",
         "product_J7pPir",
-        "tab_bMUeVX",
         "tab_CMtdWj",
-        "tab_hF6nxB"
+        "tab_hF6nxB",
+        "tab_bMUeVX"
       ],
       "name": "Heading Sliding Products",
       "settings": {
