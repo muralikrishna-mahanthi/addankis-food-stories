@@ -160,6 +160,15 @@
             "link": "shopify://products/zinc-chloride-aa"
           }
         },
+        "product_J7pPir": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Philips",
+            "image": "shopify://shop_images/ORANGEbatteryextrazincchloride.png",
+            "title": "Extra Zinc Chloride",
+            "link": "shopify://products/extra-zinc-chloride-aa"
+          }
+        },
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
@@ -184,6 +193,7 @@
         "product_TrBxBN",
         "product_UBgXfe",
         "product_eMVVxn",
+        "product_J7pPir",
         "tab_bMUeVX",
         "tab_CMtdWj",
         "tab_hF6nxB"
