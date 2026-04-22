@@ -216,6 +216,7 @@
           "type": "product",
           "settings": {
             "tab_name": "Ripple purple",
+            "image": "shopify://shop_images/ripple_purple_5.png",
             "title": "Wafer Story Choco Dream",
             "link": "shopify://products/wafer-story-choco-dream"
           }
