@@ -180,6 +180,7 @@
           "type": "product",
           "settings": {
             "tab_name": "Ripple purple",
+            "image": "shopify://shop_images/ripple_purple_1.png",
             "title": "Truffle Hazelnut Chocolate",
             "link": "shopify://products/truffle-hazelnut-chocolate"
           }
