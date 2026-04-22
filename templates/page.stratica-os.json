@@ -248,6 +248,14 @@
             "link": "shopify://products/hoper-surprise-yellow-ball-gems"
           }
         },
+        "product_XGcfm6": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Ripple purple",
+            "title": "Scoopy Go Chocolate",
+            "link": "shopify://products/scoopy-go-chocolate"
+          }
+        },
         "tab_hF6nxB": {
           "type": "tab",
           "settings": {
@@ -277,6 +285,7 @@
         "product_ENxyzw",
         "product_QEg89B",
         "product_tNf4xT",
+        "product_XGcfm6",
         "tab_hF6nxB",
         "tab_bMUeVX"
       ],
