@@ -119,12 +119,13 @@
 
   .sliding-products__img-wrap img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
+    image-rendering: -webkit-optimize-contrast;
   }
 
   /* Detached Info Below */
@@ -232,7 +233,7 @@
                {{ block.shopify_attributes }}>
             <a href="{{ block.settings.link | default: '#' }}" class="sliding-products__img-wrap">
               {%- if block.settings.image != blank -%}
-                 {{ block.settings.image | image_url: width: 1500 | image_tag: loading: 'lazy', widths: '400, 600, 800, 1000, 1200, 1500', sizes: '(min-width: 750px) 30vw, 80vw' }}
+                 {{ block.settings.image | image_url: width: 1800 | image_tag: loading: 'eager', widths: '600, 800, 1000, 1200, 1500, 1800', sizes: '(min-width: 750px) 40vw, 100vw' }}
               {%- else -%}
                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
               {%- endif -%}
