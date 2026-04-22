@@ -256,6 +256,14 @@
             "link": "shopify://products/scoopy-go-chocolate"
           }
         },
+        "product_JcyiiB": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Ripple purple",
+            "title": "Choco Flow Cone",
+            "link": "shopify://products/choco-flow-cone"
+          }
+        },
         "tab_hF6nxB": {
           "type": "tab",
           "settings": {
@@ -286,6 +294,7 @@
         "product_QEg89B",
         "product_tNf4xT",
         "product_XGcfm6",
+        "product_JcyiiB",
         "tab_hF6nxB",
         "tab_bMUeVX"
       ],
