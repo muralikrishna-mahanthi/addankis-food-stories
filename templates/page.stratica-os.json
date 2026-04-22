@@ -198,6 +198,7 @@
           "type": "product",
           "settings": {
             "tab_name": "Ripple purple",
+            "image": "shopify://shop_images/ripple_purple_3.png",
             "title": "Truffle Caramel Chocolate",
             "link": "shopify://products/truffle-caramel-chocolate"
           }
