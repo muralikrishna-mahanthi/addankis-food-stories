@@ -176,6 +176,62 @@
             "title": "Ripple purple"
           }
         },
+        "product_nX8KQa": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Ripple purple",
+            "title": "Truffle Hazelnut Chocolate",
+            "link": "shopify://products/truffle-hazelnut-chocolate"
+          }
+        },
+        "product_MDxJDT": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Ripple purple",
+            "title": "Truffle Vanilla Chocolate",
+            "link": "shopify://products/truffle-vanilla-chocolate"
+          }
+        },
+        "product_EgLyH8": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Ripple purple",
+            "title": "Truffle Caramel Chocolate",
+            "link": "shopify://products/truffle-caramel-chocolate"
+          }
+        },
+        "product_XEnqmW": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Ripple purple",
+            "title": "Wafer Story Pink Blossom",
+            "link": "shopify://products/wafer-story-pink-blossom"
+          }
+        },
+        "product_fLiKqc": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Ripple purple",
+            "title": "Wafer Story Choco Dream",
+            "link": "shopify://products/wafer-story-choco-dream"
+          }
+        },
+        "product_KYkFFn": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Ripple purple",
+            "title": "Wafer Story Cheese Melt",
+            "link": "shopify://products/wafer-story-cheese-melt"
+          }
+        },
+        "product_ENxyzw": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Ripple purple",
+            "title": "Hoper Surprise Blue Ball Gems",
+            "link": "shopify://products/hoper-surprise-blue-ball-gems"
+          }
+        },
         "tab_hF6nxB": {
           "type": "tab",
           "settings": {
@@ -196,6 +252,13 @@
         "product_eMVVxn",
         "product_J7pPir",
         "tab_CMtdWj",
+        "product_nX8KQa",
+        "product_MDxJDT",
+        "product_EgLyH8",
+        "product_XEnqmW",
+        "product_fLiKqc",
+        "product_KYkFFn",
+        "product_ENxyzw",
         "tab_hF6nxB",
         "tab_bMUeVX"
       ],
