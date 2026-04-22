@@ -207,6 +207,7 @@
           "type": "product",
           "settings": {
             "tab_name": "Ripple purple",
+            "image": "shopify://shop_images/ripple_purple_4.png",
             "title": "Wafer Story Pink Blossom",
             "link": "shopify://products/wafer-story-pink-blossom"
           }
