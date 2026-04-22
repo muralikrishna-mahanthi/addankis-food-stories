@@ -189,6 +189,7 @@
           "type": "product",
           "settings": {
             "tab_name": "Ripple purple",
+            "image": "shopify://shop_images/ripple_purple_2.png",
             "title": "Truffle Vanilla Chocolate",
             "link": "shopify://products/truffle-vanilla-chocolate"
           }
