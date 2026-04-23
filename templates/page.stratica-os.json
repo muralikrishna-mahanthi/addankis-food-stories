@@ -479,6 +479,27 @@
     "more_content_points_GWwETA": {
       "type": "more-content-points",
       "blocks": {
+        "content_block_rwUaXF": {
+          "type": "content_block",
+          "settings": {
+            "sidebar_icon": "",
+            "icon_bg_color": "#e8f5e9",
+            "icon_color": "#4caf50",
+            "sidebar_title": "Market entry strategy",
+            "sidebar_subtitle": "GTM Planning",
+            "index_number": "01",
+            "badge": "Fastest growing ↑",
+            "main_heading": "Quick commerce activation",
+            "panel_icon": "",
+            "description": "Quick commerce is the fastest-growing FMCG channel in India. We place your brand inside dark stores, coordinate inventory for 10-minute delivery windows, and run campaigns that dominate the instant shelf.",
+            "feature_1": "Quick commerce listing strategy",
+            "feature_2": "Dark store placement planning",
+            "feature_3": "Inventory management coordination",
+            "feature_4": "Sales performance monitoring",
+            "feature_5": "Promotional campaign support",
+            "feature_6": ""
+          }
+        },
         "content_block_77KbEG": {
           "type": "content_block",
           "settings": {
@@ -628,6 +649,7 @@
         }
       },
       "block_order": [
+        "content_block_rwUaXF",
         "content_block_77KbEG",
         "content_block_9rFJzD",
         "content_block_H6EniW",
