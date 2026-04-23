@@ -414,7 +414,7 @@
         const distance = Math.abs(i - currentIndex);
         let yOffset = isMobile ? 0 : distance * intensity;
         let rotation = (i - currentIndex) * -10;
-        let scale = isMobile ? (1 - (distance * 0.25)) : (1 - (distance * 0.15));
+        let scale = isMobile ? (1 - (distance * 0.35)) : (1 - (distance * 0.30));
         let opacity = 1 - (distance * 0.3);
 
         if (i === currentIndex) {
