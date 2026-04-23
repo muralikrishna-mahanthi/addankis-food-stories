@@ -380,35 +380,26 @@
 
       newSlides.forEach(s => {
         s.classList.add('is-visible');
+        s.style.transition = 'none'; // Prevent initial animation
         track.appendChild(s);
       });
 
       currentSlides = Array.from(track.querySelectorAll('.heading-sliding-products__slide'));
       currentIndex = clonesToCreate;
       
-      // Robust layout verification loop
-      const activeSlide = currentSlides[currentIndex];
-      let attempts = 0;
-      function ensureLayout() {
-        if (!activeSlide) return;
-        // Wait until browser has actually calculated the flexbox layout
-        if (activeSlide.offsetLeft > 10 || attempts > 20) {
-          updateSlider(false);
-          setTimeout(() => updateSlider(false), 50); // Safari safety net
-        } else {
-          attempts++;
-          requestAnimationFrame(ensureLayout);
-        }
-      }
-      ensureLayout();
+      // Initialize immediately, math fallback handles unrendered layouts
+      updateSlider(false);
     }
 
     function updateSlider(animate = true) {
       if (currentSlides.length === 0) return;
       if (!containerWrap) return;
       
-      const containerWidth = containerWrap.offsetWidth;
-      if (containerWidth === 0) return; 
+      let containerWidth = containerWrap.offsetWidth;
+      // If hidden on load, predict container width for instant math rendering
+      if (containerWidth === 0) {
+         containerWidth = window.innerWidth > 750 ? Math.min(1400, window.innerWidth) : window.innerWidth;
+      }
 
       if (!animate) track.style.transition = 'none';
       else track.style.transition = 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)';
@@ -442,7 +433,22 @@
 
       const activeSlide = currentSlides[currentIndex];
       if (activeSlide) {
-        const offset = (containerWidth / 2) - (activeSlide.offsetLeft + activeSlide.offsetWidth / 2);
+        let activeLeft = activeSlide.offsetLeft;
+        let activeWidth = activeSlide.offsetWidth;
+        
+        // Mathematical fallback if browser hasn't physically painted the flexbox yet
+        if (activeLeft === 0 || activeWidth === 0) {
+          if (isMobile) {
+             const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+             activeWidth = 0.65 * containerWidth;
+             activeLeft = currentIndex * (activeWidth + 2 * rem) + rem;
+          } else {
+             activeWidth = 0.22 * containerWidth;
+             activeLeft = (currentIndex * 0.25 + 0.015) * containerWidth;
+          }
+        }
+        
+        const offset = (containerWidth / 2) - (activeLeft + activeWidth / 2);
         track.style.transform = `translateX(${offset}px)`;
       }
 
@@ -514,7 +520,6 @@
       });
     });
 
-    // ResizeObserver ensures slider initializes ONLY when visible and recalculates exactly when container size changes
     if (window.ResizeObserver && containerWrap) {
       let isFirstRender = true;
       const ro = new ResizeObserver(() => {
@@ -528,16 +533,6 @@
         }
       });
       ro.observe(containerWrap);
-    }
-    
-    // IntersectionObserver guarantees layout calculation when scrolled into view
-    if (window.IntersectionObserver) {
-      const io = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          updateSlider(false);
-        }
-      }, { threshold: 0.05 });
-      io.observe(section);
     }
 
     // Initial Load Setup
