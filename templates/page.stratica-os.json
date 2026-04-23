@@ -659,6 +659,118 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "blocks_RXYamp": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_186c4ce_aQ7dB9": {
+          "type": "ai_gen_block_186c4ce",
+          "settings": {
+            "rich_text": "<p><strong>Join our growing distribution network and bring trusted FMCG products to your region.</strong></p>",
+            "content_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "heading_font": "assistant_n4",
+            "heading_font_size": 32,
+            "heading_color": "#121212",
+            "text_font": "sans_serif_n4",
+            "text_font_size": 16,
+            "text_color": "#121212",
+            "link_color": "#121212",
+            "button_text": "Become a Distributor",
+            "button_link": "",
+            "button_font": "assistant_n4",
+            "button_font_size": 16,
+            "button_padding_vertical": 12,
+            "button_padding_horizontal": 24,
+            "button_background_color": "#121212",
+            "button_text_color": "#ffffff",
+            "button_hover_background_color": "#000000",
+            "button_hover_text_color": "#ffffff",
+            "button_border_width": 0,
+            "button_border_color": "#121212",
+            "button_hover_border_color": "#000000",
+            "button_border_radius": 14,
+            "section_padding": 40,
+            "text_button_spacing": 30,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_186c4ce_aQ7dB9"
+      ],
+      "settings": {}
+    },
+    "follow_social_AbKL7d": {
+      "type": "follow-social",
+      "blocks": {
+        "social_icon_am7ULU": {
+          "type": "social_icon",
+          "settings": {
+            "platform": "instagram",
+            "link": ""
+          }
+        },
+        "social_icon_ybMEqe": {
+          "type": "social_icon",
+          "settings": {
+            "platform": "facebook",
+            "link": ""
+          }
+        },
+        "social_icon_3qN8Pi": {
+          "type": "social_icon",
+          "settings": {
+            "platform": "youtube",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "social_icon_am7ULU",
+        "social_icon_ybMEqe",
+        "social_icon_3qN8Pi"
+      ],
+      "name": "Follow Social",
+      "settings": {
+        "bg_color": "#f9f8f6",
+        "container_width": 1400,
+        "pt_desktop": 80,
+        "pb_desktop": 80,
+        "pt_mobile": 50,
+        "pb_mobile": 50,
+        "desktop_alignment": "split",
+        "subheading": "Stay connected",
+        "sh_font_desk": "sans_serif_n4",
+        "sh_size_desk": 1.6,
+        "sh_weight_desk": "600",
+        "sh_color": "#004d98",
+        "sh_size_mob": 1.4,
+        "sh_mb": 16,
+        "heading": "FOLLOW HAMSAA",
+        "h_font_desk": "archivo_black_n4",
+        "h_size_desk": 4.4,
+        "h_weight_desk": "900",
+        "h_color": "#004d98",
+        "h_size_mob": 3.2,
+        "h_mb": 24,
+        "h_transform": "uppercase",
+        "desc": "Stay in the know on the latest products, styles.",
+        "d_font_desk": "sans_serif_n4",
+        "d_size_desk": 1.6,
+        "d_weight_desk": "600",
+        "d_color": "#1a1a1a",
+        "d_size_mob": 1.4,
+        "icon_size": 64,
+        "icon_svg_scale": 50,
+        "icon_bg": "#ffffff",
+        "icon_fill": "#111111",
+        "icon_bg_hover": "#111111",
+        "icon_fill_hover": "#ffffff",
+        "icon_gap": 20
+      }
     }
   },
   "order": [
@@ -668,6 +780,8 @@
     "heading_sliding_products_EgwnhT",
     "animate_points_nbnbaf",
     "animate_points_fHzTzG",
-    "more_content_points_GWwETA"
+    "more_content_points_GWwETA",
+    "blocks_RXYamp",
+    "follow_social_AbKL7d"
   ]
 }
