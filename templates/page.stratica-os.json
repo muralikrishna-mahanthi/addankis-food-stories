@@ -270,6 +270,7 @@
           "type": "product",
           "settings": {
             "tab_name": "Ripple purple",
+            "image": "shopify://shop_images/ripplepurple11.png",
             "title": "Choco Flow Cone",
             "link": "shopify://products/choco-flow-cone"
           }
