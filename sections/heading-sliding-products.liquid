@@ -511,19 +511,22 @@
     if (activeTab) {
       initTab(activeTab.dataset.tab);
       // Multiple attempts to ensure layout is ready
-      setTimeout(() => moveIndicator(activeTab), 100);
-      setTimeout(() => moveIndicator(activeTab), 500);
+      setTimeout(() => { moveIndicator(activeTab); updateSlider(false); }, 100);
+      setTimeout(() => { moveIndicator(activeTab); updateSlider(false); }, 500);
+      setTimeout(() => { moveIndicator(activeTab); updateSlider(false); }, 1000);
     }
     
     window.addEventListener('load', () => {
       const activeTab = section.querySelector('.heading-sliding-products__tab.is-active');
       if (activeTab) moveIndicator(activeTab);
+      updateSlider(false);
     });
 
     // Theme Editor Sync
     document.addEventListener('shopify:section:load', () => {
       const activeTab = section.querySelector('.heading-sliding-products__tab.is-active');
       if (activeTab) moveIndicator(activeTab);
+      updateSlider(false);
     });
     
     if (Shopify.designMode) {
