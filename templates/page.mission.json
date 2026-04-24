@@ -47,7 +47,7 @@
         "text_weight": "700",
         "text_size": 16,
         "text_size_mobile": 14,
-        "description_margin_bottom": 30,
+        "description_margin_bottom": 0,
         "text_color": "#cfdbd4"
       }
     }
