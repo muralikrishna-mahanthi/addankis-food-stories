@@ -22,7 +22,7 @@
       "name": "Mission Hero",
       "settings": {
         "bg_color": "#1a3628",
-        "section_height": 80,
+        "section_height": 75,
         "section_height_mobile": 50,
         "padding_top": 100,
         "padding_bottom": 100,
