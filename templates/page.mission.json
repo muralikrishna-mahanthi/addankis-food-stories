@@ -9,6 +9,11 @@
  */
 {
   "sections": {
+    "mission_hero": {
+      "type": "mission-hero",
+      "settings": {
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -18,6 +23,7 @@
     }
   },
   "order": [
+    "mission_hero",
     "main"
   ]
 }
