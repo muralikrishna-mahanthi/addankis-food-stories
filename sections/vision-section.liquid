@@ -1,0 +1,682 @@
+{%- style -%}
+  .vision-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-left: 5%;
+    padding-right: 5%;
+    overflow: hidden;
+  }
+
+  .vision-container-{{ section.id }} {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 990px) {
+    .vision-container-{{ section.id }} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  /* Left Side Content */
+  .vision-content-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vision-sub-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    color: {{ section.settings.sub_color }};
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: {{ section.settings.sub_size_mob }}px;
+    font-weight: {{ section.settings.sub_weight }};
+  }
+
+  .vision-sub-{{ section.id }}::before {
+    content: "";
+    width: 30px;
+    height: 1.5px;
+    background-color: {{ section.settings.sub_color }};
+  }
+
+  .vision-heading-{{ section.id }} {
+    color: {{ section.settings.h_color }};
+    font-size: {{ section.settings.h_size_mob }}px;
+    font-weight: {{ section.settings.h_weight }};
+    line-height: 1.1;
+    margin: 0 0 40px 0;
+  }
+
+  .vision-desc-{{ section.id }} {
+    color: {{ section.settings.desc_color }};
+    font-size: {{ section.settings.desc_size_mob }}px;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .vision-desc-{{ section.id }} p {
+    margin-bottom: 20px;
+  }
+
+  /* Card Side */
+  .vision-card-wrap-{{ section.id }} {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .vision-card-wrap-{{ section.id }}.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .vision-card-{{ section.id }} {
+    background: {{ section.settings.card_bg }};
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: 60px 50px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+
+  /* Card Glow Effect */
+  .vision-card-{{ section.id }}::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(230,141,69,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .vision-quote-{{ section.id }} {
+    font-size: 60px;
+    color: {{ section.settings.sub_color }};
+    line-height: 1;
+    margin-bottom: 20px;
+    display: block;
+    font-family: serif;
+  }
+
+  .vision-card-text-{{ section.id }} {
+    color: {{ section.settings.card_text_color }};
+    font-size: {{ section.settings.card_text_size_mob }}px;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  .vision-card-btn-{{ section.id }} {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid {{ section.settings.sub_color }};
+    color: {{ section.settings.sub_color }};
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  /* Bottom Stats Section */
+  .vision-stats-{{ section.id }} {
+    max-width: 1400px;
+    margin: 80px auto 0;
+    display: flex;
+    gap: 80px;
+    border-top: 0px solid #eee;
+    padding-top: 0px;
+  }
+
+  .stat-item-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    border-left: 2px solid {{ section.settings.sub_color }};
+  }
+
+  .stat-num-{{ section.id }} {
+    font-size: {{ section.settings.stat_size_mob }}px;
+    font-weight: 700;
+    color: {{ section.settings.sub_color }};
+    line-height: 1.1;
+    display: flex;
+    align-items: baseline;
+  }
+
+  .stat-label-{{ section.id }} {
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    line-height: 1.3;
+    max-width: 100px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .vision-sub-{{ section.id }} { font-size: {{ section.settings.sub_size }}px; }
+    .vision-heading-{{ section.id }} { font-size: {{ section.settings.h_size }}px; }
+    .vision-desc-{{ section.id }} { font-size: {{ section.settings.desc_size }}px; }
+    .vision-card-text-{{ section.id }} { font-size: {{ section.settings.card_text_size }}px; }
+    .stat-num-{{ section.id }} { font-size: {{ section.settings.stat_size }}px; }
+    
+    .vision-section-{{ section.id }} {
+        padding-top: {{ section.settings.padding_top_desktop }}px;
+        padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .vision-stats-{{ section.id }} {
+      flex-direction: column;
+      gap: 40px;
+    }
+    .vision-card-{{ section.id }} {
+        padding: 40px 30px;
+    }
+  }
+
+  /* Font Handling */
+  {% if section.settings.h_font.family %}
+    {{ section.settings.h_font | font_face: font_display: 'swap' }}
+    .vision-heading-{{ section.id }} { 
+        font-family: {{ section.settings.h_font.family }}, {{ section.settings.h_font.fallback_families }}; 
+    }
+  {% endif %}
+  {% if section.settings.sub_font.family %}
+    {{ section.settings.sub_font | font_face: font_display: 'swap' }}
+    .vision-sub-{{ section.id }}, .stat-num-{{ section.id }} { 
+        font-family: {{ section.settings.sub_font.family }}, {{ section.settings.sub_font.fallback_families }}; 
+    }
+  {% endif %}
+  {% if section.settings.desc_font.family %}
+    {{ section.settings.desc_font | font_face: font_display: 'swap' }}
+    .vision-desc-{{ section.id }}, .vision-card-text-{{ section.id }} { 
+        font-family: {{ section.settings.desc_font.family }}, {{ section.settings.desc_font.fallback_families }}; 
+    }
+  {% endif %}
+
+{%- endstyle -%}
+
+<div class="vision-section-{{ section.id }} vision-scroll-trigger">
+  <div class="vision-container-{{ section.id }}">
+    
+    <!-- Left Column -->
+    <div class="vision-content-{{ section.id }}">
+      {% if section.settings.subheading != blank %}
+        <div class="vision-sub-{{ section.id }}">{{ section.settings.subheading }}</div>
+      {% endif %}
+      
+      {% if section.settings.heading != blank %}
+        <h2 class="vision-heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {% endif %}
+      
+      <div class="vision-desc-{{ section.id }}">
+        {{ section.settings.description }}
+      </div>
+    </div>
+
+    <!-- Right Column (Card) -->
+    <div class="vision-card-wrap-{{ section.id }} vision-anim-card">
+      <div class="vision-card-{{ section.id }}">
+        <span class="vision-quote-{{ section.id }}">“</span>
+        <div class="vision-card-text-{{ section.id }}">
+          {{ section.settings.card_text }}
+        </div>
+        {% if section.settings.card_btn_label != blank %}
+          <a href="{{ section.settings.card_btn_link | default: '#' }}" class="vision-card-btn-{{ section.id }}">
+            {{ section.settings.card_btn_label }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Stats Section -->
+  <div class="vision-stats-{{ section.id }}">
+    <!-- Stat 1 -->
+    <div class="stat-item-{{ section.id }}">
+      <div class="stat-num-{{ section.id }}">
+        <span class="count-up" data-target="{{ section.settings.stat1_num }}">0</span>
+        {{ section.settings.stat1_suffix }}
+      </div>
+      <div class="stat-label-{{ section.id }}">{{ section.settings.stat1_label }}</div>
+    </div>
+
+    <!-- Stat 2 -->
+    <div class="stat-item-{{ section.id }}">
+      <div class="stat-num-{{ section.id }}">
+        {{ section.settings.stat2_num }}
+      </div>
+      <div class="stat-label-{{ section.id }}">{{ section.settings.stat2_label }}</div>
+    </div>
+
+    <!-- Stat 3 -->
+    <div class="stat-item-{{ section.id }}">
+      <div class="stat-num-{{ section.id }}">
+        <span class="count-up" data-target="{{ section.settings.stat3_num }}">0</span>
+        {{ section.settings.stat3_suffix }}
+      </div>
+      <div class="stat-label-{{ section.id }}">{{ section.settings.stat3_label }}</div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const visionSection = document.querySelector('.vision-section-{{ section.id }}');
+  const animCard = visionSection.querySelector('.vision-anim-card');
+  const countElements = visionSection.querySelectorAll('.count-up');
+  
+  const observerOptions = {
+    threshold: 0.2
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Trigger Card Animation
+        animCard.classList.add('is-visible');
+        
+        // Trigger Counter Animation
+        countElements.forEach(el => {
+          const target = parseInt(el.getAttribute('data-target'));
+          animateValue(el, 0, target, 2000);
+        });
+        
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  observer.observe(visionSection);
+
+  function animateValue(obj, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      obj.innerHTML = Math.floor(progress * (end - start) + start);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Vision Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fcfaf7"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Padding Top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Padding Bottom",
+      "default": 120
+    },
+    {
+      "type": "header",
+      "content": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "OUR VISION"
+    },
+    {
+      "type": "font_picker",
+      "id": "sub_font",
+      "label": "Subheading Font Family",
+      "default": "assistant_n4"
+    },
+    {
+        "type": "select",
+        "id": "sub_weight",
+        "label": "Subheading Font Weight",
+        "options": [
+          { "value": "400", "label": "Normal" },
+          { "value": "500", "label": "Medium" },
+          { "value": "600", "label": "Semi Bold" },
+          { "value": "700", "label": "Bold" }
+        ],
+        "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "sub_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Font Size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "sub_size_mob",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Font Size",
+      "default": 11
+    },
+    {
+      "type": "color",
+      "id": "sub_color",
+      "label": "Accent Color (Subheading/Lines/Stats)",
+      "default": "#e68d45"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Building India's Strongest FMCG Ecosystem"
+    },
+    {
+      "type": "font_picker",
+      "id": "h_font",
+      "label": "Heading Font Family",
+      "default": "assistant_n4"
+    },
+    {
+        "type": "select",
+        "id": "h_weight",
+        "label": "Heading Font Weight",
+        "options": [
+          { "value": "400", "label": "Normal" },
+          { "value": "500", "label": "Medium" },
+          { "value": "600", "label": "Semi Bold" },
+          { "value": "700", "label": "Bold" }
+        ],
+        "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "h_size",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop Font Size",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "h_size_mob",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Font Size",
+      "default": 42
+    },
+    {
+      "type": "color",
+      "id": "h_color",
+      "label": "Heading Color",
+      "default": "#1a3628"
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description Text",
+      "default": "<p>We envision a future where Indian consumers — in every city, town, and village — have access to world-class consumer brands born from their own traditions. Addanki's Food Stories is building the distribution infrastructure and brand portfolio to make that future real.</p><p>From the bustling urban markets of Hyderabad to the emerging rural belts of Andhra Pradesh and beyond, we are building one of India's most trusted FMCG platforms — one product, one shelf, one story at a time.</p>"
+    },
+    {
+      "type": "font_picker",
+      "id": "desc_font",
+      "label": "Description Font Family",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "desc_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "desc_size_mob",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Font Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Vision Card"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#1a3628"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Corner Radius",
+      "default": 20
+    },
+    {
+      "type": "inline_richtext",
+      "id": "card_text",
+      "label": "Card Quote Text",
+      "default": "To build a ₹1000 crore FMCG ecosystem by creating innovative consumer brands and building one of India's strongest distribution platforms for rural and emerging markets."
+    },
+    {
+      "type": "range",
+      "id": "card_text_size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Quote Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_text_size_mob",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Quote Size",
+      "default": 18
+    },
+    {
+      "type": "text",
+      "id": "card_btn_label",
+      "label": "Card Label/Button",
+      "default": "THE ADDANKI'S VISION STATEMENT"
+    },
+    {
+      "type": "url",
+      "id": "card_btn_link",
+      "label": "Card Label Link"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Stats"
+    },
+    {
+      "type": "range",
+      "id": "stat_size",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Stat Number Desktop Size",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "stat_size_mob",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Stat Number Mobile Size",
+      "default": 42
+    },
+    {
+      "type": "header",
+      "content": "Stat 1 (Counter)"
+    },
+    {
+      "type": "text",
+      "id": "stat1_num",
+      "label": "Target Number (e.g. 1000)",
+      "default": "1000"
+    },
+    {
+      "type": "text",
+      "id": "stat1_suffix",
+      "label": "Suffix (e.g. Cr)",
+      "default": " Cr"
+    },
+    {
+      "type": "text",
+      "id": "stat1_label",
+      "label": "Label",
+      "default": "TARGET ECOSYSTEM"
+    },
+    {
+      "type": "header",
+      "content": "Stat 2 (Static Text)"
+    },
+    {
+      "type": "text",
+      "id": "stat2_num",
+      "label": "Display Text",
+      "default": "Pan India"
+    },
+    {
+      "type": "text",
+      "id": "stat2_label",
+      "label": "Label",
+      "default": "DISTRIBUTION"
+    },
+    {
+      "type": "header",
+      "content": "Stat 3 (Counter)"
+    },
+    {
+      "type": "text",
+      "id": "stat3_num",
+      "label": "Target Number (e.g. 10)",
+      "default": "10"
+    },
+    {
+      "type": "text",
+      "id": "stat3_suffix",
+      "label": "Suffix (e.g. M+)",
+      "default": "M+"
+    },
+    {
+      "type": "text",
+      "id": "stat3_label",
+      "label": "Label",
+      "default": "HOUSEHOLDS TARGET"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vision Section"
+    }
+  ]
+}
+{% endschema %}
