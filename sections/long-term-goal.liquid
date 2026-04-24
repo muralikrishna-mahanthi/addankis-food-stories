@@ -1,0 +1,432 @@
+{%- style -%}
+  .goal-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    min-height: {{ section.settings.height_mob }}vh;
+    display: flex;
+    align-items: center;
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 768px) {
+    .goal-section-{{ section.id }} {
+      min-height: {{ section.settings.height_desktop }}vh;
+      padding: 100px 5%;
+    }
+  }
+
+  .goal-container-{{ section.id }} {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    align-items: center;
+    z-index: 2;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .goal-container-{{ section.id }} {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+
+  /* Left Side Content */
+  .goal-content-{{ section.id }} {
+    max-width: 650px;
+  }
+
+  .goal-sub-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: {{ section.settings.accent_color }};
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 25px;
+  }
+
+  .goal-sub-{{ section.id }}::before {
+    content: "";
+    width: 30px;
+    height: 2px;
+    background-color: {{ section.settings.accent_color }};
+  }
+
+  .goal-h-{{ section.id }} {
+    color: {{ section.settings.h_color }};
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 25px;
+  }
+
+  .goal-h-{{ section.id }} em, 
+  .goal-h-{{ section.id }} i {
+    color: {{ section.settings.accent_color }};
+    font-style: italic;
+  }
+
+  .goal-p-{{ section.id }} {
+    color: {{ section.settings.p_color }};
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    opacity: 0.8;
+  }
+
+  /* Goal Blocks */
+  .goal-items-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .goal-item-{{ section.id }} {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+  }
+
+  .goal-item-{{ section.id }}:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(10px);
+  }
+
+  .goal-dot-{{ section.id }} {
+    width: 10px;
+    height: 10px;
+    background-color: {{ section.settings.accent_color }};
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px {{ section.settings.accent_color }};
+  }
+
+  .goal-item-text-{{ section.id }} {
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .goal-item-text-{{ section.id }} strong {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  /* Right Side Visual Graphic */
+  .goal-visual-{{ section.id }} {
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .orbit-container-{{ section.id }} {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .orbit-ring-{{ section.id }} {
+    position: absolute;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+  }
+
+  .ring-1-{{ section.id }} { width: 300px; height: 300px; }
+  .ring-2-{{ section.id }} { width: 450px; height: 450px; }
+
+  .center-node-{{ section.id }} {
+    width: 120px;
+    height: 120px;
+    background-color: {{ section.settings.accent_color }};
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    z-index: 5;
+    box-shadow: 0 0 40px rgba(230, 141, 69, 0.3);
+  }
+
+  .center-node-{{ section.id }} span {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .center-node-{{ section.id }} small {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+  }
+
+  .orbit-node-{{ section.id }} {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 4;
+    transition: all 0.3s ease;
+  }
+
+  .orbit-node-{{ section.id }}:hover {
+    background: {{ section.settings.accent_color }};
+    transform: scale(1.1);
+  }
+
+  .node-brands-{{ section.id }} { top: 0; right: 20%; }
+  .node-partners-{{ section.id }} { top: 30%; left: -10%; }
+  .node-urban-{{ section.id }} { bottom: 20%; right: -5%; }
+  .node-rural-{{ section.id }} { bottom: 0; left: 20%; }
+
+  @media screen and (max-width: 1023px) {
+    .goal-visual-{{ section.id }} {
+      height: 400px;
+      margin-top: 40px;
+    }
+    .ring-2-{{ section.id }} { width: 350px; height: 350px; }
+  }
+
+  /* Font Handling */
+  {% if section.settings.h_font.family %}
+    {{ section.settings.h_font | font_face: font_display: 'swap' }}
+    .goal-h-{{ section.id }} { 
+      font-family: {{ section.settings.h_font.family }}, {{ section.settings.h_font.fallback_families }}; 
+    }
+  {% endif %}
+  {% if section.settings.p_font.family %}
+    {{ section.settings.p_font | font_face: font_display: 'swap' }}
+    .goal-p-{{ section.id }}, .goal-item-text-{{ section.id }} { 
+      font-family: {{ section.settings.p_font.family }}, {{ section.settings.p_font.fallback_families }}; 
+    }
+  {% endif %}
+
+{%- endstyle -%}
+
+<section class="goal-section-{{ section.id }}">
+  <div class="goal-container-{{ section.id }}">
+    
+    <div class="goal-content-{{ section.id }}">
+      {% if section.settings.subheading != blank %}
+        <div class="goal-sub-{{ section.id }}">{{ section.settings.subheading }}</div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="goal-h-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="goal-p-{{ section.id }}">{{ section.settings.description }}</div>
+      {% endif %}
+
+      <div class="goal-items-{{ section.id }}">
+        {% for block in section.blocks %}
+          <div class="goal-item-{{ section.id }}" {{ block.shopify_attributes }}>
+            <div class="goal-dot-{{ section.id }}"></div>
+            <div class="goal-item-text-{{ section.id }}">
+              <strong>{{ block.settings.title }}</strong> — {{ block.settings.text }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="goal-visual-{{ section.id }}">
+      <div class="orbit-container-{{ section.id }}">
+        <div class="orbit-ring-{{ section.id }} ring-1-{{ section.id }}"></div>
+        <div class="orbit-ring-{{ section.id }} ring-2-{{ section.id }}"></div>
+        
+        <div class="center-node-{{ section.id }}">
+          <span>1K Cr</span>
+          <small>VISION</small>
+        </div>
+
+        <div class="orbit-node-{{ section.id }} node-brands-{{ section.id }}">
+          <span>BRANDS</span>
+        </div>
+        <div class="orbit-node-{{ section.id }} node-partners-{{ section.id }}">
+          <span>PARTNERS</span>
+        </div>
+        <div class="orbit-node-{{ section.id }} node-urban-{{ section.id }}">
+          <span>URBAN</span>
+        </div>
+        <div class="orbit-node-{{ section.id }} node-rural-{{ section.id }}">
+          <span>RURAL</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Long Term Goal",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1a3628"
+    },
+    {
+      "type": "color",
+      "id": "h_color",
+      "label": "Heading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "p_color",
+      "label": "Description Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#e68d45"
+    },
+    {
+      "type": "range",
+      "id": "height_desktop",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Desktop Height",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "height_mob",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Mobile Height",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "h_font",
+      "label": "Heading Font Family",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "font_picker",
+      "id": "p_font",
+      "label": "Text Font Family",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "LONG-TERM GOAL"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Leading India's <em>Brand Builder</em> & Distribution Era"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description Text",
+      "default": "Addanki's Food Stories aims to become the most trusted FMCG brand builder and distribution platform in India — supporting multiple successful consumer brands and reaching millions of households across every state and district."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Goal Point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Point Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Point Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Long Term Goal",
+      "blocks": [
+        {
+          "type": "point",
+          "settings": {
+            "title": "Multiple Successful Consumer Brands",
+            "text": "incubated, built, and scaled under our ecosystem umbrella."
+          }
+        },
+        {
+          "type": "point",
+          "settings": {
+            "title": "Millions of Households Reached",
+            "text": "across urban, semi-urban, and rural India through our distribution network."
+          }
+        },
+        {
+          "type": "point",
+          "settings": {
+            "title": "India's Strongest Rural Distribution",
+            "text": "enabling products to reach the last mile, where growth truly awaits."
+          }
+        },
+        {
+          "type": "point",
+          "settings": {
+            "title": "₹1000 Crore Ecosystem",
+            "text": "a landmark reflecting our scale, impact, and trust earned across markets."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
