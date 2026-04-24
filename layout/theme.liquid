@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
   <head>
     <meta charset="utf-8">
@@ -317,6 +317,8 @@
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
+
+    {% section 'mission-hero' %}
 
     {% sections 'footer-group' %}
 

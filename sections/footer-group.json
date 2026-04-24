@@ -11,11 +11,6 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "mission_hero": {
-      "type": "mission-hero",
-      "settings": {
-      }
-    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -53,7 +48,6 @@
     }
   },
   "order": [
-    "mission_hero",
     "footer"
   ]
 }
