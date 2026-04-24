@@ -170,13 +170,13 @@
 
   .orbit-ring-{{ section.id }} {
     position: absolute;
-    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border: 1px dashed rgba(255, 255, 255, 0.25);
     border-radius: 50%;
   }
 
-  .ring-1-{{ section.id }} { width: 220px; height: 220px; }
-  .ring-2-{{ section.id }} { width: 400px; height: 400px; }
-  .ring-3-{{ section.id }} { width: 580px; height: 580px; }
+  .ring-1-{{ section.id }} { width: 180px; height: 180px; }
+  .ring-2-{{ section.id }} { width: 340px; height: 340px; }
+  .ring-3-{{ section.id }} { width: 500px; height: 500px; }
 
   .center-node-{{ section.id }} {
     width: 140px;
@@ -219,7 +219,7 @@
     height: 90px;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -239,8 +239,8 @@
   }
 
   .node-icon-{{ section.id }} {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     margin-bottom: 5px;
     object-fit: contain;
   }
@@ -251,13 +251,13 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     position: absolute;
-    bottom: -25px;
+    bottom: -28px;
     width: 100%;
     text-align: center;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.8);
   }
 
-  /* Cardinal Positions on Ring 2 (400px diameter) */
+  /* Cardinal Positions on Ring 3 (500px diameter) */
   .node-brands-{{ section.id }} { top: -45px; left: 50%; transform: translateX(-50%); }
   .node-partners-{{ section.id }} { bottom: -45px; left: 50%; transform: translateX(-50%); }
   .node-urban-{{ section.id }} { left: -45px; top: 50%; transform: translateY(-50%); }
@@ -265,13 +265,13 @@
 
   @media screen and (max-width: 1023px) {
     .goal-visual-{{ section.id }} {
-      height: 450px;
+      height: 500px;
       margin-top: 40px;
     }
-    .orbit-container-{{ section.id }} { width: 350px; height: 350px; }
+    .orbit-container-{{ section.id }} { width: 400px; height: 400px; }
     .ring-1-{{ section.id }} { width: 140px; height: 140px; }
-    .ring-2-{{ section.id }} { width: 280px; height: 280px; }
-    .ring-3-{{ section.id }} { width: 420px; height: 420px; }
+    .ring-2-{{ section.id }} { width: 270px; height: 270px; }
+    .ring-3-{{ section.id }} { width: 400px; height: 400px; }
     .orbit-node-{{ section.id }} { width: 70px; height: 70px; }
     .center-node-{{ section.id }} { width: 110px; height: 110px; }
     
