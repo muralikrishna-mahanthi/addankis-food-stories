@@ -50,10 +50,57 @@
         "description_margin_bottom": 0,
         "text_color": "#cfdbd4"
       }
+    },
+    "vision_section_ah9TiK": {
+      "type": "vision-section",
+      "name": "Vision Section",
+      "settings": {
+        "bg_color": "#fcfaf7",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "subheading": "OUR VISION",
+        "sub_font": "assistant_n4",
+        "sub_weight": "600",
+        "sub_size": 12,
+        "sub_size_mob": 11,
+        "sub_color": "#e68d45",
+        "heading": "Building India's Strongest FMCG Ecosystem",
+        "h_font": "assistant_n4",
+        "h_weight": "400",
+        "h_size": 72,
+        "h_size_mob": 42,
+        "h_color": "#1a3628",
+        "description": "<p>We envision a future where Indian consumers — in every city, town, and village — have access to world-class consumer brands born from their own traditions. Addanki's Food Stories is building the distribution infrastructure and brand portfolio to make that future real.</p><p>From the bustling urban markets of Hyderabad to the emerging rural belts of Andhra Pradesh and beyond, we are building one of India's most trusted FMCG platforms — one product, one shelf, one story at a time.</p>",
+        "desc_font": "assistant_n4",
+        "desc_size": 16,
+        "desc_size_mob": 14,
+        "desc_color": "#666666",
+        "card_bg": "#1a3628",
+        "card_text_color": "#ffffff",
+        "card_radius": 20,
+        "card_text": "To build a ₹1000 crore FMCG ecosystem by creating innovative consumer brands and building one of India's strongest distribution platforms for rural and emerging markets.",
+        "card_text_size": 24,
+        "card_text_size_mob": 18,
+        "card_btn_label": "THE ADDANKI'S VISION STATEMENT",
+        "card_btn_link": "",
+        "stat_size": 56,
+        "stat_size_mob": 42,
+        "stat1_num": "1000",
+        "stat1_suffix": "Cr",
+        "stat1_label": "TARGET ECOSYSTEM",
+        "stat2_num": "Pan India",
+        "stat2_label": "DISTRIBUTION",
+        "stat3_num": "10",
+        "stat3_suffix": "M+",
+        "stat3_label": "HOUSEHOLDS TARGET"
+      }
     }
   },
   "order": [
     "main",
-    "mission_hero_TFbdac"
+    "mission_hero_TFbdac",
+    "vision_section_ah9TiK"
   ]
 }
