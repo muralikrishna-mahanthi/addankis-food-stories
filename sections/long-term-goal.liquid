@@ -16,6 +16,32 @@
     }
   }
 
+  /* Background Orbital Rings */
+  .goal-bg-circles-{{ section.id }} {
+    position: absolute;
+    top: 50%;
+    right: 25%;
+    transform: translate(50%, -50%);
+    width: 2000px;
+    height: 2000px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .bg-circle-{{ section.id }} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+  }
+
+  .c-1-{{ section.id }} { width: 600px; height: 600px; }
+  .c-2-{{ section.id }} { width: 1000px; height: 1000px; }
+  .c-3-{{ section.id }} { width: 1400px; height: 1400px; }
+  .c-4-{{ section.id }} { width: 1800px; height: 1800px; }
+
   .goal-container-{{ section.id }} {
     max-width: 1400px;
     margin: 0 auto;
@@ -25,6 +51,7 @@
     gap: 60px;
     align-items: center;
     z-index: 2;
+    position: relative;
   }
 
   @media screen and (min-width: 1024px) {
@@ -126,7 +153,7 @@
   /* Right Side Visual Graphic */
   .goal-visual-{{ section.id }} {
     position: relative;
-    height: 500px;
+    height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,8 +161,8 @@
 
   .orbit-container-{{ section.id }} {
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,16 +170,16 @@
 
   .orbit-ring-{{ section.id }} {
     position: absolute;
-    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border: 1px dashed rgba(255, 255, 255, 0.15);
     border-radius: 50%;
   }
 
-  .ring-1-{{ section.id }} { width: 300px; height: 300px; }
-  .ring-2-{{ section.id }} { width: 450px; height: 450px; }
+  .ring-1-{{ section.id }} { width: 320px; height: 320px; }
+  .ring-2-{{ section.id }} { width: 500px; height: 500px; }
 
   .center-node-{{ section.id }} {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     background-color: {{ section.settings.accent_color }};
     border-radius: 50%;
     display: flex;
@@ -162,58 +189,82 @@
     color: #fff;
     text-align: center;
     z-index: 5;
-    box-shadow: 0 0 40px rgba(230, 141, 69, 0.3);
+    box-shadow: 0 0 60px rgba(230, 141, 69, 0.4);
+    animation: pulse 3s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(230, 141, 69, 0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 0 80px rgba(230, 141, 69, 0.6); }
   }
 
   .center-node-{{ section.id }} span {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
   }
 
   .center-node-{{ section.id }} small {
-    font-size: 10px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-top: 5px;
+    opacity: 0.9;
   }
 
   .orbit-node-{{ section.id }} {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.1);
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     color: #fff;
-    font-size: 8px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
     z-index: 4;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
   }
 
   .orbit-node-{{ section.id }}:hover {
     background: {{ section.settings.accent_color }};
+    border-color: transparent;
     transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
 
-  .node-brands-{{ section.id }} { top: 0; right: 20%; }
-  .node-partners-{{ section.id }} { top: 30%; left: -10%; }
-  .node-urban-{{ section.id }} { bottom: 20%; right: -5%; }
-  .node-rural-{{ section.id }} { bottom: 0; left: 20%; }
+  .node-icon-{{ section.id }} {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+    object-fit: contain;
+  }
+
+  .node-label-{{ section.id }} {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .node-brands-{{ section.id }} { top: 0; right: 15%; }
+  .node-partners-{{ section.id }} { top: 35%; left: -5%; }
+  .node-urban-{{ section.id }} { bottom: 25%; right: -5%; }
+  .node-rural-{{ section.id }} { bottom: 0; left: 15%; }
 
   @media screen and (max-width: 1023px) {
     .goal-visual-{{ section.id }} {
-      height: 400px;
+      height: 450px;
       margin-top: 40px;
     }
+    .orbit-container-{{ section.id }} { width: 350px; height: 350px; }
+    .ring-1-{{ section.id }} { width: 220px; height: 220px; }
     .ring-2-{{ section.id }} { width: 350px; height: 350px; }
+    .orbit-node-{{ section.id }} { width: 70px; height: 70px; }
+    .center-node-{{ section.id }} { width: 110px; height: 110px; }
   }
 
   /* Font Handling */
@@ -233,6 +284,14 @@
 {%- endstyle -%}
 
 <section class="goal-section-{{ section.id }}">
+  <!-- Large Background Orbits -->
+  <div class="goal-bg-circles-{{ section.id }}">
+    <div class="bg-circle-{{ section.id }} c-1-{{ section.id }}"></div>
+    <div class="bg-circle-{{ section.id }} c-2-{{ section.id }}"></div>
+    <div class="bg-circle-{{ section.id }} c-3-{{ section.id }}"></div>
+    <div class="bg-circle-{{ section.id }} c-4-{{ section.id }}"></div>
+  </div>
+
   <div class="goal-container-{{ section.id }}">
     
     <div class="goal-content-{{ section.id }}">
@@ -266,21 +325,40 @@
         <div class="orbit-ring-{{ section.id }} ring-2-{{ section.id }}"></div>
         
         <div class="center-node-{{ section.id }}">
-          <span>1K Cr</span>
-          <small>VISION</small>
+          <span>{{ section.settings.center_text }}</span>
+          <small>{{ section.settings.center_subtext }}</small>
         </div>
 
+        <!-- Brands Node -->
         <div class="orbit-node-{{ section.id }} node-brands-{{ section.id }}">
-          <span>BRANDS</span>
+          {% if section.settings.icon_brands != blank %}
+            <img src="{{ section.settings.icon_brands | image_url: width: 50 }}" class="node-icon-{{ section.id }}" alt="Brands">
+          {% endif %}
+          <span class="node-label-{{ section.id }}">BRANDS</span>
         </div>
+
+        <!-- Partners Node -->
         <div class="orbit-node-{{ section.id }} node-partners-{{ section.id }}">
-          <span>PARTNERS</span>
+          {% if section.settings.icon_partners != blank %}
+            <img src="{{ section.settings.icon_partners | image_url: width: 50 }}" class="node-icon-{{ section.id }}" alt="Partners">
+          {% endif %}
+          <span class="node-label-{{ section.id }}">PARTNERS</span>
         </div>
+
+        <!-- Urban Node -->
         <div class="orbit-node-{{ section.id }} node-urban-{{ section.id }}">
-          <span>URBAN</span>
+          {% if section.settings.icon_urban != blank %}
+            <img src="{{ section.settings.icon_urban | image_url: width: 50 }}" class="node-icon-{{ section.id }}" alt="Urban">
+          {% endif %}
+          <span class="node-label-{{ section.id }}">URBAN</span>
         </div>
+
+        <!-- Rural Node -->
         <div class="orbit-node-{{ section.id }} node-rural-{{ section.id }}">
-          <span>RURAL</span>
+          {% if section.settings.icon_rural != blank %}
+            <img src="{{ section.settings.icon_rural | image_url: width: 50 }}" class="node-icon-{{ section.id }}" alt="Rural">
+          {% endif %}
+          <span class="node-label-{{ section.id }}">RURAL</span>
         </div>
       </div>
     </div>
@@ -373,6 +451,42 @@
       "id": "description",
       "label": "Description Text",
       "default": "Addanki's Food Stories aims to become the most trusted FMCG brand builder and distribution platform in India — supporting multiple successful consumer brands and reaching millions of households across every state and district."
+    },
+    {
+      "type": "header",
+      "content": "Visual Node Settings"
+    },
+    {
+      "type": "text",
+      "id": "center_text",
+      "label": "Center Node Text",
+      "default": "1K Cr"
+    },
+    {
+      "type": "text",
+      "id": "center_subtext",
+      "label": "Center Node Subtext",
+      "default": "VISION"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_brands",
+      "label": "Brands Node Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_partners",
+      "label": "Partners Node Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_urban",
+      "label": "Urban Node Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_rural",
+      "label": "Rural Node Icon"
     }
   ],
   "blocks": [
@@ -430,3 +544,4 @@
   ]
 }
 {% endschema %}
+
