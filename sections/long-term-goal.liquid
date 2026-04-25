@@ -162,7 +162,9 @@
 
   .orbit-container-{{ section.id }} {
     position: relative;
-    width: 550px;
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
   }
 
   .orbit-svg-{{ section.id }} {
@@ -212,6 +214,10 @@
     text-align: center;
     z-index: 10;
     box-shadow: 0 0 40px rgba(209, 90, 26, 0.3);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .center-node-{{ section.id }} span {
@@ -278,7 +284,7 @@
       height: 450px;
       margin-top: 60px;
     }
-    .orbit-container-{{ section.id }} { width: 400px; height: 400px; }
+    .orbit-container-{{ section.id }} { width: 350px; height: 350px; }
     
     .orbit-node-{{ section.id }} { width: 70px; height: 70px; }
     .node-icon-{{ section.id }} { width: 30px; height: 30px; }
@@ -286,6 +292,16 @@
     .center-node-{{ section.id }} span { font-size: 20px; }
     .center-node-{{ section.id }} small { font-size: 10px; }
     .node-label-{{ section.id }} { font-size: 10px; margin-top: 10px; }
+    
+    {% assign r1_mob = 130 %}
+    {% assign sp_mob = spacing | times: 0.5 %}
+    {% assign r2_mob = r1_mob | plus: sp_mob %}
+    {% assign r3_mob = r2_mob | plus: sp_mob %}
+
+    .node-brands-{{ section.id }} { top: calc(50% - {{ r3_mob | divided_by: 2 }}px); }
+    .node-partners-{{ section.id }} { top: calc(50% + {{ r3_mob | divided_by: 2 }}px); }
+    .node-urban-{{ section.id }} { left: calc(50% - {{ r3_mob | divided_by: 2 }}px); }
+    .node-rural-{{ section.id }} { left: calc(50% + {{ r3_mob | divided_by: 2 }}px); }
   }
 
   /* Font Handling */
