@@ -235,9 +235,9 @@
       ],
       "name": "Long Term Goal",
       "settings": {
-        "bg_color": "#1a3628",
-        "h_color": "#ffffff",
-        "p_color": "#ffffff",
+        "bg_color": "#ffffff",
+        "h_color": "#000000",
+        "p_color": "#464646",
         "accent_color": "#e68d45",
         "height_desktop": 90,
         "height_mob": 80,
@@ -245,7 +245,13 @@
         "p_font": "assistant_n4",
         "subheading": "LONG-TERM GOAL",
         "heading": "Leading India's <em>Brand Builder</em> & Distribution Era",
-        "description": "Addanki's Food Stories aims to become the most trusted FMCG brand builder and distribution platform in India — supporting multiple successful consumer brands and reaching millions of households across every state and district."
+        "description": "Addanki's Food Stories aims to become the most trusted FMCG brand builder and distribution platform in India — supporting multiple successful consumer brands and reaching millions of households across every state and district.",
+        "center_text": "1K Cr",
+        "center_subtext": "VISION",
+        "icon_brands": "shopify://shop_images/icon_2.jpg",
+        "icon_partners": "shopify://shop_images/icon_3.jpg",
+        "icon_urban": "shopify://shop_images/icon_1.jpg",
+        "icon_rural": "shopify://shop_images/icon_5.jpg"
       }
     }
   },
