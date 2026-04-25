@@ -326,8 +326,8 @@
         </foreignObject>
 
         <!-- Brands Node (Top) -->
-        <foreignObject x="325" y="{{ 400 | minus: r3 | minus: 80 }}" width="150" height="150">
-          <div style="display: flex; flex-direction: column; align-items: center;">
+        <foreignObject x="325" y="{{ 400 | minus: r3 | minus: 75 }}" width="150" height="150">
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
             <div class="orbit-node-{{ section.id }}">
               {% if section.settings.icon_brands != blank %}
                 <img src="{{ section.settings.icon_brands | image_url: width: 100 }}" style="width: 45%; height: 45%; object-fit: contain;" alt="Brands">
@@ -338,8 +338,8 @@
         </foreignObject>
 
         <!-- Partners Node (Bottom) -->
-        <foreignObject x="325" y="{{ 400 | plus: r3 | minus: 50 }}" width="150" height="150">
-          <div style="display: flex; flex-direction: column; align-items: center;">
+        <foreignObject x="325" y="{{ 400 | plus: r3 | minus: 75 }}" width="150" height="150">
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
             <div class="orbit-node-{{ section.id }}">
               {% if section.settings.icon_partners != blank %}
                 <img src="{{ section.settings.icon_partners | image_url: width: 100 }}" style="width: 45%; height: 45%; object-fit: contain;" alt="Partners">
@@ -350,8 +350,8 @@
         </foreignObject>
 
         <!-- Urban Node (Left) -->
-        <foreignObject x="{{ 400 | minus: r3 | minus: 120 }}" y="325" width="150" height="150">
-          <div style="display: flex; flex-direction: column; align-items: center;">
+        <foreignObject x="{{ 400 | minus: r3 | minus: 75 }}" y="325" width="150" height="150">
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
             <div class="orbit-node-{{ section.id }}">
               {% if section.settings.icon_urban != blank %}
                 <img src="{{ section.settings.icon_urban | image_url: width: 100 }}" style="width: 45%; height: 45%; object-fit: contain;" alt="Urban">
@@ -362,8 +362,8 @@
         </foreignObject>
 
         <!-- Rural Node (Right) -->
-        <foreignObject x="{{ 400 | plus: r3 | minus: 30 }}" y="325" width="150" height="150">
-          <div style="display: flex; flex-direction: column; align-items: center;">
+        <foreignObject x="{{ 400 | plus: r3 | minus: 75 }}" y="325" width="150" height="150">
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
             <div class="orbit-node-{{ section.id }}">
               {% if section.settings.icon_rural != blank %}
                 <img src="{{ section.settings.icon_rural | image_url: width: 100 }}" style="width: 45%; height: 45%; object-fit: contain;" alt="Rural">
@@ -373,7 +373,7 @@
           </div>
         </foreignObject>
       </svg>
-    </div>div>
+    </div>
 
   </div>
 </section>
@@ -620,12 +620,12 @@
     {
       "type": "range",
       "id": "ring_spacing",
-      "min": 50,
-      "max": 300,
-      "step": 10,
+      "min": 40,
+      "max": 200,
+      "step": 5,
       "unit": "px",
-      "label": "Ring Spacing (Gap)",
-      "default": 160
+      "label": "Ring Spacing (Radius Gap)",
+      "default": 80
     },
     {
       "type": "header",
