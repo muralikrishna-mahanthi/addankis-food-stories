@@ -114,9 +114,9 @@
   }
 
   .goal-item-{{ section.id }} {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    background: {{ section.settings.block_bg_color }};
+    border: {{ section.settings.block_border_width }}px solid {{ section.settings.block_border_color }};
+    border-radius: {{ section.settings.block_border_radius }}px;
     padding: 25px;
     display: flex;
     gap: 20px;
@@ -125,7 +125,7 @@
   }
 
   .goal-item-{{ section.id }}:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: {{ section.settings.block_bg_color | color_lighten: 5 }};
     transform: translateX(10px);
   }
 
@@ -171,7 +171,7 @@
 
   .orbit-ring-{{ section.id }} {
     position: absolute;
-    border: 1px dotted rgba(255, 255, 255, 0.2);
+    border: {{ section.settings.ring_width }}px dotted {{ section.settings.ring_color }};
     border-radius: 50%;
     top: 50%;
     left: 50%;
@@ -223,10 +223,10 @@
   }
 
   .orbit-node-{{ section.id }} {
-    width: 100px;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: {{ section.settings.node_size }}px;
+    height: {{ section.settings.node_size }}px;
+    background: {{ section.settings.node_bg_color }};
+    border: {{ section.settings.node_border_width }}px solid {{ section.settings.node_border_color }};
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -235,8 +235,8 @@
   }
 
   .node-icon-{{ section.id }} {
-    width: 45px;
-    height: 45px;
+    width: calc({{ section.settings.node_size }}px * 0.45);
+    height: calc({{ section.settings.node_size }}px * 0.45);
     object-fit: contain;
   }
 
@@ -245,7 +245,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: rgba(255, 255, 255, 0.9);
+    color: {{ section.settings.node_label_color }};
     margin-top: 15px;
     text-align: center;
   }
@@ -572,7 +572,105 @@
     },
     {
       "type": "header",
+      "content": "Goal Items Styling"
+    },
+    {
+      "type": "color",
+      "id": "block_bg_color",
+      "label": "Item Background Color",
+      "default": "rgba(255, 255, 255, 0.05)"
+    },
+    {
+      "type": "color",
+      "id": "block_border_color",
+      "label": "Item Border Color",
+      "default": "rgba(255, 255, 255, 0.1)"
+    },
+    {
+      "type": "range",
+      "id": "block_border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Item Border Width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "block_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Item Border Radius",
+      "default": 12
+    },
+    {
+      "type": "header",
       "content": "Visual Node Settings"
+    },
+    {
+      "type": "color",
+      "id": "node_bg_color",
+      "label": "Node Background Color",
+      "default": "rgba(255, 255, 255, 0.05)"
+    },
+    {
+      "type": "color",
+      "id": "node_border_color",
+      "label": "Node Border Color",
+      "default": "rgba(255, 255, 255, 0.2)"
+    },
+    {
+      "type": "range",
+      "id": "node_border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Node Border Width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "node_size",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Node Size",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "node_label_color",
+      "label": "Node Label Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Orbital Rings Styling"
+    },
+    {
+      "type": "color",
+      "id": "ring_color",
+      "label": "Ring Color",
+      "default": "rgba(255, 255, 255, 0.2)"
+    },
+    {
+      "type": "range",
+      "id": "ring_width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Ring Width",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Center Node Settings"
     },
     {
       "type": "text",
