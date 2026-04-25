@@ -215,6 +215,19 @@
   .node-urban-{{ section.id }} { transform: translateX(-{{ r3 }}px); }
   .node-rural-{{ section.id }} { transform: translateX({{ r3 }}px); }
 
+  .orbit-node-{{ section.id }} {
+    width: {{ section.settings.node_size }}px;
+    height: {{ section.settings.node_size }}px;
+    background: {{ section.settings.node_bg_color }};
+    border: {{ section.settings.node_border_width }}px solid {{ section.settings.node_border_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+
   .node-label-{{ section.id }} {
     font-size: 13px;
     font-weight: 700;
@@ -334,63 +347,66 @@
       </div>
     </div>
     <div class="goal-visual-{{ section.id }}">
-      <svg class="orbit-svg-{{ section.id }}" viewBox="0 0 800 800">
-        <!-- Dotted Rings -->
-        <circle cx="400" cy="400" r="{{ r1 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
-        <circle cx="400" cy="400" r="{{ r2 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
-        <circle cx="400" cy="400" r="{{ r3 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
-        
-        <!-- Center Node & Orbiting Nodes (All sharing one centered fo-inner) -->
-        <foreignObject class="fo-full-{{ section.id }}">
-          <div class="fo-inner-{{ section.id }}">
-            
-            <div class="center-node-{{ section.id }}">
-              <span style="font-size: 32px; font-weight: 700; line-height: 1;">₹{{ section.settings.center_text }}</span>
-              <small style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-top: 8px;">{{ section.settings.center_subtext }}</small>
-            </div>
-
-            <!-- Brands Node (Top) -->
-            <div class="orbit-node-wrapper-{{ section.id }} node-brands-{{ section.id }}">
-              <div class="orbit-node-{{ section.id }}">
-                {% if section.settings.icon_brands != blank %}
-                  <img src="{{ section.settings.icon_brands | image_url: width: 100 }}" style="width: 45%; height: 45%; object-fit: contain;" alt="Brands">
-                {% endif %}
+      <svg class="orbit-svg-{{ section.id }}" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
+        <!-- Center the entire coordinate system by shifting viewBox center to 500, 500 -->
+        <g transform="translate(500, 500)">
+          <!-- Dotted Rings -->
+          <circle cx="0" cy="0" r="{{ r1 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
+          <circle cx="0" cy="0" r="{{ r2 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
+          <circle cx="0" cy="0" r="{{ r3 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
+          
+          <!-- Unified Container for HTML content -->
+          <foreignObject x="-500" y="-500" width="1000" height="1000">
+            <div class="fo-inner-{{ section.id }}">
+              
+              <div class="center-node-{{ section.id }}">
+                <span style="font-size: 32px; font-weight: 700; line-height: 1;">₹{{ section.settings.center_text }}</span>
+                <small style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-top: 8px;">{{ section.settings.center_subtext }}</small>
               </div>
-              <span class="node-label-{{ section.id }}">BRANDS</span>
-            </div>
 
-            <!-- Partners Node (Bottom) -->
-            <div class="orbit-node-wrapper-{{ section.id }} node-partners-{{ section.id }}">
-              <div class="orbit-node-{{ section.id }}">
-                {% if section.settings.icon_partners != blank %}
-                  <img src="{{ section.settings.icon_partners | image_url: width: 100 }}" style="width: 45%; height: 45%; object-fit: contain;" alt="Partners">
-                {% endif %}
+              <!-- Brands Node (Top) -->
+              <div class="orbit-node-wrapper-{{ section.id }} node-brands-{{ section.id }}">
+                <div class="orbit-node-{{ section.id }}">
+                  {% if section.settings.icon_brands != blank %}
+                    <img src="{{ section.settings.icon_brands | image_url: width: 100 }}" style="width: 50%; height: 50%; object-fit: contain;" alt="Brands">
+                  {% endif %}
+                </div>
+                <span class="node-label-{{ section.id }}">BRANDS</span>
               </div>
-              <span class="node-label-{{ section.id }}">PARTNERS</span>
-            </div>
 
-            <!-- Urban Node (Left) -->
-            <div class="orbit-node-wrapper-{{ section.id }} node-urban-{{ section.id }}">
-              <div class="orbit-node-{{ section.id }}">
-                {% if section.settings.icon_urban != blank %}
-                  <img src="{{ section.settings.icon_urban | image_url: width: 100 }}" style="width: 45%; height: 45%; object-fit: contain;" alt="Urban">
-                {% endif %}
+              <!-- Partners Node (Bottom) -->
+              <div class="orbit-node-wrapper-{{ section.id }} node-partners-{{ section.id }}">
+                <div class="orbit-node-{{ section.id }}">
+                  {% if section.settings.icon_partners != blank %}
+                    <img src="{{ section.settings.icon_partners | image_url: width: 100 }}" style="width: 50%; height: 50%; object-fit: contain;" alt="Partners">
+                  {% endif %}
+                </div>
+                <span class="node-label-{{ section.id }}">PARTNERS</span>
               </div>
-              <span class="node-label-{{ section.id }}">URBAN</span>
-            </div>
 
-            <!-- Rural Node (Right) -->
-            <div class="orbit-node-wrapper-{{ section.id }} node-rural-{{ section.id }}">
-              <div class="orbit-node-{{ section.id }}">
-                {% if section.settings.icon_rural != blank %}
-                  <img src="{{ section.settings.icon_rural | image_url: width: 100 }}" style="width: 45%; height: 45%; object-fit: contain;" alt="Rural">
-                {% endif %}
+              <!-- Urban Node (Left) -->
+              <div class="orbit-node-wrapper-{{ section.id }} node-urban-{{ section.id }}">
+                <div class="orbit-node-{{ section.id }}">
+                  {% if section.settings.icon_urban != blank %}
+                    <img src="{{ section.settings.icon_urban | image_url: width: 100 }}" style="width: 50%; height: 50%; object-fit: contain;" alt="Urban">
+                  {% endif %}
+                </div>
+                <span class="node-label-{{ section.id }}">URBAN</span>
               </div>
-              <span class="node-label-{{ section.id }}">RURAL</span>
-            </div>
 
-          </div>
-        </foreignObject>
+              <!-- Rural Node (Right) -->
+              <div class="orbit-node-wrapper-{{ section.id }} node-rural-{{ section.id }}">
+                <div class="orbit-node-{{ section.id }}">
+                  {% if section.settings.icon_rural != blank %}
+                    <img src="{{ section.settings.icon_rural | image_url: width: 100 }}" style="width: 50%; height: 50%; object-fit: contain;" alt="Rural">
+                  {% endif %}
+                </div>
+                <span class="node-label-{{ section.id }}">RURAL</span>
+              </div>
+
+            </div>
+          </foreignObject>
+        </g>
       </svg>
     </div>
 
