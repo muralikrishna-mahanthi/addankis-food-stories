@@ -177,7 +177,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    opacity: 0.3; /* Added default opacity for better blending */
+    opacity: 1; /* Forced full visibility */
   }
 
   {% assign ring_1_size = 240 %}
@@ -254,6 +254,7 @@
     color: {{ section.settings.node_label_color }};
     margin-top: 15px;
     text-align: center;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5); /* Better readability on mixed backgrounds */
   }
 
   /* Positions on the outer ring */
@@ -670,7 +671,7 @@
       "step": 1,
       "unit": "px",
       "label": "Ring Dot Size",
-      "default": 1
+      "default": 2
     },
     {
       "type": "range",
