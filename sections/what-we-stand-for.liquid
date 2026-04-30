@@ -65,6 +65,26 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.4s ease;
+  }
+
+  .wwsf-card-{{ section.id }}::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: {{ section.settings.hover_bg_color }};
+    transition: height 0.4s ease-out;
+    z-index: -1;
+  }
+
+  .wwsf-card-{{ section.id }}:hover::before {
+    height: 100%;
   }
   .wwsf-card-{{ section.id }}:last-child {
     border-bottom: none;
@@ -83,6 +103,7 @@
     font-weight: {{ section.settings.card_h_weight }};
     margin-bottom: {{ section.settings.m_h_p }}px;
     line-height: 1.3;
+    transition: color 0.4s ease;
   }
 
   .wwsf-card-p-{{ section.id }} {
@@ -91,6 +112,12 @@
     font-weight: {{ section.settings.card_p_weight }};
     line-height: 1.6;
     margin: 0;
+    transition: color 0.4s ease;
+  }
+
+  .wwsf-card-{{ section.id }}:hover .wwsf-card-h-{{ section.id }},
+  .wwsf-card-{{ section.id }}:hover .wwsf-card-p-{{ section.id }} {
+    color: {{ section.settings.hover_text_color }};
   }
 
   @media screen and (min-width: 768px) {
@@ -349,6 +376,18 @@
       "id": "box_bg",
       "label": "Cards Container Background",
       "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "hover_bg_color",
+      "label": "Card Hover Background Color",
+      "default": "#d96b27"
+    },
+    {
+      "type": "color",
+      "id": "hover_text_color",
+      "label": "Card Hover Text Color",
+      "default": "#ffffff"
     },
     {
       "type": "color",
