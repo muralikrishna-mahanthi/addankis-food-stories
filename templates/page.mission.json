@@ -315,6 +315,7 @@
         "value_JhkMiB": {
           "type": "value",
           "settings": {
+            "icon": "shopify://shop_images/icon-indian.svg",
             "title": "Indian at Heart",
             "text": "Every brand, every product, every story we tell is deeply rooted in India's rich culinary culture and consumer values."
           }
@@ -322,6 +323,7 @@
         "value_XHBHQk": {
           "type": "value",
           "settings": {
+            "icon": "shopify://shop_images/icon-innovation.svg",
             "title": "Innovation First",
             "text": "We constantly explore new product ideas, formats, and technologies pushing the boundaries of what FMCG can be in India."
           }
@@ -329,6 +331,7 @@
         "value_8xUrm7": {
           "type": "value",
           "settings": {
+            "icon": "shopify://shop_images/icon-sustainability.svg",
             "title": "Sustainability",
             "text": "We build with a long view — responsible sourcing, ethical partnerships, and environmental stewardship guide every decision."
           }
@@ -336,6 +339,7 @@
         "value_VRNPL9": {
           "type": "value",
           "settings": {
+            "icon": "shopify://shop_images/icon-inclusive.svg",
             "title": "Inclusive Growth",
             "text": "Our success belongs to every farmer, distributor, retailer, and entrepreneur who is part of the Addanki's ecosystem."
           }
