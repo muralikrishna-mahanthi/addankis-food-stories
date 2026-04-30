@@ -1,4 +1,4 @@
-﻿{% schema %}
+{% schema %}
 {
   "name": "Split Mover Slider",
   "tag": "section",
@@ -473,11 +473,6 @@
           "id": "heading",
           "label": "Card Heading",
           "default": "Sample headline text spanning multiple lines goes here."
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link URL"
         }
       ]
     }
@@ -726,10 +721,7 @@
     <div class="sms-slider-wrapper">
       <div class="sms-slider">
         {% for block in section.blocks %}
-          {%- liquid
-             assign link_url = block.settings.link | default: "#"
-          -%}
-          <a href="{{ link_url }}" class="sms-card" data-tab="{{ block.settings.tab_assignment }}" {{ block.shopify_attributes }}>
+          <div class="sms-card" data-tab="{{ block.settings.tab_assignment }}" {{ block.shopify_attributes }}>
             <div class="sms-card-image-wrap">
               {% if block.settings.image != blank %}
                 <img src="{{ block.settings.image | img_url: '800x' }}"
@@ -748,7 +740,7 @@
             {% if block.settings.heading != blank %}
               <div class="sms-card-heading">{{ block.settings.heading | escape }}</div>
             {% endif %}
-          </a>
+          </div>
         {% endfor %}
       </div>
     </div>
