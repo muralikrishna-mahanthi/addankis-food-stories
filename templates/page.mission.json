@@ -391,6 +391,60 @@
         "card_p_size_mob": 14,
         "card_p_color": "#424242"
       }
+    },
+    "blocks_FxxNWy": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_83fd5aa_tPEKJf": {
+          "type": "ai_gen_block_83fd5aa",
+          "settings": {
+            "heading": "Join the Journey",
+            "content": "<p>Whether you are a brand seeking distribution, an entrepreneur with a product idea, or an investor who sees the opportunity — Addanki's Food Stories is where your chapter begins.</p>",
+            "button_text": "PARTNER WITH US",
+            "button_link": "",
+            "text_alignment": "center",
+            "button_alignment": "center",
+            "container_width": 800,
+            "padding_top": 50,
+            "padding_bottom": 50,
+            "padding_horizontal": 20,
+            "padding_top_mobile": 30,
+            "padding_bottom_mobile": 30,
+            "padding_horizontal_mobile": 15,
+            "heading_spacing": 20,
+            "content_spacing": 30,
+            "button_spacing": 0,
+            "background_color": "#ffffff",
+            "heading_color": "#121212",
+            "body_color": "#121212",
+            "heading_font": "sans_serif_n7",
+            "heading_size": 36,
+            "heading_size_mobile": 28,
+            "body_font": "sans_serif_n4",
+            "body_size": 16,
+            "body_size_mobile": 14,
+            "button_font": "sans_serif_n4",
+            "button_font_size": 12,
+            "button_font_size_mobile": 12,
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 32,
+            "button_border_radius": 40,
+            "button_border_width": 0,
+            "button_background_color": "#121212",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#121212",
+            "button_hover_background_color": "#000000",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#000000"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_83fd5aa_tPEKJf"
+      ],
+      "name": "Rich text with button",
+      "settings": {}
     }
   },
   "order": [
@@ -399,6 +453,7 @@
     "vision_section_ah9TiK",
     "our_mission_ipbFiz",
     "long_term_goal_QRJn3k",
-    "what_we_stand_for_panxra"
+    "what_we_stand_for_panxra",
+    "blocks_FxxNWy"
   ]
 }
