@@ -146,6 +146,24 @@
       font-size: {{ section.settings.role_size }}px;
     }
   }
+
+  /* Split Layout Styles */
+  @media screen and (min-width: 750px) {
+    .leadership-profile--split-{{ section.id }} {
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 30px;
+    }
+
+    .leadership-profile--split-{{ section.id }} .leadership-profile__image-wrap-{{ section.id }} {
+      margin-bottom: 0 !important;
+      flex-shrink: 0;
+    }
+
+    .leadership-profile--split-{{ section.id }} .leadership-profile__info-wrap {
+      flex-grow: 1;
+    }
+  }
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding">
@@ -165,10 +183,21 @@
       {%- if block.settings.link != blank -%}
         <a href="{{ block.settings.link }}" class="leadership-profile-{{ section.id }}" {{ block.shopify_attributes }}>
       {%- else -%}
-        <div class="leadership-profile-{{ section.id }}" {{ block.shopify_attributes }}>
+        <div class="leadership-profile-{{ section.id }}{% if block.settings.layout_mode == 'split' %} leadership-profile--split-{{ section.id }}{% endif %}" {{ block.shopify_attributes }}>
       {%- endif -%}
 
-        <div class="leadership-profile__image-wrap-{{ section.id }}">
+        {%- style -%}
+          @media screen and (min-width: 750px) {
+            {%- if block.settings.layout_mode == 'split' -%}
+              #block-{{ block.id }} .leadership-profile__image-wrap-{{ section.id }} {
+                width: {{ block.settings.image_width }}% !important;
+                max-width: none !important;
+              }
+            {%- endif -%}
+          }
+        {%- endstyle -%}
+
+        <div id="block-{{ block.id }}" class="leadership-profile__image-wrap-{{ section.id }}">
           {%- if block.settings.image != blank -%}
             {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
           {%- else -%}
@@ -176,8 +205,10 @@
           {%- endif -%}
         </div>
         
-        <h3 class="leadership-profile__name-{{ section.id }}">{{ block.settings.name }}</h3>
-        <p class="leadership-profile__role-{{ section.id }}">{{ block.settings.role }}</p>
+        <div class="leadership-profile__info-wrap">
+          <h3 class="leadership-profile__name-{{ section.id }}">{{ block.settings.name }}</h3>
+          <p class="leadership-profile__role-{{ section.id }}">{{ block.settings.role }}</p>
+        </div>
 
       {%- if block.settings.link != blank -%}
         </a>
@@ -501,6 +532,30 @@
           "type": "url",
           "id": "link",
           "label": "Profile Link"
+        },
+        {
+          "type": "header",
+          "content": "Layout Customization"
+        },
+        {
+          "type": "select",
+          "id": "layout_mode",
+          "label": "Layout Mode",
+          "options": [
+            { "value": "stacked", "label": "Stacked (Top/Bottom)" },
+            { "value": "split", "label": "Split (Side-by-side)" }
+          ],
+          "default": "stacked"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 10,
+          "max": 90,
+          "step": 5,
+          "unit": "%",
+          "label": "Image Width (Split mode only)",
+          "default": 50
         }
       ]
     }
