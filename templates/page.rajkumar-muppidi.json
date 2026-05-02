@@ -16,9 +16,137 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "afspl_image_with_text_QUKwRC": {
+      "type": "afspl-image-with-text",
+      "name": "AFSPL Image with Text",
+      "settings": {
+        "layout": "image_first",
+        "desktop_min_height": 560,
+        "mobile_min_height": 600,
+        "image_width": 50,
+        "bg_color": "#3481d0",
+        "image_bg_color": "#e2ceb9",
+        "content_padding_v": 90,
+        "content_padding_h": 45,
+        "content_padding_v_mobile": 40,
+        "content_padding_h_mobile": 30,
+        "heading_margin_bottom": 32,
+        "subheading_margin_top": 0,
+        "image": "shopify://shop_images/man-with-folded-arms-poses-for-camera.jpg",
+        "heading": "Rajkumar\nMuppidi",
+        "subheading": "Chief Operating Officer",
+        "heading_font": "archivo_black_n4",
+        "heading_size_desktop": 80,
+        "heading_size_mobile": 48,
+        "heading_color": "#002b5e",
+        "heading_weight": "900",
+        "subheading_font": "sans_serif_n4",
+        "subheading_size_desktop": 24,
+        "subheading_size_mobile": 18,
+        "subheading_color": "#ffffff",
+        "subheading_weight": "700"
+      }
+    },
+    "afspl_text_qHUNf8": {
+      "type": "afspl-text",
+      "blocks": {
+        "text_block_dUUj6b": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Rajkumar Muppidi serves as the Chief Operating Officer (COO) of Addanki’s Food Stories Pvt. Ltd., where he leads the company’s operational strategy, supply chain execution, and distribution development across multiple business verticals.</p>",
+            "font_family": "arimo_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        },
+        "text_block_dzkVE3": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>With strong experience in FMCG operations, sales execution, and market expansion, Rajkumar plays a key role in transforming the company’s vision into scalable systems and processes. He is responsible for ensuring that the company’s brands and partner products move efficiently through the distribution network—from manufacturing and logistics to retail availability.</p>",
+            "font_family": "arimo_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        },
+        "text_block_zzMjGB": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>At Addanki’s Food Stories, he oversees:</p><p>· Operations management</p><p>· Supply chain coordination</p><p>· Distribution network expansion</p><p>· Sales execution systems</p><p>· Team performance and field          operations</p>",
+            "font_family": "arimo_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        },
+        "text_block_GtEyqw": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Rajkumar focuses on building efficient operational frameworks that enable fast market penetration and sustainable growth. His ability to align field teams, distributors, and logistics partners helps the company maintain reliability and consistency in its expanding FMCG ecosystem.</p>",
+            "font_family": "arimo_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        },
+        "text_block_hQYEXH": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Working closely with the founding team, he contributes to the company’s mission of building scalable consumer brands and strengthening distribution networks across India.</p>",
+            "font_family": "arimo_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        }
+      },
+      "block_order": [
+        "text_block_dUUj6b",
+        "text_block_dzkVE3",
+        "text_block_zzMjGB",
+        "text_block_GtEyqw",
+        "text_block_hQYEXH"
+      ],
+      "name": "AFSPL Text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_width": 1200,
+        "padding_horizontal_desktop": 300,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "afspl_image_with_text_QUKwRC",
+    "afspl_text_qHUNf8"
   ]
 }
