@@ -76,65 +76,65 @@
     "fmcg_leadership_YWMrab": {
       "type": "fmcg-leadership",
       "blocks": {
-        "founder_rVe7hQ": {
-          "type": "founder",
+        "profile_BPehKW": {
+          "type": "profile",
           "settings": {
-            "image": "shopify://shop_images/Celebrate_National_Selfie_Day_with_us_at_KG.jpg",
+            "image": "shopify://shop_images/man-with-folded-arms-poses-for-camera.jpg",
             "name": "Shivaji Addanki",
             "role": "Founder & Chief Marketing Officer",
-            "bio": "<p>Visionary entrepreneur with extensive experience in FMCG sales, distribution development, and market expansion across South India.<br/><br/></p>",
-            "responsibilities": "<ul><li>FMCG Sales Expertise</li><li>Distribution Networks</li><li>Rural Market Penetration<br/><br/></li></ul>"
+            "link": ""
           }
         },
-        "founder_YfmDcK": {
-          "type": "founder",
+        "profile_xVLNYd": {
+          "type": "profile",
           "settings": {
-            "image": "shopify://shop_images/Celebrate_National_Selfie_Day_with_us_at_KG.jpg",
+            "image": "shopify://shop_images/business-woman-with-arms-crossed.jpg",
             "name": "Sevyamana Taliyakula",
             "role": "Co-Founder & Chief Executive Officer",
-            "bio": "<p>Strategic leader driving brand development, operations, and business expansion to create innovative consumer products for modern India.</p>",
-            "responsibilities": "<ul><li>Brand Development</li><li>Strategic Planning</li><li>Product Innovation<br/><br/></li></ul>"
+            "link": ""
           }
         },
-        "founder_kabe8r": {
-          "type": "founder",
+        "profile_6M4Twy": {
+          "type": "profile",
           "settings": {
-            "image": "shopify://shop_images/Celebrate_National_Selfie_Day_with_us_at_KG.jpg",
+            "image": "shopify://shop_images/man-with-folded-arms-poses-for-camera.jpg",
             "name": "Rajkumar Muppidi",
             "role": "Chief Operating Officer",
-            "bio": "<p>Operations expert focused on supply chain excellence and distribution expansion, enabling fast market penetration across India.</p>",
-            "responsibilities": "<ul><li>Supply Chain Management</li><li>Operations Strategy</li><li>Distribution Expansion<br/><br/></li></ul>"
+            "link": ""
           }
         },
-        "founder_JB83YQ": {
-          "type": "founder",
+        "profile_dBHKNj": {
+          "type": "profile",
           "settings": {
-            "image": "shopify://shop_images/Celebrate_National_Selfie_Day_with_us_at_KG.jpg",
+            "image": "shopify://shop_images/man-with-folded-arms-poses-for-camera.jpg",
             "name": "Nithish Reddy",
             "role": "Chief Financial Officer",
-            "bio": "<p>Financial strategist ensuring sustainable growth through robust planning, capital allocation, and transparent financial governance.</p>",
-            "responsibilities": "<ul><li>Financial Strategy</li><li>Capital Planning</li><li>Performance Monitoring<br/><br/></li></ul>"
+            "link": ""
           }
         }
       },
       "block_order": [
-        "founder_rVe7hQ",
-        "founder_YfmDcK",
-        "founder_kabe8r",
-        "founder_JB83YQ"
+        "profile_BPehKW",
+        "profile_xVLNYd",
+        "profile_6M4Twy",
+        "profile_dBHKNj"
       ],
       "name": "FMCG Leadership",
       "settings": {
-        "title": "Our Leadership",
-        "subtitle": "The experienced team driving the vision of Addanki’s Food Stories.",
         "columns_desktop": 3,
         "bg_color": "#f9f9f9",
-        "card_bg": "#ffffff",
-        "title_color": "#000000",
-        "subtitle_color": "#666666",
-        "accent_color": "#3b82f6",
-        "card_title_color": "#000000",
-        "card_text_color": "#333333",
+        "image_bg_color": "#e2ceb9",
+        "image_radius": 20,
+        "name_font": "sans_serif_n7",
+        "name_size": 24,
+        "name_size_mobile": 20,
+        "name_color": "#003a70",
+        "name_weight": "700",
+        "role_font": "sans_serif_n4",
+        "role_size": 14,
+        "role_size_mobile": 14,
+        "role_color": "#aeacac",
+        "role_weight": "600",
         "padding_top": 100,
         "padding_bottom": 100
       }
