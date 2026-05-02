@@ -21,9 +21,10 @@
       "type": "afspl-image-with-text",
       "name": "AFSPL Image with Text",
       "settings": {
-        "layout": "text_first",
+        "layout": "image_first",
         "desktop_min_height": 560,
         "mobile_min_height": 600,
+        "image_width": 50,
         "bg_color": "#3481d0",
         "image_bg_color": "#e2ceb9",
         "content_padding_v": 90,
@@ -54,7 +55,7 @@
           "type": "text_block",
           "settings": {
             "text": "<p>Sevyamana Taliyakula is the co-founder of Addanki’s Food Stories Pvt. Ltd. and plays a key role in brand development, operations, and strategic growth initiatives.</p>",
-            "font_family": "sans_serif_n4",
+            "font_family": "arimo_n4",
             "font_size": 22,
             "font_size_mobile": 16,
             "font_weight": "700",
@@ -69,7 +70,7 @@
           "type": "text_block",
           "settings": {
             "text": "<p>She contributes to building the company’s brands, product strategies, and business expansion efforts.</p>",
-            "font_family": "sans_serif_n4",
+            "font_family": "arimo_n4",
             "font_size": 22,
             "font_size_mobile": 16,
             "font_weight": "700",
@@ -84,7 +85,7 @@
           "type": "text_block",
           "settings": {
             "text": "<p>Together with the founding team, she is committed to building innovative consumer products that resonate with modern Indian consumers.</p>",
-            "font_family": "sans_serif_n4",
+            "font_family": "arimo_n4",
             "font_size": 22,
             "font_size_mobile": 16,
             "font_weight": "700",
