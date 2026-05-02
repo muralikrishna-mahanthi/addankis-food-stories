@@ -13,6 +13,14 @@
       flex-direction: {% if section.settings.layout == 'image_first' %}row{% else %}row-reverse{% endif %};
       min-height: {{ section.settings.desktop_min_height }}px;
     }
+
+    .afspl-img-text__image-{{ section.id }} {
+      flex: 0 0 {{ section.settings.image_width }}%;
+    }
+
+    .afspl-img-text__content-{{ section.id }} {
+      flex: 0 0 {{ 100 | minus: section.settings.image_width }}%;
+    }
   }
 
   .afspl-img-text__image-{{ section.id }} {
@@ -153,6 +161,16 @@
       "unit": "px",
       "label": "Mobile Min Height",
       "default": 600
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 10,
+      "max": 90,
+      "step": 2,
+      "unit": "%",
+      "label": "Image Width (Desktop)",
+      "default": 50
     },
     {
       "type": "color",
