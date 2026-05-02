@@ -26,7 +26,8 @@
             "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_replace_the_first_im.png",
             "heading": "PHILIPS",
             "link": "shopify://collections/philips",
-            "width_desktop": "25"
+            "column_span": 1,
+            "row_span": 1
           }
         },
         "brand_3dPjyi": {
@@ -35,7 +36,8 @@
             "image": "shopify://shop_images/Untitled_design_19.png",
             "heading": "RIPPLE PURPLE",
             "link": "shopify://collections/ripple-purple",
-            "width_desktop": "25"
+            "column_span": 1,
+            "row_span": 1
           }
         },
         "brand_h7yfyJ": {
@@ -44,7 +46,8 @@
             "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2_web-search__a_make_the_screen_size.png",
             "heading": "MANGALAM",
             "link": "shopify://collections/mangalam",
-            "width_desktop": "50"
+            "column_span": 1,
+            "row_span": 2
           }
         },
         "brand_APRJrk": {
@@ -53,7 +56,8 @@
             "image": "shopify://shop_images/Mastering_SEO_for_Moving_Companies.jpg",
             "heading": "FLOWER ORGANICS",
             "link": "",
-            "width_desktop": "33.33"
+            "column_span": 2,
+            "row_span": 1
           }
         }
       },
@@ -66,14 +70,19 @@
       "name": "Explore Collaborated Brands",
       "settings": {
         "section_title": "BRANDS",
+        "heading_size": 32,
+        "header_alignment": "center",
         "bg_color": "#ffffff",
         "heading_color": "#334fb4",
+        "container_width": 1200,
+        "columns_desktop": 3,
+        "row_height": 300,
         "gap": 20,
-        "image_radius": 16,
-        "aspect_ratio": "1/1",
+        "image_radius": 28,
         "overlay_color": "#000000",
         "overlay_opacity": 0,
         "text_color": "#ffffff",
+        "block_heading_size": 24,
         "padding_top": 40,
         "padding_bottom": 40
       }
