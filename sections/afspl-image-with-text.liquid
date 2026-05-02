@@ -8,21 +8,6 @@
     min-height: {{ section.settings.mobile_min_height }}px;
   }
 
-  @media screen and (min-width: 750px) {
-    .afspl-img-text-{{ section.id }} {
-      flex-direction: {% if section.settings.layout == 'image_first' %}row{% else %}row-reverse{% endif %};
-      min-height: {{ section.settings.desktop_min_height }}px;
-    }
-
-    .afspl-img-text__image-{{ section.id }} {
-      flex: 0 0 {{ section.settings.image_width }}%;
-    }
-
-    .afspl-img-text__content-{{ section.id }} {
-      flex: 0 0 {{ 100 | minus: section.settings.image_width }}%;
-    }
-  }
-
   .afspl-img-text__image-{{ section.id }} {
     flex: 1;
     background-color: {{ section.settings.image_bg_color }};
@@ -61,12 +46,6 @@
     padding: {{ section.settings.content_padding_v_mobile }}px {{ section.settings.content_padding_h_mobile }}px;
   }
 
-  @media screen and (min-width: 750px) {
-    .afspl-img-text__content-{{ section.id }} {
-      padding: {{ section.settings.content_padding_v }}px {{ section.settings.content_padding_h }}px;
-    }
-  }
-
   .afspl-img-text__heading-{{ section.id }} {
     font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
     font-size: {{ section.settings.heading_size_mobile }}px;
@@ -75,12 +54,6 @@
     margin: 0 0 {{ section.settings.heading_margin_bottom }}px 0;
     line-height: 1.1;
     text-transform: uppercase;
-  }
-
-  @media screen and (min-width: 750px) {
-    .afspl-img-text__heading-{{ section.id }} {
-      font-size: {{ section.settings.heading_size_desktop }}px;
-    }
   }
 
   .afspl-img-text__subheading-{{ section.id }} {
@@ -94,6 +67,26 @@
   }
 
   @media screen and (min-width: 750px) {
+    .afspl-img-text-{{ section.id }} {
+      flex-direction: {% if section.settings.layout == 'image_first' %}row{% else %}row-reverse{% endif %};
+      min-height: {{ section.settings.desktop_min_height }}px;
+    }
+
+    .afspl-img-text__image-{{ section.id }} {
+      flex: 0 0 {{ section.settings.image_width }}%;
+      max-width: {{ section.settings.image_width }}%;
+    }
+
+    .afspl-img-text__content-{{ section.id }} {
+      flex: 0 0 {{ 100 | minus: section.settings.image_width }}%;
+      max-width: {{ 100 | minus: section.settings.image_width }}%;
+      padding: {{ section.settings.content_padding_v }}px {{ section.settings.content_padding_h }}px;
+    }
+
+    .afspl-img-text__heading-{{ section.id }} {
+      font-size: {{ section.settings.heading_size_desktop }}px;
+    }
+
     .afspl-img-text__subheading-{{ section.id }} {
       font-size: {{ section.settings.subheading_size_desktop }}px;
     }
