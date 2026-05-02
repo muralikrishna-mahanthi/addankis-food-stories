@@ -61,7 +61,7 @@
             "padding_top_mobile": 0,
             "padding_bottom_mobile": 0,
             "padding_horizontal_mobile": 20,
-            "background_color": "#764ba2"
+            "background_color": "#002b5e"
           },
           "blocks": {}
         }
@@ -82,7 +82,9 @@
             "image": "shopify://shop_images/man-with-folded-arms-poses-for-camera.jpg",
             "name": "Shivaji Addanki",
             "role": "Founder & Chief Marketing Officer",
-            "link": "shopify://pages/shivaji-addanki"
+            "link": "shopify://pages/shivaji-addanki",
+            "layout_mode": "stacked",
+            "image_width": 50
           }
         },
         "profile_xVLNYd": {
@@ -91,7 +93,9 @@
             "image": "shopify://shop_images/business-woman-with-arms-crossed.jpg",
             "name": "Sevyamana Taliyakula",
             "role": "Co-Founder & Chief Executive Officer",
-            "link": "shopify://pages/sevyamana-taliyakula"
+            "link": "shopify://pages/sevyamana-taliyakula",
+            "layout_mode": "stacked",
+            "image_width": 50
           }
         },
         "profile_6M4Twy": {
@@ -100,7 +104,9 @@
             "image": "shopify://shop_images/man-with-folded-arms-poses-for-camera.jpg",
             "name": "Rajkumar Muppidi",
             "role": "Chief Operating Officer",
-            "link": "shopify://pages/rajkumar-muppidi"
+            "link": "shopify://pages/rajkumar-muppidi",
+            "layout_mode": "stacked",
+            "image_width": 50
           }
         },
         "profile_dBHKNj": {
@@ -109,7 +115,9 @@
             "image": "shopify://shop_images/man-with-folded-arms-poses-for-camera.jpg",
             "name": "Nithish Reddy",
             "role": "Chief Financial Officer",
-            "link": "shopify://pages/nithish-reddy"
+            "link": "shopify://pages/nithish-reddy",
+            "layout_mode": "stacked",
+            "image_width": 50
           }
         }
       },
@@ -127,7 +135,7 @@
         "heading_font": "sans_serif_n7",
         "heading_size": 40,
         "heading_size_mobile": 32,
-        "heading_color": "#764ba2",
+        "heading_color": "#3481d0",
         "heading_weight": "800",
         "desc_font": "sans_serif_n4",
         "desc_size": 18,
