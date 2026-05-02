@@ -65,9 +65,9 @@
       ],
       "name": "Explore Collaborated Brands",
       "settings": {
-        "section_title": "Explore Collaborated Brands",
+        "section_title": "BRANDS",
         "bg_color": "#ffffff",
-        "heading_color": "#000000",
+        "heading_color": "#334fb4",
         "gap": 20,
         "image_radius": 16,
         "aspect_ratio": "1/1",
