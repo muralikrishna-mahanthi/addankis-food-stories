@@ -50,12 +50,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 3rem 2rem;
+    padding: {{ section.settings.content_padding_v_mobile }}px {{ section.settings.content_padding_h_mobile }}px;
   }
 
   @media screen and (min-width: 750px) {
     .afspl-img-text__content-{{ section.id }} {
-      padding: 5rem 4rem;
+      padding: {{ section.settings.content_padding_v }}px {{ section.settings.content_padding_h }}px;
     }
   }
 
@@ -64,7 +64,7 @@
     font-size: {{ section.settings.heading_size_mobile }}px;
     font-weight: {{ section.settings.heading_weight }};
     color: {{ section.settings.heading_color }};
-    margin: 0 0 2rem 0;
+    margin: 0 0 {{ section.settings.heading_margin_bottom }}px 0;
     line-height: 1.1;
     text-transform: uppercase;
   }
@@ -81,6 +81,7 @@
     font-weight: {{ section.settings.subheading_weight }};
     color: {{ section.settings.subheading_color }};
     margin: 0;
+    margin-top: {{ section.settings.subheading_margin_top }}px;
     line-height: 1.4;
   }
 
@@ -164,6 +165,70 @@
       "id": "image_bg_color",
       "label": "Image Side Background Color",
       "default": "#e2ceb9"
+    },
+    {
+      "type": "header",
+      "content": "Content Box Spacing"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_v",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Content Box Padding (Vertical)",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "content_padding_h",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Content Box Padding (Horizontal)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "content_padding_v_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Content Box Padding Mobile (Vertical)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "content_padding_h_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Content Box Padding Mobile (Horizontal)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Margin Bottom",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "subheading_margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Subheading Margin Top",
+      "default": 0
     },
     {
       "type": "header",
