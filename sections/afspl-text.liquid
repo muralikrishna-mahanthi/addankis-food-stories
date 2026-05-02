@@ -37,8 +37,8 @@
 
   @media screen and (min-width: 750px) {
     .afspl-text-section-{{ section.id }} {
-      padding-left: {{ section.settings.padding_horizontal }}px;
-      padding-right: {{ section.settings.padding_horizontal }}px;
+      padding-left: {{ section.settings.padding_horizontal_desktop }}px;
+      padding-right: {{ section.settings.padding_horizontal_desktop }}px;
     }
   }
 
@@ -82,7 +82,7 @@
     },
     {
       "type": "range",
-      "id": "padding_horizontal",
+      "id": "padding_horizontal_desktop",
       "min": 0,
       "max": 300,
       "step": 3,
