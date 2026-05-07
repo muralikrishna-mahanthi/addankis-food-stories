@@ -417,6 +417,15 @@
             "link": "shopify://products/bhimseni-pouch"
           }
         },
+        "product_kGCNRk": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Mangalam",
+            "image": "shopify://shop_images/CamPure_Cone_p1.png",
+            "title": "",
+            "link": "shopify://products/campure-cones"
+          }
+        },
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
@@ -456,6 +465,7 @@
         "product_YKyy8T",
         "product_fWMGHt",
         "product_AVLAaU",
+        "product_kGCNRk",
         "tab_bMUeVX"
       ],
       "name": "Heading Sliding Products",
