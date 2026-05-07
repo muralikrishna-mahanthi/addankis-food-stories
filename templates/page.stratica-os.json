@@ -345,6 +345,15 @@
             "link": "shopify://products/camphor-pouch"
           }
         },
+        "product_C4Hz6A": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Mangalam",
+            "image": "shopify://shop_images/Camphor_slab_p1.png",
+            "title": "",
+            "link": "shopify://products/camphor-slab"
+          }
+        },
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
@@ -376,6 +385,7 @@
         "tab_hF6nxB",
         "product_Fic9Cn",
         "product_RGBqi3",
+        "product_C4Hz6A",
         "tab_bMUeVX"
       ],
       "name": "Heading Sliding Products",
