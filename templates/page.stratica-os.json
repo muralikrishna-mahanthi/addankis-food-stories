@@ -390,6 +390,15 @@
             "link": "shopify://products/camphor-cellophane-box"
           }
         },
+        "product_YKyy8T": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Mangalam",
+            "image": "shopify://shop_images/CamphorKapoorDaani.png",
+            "title": "",
+            "link": "shopify://products/camphor-kapoor-daani"
+          }
+        },
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
@@ -426,6 +435,7 @@
         "product_3PeADX",
         "product_LKdctc",
         "product_4gxeGe",
+        "product_YKyy8T",
         "tab_bMUeVX"
       ],
       "name": "Heading Sliding Products",
