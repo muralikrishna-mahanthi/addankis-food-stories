@@ -363,6 +363,15 @@
             "link": "shopify://products/camphor-thaal"
           }
         },
+        "product_3PeADX": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Mangalam",
+            "image": "shopify://shop_images/Camphor_block_p1_ae588d95-cc9b-4b4c-8730-87a352019cec.png",
+            "title": "",
+            "link": "shopify://products/camphor-block"
+          }
+        },
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
@@ -396,6 +405,7 @@
         "product_RGBqi3",
         "product_C4Hz6A",
         "product_prDt94",
+        "product_3PeADX",
         "tab_bMUeVX"
       ],
       "name": "Heading Sliding Products",
