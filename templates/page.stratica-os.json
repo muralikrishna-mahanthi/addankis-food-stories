@@ -372,6 +372,15 @@
             "link": "shopify://products/camphor-block"
           }
         },
+        "product_LKdctc": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Mangalam",
+            "image": "shopify://shop_images/Camphor_Butter_Paper_p1.png",
+            "title": "",
+            "link": "shopify://products/camphor-butter-paper"
+          }
+        },
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
@@ -406,6 +415,7 @@
         "product_C4Hz6A",
         "product_prDt94",
         "product_3PeADX",
+        "product_LKdctc",
         "tab_bMUeVX"
       ],
       "name": "Heading Sliding Products",
