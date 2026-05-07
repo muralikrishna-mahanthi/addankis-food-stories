@@ -399,6 +399,15 @@
             "link": "shopify://products/camphor-kapoor-daani"
           }
         },
+        "product_fWMGHt": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Mangalam",
+            "image": "shopify://shop_images/Bhimseni_Jar_p1.png",
+            "title": "",
+            "link": "shopify://products/bhimseni-jar"
+          }
+        },
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
@@ -436,6 +445,7 @@
         "product_LKdctc",
         "product_4gxeGe",
         "product_YKyy8T",
+        "product_fWMGHt",
         "tab_bMUeVX"
       ],
       "name": "Heading Sliding Products",
