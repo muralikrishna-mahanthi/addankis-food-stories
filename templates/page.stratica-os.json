@@ -408,6 +408,15 @@
             "link": "shopify://products/bhimseni-jar"
           }
         },
+        "product_AVLAaU": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Mangalam",
+            "image": "shopify://shop_images/Bhimseni_pouch_p4.png",
+            "title": "",
+            "link": "shopify://products/bhimseni-pouch"
+          }
+        },
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
@@ -446,6 +455,7 @@
         "product_4gxeGe",
         "product_YKyy8T",
         "product_fWMGHt",
+        "product_AVLAaU",
         "tab_bMUeVX"
       ],
       "name": "Heading Sliding Products",
