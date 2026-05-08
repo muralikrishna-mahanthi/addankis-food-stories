@@ -449,6 +449,14 @@
           "settings": {
             "title": "Viroff"
           }
+        },
+        "product_HQXxVi": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Viroff",
+            "title": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
@@ -485,7 +493,8 @@
         "product_AVLAaU",
         "product_kGCNRk",
         "product_647zck",
-        "tab_bMUeVX"
+        "tab_bMUeVX",
+        "product_HQXxVi"
       ],
       "name": "Heading Sliding Products",
       "settings": {
