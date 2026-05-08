@@ -435,15 +435,6 @@
             "link": "shopify://products/campure-insta-cones"
           }
         },
-        "product_bQKrBb": {
-          "type": "product",
-          "settings": {
-            "tab_name": "Mangalam",
-            "image": "shopify://shop_images/CamPure_Insta_Cones_p1.png",
-            "title": "",
-            "link": "shopify://products/campure-insta-cones"
-          }
-        },
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
@@ -485,7 +476,6 @@
         "product_AVLAaU",
         "product_kGCNRk",
         "product_647zck",
-        "product_bQKrBb",
         "tab_bMUeVX"
       ],
       "name": "Heading Sliding Products",
