@@ -485,6 +485,60 @@
             "title": "",
             "link": "shopify://products/viroff-toilet-cleaner"
           }
+        },
+        "product_FAk7VX": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Viroff",
+            "image": "shopify://shop_images/ViroffBathroomCleaner.png",
+            "title": "",
+            "link": "shopify://products/viroff-floor-cleaner-rose"
+          }
+        },
+        "product_yDpcze": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Viroff",
+            "image": "shopify://shop_images/Viroff_Dish_cleaner.png",
+            "title": "",
+            "link": "shopify://products/viroff-dish-cleaner"
+          }
+        },
+        "product_h4gjLp": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Viroff",
+            "image": "shopify://shop_images/ViroffLaundrydetergent.png",
+            "title": "",
+            "link": "shopify://products/viroff-laundry-detergent"
+          }
+        },
+        "product_9Dk7FD": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Viroff",
+            "image": "shopify://shop_images/ViroffGlassCleaner.png",
+            "title": "",
+            "link": "shopify://products/viroff-glass-cleaner"
+          }
+        },
+        "product_YFQKLw": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Viroff",
+            "image": "shopify://shop_images/ViroffKitchenSurfaceCleaner.png",
+            "title": "",
+            "link": "shopify://products/viroff-kitchen-surface-cleaner"
+          }
+        },
+        "product_hCpmFG": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Viroff",
+            "image": "shopify://shop_images/gemini-3-pro-image-preview-2k_nano-banana-pro__a_generate_the_image_w_4.png",
+            "title": "",
+            "link": "shopify://products/viroff-oven-and-stove-cleaner"
+          }
         }
       },
       "block_order": [
@@ -525,7 +579,13 @@
         "product_HQXxVi",
         "product_Y7EfTP",
         "product_YKKUEf",
-        "product_CkTnUN"
+        "product_CkTnUN",
+        "product_FAk7VX",
+        "product_yDpcze",
+        "product_h4gjLp",
+        "product_9Dk7FD",
+        "product_YFQKLw",
+        "product_hCpmFG"
       ],
       "name": "Heading Sliding Products",
       "settings": {
