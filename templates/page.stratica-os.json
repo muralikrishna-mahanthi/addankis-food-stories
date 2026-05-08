@@ -454,8 +454,27 @@
           "type": "product",
           "settings": {
             "tab_name": "Viroff",
+            "image": "shopify://shop_images/ViroffFloorcleanerrose.png",
             "title": "",
-            "link": ""
+            "link": "shopify://products/viroff-floor-cleaner-rose"
+          }
+        },
+        "product_Y7EfTP": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Viroff",
+            "image": "shopify://shop_images/ViroffFloorcleanerlavender.png",
+            "title": "",
+            "link": "shopify://products/viroff-floor-cleaner-lavender"
+          }
+        },
+        "product_YKKUEf": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Viroff",
+            "image": "shopify://shop_images/ViroffFloorCleanerLemon.png",
+            "title": "",
+            "link": "shopify://products/viroff-floor-cleaner-lemon"
           }
         }
       },
@@ -494,7 +513,9 @@
         "product_kGCNRk",
         "product_647zck",
         "tab_bMUeVX",
-        "product_HQXxVi"
+        "product_HQXxVi",
+        "product_Y7EfTP",
+        "product_YKKUEf"
       ],
       "name": "Heading Sliding Products",
       "settings": {
