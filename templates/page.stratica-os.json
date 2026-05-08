@@ -476,6 +476,15 @@
             "title": "",
             "link": "shopify://products/viroff-floor-cleaner-lemon"
           }
+        },
+        "product_CkTnUN": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Viroff",
+            "image": "shopify://shop_images/Viroff_Toilet_cleaner.png",
+            "title": "",
+            "link": "shopify://products/viroff-toilet-cleaner"
+          }
         }
       },
       "block_order": [
@@ -515,7 +524,8 @@
         "tab_bMUeVX",
         "product_HQXxVi",
         "product_Y7EfTP",
-        "product_YKKUEf"
+        "product_YKKUEf",
+        "product_CkTnUN"
       ],
       "name": "Heading Sliding Products",
       "settings": {
