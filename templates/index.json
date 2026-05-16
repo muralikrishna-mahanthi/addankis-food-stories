@@ -143,6 +143,89 @@
       ],
       "settings": {}
     },
+    "home_products_xPm93h": {
+      "type": "home-products",
+      "blocks": {
+        "logo_wC9qT9": {
+          "type": "logo",
+          "settings": {}
+        },
+        "logo_MViKaM": {
+          "type": "logo",
+          "settings": {}
+        },
+        "logo_BDTcaq": {
+          "type": "logo",
+          "settings": {}
+        },
+        "logo_qwkyPz": {
+          "type": "logo",
+          "settings": {}
+        },
+        "image_yPctk7": {
+          "type": "image",
+          "settings": {
+            "row": "1",
+            "height": 300
+          }
+        },
+        "image_ByjUGG": {
+          "type": "image",
+          "settings": {
+            "row": "1",
+            "height": 300
+          }
+        },
+        "image_Dhkm3x": {
+          "type": "image",
+          "settings": {
+            "row": "1",
+            "height": 300
+          }
+        },
+        "image_e4EWBR": {
+          "type": "image",
+          "settings": {
+            "row": "2",
+            "height": 280
+          }
+        },
+        "image_FNkkyE": {
+          "type": "image",
+          "settings": {
+            "row": "2",
+            "height": 280
+          }
+        },
+        "image_Janh3T": {
+          "type": "image",
+          "settings": {
+            "row": "2",
+            "height": 280
+          }
+        }
+      },
+      "block_order": [
+        "logo_wC9qT9",
+        "logo_MViKaM",
+        "logo_BDTcaq",
+        "logo_qwkyPz",
+        "image_yPctk7",
+        "image_ByjUGG",
+        "image_Dhkm3x",
+        "image_e4EWBR",
+        "image_FNkkyE",
+        "image_Janh3T"
+      ],
+      "name": "Home Products",
+      "settings": {
+        "bg_color": "#FFF7B0",
+        "logo_height": 40,
+        "logo_padding": 20,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "fmcg_brand_reveal_KKRFzy": {
       "type": "fmcg-brand-reveal",
       "custom_css": [
@@ -205,6 +288,7 @@
   "order": [
     "asfpl_hero_8fNkUE",
     "1775551419ea380de6",
+    "home_products_xPm93h",
     "fmcg_brand_reveal_KKRFzy",
     "1775636785470845c7"
   ]
