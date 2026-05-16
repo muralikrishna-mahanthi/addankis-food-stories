@@ -152,17 +152,36 @@
             "logo_1": "shopify://shop_images/Untitled_design_13.png",
             "logo_2": "shopify://shop_images/Untitled_design_12.png"
           }
+        },
+        "image_row_ceNjVL": {
+          "type": "image_row",
+          "settings": {
+            "row_height": 300,
+            "image_1": "shopify://shop_images/CamPure_Insta_Cones_p7.png",
+            "image_2": "shopify://shop_images/Mangalam_Camphor_Pouches_p1.5.png",
+            "image_3": "shopify://shop_images/ripple_purple_4_67940d02-7c39-4934-9523-4d1b005804a1.png"
+          }
+        },
+        "image_row_Kk4hfA": {
+          "type": "image_row",
+          "settings": {
+            "row_height": 300
+          }
         }
       },
       "block_order": [
-        "scrolling_logos_CyFUT3"
+        "scrolling_logos_CyFUT3",
+        "image_row_ceNjVL",
+        "image_row_Kk4hfA"
       ],
       "name": "Home Products",
       "settings": {
         "bg_color": "#fff7b0",
-        "logo_height": 40,
-        "logo_padding": 20,
-        "padding_top": 36,
+        "logo_scroll_speed": 5,
+        "pause_on_hover": true,
+        "logo_height": 60,
+        "logo_padding": 0,
+        "padding_top": 20,
         "padding_bottom": 36
       }
     },
