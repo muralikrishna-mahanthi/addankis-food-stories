@@ -2745,7 +2745,7 @@ details[open] > .header__icon--menu .icon-hamburger {
 }
 
 details[open] > .header__submenu {
-  animation: animateMenuOpen var(--duration-default) ease;
+  animation: slideMenuDown var(--duration-default) ease;
   animation-fill-mode: forwards;
   z-index: 1;
 }
@@ -2889,6 +2889,18 @@ details-disclosure > details {
 @keyframes animateMenuOpen {
   0% {
     opacity: 0;
+    transform: translateY(-1.5rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideMenuDown {
+  0% {
+    opacity: 1;
     transform: translateY(-1.5rem);
   }
 

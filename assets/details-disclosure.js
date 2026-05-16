@@ -68,7 +68,7 @@ class HeaderMenu extends DetailsDisclosure {
         this.mainDetailsToggle.classList.remove('is-closing');
         this.mainDetailsToggle.querySelector('summary').setAttribute('aria-expanded', false);
         this.closeTimeout = null;
-      }, 400);
+      }, 800);
     } else {
       super.close();
     }
