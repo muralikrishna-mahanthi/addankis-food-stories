@@ -22,6 +22,7 @@
         "show_line_separator": true,
         "color_scheme": "",
         "menu_color_scheme": "",
+        "menu_font_size": 16,
         "enable_country_selector": true,
         "enable_language_selector": true,
         "enable_customer_avatar": true,

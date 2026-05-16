@@ -10,7 +10,7 @@
 {
   "current": {
     "logo": "shopify://shop_images/ADDANKI_S_FOOD_STORIES_PVT_LTD_1.png",
-    "logo_width": 100,
+    "logo_width": 120,
     "type_header_font": "assistant_n4",
     "heading_scale": 100,
     "type_body_font": "assistant_n4",
@@ -166,18 +166,7 @@
           "text_weight": "700",
           "text_size": 16,
           "text_size_mobile": 14,
-          "text_color": "#cfdbd4",
-          "btn_text": "<strong>₹1000 Cr</strong> ECOSYSTEM VISION",
-          "btn_link": "",
-          "btn_font": "sans_serif_n4",
-          "btn_weight": "600",
-          "btn_size": 12,
-          "btn_size_mobile": 10,
-          "btn_text_color": "#ffffff",
-          "btn_highlight_color": "#e68d45",
-          "btn_bg_color": "#2b403580",
-          "btn_border_color": "#e68d454d",
-          "btn_border_radius": 30
+          "text_color": "#cfdbd4"
         }
       }
     },
