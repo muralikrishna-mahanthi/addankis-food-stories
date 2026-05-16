@@ -133,7 +133,7 @@
   {%- for block in section.blocks -%}
     {%- if block.type == 'image_row' -%}
       <div class="home-products__image-row home-products__image-row--parallax" data-speed="{{ block.settings.animation_speed }}" {{ block.shopify_attributes }}>
-        <div class="home-products__image-track" style="gap: {{ block.settings.image_gap }}px; {% cycle '', 'padding-left: 60px;' %}">
+        <div class="home-products__image-track" style="gap: {{ block.settings.image_gap }}px;">
           {%- for i in (1..4) -%}
             {%- assign img_key = 'image_' | append: i -%}
             {%- if block.settings[img_key] != blank or forloop.index <= 4 -%}
@@ -177,16 +177,18 @@
           progress = Math.max(0, Math.min(1, progress));
           
           // Horizontal Parallax
-          // Read individual row speed setting (1-10 mapped to travel distance)
-          const baseTravel = 40; 
+          // Center the parallax around the middle of the screen (progress 0.5)
+          const baseTravel = 60; // Base total travel distance
           const speedMultiplier = parseFloat(row.dataset.speed) || 5;
-          const travelSpeed = baseTravel * speedMultiplier;
-          let translateX = progress * travelSpeed;
+          const totalTravel = baseTravel * speedMultiplier;
           
+          let translateX = 0;
           if (index % 2 === 0) {
-             translateX = -translateX; // Move left
+             // Row 1 (Even): Start shifted right (positive), move left (negative)
+             translateX = (0.5 - progress) * totalTravel;
           } else {
-             translateX = translateX; // Move right
+             // Row 2 (Odd): Start shifted left (negative), move right (positive)
+             translateX = (progress - 0.5) * totalTravel;
           }
 
           const track = row.querySelector('.home-products__image-track');
