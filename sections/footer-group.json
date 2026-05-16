@@ -14,6 +14,14 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "link_list_wx3LRp": {
+          "type": "link_list",
+          "settings": {
+            "heading": "PRODUCTS",
+            "menu": "products",
+            "show_external_icon": true
+          }
+        },
         "link_list_yQkqKU": {
           "type": "link_list",
           "settings": {
@@ -24,6 +32,7 @@
         }
       },
       "block_order": [
+        "link_list_wx3LRp",
         "link_list_yQkqKU"
       ],
       "settings": {
@@ -31,11 +40,11 @@
         "text_color": "#ffffff",
         "logo_width": 180,
         "brand_name": "AFSPL",
-        "brand_font": "sans_serif_n4",
-        "brand_size": 32,
-        "brand_weight": "700",
+        "brand_font": "archivo_black_n4",
+        "brand_size": 100,
+        "brand_weight": "800",
         "brand_color": "#ffffff",
-        "brand_mb": 20,
+        "brand_mb": 0,
         "link_font": "sans_serif_n4",
         "link_size": 16,
         "link_weight": "700",
