@@ -350,7 +350,7 @@
         "card_gap": 4,
         "track_pl": 3,
         "track_pr": 0,
-        "track_pb_desktop": 4,
+        "track_pb_desktop": 0,
         "track_pb_mobile": 5
       }
     }
