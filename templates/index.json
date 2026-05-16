@@ -143,77 +143,6 @@
       ],
       "settings": {}
     },
-    "fmcg_marquee_wall_jG9bmF": {
-      "type": "fmcg-marquee-wall",
-      "blocks": {
-        "word_DKVHWc": {
-          "type": "word",
-          "settings": {
-            "text": "Natural Nourish Health Harvest",
-            "color": "#efbf04",
-            "inline_image": "shopify://shop_images/Celebrate_National_Selfie_Day_with_us_at_KG.jpg",
-            "row_number": "1"
-          }
-        },
-        "word_Jfr8LA": {
-          "type": "word",
-          "settings": {
-            "text": "Harvest Roots",
-            "color": "#4fa230",
-            "inline_image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_remove_cap_on_men.png",
-            "row_number": "2"
-          }
-        },
-        "word_3qrbLq": {
-          "type": "word",
-          "settings": {
-            "text": "Natural Organic Pure Fresh",
-            "color": "#efbf04",
-            "inline_image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_replace_candle_with.png",
-            "row_number": "3"
-          }
-        },
-        "word_HYmtB4": {
-          "type": "word",
-          "settings": {
-            "text": "Iconic Fresh Feel",
-            "color": "#4fa230",
-            "inline_image": "shopify://shop_images/ChatGPTImageDec23_2025_04_12_30PM.jpg",
-            "row_number": "4"
-          }
-        }
-      },
-      "block_order": [
-        "word_DKVHWc",
-        "word_Jfr8LA",
-        "word_3qrbLq",
-        "word_HYmtB4"
-      ],
-      "custom_css": [],
-      "name": "FMCG Marquee Wall",
-      "settings": {
-        "font_family": "archivo_black_n4",
-        "fs_desktop": 18,
-        "fs_mobile": 110,
-        "fw": "900",
-        "ls": -4,
-        "text_transform": "uppercase",
-        "line_height": 90,
-        "row_gap": 0,
-        "item_gap": 5,
-        "image_scale": 75,
-        "image_radius": 20,
-        "scroll_speed": 1,
-        "auto_speed": 0,
-        "lerp_factor": 4,
-        "dir_1": "right",
-        "dir_2": "left",
-        "dir_3": "right",
-        "dir_4": "left",
-        "bg_color": "#ffffff",
-        "section_height": "100vh"
-      }
-    },
     "fmcg_brand_reveal_KKRFzy": {
       "type": "fmcg-brand-reveal",
       "custom_css": [
@@ -276,7 +205,6 @@
   "order": [
     "asfpl_hero_8fNkUE",
     "1775551419ea380de6",
-    "fmcg_marquee_wall_jG9bmF",
     "fmcg_brand_reveal_KKRFzy",
     "1775636785470845c7"
   ]
