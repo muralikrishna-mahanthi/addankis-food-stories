@@ -1,0 +1,225 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .home-products {
+    overflow: hidden;
+  }
+
+  /* Scrolling Logos Styles */
+  .home-products__logos-wrapper {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: {{ section.settings.logo_bg_color }};
+    padding: {{ section.settings.logo_padding }}px 0;
+    margin-bottom: 40px;
+  }
+
+  .home-products__logos-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 40px;
+    animation: scrollLogos 20s linear infinite;
+  }
+
+  /* Duplicate track for seamless loop */
+  .home-products__logos-track.duplicate {
+    padding-left: 40px;
+  }
+
+  .home-products__logo-item {
+    height: 40px;
+    object-fit: contain;
+  }
+
+  @keyframes scrollLogos {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* Image Rows Styles */
+  .home-products__image-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 0 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .home-products__image-block {
+    width: 100%;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .home-products__image-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+{%- endstyle -%}
+
+<div class="home-products color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  
+  {%- assign logo_blocks = section.blocks | where: 'type', 'logo' -%}
+  {%- if logo_blocks.size > 0 -%}
+    <!-- Scrolling Logos at the Top -->
+    <div class="home-products__logos-wrapper">
+      <div class="home-products__logos-track">
+        {%- for block in logo_blocks -%}
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: height: 80 | image_tag: class: 'home-products__logo-item' }}
+          {%- else -%}
+            <div class="home-products__logo-item" style="width: 100px; background: #ddd;"></div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <!-- Duplicate for seamless scroll -->
+      <div class="home-products__logos-track duplicate" aria-hidden="true">
+        {%- for block in logo_blocks -%}
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: height: 80 | image_tag: class: 'home-products__logo-item' }}
+          {%- else -%}
+            <div class="home-products__logo-item" style="width: 100px; background: #ddd;"></div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <!-- Image Rows Below -->
+  <div class="home-products__image-rows">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'image_row' -%}
+        <div class="home-products__image-block" style="height: {{ block.settings.block_height }}px;" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy' }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Home Products",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Logos Container Settings"
+    },
+    {
+      "type": "color",
+      "id": "logo_bg_color",
+      "label": "Logos Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "logo_padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Logos Container Padding (Top/Bottom)",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Scrolling Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo Image"
+        }
+      ]
+    },
+    {
+      "type": "image_row",
+      "name": "Image Row",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "block_height",
+          "min": 200,
+          "max": 800,
+          "step": 10,
+          "unit": "px",
+          "label": "Desktop Height",
+          "default": 400
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Products",
+      "blocks": [
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "image_row" },
+        { "type": "image_row" }
+      ]
+    }
+  ]
+}
+{% endschema %}
