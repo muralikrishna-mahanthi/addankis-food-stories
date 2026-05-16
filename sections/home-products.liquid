@@ -63,7 +63,7 @@
     border-radius: 16px;
     overflow: hidden;
     position: relative;
-    background-color: #f4f4f4; /* Placeholder background */
+    background-color: #f4f4f4;
   }
   
   .home-products__image-item img {
@@ -76,69 +76,63 @@
 
 <div class="home-products section-{{ section.id }}-padding" style="background-color: {{ section.settings.bg_color }};">
   
-  {%- assign logo_blocks = section.blocks | where: 'type', 'logo' -%}
-  {%- if logo_blocks.size > 0 -%}
+  {%- assign logo_block = section.blocks | where: 'type', 'scrolling_logos' | first -%}
+  {%- if logo_block -%}
     <!-- Scrolling Logos at the Top -->
-    <div class="home-products__logos-wrapper">
+    <div class="home-products__logos-wrapper" {{ logo_block.shopify_attributes }}>
       <div class="home-products__logos-track">
-        {%- for block in logo_blocks -%}
-          {%- if block.settings.image != blank -%}
-            {{ block.settings.image | image_url: height: 100 | image_tag: class: 'home-products__logo-item' }}
-          {%- else -%}
-            <div class="home-products__logo-item" style="width: 100px; background: #ddd; height: {{ section.settings.logo_height }}px;"></div>
+        {%- for i in (1..12) -%}
+          {%- assign logo_key = 'logo_' | append: i -%}
+          {%- if logo_block.settings[logo_key] != blank -%}
+            {{ logo_block.settings[logo_key] | image_url: height: 100 | image_tag: class: 'home-products__logo-item' }}
           {%- endif -%}
         {%- endfor -%}
+        {%- if logo_block.settings.logo_1 == blank -%}
+          <div class="home-products__logo-item" style="width: 100px; background: #ddd; height: {{ section.settings.logo_height }}px;"></div>
+          <div class="home-products__logo-item" style="width: 100px; background: #ccc; height: {{ section.settings.logo_height }}px;"></div>
+          <div class="home-products__logo-item" style="width: 100px; background: #ddd; height: {{ section.settings.logo_height }}px;"></div>
+        {%- endif -%}
       </div>
       <!-- Duplicate track for seamless scrolling if needed later -->
       <div class="home-products__logos-track duplicate" aria-hidden="true">
-        {%- for block in logo_blocks -%}
-          {%- if block.settings.image != blank -%}
-            {{ block.settings.image | image_url: height: 100 | image_tag: class: 'home-products__logo-item' }}
-          {%- else -%}
-            <div class="home-products__logo-item" style="width: 100px; background: #ddd; height: {{ section.settings.logo_height }}px;"></div>
+        {%- for i in (1..12) -%}
+          {%- assign logo_key = 'logo_' | append: i -%}
+          {%- if logo_block.settings[logo_key] != blank -%}
+            {{ logo_block.settings[logo_key] | image_url: height: 100 | image_tag: class: 'home-products__logo-item' }}
           {%- endif -%}
         {%- endfor -%}
+        {%- if logo_block.settings.logo_1 == blank -%}
+          <div class="home-products__logo-item" style="width: 100px; background: #ddd; height: {{ section.settings.logo_height }}px;"></div>
+          <div class="home-products__logo-item" style="width: 100px; background: #ccc; height: {{ section.settings.logo_height }}px;"></div>
+          <div class="home-products__logo-item" style="width: 100px; background: #ddd; height: {{ section.settings.logo_height }}px;"></div>
+        {%- endif -%}
       </div>
     </div>
   {%- endif -%}
 
-  <!-- Image Row 1 -->
-  <div class="home-products__image-row home-products__image-row--1">
-    <div class="home-products__image-track">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'image' and block.settings.row == '1' -%}
-          <div class="home-products__image-item" style="height: {{ block.settings.height }}px;" {{ block.shopify_attributes }}>
-            {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: height: 800 | image_tag: loading: 'lazy' }}
-            {%- else -%}
-              <div style="width: {{ block.settings.height | times: 1.2 }}px; height: 100%; display: flex; align-items: center; justify-content: center; background: #e0e0e0; color: #666;">
-                Row 1 Image
+  <!-- Image Rows Below -->
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'row1' or block.type == 'row2' or block.type == 'row3' -%}
+      <div class="home-products__image-row home-products__image-row--{{ block.type }}" {{ block.shopify_attributes }}>
+        <div class="home-products__image-track" {% if block.type == 'row2' %}style="padding-left: 60px;"{% endif %}>
+          {%- for i in (1..4) -%}
+            {%- assign img_key = 'image_' | append: i -%}
+            {%- if block.settings[img_key] != blank or forloop.index <= 4 -%}
+              <div class="home-products__image-item" style="height: {{ block.settings.row_height }}px;">
+                {%- if block.settings[img_key] != blank -%}
+                  {{ block.settings[img_key] | image_url: height: 800 | image_tag: loading: 'lazy' }}
+                {%- else -%}
+                  <div style="width: {{ block.settings.row_height | times: 1.2 }}px; height: 100%; display: flex; align-items: center; justify-content: center; background: #e0e0e0; color: #666;">
+                    Image {{ i }}
+                  </div>
+                {%- endif -%}
               </div>
             {%- endif -%}
-          </div>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-  </div>
-
-  <!-- Image Row 2 -->
-  <div class="home-products__image-row home-products__image-row--2">
-    <div class="home-products__image-track" style="padding-left: 60px;"> <!-- Slight offset for visual staggering -->
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'image' and block.settings.row == '2' -%}
-          <div class="home-products__image-item" style="height: {{ block.settings.height }}px;" {{ block.shopify_attributes }}>
-            {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: height: 800 | image_tag: loading: 'lazy' }}
-            {%- else -%}
-              <div style="width: {{ block.settings.height | times: 1.2 }}px; height: 100%; display: flex; align-items: center; justify-content: center; background: #e0e0e0; color: #666;">
-                Row 2 Image
-              </div>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-  </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
 
 </div>
 
@@ -205,51 +199,85 @@
   ],
   "blocks": [
     {
-      "type": "logo",
-      "name": "Logo",
+      "type": "scrolling_logos",
+      "name": "Scrolling Logos",
+      "limit": 1,
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Logo Image"
-        }
+        { "type": "image_picker", "id": "logo_1", "label": "Logo 1" },
+        { "type": "image_picker", "id": "logo_2", "label": "Logo 2" },
+        { "type": "image_picker", "id": "logo_3", "label": "Logo 3" },
+        { "type": "image_picker", "id": "logo_4", "label": "Logo 4" },
+        { "type": "image_picker", "id": "logo_5", "label": "Logo 5" },
+        { "type": "image_picker", "id": "logo_6", "label": "Logo 6" },
+        { "type": "image_picker", "id": "logo_7", "label": "Logo 7" },
+        { "type": "image_picker", "id": "logo_8", "label": "Logo 8" },
+        { "type": "image_picker", "id": "logo_9", "label": "Logo 9" },
+        { "type": "image_picker", "id": "logo_10", "label": "Logo 10" },
+        { "type": "image_picker", "id": "logo_11", "label": "Logo 11" },
+        { "type": "image_picker", "id": "logo_12", "label": "Logo 12" }
       ]
     },
     {
-      "type": "image",
-      "name": "Product Image",
+      "type": "row1",
+      "name": "Row 1",
+      "limit": 1,
       "settings": [
         {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "select",
-          "id": "row",
-          "label": "Row Assignment",
-          "options": [
-            {
-              "value": "1",
-              "label": "Row 1 (Top)"
-            },
-            {
-              "value": "2",
-              "label": "Row 2 (Bottom)"
-            }
-          ],
-          "default": "1"
-        },
-        {
           "type": "range",
-          "id": "height",
+          "id": "row_height",
           "min": 100,
           "max": 600,
           "step": 10,
           "unit": "px",
-          "label": "Image Height",
-          "default": 250
-        }
+          "label": "Row Height",
+          "default": 300
+        },
+        { "type": "image_picker", "id": "image_1", "label": "Image 1" },
+        { "type": "image_picker", "id": "image_2", "label": "Image 2" },
+        { "type": "image_picker", "id": "image_3", "label": "Image 3" },
+        { "type": "image_picker", "id": "image_4", "label": "Image 4" }
+      ]
+    },
+    {
+      "type": "row2",
+      "name": "Row 2",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "row_height",
+          "min": 100,
+          "max": 600,
+          "step": 10,
+          "unit": "px",
+          "label": "Row Height",
+          "default": 300
+        },
+        { "type": "image_picker", "id": "image_1", "label": "Image 1" },
+        { "type": "image_picker", "id": "image_2", "label": "Image 2" },
+        { "type": "image_picker", "id": "image_3", "label": "Image 3" },
+        { "type": "image_picker", "id": "image_4", "label": "Image 4" }
+      ]
+    },
+    {
+      "type": "row3",
+      "name": "Row 3",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "row_height",
+          "min": 100,
+          "max": 600,
+          "step": 10,
+          "unit": "px",
+          "label": "Row Height",
+          "default": 300
+        },
+        { "type": "image_picker", "id": "image_1", "label": "Image 1" },
+        { "type": "image_picker", "id": "image_2", "label": "Image 2" },
+        { "type": "image_picker", "id": "image_3", "label": "Image 3" },
+        { "type": "image_picker", "id": "image_4", "label": "Image 4" }
       ]
     }
   ],
@@ -257,16 +285,9 @@
     {
       "name": "Home Products",
       "blocks": [
-        { "type": "logo" },
-        { "type": "logo" },
-        { "type": "logo" },
-        { "type": "logo" },
-        { "type": "image", "settings": { "row": "1", "height": 300 } },
-        { "type": "image", "settings": { "row": "1", "height": 300 } },
-        { "type": "image", "settings": { "row": "1", "height": 300 } },
-        { "type": "image", "settings": { "row": "2", "height": 280 } },
-        { "type": "image", "settings": { "row": "2", "height": 280 } },
-        { "type": "image", "settings": { "row": "2", "height": 280 } }
+        { "type": "scrolling_logos" },
+        { "type": "row1" },
+        { "type": "row2" }
       ]
     }
   ]
