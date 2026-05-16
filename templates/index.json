@@ -152,35 +152,10 @@
             "logo_1": "shopify://shop_images/Untitled_design_13.png",
             "logo_2": "shopify://shop_images/Untitled_design_12.png"
           }
-        },
-        "row1_ADJbFP": {
-          "type": "row1",
-          "settings": {
-            "row_height": 300,
-            "image_1": "shopify://shop_images/Untitled_design_28.png",
-            "image_2": "shopify://shop_images/Untitled_design_20.png",
-            "image_3": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2_web-search__a_remove_artificial_fl.png",
-            "image_4": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_remove_the_bottom_ri.png"
-          }
-        },
-        "row2_f9q8xh": {
-          "type": "row2",
-          "settings": {
-            "row_height": 300
-          }
-        },
-        "row3_BT9GLE": {
-          "type": "row3",
-          "settings": {
-            "row_height": 300
-          }
         }
       },
       "block_order": [
-        "scrolling_logos_CyFUT3",
-        "row1_ADJbFP",
-        "row2_f9q8xh",
-        "row3_BT9GLE"
+        "scrolling_logos_CyFUT3"
       ],
       "name": "Home Products",
       "settings": {
