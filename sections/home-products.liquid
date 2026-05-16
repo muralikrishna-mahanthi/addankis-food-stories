@@ -217,9 +217,11 @@
         const sectionRect = section.getBoundingClientRect();
         const isSectionInView = sectionRect.top <= 0 && sectionRect.bottom >= 0;
 
-        if (scrollingDown && isSectionInView) {
-          section.classList.add('is-scrolling-down');
-        } else {
+        if (st > lastScrollTop) {
+          // Scrolling Down
+          if (isSectionInView) section.classList.add('is-scrolling-down');
+        } else if (st < lastScrollTop) {
+          // Scrolling Up
           section.classList.remove('is-scrolling-down');
         }
       }
