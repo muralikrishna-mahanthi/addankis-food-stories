@@ -133,7 +133,7 @@
   <!-- Image Rows Below -->
   {%- for block in section.blocks -%}
     {%- if block.type == 'image_row' -%}
-      <div class="home-products__image-row home-products__image-row--parallax" {{ block.shopify_attributes }}>
+      <div class="home-products__image-row home-products__image-row--parallax" data-speed="{{ block.settings.animation_speed }}" {{ block.shopify_attributes }}>
         <div class="home-products__image-track" {% cycle '', 'style="padding-left: 60px;"' %}>
           {%- for i in (1..4) -%}
             {%- assign img_key = 'image_' | append: i -%}
@@ -178,8 +178,10 @@
           progress = Math.max(0, Math.min(1, progress));
           
           // Horizontal Parallax
-          // Even rows move left, Odd rows move right slightly
-          const travelSpeed = 200; // pixels to move
+          // Read individual row speed setting (1-10 mapped to travel distance)
+          const baseTravel = 40; 
+          const speedMultiplier = parseFloat(row.dataset.speed) || 5;
+          const travelSpeed = baseTravel * speedMultiplier;
           let translateX = progress * travelSpeed;
           
           if (index % 2 === 0) {
@@ -330,6 +332,15 @@
           "unit": "px",
           "label": "Row Height",
           "default": 300
+        },
+        {
+          "type": "range",
+          "id": "animation_speed",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "label": "Scroll Animation Speed",
+          "default": 5
         },
         { "type": "image_picker", "id": "image_1", "label": "Image 1" },
         { "type": "image_picker", "id": "image_2", "label": "Image 2" },
