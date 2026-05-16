@@ -69,6 +69,8 @@
     gap: 20px;
     width: max-content;
     padding: 0 20px;
+    transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+    will-change: transform;
   }
 
   .home-products__image-item {
@@ -78,7 +80,6 @@
     position: relative;
     background-color: #ffffff; /* White frame */
     padding: 12px; /* Margin inside as requested */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   }
   
   .home-products__image-item__inner {
@@ -96,6 +97,7 @@
     display: block;
     transform: scale(1.2); /* Default start scale for zoom out effect */
     will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
   }
 {%- endstyle -%}
 
@@ -177,13 +179,13 @@
           
           // Horizontal Parallax
           // Even rows move left, Odd rows move right slightly
-          const travelSpeed = 150; // pixels to move
+          const travelSpeed = 200; // pixels to move
           let translateX = progress * travelSpeed;
           
           if (index % 2 === 0) {
              translateX = -translateX; // Move left
           } else {
-             translateX = (1 - progress) * travelSpeed - (travelSpeed / 2); // Move right
+             translateX = translateX; // Move right
           }
 
           const track = row.querySelector('.home-products__image-track');
