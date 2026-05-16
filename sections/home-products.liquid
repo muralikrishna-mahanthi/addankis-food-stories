@@ -93,7 +93,7 @@
   {%- if logo_block -%}
     <!-- Scrolling Logos at the Top -->
     <div class="home-products__logos-wrapper" {{ logo_block.shopify_attributes }}>
-      <div class="home-products__logos-track">
+      {%- capture logos_html -%}
         {%- for i in (1..12) -%}
           {%- assign logo_key = 'logo_' | append: i -%}
           {%- if logo_block.settings[logo_key] != blank -%}
@@ -105,21 +105,14 @@
           <div class="home-products__logo-item" style="width: 100px; background: #ccc; height: {{ section.settings.logo_height }}px;"></div>
           <div class="home-products__logo-item" style="width: 100px; background: #ddd; height: {{ section.settings.logo_height }}px;"></div>
         {%- endif -%}
-      </div>
-      <!-- Duplicate track for seamless scrolling -->
-      <div class="home-products__logos-track" aria-hidden="true">
-        {%- for i in (1..12) -%}
-          {%- assign logo_key = 'logo_' | append: i -%}
-          {%- if logo_block.settings[logo_key] != blank -%}
-            {{ logo_block.settings[logo_key] | image_url: height: 100 | image_tag: class: 'home-products__logo-item' }}
-          {%- endif -%}
-        {%- endfor -%}
-        {%- if logo_block.settings.logo_1 == blank -%}
-          <div class="home-products__logo-item" style="width: 100px; background: #ddd; height: {{ section.settings.logo_height }}px;"></div>
-          <div class="home-products__logo-item" style="width: 100px; background: #ccc; height: {{ section.settings.logo_height }}px;"></div>
-          <div class="home-products__logo-item" style="width: 100px; background: #ddd; height: {{ section.settings.logo_height }}px;"></div>
-        {%- endif -%}
-      </div>
+      {%- endcapture -%}
+
+      <div class="home-products__logos-track">{{ logos_html }}</div>
+      <div class="home-products__logos-track" aria-hidden="true">{{ logos_html }}</div>
+      <div class="home-products__logos-track" aria-hidden="true">{{ logos_html }}</div>
+      <div class="home-products__logos-track" aria-hidden="true">{{ logos_html }}</div>
+      <div class="home-products__logos-track" aria-hidden="true">{{ logos_html }}</div>
+      <div class="home-products__logos-track" aria-hidden="true">{{ logos_html }}</div>
     </div>
   {%- endif -%}
 
