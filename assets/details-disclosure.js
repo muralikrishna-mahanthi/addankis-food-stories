@@ -44,6 +44,11 @@ class HeaderMenu extends DetailsDisclosure {
 
   onMouseEnter() {
     if (window.matchMedia('(min-width: 990px)').matches) {
+      if (this.closeTimeout) {
+        clearTimeout(this.closeTimeout);
+        this.closeTimeout = null;
+      }
+      this.mainDetailsToggle.classList.remove('is-closing');
       this.mainDetailsToggle.setAttribute('open', '');
       this.mainDetailsToggle.querySelector('summary').setAttribute('aria-expanded', true);
     }
@@ -52,6 +57,20 @@ class HeaderMenu extends DetailsDisclosure {
   onMouseLeave() {
     if (window.matchMedia('(min-width: 990px)').matches) {
       this.close();
+    }
+  }
+
+  close() {
+    if (this.mainDetailsToggle.hasAttribute('open')) {
+      this.mainDetailsToggle.classList.add('is-closing');
+      this.closeTimeout = setTimeout(() => {
+        this.mainDetailsToggle.removeAttribute('open');
+        this.mainDetailsToggle.classList.remove('is-closing');
+        this.mainDetailsToggle.querySelector('summary').setAttribute('aria-expanded', false);
+        this.closeTimeout = null;
+      }, 400);
+    } else {
+      super.close();
     }
   }
 
