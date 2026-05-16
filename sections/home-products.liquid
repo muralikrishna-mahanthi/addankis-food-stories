@@ -24,6 +24,15 @@
     width: 100%;
     padding: {{ section.settings.logo_padding }}px 0;
     margin-bottom: 20px;
+    background-color: {{ section.settings.bg_color }};
+    z-index: 5;
+    transition: top 0.3s ease;
+  }
+
+  .home-products.is-scrolling-down .home-products__logos-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
   .home-products__logos-track {
@@ -194,10 +203,28 @@
     const rows = document.querySelectorAll('.home-products__image-row--parallax');
     if (rows.length === 0) return;
 
-    let ticking = false;
+    const section = document.querySelector('.home-products');
+    const logosWrapper = section.querySelector('.home-products__logos-wrapper');
+    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     function onScroll() {
-      if (window.innerWidth < 750) return; // Disable animation on mobile
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollingDown = st > lastScrollTop;
+      lastScrollTop = st;
+
+      // Handle Directional Stickiness for Logos
+      if (section) {
+        const sectionRect = section.getBoundingClientRect();
+        const isSectionInView = sectionRect.top <= 0 && sectionRect.bottom >= 0;
+
+        if (scrollingDown && isSectionInView) {
+          section.classList.add('is-scrolling-down');
+        } else {
+          section.classList.remove('is-scrolling-down');
+        }
+      }
+
+      if (window.innerWidth < 750) return; // Disable parallax animation on mobile
 
       const windowHeight = window.innerHeight;
       
