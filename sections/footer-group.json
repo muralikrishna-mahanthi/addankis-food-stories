@@ -19,13 +19,13 @@
           "settings": {
             "heading": "PRODUCTS",
             "menu": "products",
-            "show_external_icon": true
+            "show_external_icon": false
           }
         },
         "link_list_yQkqKU": {
           "type": "link_list",
           "settings": {
-            "heading": "",
+            "heading": "ABOUT US",
             "menu": "main-menu",
             "show_external_icon": false
           }
