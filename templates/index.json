@@ -195,7 +195,9 @@
         "logo_height": 46,
         "logo_padding": 0,
         "padding_top": 20,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "mobile_image_gap": 0,
+        "mobile_row_gap": 0
       }
     },
     "fmcg_brand_reveal_KKRFzy": {
