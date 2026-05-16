@@ -64,6 +64,12 @@
     margin-bottom: 0;
   }
 
+  @media screen and (max-width: 749px) {
+    .home-products__image-row {
+      margin-bottom: var(--mobile-row-margin, 20px) !important;
+    }
+  }
+
   .home-products__image-track {
     display: flex;
     gap: 20px;
@@ -105,7 +111,7 @@
       grid-template-columns: repeat(2, 1fr);
       width: 100% !important;
       padding: 0 15px !important;
-      gap: 15px !important;
+      gap: var(--mobile-image-gap, 10px) !important;
       transform: none !important;
     }
     .home-products__image-item {
@@ -152,8 +158,11 @@
   <!-- Image Rows Below -->
   {%- for block in section.blocks -%}
     {%- if block.type == 'image_row' -%}
-      <div class="home-products__image-row home-products__image-row--parallax" data-speed="{{ block.settings.animation_speed }}" {{ block.shopify_attributes }}>
-        <div class="home-products__image-track" style="gap: {{ block.settings.image_gap }}px;">
+      <div class="home-products__image-row home-products__image-row--parallax" 
+           data-speed="{{ block.settings.animation_speed }}" 
+           style="--mobile-row-margin: {{ block.settings.mobile_row_margin }}px;"
+           {{ block.shopify_attributes }}>
+        <div class="home-products__image-track" style="gap: {{ block.settings.image_gap }}px; --mobile-image-gap: {{ block.settings.mobile_image_gap }}px;">
           {%- for i in (1..4) -%}
             {%- assign img_key = 'image_' | append: i -%}
             {%- if block.settings[img_key] != blank or forloop.index <= 4 -%}
@@ -373,6 +382,26 @@
           "step": 2,
           "unit": "px",
           "label": "Gap Between Images",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "mobile_image_gap",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Mobile Image Gap",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "mobile_row_margin",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Mobile Row Bottom Margin",
           "default": 20
         },
         { "type": "image_picker", "id": "image_1", "label": "Image 1" },
