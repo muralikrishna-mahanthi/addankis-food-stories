@@ -259,6 +259,100 @@
         "ai_gen_block_0ab00f8_HEVbqF"
       ],
       "settings": {}
+    },
+    "asfpl_strategy_scroller_c6qax7": {
+      "type": "asfpl-strategy-scroller",
+      "blocks": {
+        "pillar_yCnPhd": {
+          "type": "pillar",
+          "settings": {
+            "image": "shopify://shop_images/Post_by_tajagroproducts_1_image.jpg",
+            "title": "General trade retail stores",
+            "text": "HAMSAA products are stocked in kirana stores, supermarkets, and neighborhood retail outlets across urban and semi-urban India, ensuring everyday accessibility for the mass consumer"
+          }
+        },
+        "pillar_Cnimif": {
+          "type": "pillar",
+          "settings": {
+            "image": "shopify://shop_images/About.jpg",
+            "title": "Super stockists and distributors",
+            "text": "A tiered distribution network of super stockists and regional distributors handles bulk movement of goods, ensuring timely replenishment across geographies and reducing supply chain gaps."
+          }
+        },
+        "pillar_kJCBWR": {
+          "type": "pillar",
+          "settings": {
+            "image": "shopify://shop_images/Tienda_de_comida_saludable___Imagen_Premium_generada_con_IA.jpg",
+            "title": "Wellness and lifestyle outlets",
+            "text": "Targeting health-conscious consumers, HAMSAA products are available in pharmacies, organic stores, ayurvedic shops, and lifestyle retail chains that align with the brand's wellness positioning."
+          }
+        },
+        "pillar_bVQDiq": {
+          "type": "pillar",
+          "settings": {
+            "image": "shopify://shop_images/Mastering_SEO_for_Moving_Companies.jpg",
+            "title": "Online marketplaces",
+            "text": "Products are listed on major e-commerce platforms like Amazon, Flipkart, and Blinkit, enabling nationwide reach, quick delivery, and access to digital-first consumers."
+          }
+        },
+        "pillar_HzhECP": {
+          "type": "pillar",
+          "settings": {
+            "image": "shopify://shop_images/Phil_Reese_Arizona_Business_Broker.jpg",
+            "title": "Institutional buyers",
+            "text": "HAMSAA supplies to and bulk buyers through B2B channels — an important revenue stream for FMCG brands scaling volume."
+          }
+        }
+      },
+      "block_order": [
+        "pillar_yCnPhd",
+        "pillar_Cnimif",
+        "pillar_kJCBWR",
+        "pillar_bVQDiq",
+        "pillar_HzhECP"
+      ],
+      "custom_css": [],
+      "name": "ASFPL Strategy Scroller",
+      "settings": {
+        "bg_color": "#ffffff",
+        "header_alignment": "center",
+        "subheading": "Our Distribution Network",
+        "heading": "Built to Reach Every Corner of India",
+        "description": "HAMSAA products move through a multi-channel distribution ecosystem — from your local kirana to the largest e-commerce platforms.",
+        "subheading_font": "sans_serif_n4",
+        "subheading_weight": "600",
+        "subheading_color": "#121212",
+        "subheading_size_desktop": 1.6,
+        "subheading_size_mobile": 1.4,
+        "heading_font": "archivo_black_n4",
+        "heading_weight": "800",
+        "heading_color": "#efbf04",
+        "heading_size_desktop": 5,
+        "heading_size_mobile": 3,
+        "description_font": "sans_serif_n4",
+        "description_weight": "700",
+        "description_color": "#121212",
+        "description_size_desktop": 1.6,
+        "description_size_mobile": 1.3,
+        "card_heading_font": "archivo_black_n4",
+        "card_heading_weight": "700",
+        "card_heading_color": "#f4a555",
+        "card_heading_size_desktop": 3,
+        "card_heading_size_mobile": 2.4,
+        "card_text_font": "assistant_n4",
+        "card_text_weight": "400",
+        "card_text_color": "#ffffff",
+        "card_text_size_desktop": 1.6,
+        "card_text_size_mobile": 1.4,
+        "card_pt": 0,
+        "card_pb": 0,
+        "card_px": 3,
+        "card_gap": 4,
+        "track_pl": 3,
+        "track_pr": 0,
+        "track_pb_desktop": 4,
+        "track_pb_mobile": 5
+      }
     }
   },
   "order": [
@@ -266,6 +360,7 @@
     "1775551419ea380de6",
     "home_products_xPm93h",
     "fmcg_brand_reveal_KKRFzy",
-    "1775636785470845c7"
+    "1775636785470845c7",
+    "asfpl_strategy_scroller_c6qax7"
   ]
 }
