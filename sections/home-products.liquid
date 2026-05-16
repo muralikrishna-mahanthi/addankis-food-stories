@@ -76,14 +76,26 @@
     border-radius: 16px;
     overflow: hidden;
     position: relative;
-    background-color: #f4f4f4;
+    background-color: #ffffff; /* White frame */
+    padding: 12px; /* Margin inside as requested */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   }
   
+  .home-products__image-item__inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+
   .home-products__image-item img {
     height: 100%;
     width: auto;
     object-fit: cover;
     display: block;
+    transform: scale(1.2); /* Default start scale for zoom out effect */
+    will-change: transform;
   }
 {%- endstyle -%}
 
@@ -119,19 +131,21 @@
   <!-- Image Rows Below -->
   {%- for block in section.blocks -%}
     {%- if block.type == 'image_row' -%}
-      <div class="home-products__image-row" {{ block.shopify_attributes }}>
+      <div class="home-products__image-row home-products__image-row--parallax" {{ block.shopify_attributes }}>
         <div class="home-products__image-track" {% cycle '', 'style="padding-left: 60px;"' %}>
           {%- for i in (1..4) -%}
             {%- assign img_key = 'image_' | append: i -%}
             {%- if block.settings[img_key] != blank or forloop.index <= 4 -%}
               <div class="home-products__image-item" style="height: {{ block.settings.row_height }}px;">
-                {%- if block.settings[img_key] != blank -%}
-                  {{ block.settings[img_key] | image_url: height: 800 | image_tag: loading: 'lazy' }}
-                {%- else -%}
-                  <div style="width: {{ block.settings.row_height | times: 1.2 }}px; height: 100%; display: flex; align-items: center; justify-content: center; background: #e0e0e0; color: #666;">
-                    Image {{ i }}
-                  </div>
-                {%- endif -%}
+                <div class="home-products__image-item__inner">
+                  {%- if block.settings[img_key] != blank -%}
+                    {{ block.settings[img_key] | image_url: height: 800 | image_tag: loading: 'lazy', class: 'home-products__parallax-img' }}
+                  {%- else -%}
+                    <div style="width: {{ block.settings.row_height | times: 1.2 }}px; height: 100%; display: flex; align-items: center; justify-content: center; background: #e0e0e0; color: #666;" class="home-products__parallax-img">
+                      Image {{ i }}
+                    </div>
+                  {%- endif -%}
+                </div>
               </div>
             {%- endif -%}
           {%- endfor -%}
@@ -141,6 +155,68 @@
   {%- endfor -%}
 
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const rows = document.querySelectorAll('.home-products__image-row--parallax');
+    if (rows.length === 0) return;
+
+    let ticking = false;
+
+    function onScroll() {
+      const windowHeight = window.innerHeight;
+      
+      rows.forEach((row, index) => {
+        const rect = row.getBoundingClientRect();
+        
+        // Only animate when row is in or near viewport
+        if (rect.top <= windowHeight && rect.bottom >= 0) {
+          // Progress from 0 (just entered bottom) to 1 (leaving top)
+          let progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+          progress = Math.max(0, Math.min(1, progress));
+          
+          // Horizontal Parallax
+          // Even rows move left, Odd rows move right slightly
+          const travelSpeed = 150; // pixels to move
+          let translateX = progress * travelSpeed;
+          
+          if (index % 2 === 0) {
+             translateX = -translateX; // Move left
+          } else {
+             translateX = (1 - progress) * travelSpeed - (travelSpeed / 2); // Move right
+          }
+
+          const track = row.querySelector('.home-products__image-track');
+          if (track) {
+            track.style.transform = `translateX(${translateX}px)`;
+          }
+
+          // Image Zoom Out Effect
+          // Scale from 1.25 down to 1.0 at center of viewport
+          let scaleProgress = (windowHeight - rect.top) / (windowHeight / 1.5);
+          scaleProgress = Math.max(0, Math.min(1, scaleProgress));
+          const scale = 1.25 - (scaleProgress * 0.25);
+
+          const imgs = row.querySelectorAll('.home-products__parallax-img');
+          imgs.forEach(img => {
+            img.style.transform = `scale(${scale})`;
+          });
+        }
+      });
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    });
+
+    // Initial trigger
+    onScroll();
+  });
+</script>
 
 {% schema %}
 {
