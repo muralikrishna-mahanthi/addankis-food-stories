@@ -146,80 +146,38 @@
     "home_products_xPm93h": {
       "type": "home-products",
       "blocks": {
-        "logo_wC9qT9": {
-          "type": "logo",
+        "scrolling_logos_CyFUT3": {
+          "type": "scrolling_logos",
           "settings": {}
         },
-        "logo_MViKaM": {
-          "type": "logo",
-          "settings": {}
-        },
-        "logo_BDTcaq": {
-          "type": "logo",
-          "settings": {}
-        },
-        "logo_qwkyPz": {
-          "type": "logo",
-          "settings": {}
-        },
-        "image_yPctk7": {
-          "type": "image",
+        "row1_ADJbFP": {
+          "type": "row1",
           "settings": {
-            "row": "1",
-            "height": 300
+            "row_height": 300
           }
         },
-        "image_ByjUGG": {
-          "type": "image",
+        "row2_f9q8xh": {
+          "type": "row2",
           "settings": {
-            "row": "1",
-            "height": 300
+            "row_height": 300
           }
         },
-        "image_Dhkm3x": {
-          "type": "image",
+        "row3_BT9GLE": {
+          "type": "row3",
           "settings": {
-            "row": "1",
-            "height": 300
-          }
-        },
-        "image_e4EWBR": {
-          "type": "image",
-          "settings": {
-            "row": "2",
-            "height": 280
-          }
-        },
-        "image_FNkkyE": {
-          "type": "image",
-          "settings": {
-            "row": "2",
-            "height": 280
-          }
-        },
-        "image_Janh3T": {
-          "type": "image",
-          "settings": {
-            "row": "2",
-            "height": 280
+            "row_height": 300
           }
         }
       },
       "block_order": [
-        "logo_wC9qT9",
-        "logo_MViKaM",
-        "logo_BDTcaq",
-        "logo_qwkyPz",
-        "image_yPctk7",
-        "image_ByjUGG",
-        "image_Dhkm3x",
-        "image_e4EWBR",
-        "image_FNkkyE",
-        "image_Janh3T"
+        "scrolling_logos_CyFUT3",
+        "row1_ADJbFP",
+        "row2_f9q8xh",
+        "row3_BT9GLE"
       ],
       "name": "Home Products",
       "settings": {
-        "bg_color": "#FFF7B0",
+        "bg_color": "#fff7b0",
         "logo_height": 40,
         "logo_padding": 20,
         "padding_top": 36,
