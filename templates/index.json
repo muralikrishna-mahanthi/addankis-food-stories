@@ -315,7 +315,7 @@
       "name": "ASFPL Strategy Scroller",
       "settings": {
         "bg_color": "#ffffff",
-        "header_alignment": "center",
+        "header_alignment": "left",
         "subheading": "",
         "heading": "Built to Reach Every Corner of India",
         "description": "",
