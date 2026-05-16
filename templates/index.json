@@ -161,7 +161,7 @@
           "type": "image_row",
           "settings": {
             "row_height": 300,
-            "animation_speed": 6,
+            "animation_speed": 4,
             "image_1": "shopify://shop_images/Screenshot_2026-05-08_121512.png",
             "image_2": "shopify://shop_images/ConeSandalwood-05_540x_6f47477e-fa5d-4df9-92c9-7a4d9ffb21ab.webp",
             "image_3": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_generate_this_image_405cc522-da23-4390-a8fb-017b251d6493.png",
