@@ -27,17 +27,30 @@
   }
 
   .home-products__logos-track {
-    display: inline-flex;
+    display: flex;
+    flex-shrink: 0;
     align-items: center;
     gap: 40px;
     padding-right: 40px;
+    animation: scrollLogos {{ section.settings.logo_scroll_speed }}s linear infinite;
   }
+
+  {%- if section.settings.pause_on_hover -%}
+  .home-products__logos-wrapper:hover .home-products__logos-track {
+    animation-play-state: paused;
+  }
+  {%- endif -%}
 
   .home-products__logo-item {
     height: {{ section.settings.logo_height }}px;
     width: auto;
     object-fit: contain;
     display: block;
+  }
+
+  @keyframes scrollLogos {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
   }
 
   /* Image Rows Styles */
@@ -93,8 +106,8 @@
           <div class="home-products__logo-item" style="width: 100px; background: #ddd; height: {{ section.settings.logo_height }}px;"></div>
         {%- endif -%}
       </div>
-      <!-- Duplicate track for seamless scrolling if needed later -->
-      <div class="home-products__logos-track duplicate" aria-hidden="true">
+      <!-- Duplicate track for seamless scrolling -->
+      <div class="home-products__logos-track" aria-hidden="true">
         {%- for i in (1..12) -%}
           {%- assign logo_key = 'logo_' | append: i -%}
           {%- if logo_block.settings[logo_key] != blank -%}
@@ -112,9 +125,9 @@
 
   <!-- Image Rows Below -->
   {%- for block in section.blocks -%}
-    {%- if block.type == 'row1' or block.type == 'row2' or block.type == 'row3' -%}
-      <div class="home-products__image-row home-products__image-row--{{ block.type }}" {{ block.shopify_attributes }}>
-        <div class="home-products__image-track" {% if block.type == 'row2' %}style="padding-left: 60px;"{% endif %}>
+    {%- if block.type == 'image_row' -%}
+      <div class="home-products__image-row" {{ block.shopify_attributes }}>
+        <div class="home-products__image-track" {% cycle '', 'style="padding-left: 60px;"' %}>
           {%- for i in (1..4) -%}
             {%- assign img_key = 'image_' | append: i -%}
             {%- if block.settings[img_key] != blank or forloop.index <= 4 -%}
@@ -151,6 +164,22 @@
     {
       "type": "header",
       "content": "Logos Container Settings"
+    },
+    {
+      "type": "range",
+      "id": "logo_scroll_speed",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "unit": "s",
+      "label": "Logo Scroll Speed",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause Scroll on Hover",
+      "default": true
     },
     {
       "type": "range",
@@ -218,51 +247,8 @@
       ]
     },
     {
-      "type": "row1",
-      "name": "Row 1",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "range",
-          "id": "row_height",
-          "min": 100,
-          "max": 600,
-          "step": 10,
-          "unit": "px",
-          "label": "Row Height",
-          "default": 300
-        },
-        { "type": "image_picker", "id": "image_1", "label": "Image 1" },
-        { "type": "image_picker", "id": "image_2", "label": "Image 2" },
-        { "type": "image_picker", "id": "image_3", "label": "Image 3" },
-        { "type": "image_picker", "id": "image_4", "label": "Image 4" }
-      ]
-    },
-    {
-      "type": "row2",
-      "name": "Row 2",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "range",
-          "id": "row_height",
-          "min": 100,
-          "max": 600,
-          "step": 10,
-          "unit": "px",
-          "label": "Row Height",
-          "default": 300
-        },
-        { "type": "image_picker", "id": "image_1", "label": "Image 1" },
-        { "type": "image_picker", "id": "image_2", "label": "Image 2" },
-        { "type": "image_picker", "id": "image_3", "label": "Image 3" },
-        { "type": "image_picker", "id": "image_4", "label": "Image 4" }
-      ]
-    },
-    {
-      "type": "row3",
-      "name": "Row 3",
-      "limit": 1,
+      "type": "image_row",
+      "name": "Image Row",
       "settings": [
         {
           "type": "range",
@@ -286,8 +272,8 @@
       "name": "Home Products",
       "blocks": [
         { "type": "scrolling_logos" },
-        { "type": "row1" },
-        { "type": "row2" }
+        { "type": "image_row" },
+        { "type": "image_row" }
       ]
     }
   ]
