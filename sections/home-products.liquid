@@ -98,6 +98,26 @@
     will-change: transform;
     transition: transform 2.5s cubic-bezier(0.1, 0.9, 0.2, 1);
   }
+
+  @media screen and (max-width: 749px) {
+    .home-products__image-track {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr);
+      width: 100% !important;
+      padding: 0 15px !important;
+      gap: 15px !important;
+      transform: none !important;
+    }
+    .home-products__image-item {
+      height: auto !important;
+      aspect-ratio: 1 / 1;
+      padding: 8px;
+    }
+    .home-products__image-item img {
+      transform: scale(1) !important;
+      transition: none !important;
+    }
+  }
 {%- endstyle -%}
 
 <div class="home-products section-{{ section.id }}-padding" style="background-color: {{ section.settings.bg_color }};">
@@ -165,6 +185,8 @@
     let ticking = false;
 
     function onScroll() {
+      if (window.innerWidth < 750) return; // Disable animation on mobile
+
       const windowHeight = window.innerHeight;
       
       rows.forEach((row, index) => {
