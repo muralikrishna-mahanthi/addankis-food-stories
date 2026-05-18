@@ -196,6 +196,72 @@
           {%- endfor -%}
         </div>
       </div>
+    {%- elsif block.type == 'content_block' -%}
+      {%- style -%}
+        {{ block.settings.heading_font | font_face: font_display: 'swap' }}
+        {{ block.settings.text_font | font_face: font_display: 'swap' }}
+
+        #HomeProductsBlock-{{ block.id }} {
+          text-align: {{ block.settings.text_align }};
+          margin-bottom: {{ block.settings.margin_bottom }}px;
+          padding: 0 20px;
+          width: 100%;
+        }
+
+        #HomeProductsBlock-{{ block.id }} .home-products__block-heading {
+          font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }} !important;
+          font-size: {{ block.settings.heading_size }}px !important;
+          color: {{ block.settings.heading_color }} !important;
+          font-weight: {{ block.settings.heading_weight }} !important;
+          margin: 0 0 15px 0;
+          line-height: 1.2;
+        }
+
+        #HomeProductsBlock-{{ block.id }} .home-products__block-text {
+          font-family: {{ block.settings.text_font.family }}, {{ block.settings.text_font.fallback_families }} !important;
+          font-size: {{ block.settings.text_size }}px !important;
+          color: {{ block.settings.text_color }} !important;
+          font-weight: {{ block.settings.text_weight }} !important;
+          margin: 0 0 25px 0;
+          line-height: 1.6;
+        }
+
+        #HomeProductsBlock-{{ block.id }} .home-products__block-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: {{ block.settings.btn_pv }}px {{ block.settings.btn_ph }}px !important;
+          background-color: {{ block.settings.btn_bg }} !important;
+          color: {{ block.settings.btn_color }} !important;
+          border-radius: {{ block.settings.btn_radius }}px !important;
+          font-size: 16px;
+          font-weight: 600;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          border: none;
+          cursor: pointer;
+        }
+
+        #HomeProductsBlock-{{ block.id }} .home-products__block-btn:hover {
+          background-color: {{ block.settings.btn_hover_bg }} !important;
+          color: {{ block.settings.btn_color }} !important;
+          transform: scale(1.03);
+        }
+      {%- endstyle -%}
+
+      <div id="HomeProductsBlock-{{ block.id }}" class="home-products__content-block" {{ block.shopify_attributes }}>
+        {%- if block.settings.heading != blank -%}
+          <h2 class="home-products__block-heading">{{ block.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if block.settings.text != blank -%}
+          <div class="home-products__block-text">{{ block.settings.text }}</div>
+        {%- endif -%}
+        {%- if block.settings.btn_label != blank -%}
+          <a href="{{ block.settings.btn_link | default: '#' }}" class="home-products__block-btn">
+            {{ block.settings.btn_label }}
+          </a>
+        {%- endif -%}
+      </div>
     {%- endif -%}
   {%- endfor -%}
 
@@ -466,6 +532,187 @@
         { "type": "image_picker", "id": "image_2", "label": "Image 2" },
         { "type": "image_picker", "id": "image_3", "label": "Image 3" },
         { "type": "image_picker", "id": "image_4", "label": "Image 4" }
+      ]
+    },
+    {
+      "type": "content_block",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Heading Settings"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading Text",
+          "default": "Luxury Collection"
+        },
+        {
+          "type": "font_picker",
+          "id": "heading_font",
+          "label": "Heading Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "heading_size",
+          "min": 10,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Heading Size",
+          "default": 36
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading Color",
+          "default": "#1a1a1a"
+        },
+        {
+          "type": "select",
+          "id": "heading_weight",
+          "label": "Heading Weight",
+          "options": [
+            { "value": "300", "label": "Light" },
+            { "value": "400", "label": "Regular" },
+            { "value": "600", "label": "Semi-Bold" },
+            { "value": "700", "label": "Bold" }
+          ],
+          "default": "700"
+        },
+        {
+          "type": "header",
+          "content": "Description Settings"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description Text",
+          "default": "<p>Discover the beauty of carefully selected organic and sustainable products.</p>"
+        },
+        {
+          "type": "font_picker",
+          "id": "text_font",
+          "label": "Description Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Description Size",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Description Color",
+          "default": "#4a4a4a"
+        },
+        {
+          "type": "select",
+          "id": "text_weight",
+          "label": "Description Weight",
+          "options": [
+            { "value": "300", "label": "Light" },
+            { "value": "400", "label": "Regular" },
+            { "value": "600", "label": "Semi-Bold" }
+          ],
+          "default": "400"
+        },
+        {
+          "type": "header",
+          "content": "Button Settings"
+        },
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Button Label",
+          "default": "Shop Collection"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "range",
+          "id": "btn_radius",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Button Corner Radius",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "btn_pv",
+          "min": 5,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "label": "Button Vertical Padding",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "btn_ph",
+          "min": 10,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Button Horizontal Padding",
+          "default": 30
+        },
+        {
+          "type": "color",
+          "id": "btn_bg",
+          "label": "Button Background Color",
+          "default": "#1a1a1a"
+        },
+        {
+          "type": "color",
+          "id": "btn_color",
+          "label": "Button Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn_hover_bg",
+          "label": "Button Hover Background Color",
+          "default": "#c5a47e"
+        },
+        {
+          "type": "header",
+          "content": "Layout Settings"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Text Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "min": 0,
+          "max": 120,
+          "step": 5,
+          "unit": "px",
+          "label": "Bottom Margin",
+          "default": 40
+        }
       ]
     }
   ],
