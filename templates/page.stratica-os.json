@@ -615,6 +615,15 @@
             "title": "",
             "link": "shopify://products/roasted-peanuts-100g"
           }
+        },
+        "product_Ni9gCR": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Classic treats",
+            "image": "shopify://shop_images/classictreatsp8.png",
+            "title": "",
+            "link": "shopify://products/peanut-pakoda"
+          }
         }
       },
       "block_order": [
@@ -669,7 +678,8 @@
         "product_g6AkdL",
         "product_aNmNTf",
         "product_aTR3zM",
-        "product_gjAzWi"
+        "product_gjAzWi",
+        "product_Ni9gCR"
       ],
       "name": "Heading Sliding Products",
       "settings": {
