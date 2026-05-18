@@ -588,6 +588,15 @@
             "title": "",
             "link": "shopify://products/mint-nimbu-peanuts-100g"
           }
+        },
+        "product_aNmNTf": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Classic treats",
+            "image": "shopify://shop_images/classictreatsp5.png",
+            "title": "",
+            "link": "shopify://products/salted-peanuts-100g"
+          }
         }
       },
       "block_order": [
@@ -639,7 +648,8 @@
         "product_fbetCC",
         "product_WdKacT",
         "product_NY7AX6",
-        "product_g6AkdL"
+        "product_g6AkdL",
+        "product_aNmNTf"
       ],
       "name": "Heading Sliding Products",
       "settings": {
