@@ -606,6 +606,15 @@
             "title": "",
             "link": "shopify://products/pepper-peanuts-100g"
           }
+        },
+        "product_gjAzWi": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Classic treats",
+            "image": "shopify://shop_images/classictreatsp7.png",
+            "title": "",
+            "link": "shopify://products/roasted-peanuts-100g"
+          }
         }
       },
       "block_order": [
@@ -659,7 +668,8 @@
         "product_NY7AX6",
         "product_g6AkdL",
         "product_aNmNTf",
-        "product_aTR3zM"
+        "product_aTR3zM",
+        "product_gjAzWi"
       ],
       "name": "Heading Sliding Products",
       "settings": {
