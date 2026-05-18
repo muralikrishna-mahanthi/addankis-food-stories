@@ -570,6 +570,15 @@
             "title": "",
             "link": "shopify://products/garlic-peanuts-100g"
           }
+        },
+        "product_NY7AX6": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Classic treats",
+            "image": "shopify://shop_images/classictreatsp3.png",
+            "title": "",
+            "link": "shopify://products/masala-peanuts-100g"
+          }
         }
       },
       "block_order": [
@@ -619,7 +628,8 @@
         "product_hCpmFG",
         "tab_P3Vtdq",
         "product_fbetCC",
-        "product_WdKacT"
+        "product_WdKacT",
+        "product_NY7AX6"
       ],
       "name": "Heading Sliding Products",
       "settings": {
