@@ -240,14 +240,8 @@
         
         // Only animate when row is in or near viewport
         if (rect.top <= windowHeight && rect.bottom >= 0) {
-          const rowHeight = rect.height || 1;
-          // Calculate what fraction of the row content is above the viewport ending (bottom boundary)
-          const enteredFraction = (windowHeight - rect.top) / rowHeight;
-          // Clamp to a maximum of 30% (0.3) so the animation only works when visible < 30%
-          const clampedFraction = Math.max(0, Math.min(0.3, enteredFraction));
-
           // Progress from 0 (just entered bottom) to 1 (leaving top)
-          let progress = (clampedFraction * rowHeight) / (windowHeight + rowHeight);
+          let progress = (windowHeight - rect.top) / (windowHeight + rect.height);
           progress = Math.max(0, Math.min(1, progress));
           
           // Horizontal Parallax
@@ -272,7 +266,7 @@
 
           // Image Zoom Out Effect
           // Scale from 1.25 down to 1.0 at center of viewport
-          let scaleProgress = (clampedFraction * rowHeight) / (windowHeight / 1.5);
+          let scaleProgress = (windowHeight - rect.top) / (windowHeight / 1.5);
           scaleProgress = Math.max(0, Math.min(1, scaleProgress));
           const scale = 1.25 - (scaleProgress * 0.25);
 
