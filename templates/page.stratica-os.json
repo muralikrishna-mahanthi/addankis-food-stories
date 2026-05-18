@@ -557,9 +557,18 @@
           "type": "product",
           "settings": {
             "tab_name": "Classic treats",
-            "image": "shopify://shop_images/classictreatsp1.png",
+            "image": "shopify://shop_images/classictreatsp1_9fdff600-1d8b-4c1c-b37f-5f0dfc52369a.png",
             "title": "",
             "link": "shopify://products/tandoori-peanuts-100g"
+          }
+        },
+        "product_WdKacT": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Classic treats",
+            "image": "shopify://shop_images/classictreatsp2.png",
+            "title": "",
+            "link": "shopify://products/garlic-peanuts-100g"
           }
         }
       },
@@ -609,7 +618,8 @@
         "product_YFQKLw",
         "product_hCpmFG",
         "tab_P3Vtdq",
-        "product_fbetCC"
+        "product_fbetCC",
+        "product_WdKacT"
       ],
       "name": "Heading Sliding Products",
       "settings": {
