@@ -653,6 +653,15 @@
             "title": "",
             "link": "shopify://products/peanut-balls-100g"
           }
+        },
+        "product_jqT9P9": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Classic treats",
+            "image": "shopify://shop_images/classictreatsp12.png",
+            "title": "",
+            "link": "shopify://products/sesame-balls-100g"
+          }
         }
       },
       "block_order": [
@@ -711,7 +720,8 @@
         "product_Ni9gCR",
         "product_HbCxit",
         "product_zdKnAX",
-        "product_Jw6YRa"
+        "product_Jw6YRa",
+        "product_jqT9P9"
       ],
       "name": "Heading Sliding Products",
       "settings": {
