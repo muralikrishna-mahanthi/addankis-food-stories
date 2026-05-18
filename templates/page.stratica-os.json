@@ -662,6 +662,15 @@
             "title": "",
             "link": "shopify://products/sesame-balls-100g"
           }
+        },
+        "product_aciqfg": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Classic treats",
+            "image": "shopify://shop_images/classic_treats_p13_2.png",
+            "title": "",
+            "link": "shopify://products/mini-bars-15g"
+          }
         }
       },
       "block_order": [
@@ -721,7 +730,8 @@
         "product_HbCxit",
         "product_zdKnAX",
         "product_Jw6YRa",
-        "product_jqT9P9"
+        "product_jqT9P9",
+        "product_aciqfg"
       ],
       "name": "Heading Sliding Products",
       "settings": {
