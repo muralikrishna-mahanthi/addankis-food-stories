@@ -579,6 +579,15 @@
             "title": "",
             "link": "shopify://products/masala-peanuts-100g"
           }
+        },
+        "product_g6AkdL": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Classic treats",
+            "image": "shopify://shop_images/classictreatsp4.png",
+            "title": "",
+            "link": "shopify://products/mint-nimbu-peanuts-100g"
+          }
         }
       },
       "block_order": [
@@ -629,7 +638,8 @@
         "tab_P3Vtdq",
         "product_fbetCC",
         "product_WdKacT",
-        "product_NY7AX6"
+        "product_NY7AX6",
+        "product_g6AkdL"
       ],
       "name": "Heading Sliding Products",
       "settings": {
