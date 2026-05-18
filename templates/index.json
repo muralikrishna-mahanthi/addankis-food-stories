@@ -205,6 +205,8 @@
             "btn_color": "#ffffff",
             "btn_hover_bg": "#ff6e00",
             "text_align": "center",
+            "padding_top": 40,
+            "padding_bottom": 0,
             "margin_bottom": 40
           }
         }
