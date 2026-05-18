@@ -227,6 +227,8 @@
           font-weight: {{ block.settings.text_weight }} !important;
           margin: 0 0 25px 0;
           line-height: 1.6;
+          padding-left: {{ block.settings.text_padding_horizontal }}px !important;
+          padding-right: {{ block.settings.text_padding_horizontal }}px !important;
         }
 
         #HomeProductsBlock-{{ block.id }} .home-products__block-btn {
@@ -627,6 +629,16 @@
             { "value": "600", "label": "Semi-Bold" }
           ],
           "default": "400"
+        },
+        {
+          "type": "range",
+          "id": "text_padding_horizontal",
+          "min": 0,
+          "max": 200,
+          "step": 5,
+          "unit": "px",
+          "label": "Text Horizontal Padding",
+          "default": 0
         },
         {
           "type": "header",
