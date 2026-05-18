@@ -546,6 +546,21 @@
             "title": "",
             "link": "shopify://products/viroff-oven-and-stove-cleaner"
           }
+        },
+        "tab_P3Vtdq": {
+          "type": "tab",
+          "settings": {
+            "title": "Classic treats"
+          }
+        },
+        "product_fbetCC": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Classic treats",
+            "image": "shopify://shop_images/classictreatsp1.png",
+            "title": "",
+            "link": "shopify://products/tandoori-peanuts-100g"
+          }
         }
       },
       "block_order": [
@@ -592,7 +607,9 @@
         "product_h4gjLp",
         "product_9Dk7FD",
         "product_YFQKLw",
-        "product_hCpmFG"
+        "product_hCpmFG",
+        "tab_P3Vtdq",
+        "product_fbetCC"
       ],
       "name": "Heading Sliding Products",
       "settings": {
