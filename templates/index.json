@@ -182,32 +182,12 @@
             "image_3": "shopify://shop_images/insta1stimages-03_540x_0e91a495-3a64-43d6-9d2f-265e4ff35524.webp",
             "image_4": "shopify://shop_images/wafer_story_cheese_melt.png"
           }
-        },
-        "image_row_VkQY6f": {
-          "type": "image_row",
-          "settings": {
-            "row_height": 300,
-            "animation_speed": 3,
-            "image_gap": 20,
-            "mobile_row_height": 200
-          }
-        },
-        "image_row_7m6Le9": {
-          "type": "image_row",
-          "settings": {
-            "row_height": 300,
-            "animation_speed": 2,
-            "image_gap": 20,
-            "mobile_row_height": 200
-          }
         }
       },
       "block_order": [
         "scrolling_logos_CyFUT3",
         "image_row_ceNjVL",
-        "image_row_Kk4hfA",
-        "image_row_VkQY6f",
-        "image_row_7m6Le9"
+        "image_row_Kk4hfA"
       ],
       "name": "Home Products",
       "settings": {
