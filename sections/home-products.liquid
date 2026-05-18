@@ -264,16 +264,23 @@
             track.style.transform = `translateX(${translateX}px)`;
           }
 
-          // Image Zoom Out Effect
-          // Scale from 1.25 down to 1.0 at center of viewport
-          let scaleProgress = (windowHeight - rect.top) / (windowHeight / 1.5);
-          scaleProgress = Math.max(0, Math.min(1, scaleProgress));
-          const scale = 1.25 - (scaleProgress * 0.25);
-
+          // Image Zoom Out Effect (stretching from big to present size)
+          // This effect is only applied to the first and second image rows (index 0 and 1)
           const imgs = row.querySelectorAll('.home-products__parallax-img');
-          imgs.forEach(img => {
-            img.style.transform = `scale(${scale})`;
-          });
+          if (index === 0 || index === 1) {
+            let scaleProgress = (windowHeight - rect.top) / (windowHeight / 1.5);
+            scaleProgress = Math.max(0, Math.min(1, scaleProgress));
+            const scale = 1.25 - (scaleProgress * 0.25);
+
+            imgs.forEach(img => {
+              img.style.transform = `scale(${scale})`;
+            });
+          } else {
+            // For other rows, keep them at the standard present size (scale 1.0)
+            imgs.forEach(img => {
+              img.style.transform = `scale(1)`;
+            });
+          }
         }
       });
       ticking = false;
