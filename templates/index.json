@@ -161,7 +161,7 @@
           "type": "image_row",
           "settings": {
             "row_height": 300,
-            "animation_speed": 1,
+            "animation_speed": 5,
             "image_gap": 10,
             "mobile_row_height": 200,
             "image_1": "shopify://shop_images/Screenshot_2026-05-08_121512.png",
@@ -174,7 +174,7 @@
           "type": "image_row",
           "settings": {
             "row_height": 300,
-            "animation_speed": 3,
+            "animation_speed": 4,
             "image_gap": 10,
             "mobile_row_height": 200,
             "image_1": "shopify://shop_images/wafer_story_choco_flow_cone.png",
@@ -187,7 +187,7 @@
           "type": "image_row",
           "settings": {
             "row_height": 300,
-            "animation_speed": 5,
+            "animation_speed": 3,
             "image_gap": 20,
             "mobile_row_height": 200
           }
@@ -196,7 +196,7 @@
           "type": "image_row",
           "settings": {
             "row_height": 300,
-            "animation_speed": 5,
+            "animation_speed": 2,
             "image_gap": 20,
             "mobile_row_height": 200
           }
