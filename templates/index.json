@@ -182,12 +182,38 @@
             "image_3": "shopify://shop_images/insta1stimages-03_540x_0e91a495-3a64-43d6-9d2f-265e4ff35524.webp",
             "image_4": "shopify://shop_images/wafer_story_cheese_melt.png"
           }
+        },
+        "content_block_yKDEKm": {
+          "type": "content_block",
+          "settings": {
+            "heading": "As a trusted FMCG distributor,",
+            "heading_font": "sans_serif_n4",
+            "heading_size": 36,
+            "heading_color": "#ff6e00",
+            "heading_weight": "700",
+            "text": "<p>we deliver unparalleled market reach and drive strategic growth. Discover the extensive network of our key accounts andIndia's top  brandswe partner with.</p>",
+            "text_font": "sans_serif_n7",
+            "text_size": 16,
+            "text_color": "#ff9b50",
+            "text_weight": "400",
+            "btn_label": "PARTNERS",
+            "btn_link": "",
+            "btn_radius": 30,
+            "btn_pv": 16,
+            "btn_ph": 46,
+            "btn_bg": "#ff8425",
+            "btn_color": "#ffffff",
+            "btn_hover_bg": "#ff6e00",
+            "text_align": "center",
+            "margin_bottom": 40
+          }
         }
       },
       "block_order": [
         "scrolling_logos_CyFUT3",
         "image_row_ceNjVL",
-        "image_row_Kk4hfA"
+        "image_row_Kk4hfA",
+        "content_block_yKDEKm"
       ],
       "name": "Home Products",
       "settings": {
