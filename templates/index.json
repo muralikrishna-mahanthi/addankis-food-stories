@@ -161,7 +161,7 @@
           "type": "image_row",
           "settings": {
             "row_height": 300,
-            "animation_speed": 2,
+            "animation_speed": 1,
             "image_gap": 10,
             "mobile_row_height": 200,
             "image_1": "shopify://shop_images/Screenshot_2026-05-08_121512.png",
