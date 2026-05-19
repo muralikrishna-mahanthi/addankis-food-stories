@@ -121,6 +121,15 @@
             "column_span": 2,
             "row_span": 2
           }
+        },
+        "brand_MEMgmz": {
+          "type": "brand",
+          "settings": {
+            "heading": "Brand Name",
+            "link": "",
+            "column_span": 2,
+            "row_span": 1
+          }
         }
       },
       "block_order": [
@@ -128,7 +137,8 @@
         "brand_Tmc87z",
         "brand_hhecBd",
         "brand_QBeV4p",
-        "brand_QG7Lbb"
+        "brand_QG7Lbb",
+        "brand_MEMgmz"
       ],
       "name": "Explore Brands Grid",
       "settings": {
