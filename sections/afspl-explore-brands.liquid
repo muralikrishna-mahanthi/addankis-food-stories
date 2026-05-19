@@ -53,7 +53,11 @@
   {%- for block in section.blocks -%}
     @media screen and (min-width: 750px) {
       .brand-item--{{ block.id }} {
-        grid-column: span {{ block.settings.column_span }};
+        {%- if block.settings.column_span == 4 -%}
+          grid-column: 1 / -1;
+        {%- else -%}
+          grid-column: span {{ block.settings.column_span }};
+        {%- endif -%}
         grid-row: span {{ block.settings.row_span }};
       }
     }
@@ -65,11 +69,6 @@
     height: 100%;
     text-decoration: none;
     position: relative;
-  }
-
-  .brand-item-{{ section.id }}:hover {
-    transform: scale(1.02);
-    z-index: 2;
   }
 
   .brand-item-{{ section.id }} img {
@@ -93,13 +92,6 @@
     align-items: flex-end;
     padding: 24px;
     transition: background 0.3s ease;
-  }
-
-  .brand-item-{{ section.id }}:hover .brand-overlay-{{ section.id }} {
-     background: linear-gradient(to top, 
-      {{ section.settings.overlay_color | color_modify: 'alpha', section.settings.overlay_opacity | plus: 0.1 }} 0%, 
-      transparent 70%
-    );
   }
 
   .brand-title-{{ section.id }} {
@@ -346,7 +338,7 @@
           "type": "range",
           "id": "row_span",
           "min": 1,
-          "max": 3,
+          "max": 4,
           "step": 1,
           "label": "Height (Rows Span)",
           "default": 1

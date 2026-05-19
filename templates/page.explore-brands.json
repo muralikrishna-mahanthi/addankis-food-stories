@@ -111,8 +111,8 @@
             "image": "shopify://shop_images/Mastering_SEO_for_Moving_Companies.jpg",
             "heading": "FLOWER ORGANICS",
             "link": "",
-            "column_span": 2,
-            "row_span": 1
+            "column_span": 4,
+            "row_span": 4
           }
         }
       },
@@ -130,7 +130,7 @@
         "bg_color": "#ffffff",
         "heading_color": "#334fb4",
         "container_width": 1200,
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "row_height": 300,
         "gap": 20,
         "image_radius": 28,
