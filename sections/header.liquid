@@ -153,15 +153,20 @@
     margin-top: 0.5rem !important;
   }
 
-  /* Remove hover underlines on navigation menu items */
-  .header__menu-item:hover span {
-    text-decoration: none !important;
-  }
-  .header__active-menu-item {
-    text-decoration: none !important;
-  }
+  /* Complete, bulletproof removal of underlines on all navigation hover & active states */
+  .section-header a:hover,
+  .section-header a:hover span,
+  .section-header summary:hover,
+  .section-header summary:hover span,
+  .header__menu-item:hover,
+  .header__menu-item:hover span,
+  .header__active-menu-item,
+  .mega-menu__link:hover,
+  .mega-menu__link--active,
+  .header__submenu .header__menu-item:hover,
   details[open] > .header__menu-item {
     text-decoration: none !important;
+    text-decoration-line: none !important;
   }
 {%- endstyle -%}
 
