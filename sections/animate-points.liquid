@@ -207,17 +207,14 @@
       rows.forEach(row => {
         const rect = row.getBoundingClientRect();
         const trigger = vh * 0.85; // Lower 15% of screen
-        const exitTrigger = vh * 0.1; // Top 10% of screen
         
-        // Appear if top enters the trigger from bottom OR if visible
-        if (rect.top < trigger && rect.bottom > exitTrigger) {
+        // Animates exactly once: Add 'is-visible' when entering the viewport and never remove it
+        if (rect.top < trigger) {
           row.classList.add('is-visible');
-        } else {
-          row.classList.remove('is-visible');
         }
       });
 
-      // Line fill logic
+      // Line fill logic (only grows, never shrinks to animate exactly once)
       const lineFill = section.querySelector('.js-ap-line');
       if (lineFill) {
         const rect = section.getBoundingClientRect();
@@ -227,7 +224,11 @@
         
         let progress = (startTrigger - rect.top) / (totalHeight - vh * 0.2);
         progress = Math.max(0, Math.min(1, progress));
-        lineFill.style.height = (progress * 100) + '%';
+        
+        const currentHeight = parseFloat(lineFill.style.height || 0);
+        if (progress * 100 > currentHeight) {
+          lineFill.style.height = (progress * 100) + '%';
+        }
       }
     };
 
