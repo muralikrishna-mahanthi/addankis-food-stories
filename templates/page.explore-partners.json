@@ -78,9 +78,9 @@
         "brand_LyiB7W": {
           "type": "brand",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-05-08_121512.png",
-            "heading": "",
-            "link": "",
+            "image": "shopify://shop_images/Garlic-Mockup.webp",
+            "heading": "Classic Treats",
+            "link": "shopify://collections/classic-treats",
             "column_span": 3,
             "row_span": 2
           }
@@ -89,8 +89,8 @@
           "type": "brand",
           "settings": {
             "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2_web-search__a_make_the_complete_im.png",
-            "heading": "",
-            "link": "",
+            "heading": "Ripple Purple",
+            "link": "shopify://collections/ripple-purple",
             "column_span": 1,
             "row_span": 2
           }
@@ -98,9 +98,9 @@
         "brand_hhecBd": {
           "type": "brand",
           "settings": {
-            "image": "shopify://shop_images/1st_Images_100_jar_copy_720x_b68b2205-fc50-4309-a1cb-48d928503151.webp",
-            "heading": "",
-            "link": "",
+            "image": "shopify://shop_images/Bhimseni_500g_pouch-05_540x_79c965d3-0158-4965-9459-b60ebeb086c0.webp",
+            "heading": "Mangalam",
+            "link": "shopify://collections/mangalam",
             "column_span": 1,
             "row_span": 1
           }
@@ -108,11 +108,21 @@
         "brand_QBeV4p": {
           "type": "brand",
           "settings": {
-            "image": "shopify://shop_images/classictreatsp8.png",
-            "heading": "Brand Name",
-            "link": "",
+            "image": "shopify://shop_images/Screenshot_2026-05-08_121512.png",
+            "heading": "Viroff",
+            "link": "shopify://collections/viroff",
             "column_span": 1,
             "row_span": 1
+          }
+        },
+        "brand_NW4jQ4": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2_web-search__a_give_more_open_space.png",
+            "heading": "Philips",
+            "link": "shopify://collections/philips",
+            "column_span": 2,
+            "row_span": 2
           }
         }
       },
@@ -120,7 +130,8 @@
         "brand_LyiB7W",
         "brand_Tmc87z",
         "brand_hhecBd",
-        "brand_QBeV4p"
+        "brand_QBeV4p",
+        "brand_NW4jQ4"
       ],
       "name": "Explore Brands Grid",
       "settings": {
