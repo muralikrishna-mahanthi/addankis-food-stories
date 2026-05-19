@@ -1,0 +1,458 @@
+{%- style -%}
+  .image-text-animation-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    height: {{ section.settings.scroll_duration }}vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ita-sticky-container-{{ section.id }} {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  .ita-content-wrapper-{{ section.id }} {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 2rem;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .ita-title-{{ section.id }} {
+    font-family: var(--font-heading-family);
+    font-size: {{ section.settings.font_size_desktop }}px;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin: 0;
+    padding: 0;
+    color: {{ section.settings.text_color_start }};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.02em;
+  }
+
+  .ita-line-1-{{ section.id }} {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .ita-line-2-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .ita-image-placeholder-{{ section.id }} {
+    display: inline-block;
+    width: {{ section.settings.image_width }}px;
+    height: {{ section.settings.image_height }}px;
+    margin-left: 20px;
+    border-radius: {{ section.settings.image_radius }}px;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  .ita-animated-image-{{ section.id }} {
+    position: absolute;
+    z-index: 2;
+    object-fit: cover;
+    pointer-events: none;
+    border-radius: {{ section.settings.image_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    will-change: top, left, width, height, border-radius;
+  }
+
+  .ita-animated-image-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ita-overlay-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ section.settings.overlay_color }};
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+    will-change: opacity;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ita-title-{{ section.id }} {
+      font-size: {{ section.settings.font_size_mobile }}px;
+    }
+    .ita-image-placeholder-{{ section.id }} {
+      width: {{ section.settings.image_width_mobile }}px;
+      height: {{ section.settings.image_height_mobile }}px;
+      margin-left: 10px;
+      border-radius: {{ section.settings.image_radius_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div id="ita-section-{{ section.id }}" class="image-text-animation-{{ section.id }}">
+  <div class="ita-sticky-container-{{ section.id }}">
+    
+    <!-- Expanding Image container -->
+    <div class="ita-animated-image-{{ section.id }}">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy' }}
+      {%- else -%}
+        <img src="{{ 'sustainability-potatoes.png' | asset_url }}" alt="Potatoes in farm" />
+      {%- endif -%}
+    </div>
+
+    <!-- Dark Overlay that darkens on full screen scroll -->
+    <div class="ita-overlay-{{ section.id }}"></div>
+
+    <!-- Text content positioned over expanding image -->
+    <div class="ita-content-wrapper-{{ section.id }}">
+      <h2 class="ita-title-{{ section.id }}">
+        <span class="ita-line-1-{{ section.id }}">{{ section.settings.line_1_text }}</span>
+        <span class="ita-line-2-{{ section.id }}">
+          {{ section.settings.line_2_text }}
+          <span class="ita-image-placeholder-{{ section.id }}"></span>
+        </span>
+      </h2>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function() {
+    const initItaSection = () => {
+      const section = document.getElementById("ita-section-{{ section.id }}");
+      if (!section) return;
+
+      const container = section.querySelector(".ita-sticky-container-{{ section.id }}");
+      const placeholder = section.querySelector(".ita-image-placeholder-{{ section.id }}");
+      const animatedImage = section.querySelector(".ita-animated-image-{{ section.id }}");
+      const overlay = section.querySelector(".ita-overlay-{{ section.id }}");
+      const title = section.querySelector(".ita-title-{{ section.id }}");
+      
+      if (!container || !placeholder || !animatedImage) return;
+
+      // Parse colors for text transition
+      const parseColor = (colorStr) => {
+        let defaultColor = { r: 83, g: 127, b: 27 };
+        if (!colorStr) return defaultColor;
+
+        colorStr = colorStr.trim();
+        if (colorStr.startsWith("#")) {
+          let hex = colorStr.slice(1);
+          if (hex.length === 3) {
+            hex = hex.split("").map(x => x + x).join("");
+          }
+          return {
+            r: parseInt(hex.slice(0, 2), 16),
+            g: parseInt(hex.slice(2, 4), 16),
+            b: parseInt(hex.slice(4, 6), 16)
+          };
+        } else if (colorStr.startsWith("rgb")) {
+          const match = colorStr.match(/\d+/g);
+          if (match && match.length >= 3) {
+            return {
+              r: parseInt(match[0]),
+              g: parseInt(match[1]),
+              b: parseInt(match[2])
+            };
+          }
+        }
+        return defaultColor;
+      };
+
+      const startColor = parseColor("{{ section.settings.text_color_start }}");
+      const endColor = parseColor("{{ section.settings.text_color_end }}");
+
+      const updateAnimation = () => {
+        const sectionRect = section.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const placeholderRect = placeholder.getBoundingClientRect();
+
+        // Calculate scroll progress percentage clamped [0, 1]
+        const totalScroll = sectionRect.height - window.innerHeight;
+        let t = 0;
+        if (totalScroll > 0) {
+          t = -sectionRect.top / totalScroll;
+          t = Math.max(0, Math.min(1, t));
+        }
+
+        // Relative coordinates of placeholder inside parent container
+        const startX = placeholderRect.left - containerRect.left;
+        const startY = placeholderRect.top - containerRect.top;
+        const startW = placeholderRect.width;
+        const startH = placeholderRect.height;
+
+        // Target full screen dimensions
+        const endX = 0;
+        const endY = 0;
+        const endW = containerRect.width;
+        const endH = containerRect.height;
+
+        // Interpolated layout calculations
+        const currentX = startX + (endX - startX) * t;
+        const currentY = startY + (endY - startY) * t;
+        const currentW = startW + (endW - startW) * t;
+        const currentH = startH + (endH - startH) * t;
+
+        // Interpolated border radius calculation
+        const startRadius = window.innerWidth > 768 ? parseInt("{{ section.settings.image_radius }}") : parseInt("{{ section.settings.image_radius_mobile }}");
+        const currentRadius = startRadius + (0 - startRadius) * t;
+
+        // Apply dynamic styles to active animated absolute image
+        animatedImage.style.left = currentX + "px";
+        animatedImage.style.top = currentY + "px";
+        animatedImage.style.width = currentW + "px";
+        animatedImage.style.height = currentH + "px";
+        animatedImage.style.borderRadius = currentRadius + "px";
+
+        // Darken overlay
+        const maxOverlay = parseFloat("{{ section.settings.overlay_max_opacity }}") / 100;
+        overlay.style.opacity = t * maxOverlay;
+
+        // Transition text color smoothly to pop against backdrop
+        const r = Math.round(startColor.r + (endColor.r - startColor.r) * t);
+        const g = Math.round(startColor.g + (endColor.g - startColor.g) * t);
+        const b = Math.round(startColor.b + (endColor.b - startColor.b) * t);
+        title.style.color = "rgb(" + r + "," + g + "," + b + ")";
+      };
+
+      // Set up resize observer to re-measure positions automatically
+      const ro = new ResizeObserver(() => {
+        updateAnimation();
+      });
+      ro.observe(section);
+      ro.observe(container);
+
+      window.addEventListener("scroll", updateAnimation, { passive: true });
+      window.addEventListener("resize", updateAnimation, { passive: true });
+
+      // Clean listener reference inside window for customizer safety
+      section.addEventListener("ita:destroy", () => {
+        ro.disconnect();
+        window.removeEventListener("scroll", updateAnimation);
+        window.removeEventListener("resize", updateAnimation);
+      });
+
+      // Initial tick
+      updateAnimation();
+    };
+
+    document.addEventListener("DOMContentLoaded", initItaSection);
+
+    if (Shopify.designMode) {
+      document.addEventListener("shopify:section:load", (e) => {
+        if (e.detail.sectionId === "{{ section.id }}") {
+          initItaSection();
+        }
+      });
+      document.addEventListener("shopify:section:unload", (e) => {
+        if (e.detail.sectionId === "{{ section.id }}") {
+          const section = document.getElementById("ita-section-{{ section.id }}");
+          if (section) section.dispatchEvent(new CustomEvent("ita:destroy"));
+        }
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Image Text Scroll Animation",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "text",
+      "id": "line_1_text",
+      "label": "Heading Line 1",
+      "default": "GROUNDED IN"
+    },
+    {
+      "type": "text",
+      "id": "line_2_text",
+      "label": "Heading Line 2",
+      "default": "SUSTAINABILITY"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Expanding Background Image"
+    },
+    {
+      "type": "range",
+      "id": "scroll_duration",
+      "min": 150,
+      "max": 400,
+      "step": 10,
+      "unit": "vh",
+      "label": "Scroll Duration Track Height",
+      "default": 200
+    },
+    {
+      "type": "header",
+      "content": "Aesthetics & Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Initial Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color_start",
+      "label": "Heading Initial Color",
+      "default": "#537F1B"
+    },
+    {
+      "type": "color",
+      "id": "text_color_end",
+      "label": "Heading Final Color (On Full Screen)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Image Dark Overlay Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_max_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Max Dark Overlay Opacity",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Typography Options"
+    },
+    {
+      "type": "range",
+      "id": "font_size_desktop",
+      "min": 32,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Font Size Desktop",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Font Size Mobile",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Inline Image Dimensions (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 60,
+      "max": 240,
+      "step": 10,
+      "unit": "px",
+      "label": "Small Image Width",
+      "default": 110
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 40,
+      "max": 180,
+      "step": 10,
+      "unit": "px",
+      "label": "Small Image Height",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Small Image Border Radius",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Inline Image Dimensions (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "image_width_mobile",
+      "min": 40,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "label": "Small Image Width (Mobile)",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Small Image Height (Mobile)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "image_radius_mobile",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Small Image Border Radius (Mobile)",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Text Scroll Animation"
+    }
+  ]
+}
+{% endschema %}
