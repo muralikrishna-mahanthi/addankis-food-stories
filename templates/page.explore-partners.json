@@ -101,7 +101,7 @@
             "heading": "Brand Name",
             "link": "",
             "column_span": 1,
-            "row_span": 2
+            "row_span": 1
           }
         },
         "brand_QBeV4p": {
@@ -109,7 +109,7 @@
           "settings": {
             "heading": "Brand Name",
             "link": "",
-            "column_span": 2,
+            "column_span": 1,
             "row_span": 1
           }
         }
