@@ -14,6 +14,13 @@
     "announcement_bar_Wt8MF8": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_axJrdx": {
+          "type": "announcement",
+          "settings": {
+            "text": "BUY 2 GET 1 FREE",
+            "link": ""
+          }
+        },
         "announcement_9BTLiK": {
           "type": "announcement",
           "settings": {
@@ -23,6 +30,7 @@
         }
       },
       "block_order": [
+        "announcement_axJrdx",
         "announcement_9BTLiK"
       ],
       "name": "t:sections.announcement-bar.presets.name",
