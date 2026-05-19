@@ -1,4 +1,8 @@
 {%- style -%}
+  {%- if section.settings.heading_font != blank -%}
+    {{ section.settings.heading_font | font_face: font_display: 'swap' }}
+  {%- endif -%}
+
   .image-text-animation-{{ section.id }} {
     position: relative;
     width: 100%;
@@ -31,9 +35,13 @@
   }
 
   .ita-title-{{ section.id }} {
-    font-family: var(--font-heading-family);
+    {%- if section.settings.heading_font != blank -%}
+      font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }} !important;
+    {%- else -%}
+      font-family: var(--font-heading-family);
+    {%- endif -%}
     font-size: {{ section.settings.font_size_desktop }}px;
-    font-weight: 900;
+    font-weight: {{ section.settings.heading_font_weight }} !important;
     text-transform: uppercase;
     line-height: 1.1;
     margin: 0;
@@ -359,6 +367,27 @@
     {
       "type": "header",
       "content": "Typography Options"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading Font Family",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "900"
     },
     {
       "type": "range",
