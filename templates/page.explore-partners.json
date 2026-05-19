@@ -42,6 +42,61 @@
         "image_radius_mobile": 8
       }
     },
+    "blocks_bMBmT3": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4ff1c27_y3VxfD": {
+          "type": "ai_gen_block_4ff1c27",
+          "settings": {
+            "heading": "BRANDS",
+            "text": "",
+            "heading_font": "archivo_black_n4",
+            "heading_weight": "normal",
+            "heading_size": 40,
+            "heading_size_mobile": 28,
+            "heading_color": "#002e50",
+            "heading_spacing": 0,
+            "heading_padding_top": 0,
+            "heading_padding_bottom": 0,
+            "heading_padding_horizontal": 0,
+            "heading_padding_top_mobile": 0,
+            "heading_padding_bottom_mobile": 0,
+            "heading_padding_horizontal_mobile": 0,
+            "text_font": "assistant_n4",
+            "text_size": 16,
+            "text_size_mobile": 14,
+            "text_color": "#121212",
+            "text_line_height": 1.5,
+            "paragraph_spacing": 16,
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "text_padding_horizontal": 0,
+            "text_padding_top_mobile": 0,
+            "text_padding_bottom_mobile": 0,
+            "text_padding_horizontal_mobile": 0,
+            "text_alignment": "center",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "desktop_width_percent": 100,
+            "min_height": 100,
+            "min_height_mobile": 200,
+            "padding_top": 84,
+            "padding_bottom": 0,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 24,
+            "padding_bottom_mobile": 24,
+            "padding_horizontal_mobile": 20,
+            "background_color": "#f3f3f3"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4ff1c27_y3VxfD"
+      ],
+      "name": "Rich text",
+      "settings": {}
+    },
     "afspl_explore_brands_RqdiQP": {
       "type": "afspl-explore-brands",
       "blocks": {
@@ -119,7 +174,7 @@
         "overlay_opacity": 0.5,
         "text_color": "#ffffff",
         "block_heading_size": 24,
-        "padding_top": 100,
+        "padding_top": 40,
         "padding_bottom": 40
       }
     }
@@ -127,6 +182,7 @@
   "order": [
     "main",
     "image_text_animation_Li3JtD",
+    "blocks_bMBmT3",
     "afspl_explore_brands_RqdiQP"
   ]
 }
