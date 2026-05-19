@@ -889,8 +889,8 @@
       "type": "image-text-animation",
       "name": "Image Text Animation",
       "settings": {
-        "line_1_text": "GROUNDED IN",
-        "line_2_text": "SUSTAINABILITY",
+        "line_1_text": "Market entry",
+        "line_2_text": "strategy",
         "image": "shopify://shop_images/Garlic-Mockup.webp",
         "scroll_duration": 200,
         "bg_color": "#ffffff",
