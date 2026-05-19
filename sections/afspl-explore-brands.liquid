@@ -31,7 +31,7 @@
 
   @media screen and (min-width: 750px) {
     .brands-grid-{{ section.id }} {
-      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       grid-auto-rows: {{ section.settings.row_height }}px;
     }
   }
@@ -53,11 +53,7 @@
   {%- for block in section.blocks -%}
     @media screen and (min-width: 750px) {
       .brand-item--{{ block.id }} {
-        {%- if block.settings.column_span == 4 -%}
-          grid-column: 1 / -1;
-        {%- else -%}
-          grid-column: span {{ block.settings.column_span }};
-        {%- endif -%}
+        grid-column: span {{ block.settings.column_span }};
         grid-row: span {{ block.settings.row_span }};
       }
     }
