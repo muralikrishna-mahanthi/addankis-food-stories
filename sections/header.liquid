@@ -94,11 +94,8 @@
     {%- endif -%}
     color: {{ section.settings.menu_font_color }} !important;
     font-weight: {{ section.settings.menu_font_weight }} !important;
+    letter-spacing: {{ section.settings.menu_letter_spacing }}px !important;
   }
-
- .header__menu-item, .header__menu-item span, .menu-drawer__menu-item:hover{
-  text-decoration: none;
- }
 
   .section-header {
     position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
@@ -129,11 +126,69 @@
     padding-bottom: 0.25rem !important;
   }
   .header__icon {
-    height: 3.6rem !important;
-    width: 3.6rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    height: auto !important;
+    width: auto !important;
+    padding: 6px !important;
+  }
+  .header__icon .icon,
+  .header__icon svg {
+    width: {{ section.settings.header_icons_size }}px !important;
+    height: {{ section.settings.header_icons_size }}px !important;
+    color: {{ section.settings.header_icons_color }} !important;
+    {%- if section.settings.header_icons_weight > 0 -%}
+      stroke: {{ section.settings.header_icons_color }} !important;
+      stroke-width: {{ section.settings.header_icons_weight }}px !important;
+      stroke-linejoin: round !important;
+      stroke-linecap: round !important;
+    {%- else -%}
+      stroke: none !important;
+    {%- endif -%}
   }
   .header:not(.header--middle-left, .header--middle-center) .header__inline-menu {
     margin-top: 0.5rem !important;
+  }
+
+  /* Ultimate, comprehensive, global reset to remove all outlines, borders, underlines, and box-shadows on all header navigation menu items under any hover/active states */
+  .section-header a,
+  .section-header a *,
+  .section-header summary,
+  .section-header summary *,
+  .header a,
+  .header a *,
+  .header summary,
+  .header summary *,
+  .header__menu-item,
+  .header__menu-item *,
+  .mega-menu__link,
+  .mega-menu__link * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    border-bottom: 0 !important;
+    border-bottom-width: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .section-header a::after,
+  .section-header a::before,
+  .header a::after,
+  .header a::before,
+  .header__menu-item::after,
+  .header__menu-item::before,
+  .header__menu-item span::after,
+  .header__menu-item span::before {
+    display: none !important;
+    content: none !important;
+    border: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    background: none !important;
+    background-image: none !important;
   }
 {%- endstyle -%}
 
@@ -657,6 +712,46 @@
         { "value": "800", "label": "Extra Bold" }
       ],
       "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "menu_letter_spacing",
+      "min": -2.0,
+      "max": 10.0,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Navigation Letter Spacing",
+      "default": 0.0
+    },
+    {
+      "type": "header",
+      "content": "Header Icons Customization"
+    },
+    {
+      "type": "color",
+      "id": "header_icons_color",
+      "label": "Header Icons Color",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "header_icons_size",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Header Icons Size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "header_icons_weight",
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Header Icons Weight (Thickness)",
+      "default": 0.4
     },
     {
       "type": "header",
