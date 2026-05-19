@@ -119,7 +119,7 @@
         "overlay_opacity": 0.5,
         "text_color": "#ffffff",
         "block_heading_size": 24,
-        "padding_top": 40,
+        "padding_top": 100,
         "padding_bottom": 40
       }
     }
