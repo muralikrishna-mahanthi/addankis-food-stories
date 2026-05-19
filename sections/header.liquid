@@ -114,6 +114,23 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  /* Compact overrides to make default header height smaller */
+  .header__heading-link {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+  .list-menu__item--link {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+  .header__icon {
+    height: 3.6rem !important;
+    width: 3.6rem !important;
+  }
+  .header:not(.header--middle-left, .header--middle-center) .header__inline-menu {
+    margin-top: 0.5rem !important;
+  }
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -688,7 +705,7 @@
       "step": 2,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 20
+      "default": 10
     },
     {
       "type": "range",
@@ -698,7 +715,7 @@
       "step": 2,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 20
+      "default": 10
     }
   ],
   "blocks": [
