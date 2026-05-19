@@ -88,7 +88,7 @@
         "brand_Tmc87z": {
           "type": "brand",
           "settings": {
-            "image": "shopify://shop_images/classictreatsp8.png",
+            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2_web-search__a_make_the_complete_im.png",
             "heading": "",
             "link": "",
             "column_span": 1,
@@ -98,7 +98,8 @@
         "brand_hhecBd": {
           "type": "brand",
           "settings": {
-            "heading": "Brand Name",
+            "image": "shopify://shop_images/1st_Images_100_jar_copy_720x_b68b2205-fc50-4309-a1cb-48d928503151.webp",
+            "heading": "",
             "link": "",
             "column_span": 1,
             "row_span": 1
@@ -107,6 +108,7 @@
         "brand_QBeV4p": {
           "type": "brand",
           "settings": {
+            "image": "shopify://shop_images/classictreatsp8.png",
             "heading": "Brand Name",
             "link": "",
             "column_span": 1,
