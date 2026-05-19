@@ -885,31 +885,6 @@
         "pb": 70
       }
     },
-    "image_text_animation_BjR8CC": {
-      "type": "image-text-animation",
-      "name": "Image Text Animation",
-      "settings": {
-        "line_1_text": "Market entry",
-        "line_2_text": "strategy",
-        "image": "shopify://shop_images/Garlic-Mockup.webp",
-        "scroll_duration": 200,
-        "bg_color": "#ffffff",
-        "text_color_start": "#537f1b",
-        "text_color_end": "#ffffff",
-        "overlay_color": "#000000",
-        "overlay_max_opacity": 30,
-        "heading_font": "archivo_black_n4",
-        "heading_font_weight": "500",
-        "font_size_desktop": 76,
-        "font_size_mobile": 36,
-        "image_width": 100,
-        "image_height": 60,
-        "image_radius": 16,
-        "image_width_mobile": 70,
-        "image_height_mobile": 50,
-        "image_radius_mobile": 8
-      }
-    },
     "more_content_points_GWwETA": {
       "type": "more-content-points",
       "blocks": {
@@ -1315,6 +1290,7 @@
         "content_block_N8WxdV",
         "content_block_9gPqfY"
       ],
+      "disabled": true,
       "name": "More Content Points",
       "settings": {
         "height_type": "auto",
@@ -1459,7 +1435,6 @@
     "heading_sliding_products_EgwnhT",
     "animate_points_nbnbaf",
     "animate_points_fHzTzG",
-    "image_text_animation_BjR8CC",
     "more_content_points_GWwETA",
     "blocks_RXYamp",
     "follow_social_AbKL7d"
