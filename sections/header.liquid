@@ -126,8 +126,28 @@
     padding-bottom: 0.25rem !important;
   }
   .header__icon {
-    height: 3.6rem !important;
-    width: 3.6rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    height: auto !important;
+    width: auto !important;
+    padding: 6px !important;
+  }
+  .header__icon .icon,
+  .header__icon svg {
+    width: {{ section.settings.header_icons_size }}px !important;
+    height: {{ section.settings.header_icons_size }}px !important;
+    color: {{ section.settings.header_icons_color }} !important;
+    {%- if section.settings.header_icons_weight > 0 -%}
+      stroke: {{ section.settings.header_icons_color }} !important;
+      stroke-width: {{ section.settings.header_icons_weight }}px !important;
+      stroke-linejoin: round !important;
+      stroke-linecap: round !important;
+    {%- else -%}
+      stroke: none !important;
+    {%- endif -%}
   }
   .header:not(.header--middle-left, .header--middle-center) .header__inline-menu {
     margin-top: 0.5rem !important;
@@ -664,6 +684,36 @@
       "unit": "px",
       "label": "Navigation Letter Spacing",
       "default": 0.0
+    },
+    {
+      "type": "header",
+      "content": "Header Icons Customization"
+    },
+    {
+      "type": "color",
+      "id": "header_icons_color",
+      "label": "Header Icons Color",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "header_icons_size",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Header Icons Size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "header_icons_weight",
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Header Icons Weight (Thickness)",
+      "default": 0.4
     },
     {
       "type": "header",
