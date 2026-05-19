@@ -118,8 +118,8 @@
           "settings": {
             "heading": "Brand Name",
             "link": "",
-            "column_span": 2,
-            "row_span": 2
+            "column_span": 4,
+            "row_span": 3
           }
         }
       },
