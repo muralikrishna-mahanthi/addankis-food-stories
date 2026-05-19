@@ -78,19 +78,21 @@
         "brand_LyiB7W": {
           "type": "brand",
           "settings": {
-            "heading": "Brand Name",
+            "image": "shopify://shop_images/Screenshot_2026-05-08_121512.png",
+            "heading": "",
             "link": "",
-            "column_span": 1,
-            "row_span": 1
+            "column_span": 2,
+            "row_span": 2
           }
         },
         "brand_Tmc87z": {
           "type": "brand",
           "settings": {
-            "heading": "Brand Name",
+            "image": "shopify://shop_images/classictreatsp8.png",
+            "heading": "",
             "link": "",
             "column_span": 1,
-            "row_span": 1
+            "row_span": 2
           }
         },
         "brand_hhecBd": {
