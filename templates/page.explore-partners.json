@@ -17,60 +17,30 @@
         "padding_bottom": 28
       }
     },
-    "blocks_UNi9ja": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_4ff1c27_Gykd9W": {
-          "type": "ai_gen_block_4ff1c27",
-          "settings": {
-            "heading": "EXPLORE PARTNERS",
-            "text": "",
-            "heading_font": "sans_serif_n7",
-            "heading_weight": "bolder",
-            "heading_size": 40,
-            "heading_size_mobile": 28,
-            "heading_color": "#334fb4",
-            "heading_spacing": 20,
-            "heading_padding_top": 0,
-            "heading_padding_bottom": 0,
-            "heading_padding_horizontal": 0,
-            "heading_padding_top_mobile": 0,
-            "heading_padding_bottom_mobile": 0,
-            "heading_padding_horizontal_mobile": 0,
-            "text_font": "assistant_n4",
-            "text_size": 16,
-            "text_size_mobile": 14,
-            "text_color": "#121212",
-            "text_line_height": 1.5,
-            "paragraph_spacing": 16,
-            "text_padding_top": 0,
-            "text_padding_bottom": 0,
-            "text_padding_horizontal": 0,
-            "text_padding_top_mobile": 0,
-            "text_padding_bottom_mobile": 0,
-            "text_padding_horizontal_mobile": 0,
-            "text_alignment": "center",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "center",
-            "desktop_width_percent": 100,
-            "min_height": 150,
-            "min_height_mobile": 200,
-            "padding_top": 24,
-            "padding_bottom": 0,
-            "padding_horizontal": 40,
-            "padding_top_mobile": 24,
-            "padding_bottom_mobile": 24,
-            "padding_horizontal_mobile": 20,
-            "background_color": "#f3f3f3"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_4ff1c27_Gykd9W"
-      ],
-      "name": "Rich text",
-      "settings": {}
+    "image_text_animation_Li3JtD": {
+      "type": "image-text-animation",
+      "name": "Image Text Animation",
+      "settings": {
+        "line_1_text": "Explore",
+        "line_2_text": "partners",
+        "image": "shopify://shop_images/64f8723c29c87d02ae363411_partners.jpg",
+        "scroll_duration": 200,
+        "bg_color": "#ffffff",
+        "text_color_start": "#002e50",
+        "text_color_end": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_max_opacity": 30,
+        "heading_font": "archivo_black_n4",
+        "heading_font_weight": "900",
+        "font_size_desktop": 72,
+        "font_size_mobile": 36,
+        "image_width": 110,
+        "image_height": 80,
+        "image_radius": 16,
+        "image_width_mobile": 70,
+        "image_height_mobile": 50,
+        "image_radius_mobile": 8
+      }
     },
     "afspl_explore_brands_RqdiQP": {
       "type": "afspl-explore-brands",
@@ -156,7 +126,7 @@
   },
   "order": [
     "main",
-    "blocks_UNi9ja",
+    "image_text_animation_Li3JtD",
     "afspl_explore_brands_RqdiQP"
   ]
 }
