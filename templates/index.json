@@ -198,7 +198,7 @@
             "text_weight": "600",
             "text_padding_horizontal": 200,
             "btn_label": "PARTNERS",
-            "btn_link": "",
+            "btn_link": "shopify://pages/partners",
             "btn_radius": 30,
             "btn_pv": 16,
             "btn_ph": 46,
