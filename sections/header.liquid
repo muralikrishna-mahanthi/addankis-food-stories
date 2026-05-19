@@ -94,6 +94,7 @@
     {%- endif -%}
     color: {{ section.settings.menu_font_color }} !important;
     font-weight: {{ section.settings.menu_font_weight }} !important;
+    letter-spacing: {{ section.settings.menu_letter_spacing }}px !important;
   }
 
   .section-header {
@@ -653,6 +654,16 @@
         { "value": "800", "label": "Extra Bold" }
       ],
       "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "menu_letter_spacing",
+      "min": -2.0,
+      "max": 10.0,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Navigation Letter Spacing",
+      "default": 0.0
     },
     {
       "type": "header",
