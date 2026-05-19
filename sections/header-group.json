@@ -58,7 +58,7 @@
     }
   },
   "order": [
-    "announcement_bar_Wt8MF8",
-    "header"
+    "header",
+    "announcement_bar_Wt8MF8"
   ]
 }
