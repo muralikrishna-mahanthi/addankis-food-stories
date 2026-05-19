@@ -52,7 +52,7 @@
         "menu": "main-menu",
         "menu_type_desktop": "mega",
         "sticky_header_type": "on-scroll-up",
-        "show_line_separator": true,
+        "show_line_separator": false,
         "color_scheme": "",
         "menu_color_scheme": "",
         "menu_font_size": 14,
