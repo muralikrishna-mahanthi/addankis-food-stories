@@ -20,18 +20,10 @@
             "text": "BUY 2 GET 1 FREE",
             "link": ""
           }
-        },
-        "announcement_9BTLiK": {
-          "type": "announcement",
-          "settings": {
-            "text": "Welcome to our store",
-            "link": ""
-          }
         }
       },
       "block_order": [
-        "announcement_axJrdx",
-        "announcement_9BTLiK"
+        "announcement_axJrdx"
       ],
       "name": "t:sections.announcement-bar.presets.name",
       "settings": {
