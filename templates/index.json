@@ -73,7 +73,7 @@
         "button_2_hover_text": "#000000",
         "button_2_hover_border": "#ffffff",
         "text_alignment": "center",
-        "desktop_height": "75vh",
+        "desktop_height": "100vh",
         "mobile_height": "75vh",
         "content_alignment_desktop": "flex-end",
         "padding_top": 36,
