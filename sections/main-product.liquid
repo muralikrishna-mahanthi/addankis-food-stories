@@ -37,6 +37,153 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    {%- if section.settings.section_bg_color != blank and section.settings.section_bg_color != 'rgba(0,0,0,0)' -%}
+      #MainProduct-{{ section.id }} {
+        background-color: {{ section.settings.section_bg_color }};
+      }
+    {%- endif -%}
+
+    @media screen and (min-width: 750px) {
+      #MainProduct-{{ section.id }} .product {
+        column-gap: {{ section.settings.column_gap }}px;
+      }
+    }
+
+    #ProductInfo-{{ section.id }} {
+      {%- if section.settings.info_bg_color != blank and section.settings.info_bg_color != 'rgba(0,0,0,0)' -%}
+        background-color: {{ section.settings.info_bg_color }};
+      {%- endif -%}
+      {%- if section.settings.info_border_color != blank and section.settings.info_border_color != 'rgba(0,0,0,0)' and section.settings.info_border_width > 0 -%}
+        border: {{ section.settings.info_border_width }}px solid {{ section.settings.info_border_color }};
+      {%- endif -%}
+      {%- if section.settings.info_border_radius > 0 -%}
+        border-radius: {{ section.settings.info_border_radius }}px;
+      {%- endif -%}
+      {%- if section.settings.info_padding > 0 -%}
+        padding: {{ section.settings.info_padding }}px;
+      {%- endif -%}
+      {%- if section.settings.enable_glassmorphism -%}
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+      {%- endif -%}
+    }
+
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'text', 'title', 'price', 'quantity_selector', 'variant_picker', 'buy_buttons', 'description', 'share' -%}
+          .product-block-{{ block.id }} {
+            {%- if block.settings.font_family != blank -%}
+              font-family: {{ block.settings.font_family }} !important;
+            {%- endif -%}
+            {%- if block.settings.font_size > 0 -%}
+              font-size: {{ block.settings.font_size }}px !important;
+            {%- endif -%}
+            {%- if block.settings.font_weight != blank and block.settings.font_weight != 'inherit' -%}
+              font-weight: {{ block.settings.font_weight }} !important;
+            {%- endif -%}
+            {%- if block.settings.font_color != blank and block.settings.font_color != 'rgba(0,0,0,0)' -%}
+              color: {{ block.settings.font_color }} !important;
+            {%- endif -%}
+            {%- if block.settings.bg_color != blank and block.settings.bg_color != 'rgba(0,0,0,0)' -%}
+              background-color: {{ block.settings.bg_color }} !important;
+            {%- endif -%}
+            {%- if block.settings.block_height > 0 -%}
+              height: {{ block.settings.block_height }}px !important;
+              display: flex !important;
+              align-items: center !important;
+            {%- endif -%}
+            {%- if block.settings.border_radius > 0 -%}
+              border-radius: {{ block.settings.border_radius }}px !important;
+            {%- endif -%}
+            {%- if block.settings.bg_color != blank and block.settings.bg_color != 'rgba(0,0,0,0)' -%}
+              padding: 10px 15px !important;
+            {%- endif -%}
+            box-sizing: border-box !important;
+          }
+
+          .product-block-{{ block.id }} *,
+          .product-block-{{ block.id }} a,
+          .product-block-{{ block.id }} p,
+          .product-block-{{ block.id }} h1,
+          .product-block-{{ block.id }} h2,
+          .product-block-{{ block.id }} span,
+          .product-block-{{ block.id }} label,
+          .product-block-{{ block.id }} button,
+          .product-block-{{ block.id }} input,
+          .product-block-{{ block.id }} select,
+          .product-block-{{ block.id }} legend {
+            {%- if block.settings.font_family != blank -%}
+              font-family: inherit !important;
+            {%- endif -%}
+            {%- if block.settings.font_size > 0 -%}
+              font-size: inherit !important;
+            {%- endif -%}
+            {%- if block.settings.font_weight != blank and block.settings.font_weight != 'inherit' -%}
+              font-weight: inherit !important;
+            {%- endif -%}
+            {%- if block.settings.font_color != blank and block.settings.font_color != 'rgba(0,0,0,0)' -%}
+              color: inherit !important;
+            {%- endif -%}
+          }
+
+          {%- if block.type == 'buy_buttons' -%}
+            .product-block-{{ block.id }} .product-form__submit,
+            .product-block-{{ block.id }} .shopify-payment-button__button {
+              {%- if block.settings.bg_color != blank and block.settings.bg_color != 'rgba(0,0,0,0)' -%}
+                background-color: {{ block.settings.bg_color }} !important;
+              {%- endif -%}
+              {%- if block.settings.border_radius > 0 -%}
+                border-radius: {{ block.settings.border_radius }}px !important;
+              {%- endif -%}
+              {%- if block.settings.font_color != blank and block.settings.font_color != 'rgba(0,0,0,0)' -%}
+                color: {{ block.settings.font_color }} !important;
+              {%- endif -%}
+            }
+          {%- endif -%}
+
+          {%- if block.type == 'quantity_selector' -%}
+            .product-block-{{ block.id }} .quantity {
+              {%- if block.settings.bg_color != blank and block.settings.bg_color != 'rgba(0,0,0,0)' -%}
+                background-color: {{ block.settings.bg_color }} !important;
+              {%- endif -%}
+              {%- if block.settings.border_radius > 0 -%}
+                border-radius: {{ block.settings.border_radius }}px !important;
+              {%- endif -%}
+            }
+            .product-block-{{ block.id }} .quantity__input,
+            .product-block-{{ block.id }} .quantity__button {
+              {%- if block.settings.font_color != blank and block.settings.font_color != 'rgba(0,0,0,0)' -%}
+                color: {{ block.settings.font_color }} !important;
+              {%- endif -%}
+            }
+          {%- endif -%}
+
+          {%- if block.type == 'variant_picker' -%}
+            .product-block-{{ block.id }} select,
+            .product-block-{{ block.id }} .select,
+            .product-block-{{ block.id }} label.swatch-input__label {
+              {%- if block.settings.border_radius > 0 -%}
+                border-radius: {{ block.settings.border_radius }}px !important;
+              {%- endif -%}
+            }
+            .product-block-{{ block.id }} input[type="radio"] + label {
+              {%- if block.settings.border_radius > 0 -%}
+                border-radius: {{ block.settings.border_radius }}px !important;
+              {%- endif -%}
+              {%- if block.settings.bg_color != blank and block.settings.bg_color != 'rgba(0,0,0,0)' -%}
+                background-color: {{ block.settings.bg_color }} !important;
+              {%- endif -%}
+              {%- if block.settings.font_color != blank and block.settings.font_color != 'rgba(0,0,0,0)' -%}
+                color: {{ block.settings.font_color }} !important;
+              {%- endif -%}
+            }
+          {%- endif -%}
+      {%- endcase -%}
+    {%- endfor -%}
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -91,13 +238,13 @@
                 {% render block %}
               {%- when 'text' -%}
                 <p
-                  class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
+                  class="product__text inline-richtext product-block-{{ block.id }}{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                   {{ block.shopify_attributes }}
                 >
                   {{- block.settings.text -}}
                 </p>
               {%- when 'title' -%}
-                <div class="product__title" {{ block.shopify_attributes }}>
+                <div class="product__title product-block-{{ block.id }}" {{ block.shopify_attributes }}>
                   <h1>{{ product.title | escape }}</h1>
                   <a href="{{ product.url }}" class="product__title">
                     <h2 class="h1">
@@ -106,39 +253,41 @@
                   </a>
                 </div>
               {%- when 'price' -%}
-                <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
-                  {%- render 'price',
-                    product: product,
-                    use_variant: true,
-                    show_badges: true,
-                    price_class: 'price--large'
-                  -%}
-                </div>
-                {%- if product.quantity_price_breaks_configured? -%}
-                  <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
-                    <span>{{ 'products.product.volume_pricing.note' | t }}</span>
+                <div class="product-block-{{ block.id }}" {{ block.shopify_attributes }}>
+                  <div id="price-{{ section.id }}" role="status">
+                    {%- render 'price',
+                      product: product,
+                      use_variant: true,
+                      show_badges: true,
+                      price_class: 'price--large'
+                    -%}
                   </div>
-                {%- endif -%}
-                {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
-                  <div class="product__tax caption rte">
-                    {%- if cart.duties_included and cart.taxes_included -%}
-                      {{ 'products.product.duties_and_taxes_included' | t }}
-                    {%- elsif cart.taxes_included -%}
-                      {{ 'products.product.taxes_included' | t }}
-                    {%- elsif cart.duties_included -%}
-                      {{ 'products.product.duties_included' | t }}
-                    {%- endif -%}
-                    {%- if shop.shipping_policy.body != blank -%}
-                      {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                    {%- endif -%}
+                  {%- if product.quantity_price_breaks_configured? -%}
+                    <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
+                      <span>{{ 'products.product.volume_pricing.note' | t }}</span>
+                    </div>
+                  {%- endif -%}
+                  {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
+                    <div class="product__tax caption rte">
+                      {%- if cart.duties_included and cart.taxes_included -%}
+                        {{ 'products.product.duties_and_taxes_included' | t }}
+                      {%- elsif cart.taxes_included -%}
+                        {{ 'products.product.taxes_included' | t }}
+                      {%- elsif cart.duties_included -%}
+                        {{ 'products.product.duties_included' | t }}
+                      {%- endif -%}
+                      {%- if shop.shipping_policy.body != blank -%}
+                        {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                  <div>
+                    {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+                    {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
+                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                      {{ form | payment_terms }}
+                    {%- endform -%}
                   </div>
-                {%- endif -%}
-                <div {{ block.shopify_attributes }}>
-                  {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
-                  {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                    {{ form | payment_terms }}
-                  {%- endform -%}
                 </div>
               {%- when 'inventory' -%}
                 <p
@@ -193,7 +342,7 @@
                 </p>
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
-                  <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
+                  <div class="product__description rte quick-add-hidden product-block-{{ block.id }}" {{ block.shopify_attributes }}>
                     {{ product.description }}
                   </div>
                 {%- endif -%}
@@ -230,7 +379,7 @@
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
-                  class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %}"
+                  class="product-form__input product-form__quantity product-block-{{ block.id }}{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %}"
                   {{ block.shopify_attributes }}
                 >
                   {% comment %} TODO: enable theme-check once `item_count_for_variant` is accepted as valid filter {% endcomment %}
@@ -470,21 +619,27 @@
                   </button>
                 </modal-opener>
               {%- when 'share' -%}
-                {% liquid
-                  assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
-                  render 'share-button', block: block, share_link: share_url
-                %}
+                <div class="product-block-{{ block.id }}" {{ block.shopify_attributes }}>
+                  {% liquid
+                    assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
+                    render 'share-button', block: block, share_link: share_url
+                  %}
+                </div>
 
               {%- when 'variant_picker' -%}
-                {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+                <div class="product-block-{{ block.id }}" {{ block.shopify_attributes }}>
+                  {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+                </div>
               {%- when 'buy_buttons' -%}
-                {%- render 'buy-buttons',
-                  block: block,
-                  product: product,
-                  product_form_id: product_form_id,
-                  section_id: section.id,
-                  show_pickup_availability: true
-                -%}
+                <div class="product-block-{{ block.id }}" {{ block.shopify_attributes }}>
+                  {%- render 'buy-buttons',
+                    block: block,
+                    product: product,
+                    product_form_id: product_form_id,
+                    section_id: section.id,
+                    show_pickup_availability: true
+                  -%}
+                </div>
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
@@ -776,18 +931,232 @@
           ],
           "default": "body",
           "label": "t:sections.main-product.blocks.text.settings.text_style.label"
+        },
+        {
+          "type": "header",
+          "content": "Custom Styling Options"
+        },
+        {
+          "type": "text",
+          "id": "font_family",
+          "label": "Font Family",
+          "info": "e.g. 'Inter', sans-serif"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size (0 for default)",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "inherit", "label": "Inherit" },
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "100", "label": "100 - Thin" },
+            { "value": "200", "label": "200 - Extra Light" },
+            { "value": "300", "label": "300 - Light" },
+            { "value": "400", "label": "400 - Regular" },
+            { "value": "500", "label": "500 - Medium" },
+            { "value": "600", "label": "600 - Semi Bold" },
+            { "value": "700", "label": "700 - Bold" },
+            { "value": "800", "label": "800 - Extra Bold" },
+            { "value": "900", "label": "900 - Black" }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "color",
+          "id": "font_color",
+          "label": "Font Color"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color"
+        },
+        {
+          "type": "range",
+          "id": "block_height",
+          "min": 0,
+          "max": 300,
+          "step": 5,
+          "unit": "px",
+          "label": "Block Height (0 for auto)",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Border Radius",
+          "default": 0
         }
       ]
     },
     {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Custom Styling Options"
+        },
+        {
+          "type": "text",
+          "id": "font_family",
+          "label": "Font Family",
+          "info": "e.g. 'Inter', sans-serif"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size (0 for default)",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "inherit", "label": "Inherit" },
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "100", "label": "100 - Thin" },
+            { "value": "200", "label": "200 - Extra Light" },
+            { "value": "300", "label": "300 - Light" },
+            { "value": "400", "label": "400 - Regular" },
+            { "value": "500", "label": "500 - Medium" },
+            { "value": "600", "label": "600 - Semi Bold" },
+            { "value": "700", "label": "700 - Bold" },
+            { "value": "800", "label": "800 - Extra Bold" },
+            { "value": "900", "label": "900 - Black" }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "color",
+          "id": "font_color",
+          "label": "Font Color"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color"
+        },
+        {
+          "type": "range",
+          "id": "block_height",
+          "min": 0,
+          "max": 300,
+          "step": 5,
+          "unit": "px",
+          "label": "Block Height (0 for auto)",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Border Radius",
+          "default": 0
+        }
+      ]
     },
     {
       "type": "price",
       "name": "t:sections.main-product.blocks.price.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Custom Styling Options"
+        },
+        {
+          "type": "text",
+          "id": "font_family",
+          "label": "Font Family",
+          "info": "e.g. 'Inter', sans-serif"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size (0 for default)",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "inherit", "label": "Inherit" },
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "100", "label": "100 - Thin" },
+            { "value": "200", "label": "200 - Extra Light" },
+            { "value": "300", "label": "300 - Light" },
+            { "value": "400", "label": "400 - Regular" },
+            { "value": "500", "label": "500 - Medium" },
+            { "value": "600", "label": "600 - Semi Bold" },
+            { "value": "700", "label": "700 - Bold" },
+            { "value": "800", "label": "800 - Extra Bold" },
+            { "value": "900", "label": "900 - Black" }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "color",
+          "id": "font_color",
+          "label": "Font Color"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color"
+        },
+        {
+          "type": "range",
+          "id": "block_height",
+          "min": 0,
+          "max": 300,
+          "step": 5,
+          "unit": "px",
+          "label": "Block Height (0 for auto)",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Border Radius",
+          "default": 0
+        }
+      ]
     },
     {
       "type": "sku",
@@ -861,7 +1230,79 @@
     {
       "type": "quantity_selector",
       "name": "t:sections.main-product.blocks.quantity_selector.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Custom Styling Options"
+        },
+        {
+          "type": "text",
+          "id": "font_family",
+          "label": "Font Family",
+          "info": "e.g. 'Inter', sans-serif"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size (0 for default)",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "inherit", "label": "Inherit" },
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "100", "label": "100 - Thin" },
+            { "value": "200", "label": "200 - Extra Light" },
+            { "value": "300", "label": "300 - Light" },
+            { "value": "400", "label": "400 - Regular" },
+            { "value": "500", "label": "500 - Medium" },
+            { "value": "600", "label": "600 - Semi Bold" },
+            { "value": "700", "label": "700 - Bold" },
+            { "value": "800", "label": "800 - Extra Bold" },
+            { "value": "900", "label": "900 - Black" }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "color",
+          "id": "font_color",
+          "label": "Font Color"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color"
+        },
+        {
+          "type": "range",
+          "id": "block_height",
+          "min": 0,
+          "max": 300,
+          "step": 5,
+          "unit": "px",
+          "label": "Block Height (0 for auto)",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Border Radius",
+          "default": 0
+        }
+      ]
     },
     {
       "type": "variant_picker",
@@ -904,6 +1345,76 @@
             }
           ],
           "default": "circle"
+        },
+        {
+          "type": "header",
+          "content": "Custom Styling Options"
+        },
+        {
+          "type": "text",
+          "id": "font_family",
+          "label": "Font Family",
+          "info": "e.g. 'Inter', sans-serif"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size (0 for default)",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "inherit", "label": "Inherit" },
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "100", "label": "100 - Thin" },
+            { "value": "200", "label": "200 - Extra Light" },
+            { "value": "300", "label": "300 - Light" },
+            { "value": "400", "label": "400 - Regular" },
+            { "value": "500", "label": "500 - Medium" },
+            { "value": "600", "label": "600 - Semi Bold" },
+            { "value": "700", "label": "700 - Bold" },
+            { "value": "800", "label": "800 - Extra Bold" },
+            { "value": "900", "label": "900 - Black" }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "color",
+          "id": "font_color",
+          "label": "Font Color"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color"
+        },
+        {
+          "type": "range",
+          "id": "block_height",
+          "min": 0,
+          "max": 300,
+          "step": 5,
+          "unit": "px",
+          "label": "Block Height (0 for auto)",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Border Radius",
+          "default": 0
         }
       ]
     },
@@ -925,13 +1436,155 @@
           "default": true,
           "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label",
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
+        },
+        {
+          "type": "header",
+          "content": "Custom Styling Options"
+        },
+        {
+          "type": "text",
+          "id": "font_family",
+          "label": "Font Family",
+          "info": "e.g. 'Inter', sans-serif"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size (0 for default)",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "inherit", "label": "Inherit" },
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "100", "label": "100 - Thin" },
+            { "value": "200", "label": "200 - Extra Light" },
+            { "value": "300", "label": "300 - Light" },
+            { "value": "400", "label": "400 - Regular" },
+            { "value": "500", "label": "500 - Medium" },
+            { "value": "600", "label": "600 - Semi Bold" },
+            { "value": "700", "label": "700 - Bold" },
+            { "value": "800", "label": "800 - Extra Bold" },
+            { "value": "900", "label": "900 - Black" }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "color",
+          "id": "font_color",
+          "label": "Font Color"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color"
+        },
+        {
+          "type": "range",
+          "id": "block_height",
+          "min": 0,
+          "max": 300,
+          "step": 5,
+          "unit": "px",
+          "label": "Block Height (0 for auto)",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Border Radius",
+          "default": 0
         }
       ]
     },
     {
       "type": "description",
       "name": "t:sections.main-product.blocks.description.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Custom Styling Options"
+        },
+        {
+          "type": "text",
+          "id": "font_family",
+          "label": "Font Family",
+          "info": "e.g. 'Inter', sans-serif"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size (0 for default)",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "inherit", "label": "Inherit" },
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "100", "label": "100 - Thin" },
+            { "value": "200", "label": "200 - Extra Light" },
+            { "value": "300", "label": "300 - Light" },
+            { "value": "400", "label": "400 - Regular" },
+            { "value": "500", "label": "500 - Medium" },
+            { "value": "600", "label": "600 - Semi Bold" },
+            { "value": "700", "label": "700 - Bold" },
+            { "value": "800", "label": "800 - Extra Bold" },
+            { "value": "900", "label": "900 - Black" }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "color",
+          "id": "font_color",
+          "label": "Font Color"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color"
+        },
+        {
+          "type": "range",
+          "id": "block_height",
+          "min": 0,
+          "max": 300,
+          "step": 5,
+          "unit": "px",
+          "label": "Block Height (0 for auto)",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Border Radius",
+          "default": 0
+        }
+      ]
     },
     {
       "type": "share",
@@ -943,6 +1596,76 @@
           "id": "share_label",
           "label": "t:sections.main-product.blocks.share.settings.text.label",
           "default": "t:sections.main-product.blocks.share.settings.text.default"
+        },
+        {
+          "type": "header",
+          "content": "Custom Styling Options"
+        },
+        {
+          "type": "text",
+          "id": "font_family",
+          "label": "Font Family",
+          "info": "e.g. 'Inter', sans-serif"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size (0 for default)",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "inherit", "label": "Inherit" },
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "100", "label": "100 - Thin" },
+            { "value": "200", "label": "200 - Extra Light" },
+            { "value": "300", "label": "300 - Light" },
+            { "value": "400", "label": "400 - Regular" },
+            { "value": "500", "label": "500 - Medium" },
+            { "value": "600", "label": "600 - Semi Bold" },
+            { "value": "700", "label": "700 - Bold" },
+            { "value": "800", "label": "800 - Extra Bold" },
+            { "value": "900", "label": "900 - Black" }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "color",
+          "id": "font_color",
+          "label": "Font Color"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color"
+        },
+        {
+          "type": "range",
+          "id": "block_height",
+          "min": 0,
+          "max": 300,
+          "step": 5,
+          "unit": "px",
+          "label": "Block Height (0 for auto)",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Border Radius",
+          "default": 0
         }
       ]
     },
@@ -2262,6 +2985,75 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Product Information Section Customization"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Global Background Color"
+    },
+    {
+      "type": "header",
+      "content": "Info Column Container Customization"
+    },
+    {
+      "type": "color",
+      "id": "info_bg_color",
+      "label": "Info Column Background Color"
+    },
+    {
+      "type": "color",
+      "id": "info_border_color",
+      "label": "Info Column Border Color"
+    },
+    {
+      "type": "range",
+      "id": "info_border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Info Column Border Width",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "info_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Info Column Border Radius",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "info_padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Info Column Inner Padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Gap Between Columns (Media & Info)",
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_glassmorphism",
+      "default": false,
+      "label": "Enable Glassmorphism Effect for Info Column"
     }
   ]
 }
