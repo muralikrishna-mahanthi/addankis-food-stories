@@ -16,7 +16,7 @@
       ],
       "name": "ASFPL Hero",
       "settings": {
-        "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_remove_cap_on_men.png",
+        "image": "shopify://shop_images/ChatGPT_Image_May_25_2026_03_57_09_PM.png",
         "enable_parallax": true,
         "parallax_speed": 70,
         "overlay_color": "#000000",
@@ -74,7 +74,7 @@
         "button_2_hover_border": "#ffffff",
         "text_alignment": "center",
         "desktop_height": "100vh",
-        "mobile_height": "100vh",
+        "mobile_height": "75vh",
         "content_alignment_desktop": "flex-end",
         "padding_top": 36,
         "padding_bottom": 36
@@ -196,7 +196,7 @@
             "text_size": 16,
             "text_color": "#ff9b50",
             "text_weight": "600",
-            "text_padding_horizontal": 200,
+            "text_padding_horizontal": 0,
             "btn_label": "PARTNERS",
             "btn_link": "shopify://pages/partners",
             "btn_radius": 30,
