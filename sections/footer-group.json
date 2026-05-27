@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
@@ -32,7 +41,7 @@
         "logo_width": 180,
         "brand_name": "AFSPL",
         "brand_font": "archivo_black_n4",
-        "brand_size": 100,
+        "brand_size": 78,
         "brand_weight": "800",
         "brand_color": "#ffffff",
         "brand_mb": 0,
